@@ -860,4 +860,29 @@ function triggerAction(actionName) {
 </div>
     
 </body>
+  <!-- Live Galaxy Voice Mode Overlay -->
+<div id="galaxyVoiceModal" class="galaxy-voice-modal">
+  <!-- Top Bar -->
+  <div class="g-voice-topbar">
+    <div class="g-voice-title">Sudarshana Live Voice</div>
+    <button class="g-voice-icon-btn" onclick="closeGalaxyVoice()"><span class="material-icons">close</span></button>
+  </div>
+
+  <!-- Center Galaxy Universe Orb -->
+  <div class="g-orb-container">
+    <div class="galaxy-orb" id="galaxyOrb">
+      <div class="nebula-ring"></div>
+      <div class="core-glow"></div>
+      <div class="stars-layer"></div>
+    </div>
+    <div class="g-status-text" id="gStatusText">Tap to talk with Sudarshana</div>
+  </div>
+
+  <!-- Bottom Voice Controls -->
+  <div class="g-voice-bottombar">
+    <button class="g-ctrl-btn" id="gMicBtn" onclick="toggleVoiceLive()"><span class="material-icons" id="gMicIcon">mic</span></button>
+    <button class="g-ctrl-btn g-end-btn" onclick="closeGalaxyVoice()"><span class="material-icons">call_end</span></button>
+  </div>
+</div>
+  
 </html>
