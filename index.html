@@ -670,6 +670,111 @@ function deleteCurrentChat() {
   }
   toggleOptionsMenu();
 }
+   // 5. Dynamic Voice vs Send Icon Toggle
+function toggleInputIcons() {
+  const input = document.getElementById('userInput');
+  const dynamicIcon = document.getElementById('dynamicIcon');
+  const btn = document.getElementById('dynamicActionBtn');
+  if (!input || !dynamicIcon || !btn) return;
+
+  if (input.value.trim().length > 0) {
+    dynamicIcon.textContent = 'arrow_upward';
+    btn.setAttribute('title', 'Send');
+    btn.style.background = '#0284c7';
+  } else {
+    dynamicIcon.textContent = 'graphic_eq';
+    btn.setAttribute('title', 'Live Voice Mode');
+    btn.style.background = '#27272a';
+  }
+}
+
+function handleKeyPress(e) {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+}
+
+function handleDynamicAction() {
+  const input = document.getElementById('userInput');
+  if (input && input.value.trim().length > 0) {
+    sendMessage();
+  } else {
+    startVoiceConversation();
+  }
+}
+
+function startVoiceConversation() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert("Voice recognition is not supported in this browser.");
+    return;
+  }
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'hi-IN';
+  document.getElementById('userInput').placeholder = "Listening...";
+  
+  recognition.onresult = (e) => {
+    const text = e.results[0][0].transcript;
+    document.getElementById('userInput').value = text;
+    sendMessage();
+  };
+  recognition.onerror = () => {
+    document.getElementById('userInput').placeholder = "Ask Sudarshana";
+  };
+  recognition.start();
+}
+
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const chatBox = document.getElementById('chatBox');
+
+  const userMsg = document.createElement('div');
+  userMsg.style.cssText = "align-self: flex-end; background: #27272a; padding: 12px 16px; border-radius: 18px 18px 4px 18px; color: #fff; max-width: 80%; word-break: break-word;";
+  userMsg.textContent = text;
+  chatBox.appendChild(userMsg);
+
+  input.value = '';
+  toggleInputIcons();
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  setTimeout(() => {
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'message-card';
+    aiMsg.style.cssText = "align-self: flex-start; background: #0f172a; border: 1px solid #1e293b; padding: 14px 16px; border-radius: 18px 18px 18px 4px; color: #e2e8f0; max-width: 85%;";
+    
+    aiMsg.innerHTML = `
+      <div class="text-content">Namaste! Main Sudarshana AI hoon. Aapka sandesh: "${text}"</div>
+      <div class="reply-toolbar">
+        <button class="tb-btn" onclick="speakMsg(this)" title="Read Aloud"><span class="material-icons">volume_up</span></button>
+        <button class="tb-btn" onclick="copyMsg(this)" title="Copy"><span class="material-icons">content_copy</span></button>
+      </div>
+    `;
+    chatBox.appendChild(aiMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }, 600);
+}
+
+// 6. Gemini-Style + Drawer Functions
+function openPlusDrawer() {
+  document.getElementById('plusDrawer').classList.add('active');
+  document.getElementById('drawerOverlay').classList.add('active');
+}
+
+function closePlusDrawer() {
+  document.getElementById('plusDrawer').classList.remove('active');
+  document.getElementById('drawerOverlay').classList.remove('active');
+}
+
+function triggerAction(actionName) {
+  closePlusDrawer();
+  const input = document.getElementById('userInput');
+  input.value = `[${actionName}] `;
+  input.focus();
+  toggleInputIcons();
+}
     
   </script>
     <!-- Backdrop Overlay -->
