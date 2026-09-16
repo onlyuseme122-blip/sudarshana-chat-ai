@@ -321,15 +321,28 @@
 </div>
 
     <!-- Input Bar -->
-    <div class="input-wrapper-outer">
-      <div class="input-container">
-        <button class="action-icon" onclick="alert('Attachments available: Photos, Camera, Files')"><span class="material-icons">add</span></button>
-        <input type="text" id="userInput" placeholder="Ask Sudarshana" onkeydown="handleKey(event)">
-        <button class="action-icon" onclick="startMic()"><span class="material-icons" id="micIcon">mic</span></button>
-        <button class="voice-btn" onclick="sendMessage()"><span class="material-icons">send</span></button>
-      </div>
-    </div>
+    <!-- Chat Display Area -->
+<div class="chat-box" id="chatBox"></div>
+
+<!-- Input Bar Wrapper at Bottom -->
+<div class="input-wrapper-outer">
+  <div class="input-container">
+    <button class="action-icon" onclick="openPlusDrawer()" title="Add">
+      <span class="material-icons">add</span>
+    </button>
+    
+    <input type="text" id="userInput" placeholder="Ask Sudarshana" oninput="toggleInputIcons()" onkeypress="handleKeyPress(event)">
+    
+    <button class="action-icon" id="micBtn" onclick="startMic()" title="Mic">
+      <span class="material-icons">mic</span>
+    </button>
+
+    <button class="send-btn" id="dynamicActionBtn" onclick="handleDynamicAction()" title="Voice Conversation">
+      <span class="material-icons" id="dynamicIcon">graphic_eq</span>
+    </button>
   </div>
+</div>
+
 
   <script>
     function toggleSidebar() {
