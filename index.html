@@ -974,15 +974,15 @@ function toggleVoiceLive() {
 }
 
 // 3. AI Smart Vocal Response & Galaxy Orb Pulsing
-// --- 100% HARDCODED GEMINI AI ENGINE ---
+// --- REAL GEMINI PROXY ENGINE (NO CORS BLOCK) ---
 const part1 = "AQ.Ab8RN6Kky";
 const part2 = "EvbiqLRoB-g_LOr7";
 const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
 const GEMINI_API_KEY = part1 + part2 + part3;
 
-// 1. Direct Gemini Request Function
+// 1. Direct Netlify Proxy Call (CORS-Free)
 async function askGeminiAI(userPrompt) {
-  const endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+  const endpoint = "/api/gemini/models/gemini-2.5-flash:generateContent";
 
   const response = await fetch(endpoint, {
     method: "POST",
@@ -993,7 +993,7 @@ async function askGeminiAI(userPrompt) {
     body: JSON.stringify({
       contents: [{
         parts: [{
-          text: `System: Tumhara naam 'Sudarshana AI' hai. Ek intelligent, friendly aur ChatGPT jaisa companion bankar Hinglish/Hindi me helpful andaz me chat karo.\n\nUser: ${userPrompt}`
+          text: `System: Tumhara naam 'Sudarshana AI' hai. ChatGPT ki tarah ek smart, friendly dost bankar Hinglish/Hindi me natural dosti bhare andaz me chat karo.\n\nUser: ${userPrompt}`
         }]
       }]
     })
@@ -1002,11 +1002,53 @@ async function askGeminiAI(userPrompt) {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    const errorDetail = data.error?.message || response.statusText || ("Code " + response.status);
+    const errorDetail = data.error?.message || response.statusText || ("HTTP " + response.status);
     throw new Error(errorDetail);
   }
 
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf kijiye, main abhi samajh nahi paya.";
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf kijiye, koi jawab nahi mila.";
+}
+
+// 2. Chat Box Message Handler
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const chatBox = document.getElementById('chatBox');
+
+  // User message
+  const userMsg = document.createElement('div');
+  userMsg.style.cssText = "align-self: flex-end; background: #27272a; padding: 12px 16px; border-radius: 18px 18px 4px 18px; color: #fff; max-width: 80%; word-break: break-word;";
+  userMsg.textContent = text;
+  chatBox.appendChild(userMsg);
+
+  input.value = '';
+  toggleInputIcons();
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // AI Thinking indicator
+  const aiMsg = document.createElement('div');
+  aiMsg.className = 'message-card';
+  aiMsg.style.cssText = "align-self: flex-start; background: #0f172a; border: 1px solid #1e293b; padding: 14px 16px; border-radius: 18px 18px 18px 4px; color: #e2e8f0; max-width: 85%;";
+  aiMsg.innerHTML = `<div class="text-content" style="color: #94a3b8;"><i>Sudarshana soch raha hai...</i></div>`;
+  chatBox.appendChild(aiMsg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  try {
+    const aiResponse = await askGeminiAI(text);
+    aiMsg.innerHTML = `
+      <div class="text-content">${aiResponse.replace(/\n/g, '<br>')}</div>
+      <div class="reply-toolbar">
+        <button class="tb-btn" onclick="speakMsg(this)" title="Read Aloud"><span class="material-icons">volume_up</span></button>
+        <button class="tb-btn" onclick="copyMsg(this)" title="Copy"><span class="material-icons">content_copy</span></button>
+      </div>
+    `;
+  } catch (err) {
+    aiMsg.innerHTML = `<div class="text-content" style="color: #f87171;">Error: ${err.message}</div>`;
+  }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 // 2. Chat Box Message Handler
