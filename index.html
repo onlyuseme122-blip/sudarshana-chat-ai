@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sudarshana Chat AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100vh; height: 100dvh;
+      background: #000; color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden; display: flex; justify-content: center; align-items: center;
+    }
+    .app-frame {
+      width: 100%; max-width: 600px; height: 100%;
+      background: #000; display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+
+    /* Flying Chakra Intro Animation */
+    #introChakra {
+      position: absolute; top: 45%; left: 50%;
+      transform: translate(-50%, -50%) scale(1.6);
+      width: 110px; height: 110px; border-radius: 50%;
+      background: radial-gradient(circle, #ffd700 0%, #ff8c00 70%, transparent 100%);
+      box-shadow: 0 0 45px #ffd700, inset 0 0 18px #fff;
+      z-index: 1000; pointer-events: none;
+      animation: flyChakra 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    @keyframes flyChakra {
+      0% { top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1.6) rotate(0deg); opacity: 1; }
+      65% { top: 86%; left: 50%; transform: translate(-50%, -50%) scale(0.5) rotate(360deg); opacity: 0.9; }
+      100% { top: 92%; left: 88%; transform: translate(-50%, -50%) scale(0.1) rotate(720deg); opacity: 0; }
+    }
+
+    /* Header */
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; background: #000; flex-shrink: 0; z-index: 10;
+    }
+    .icon-btn-header {
+      background: none; border: none; color: #fff; font-size: 24px;
+      cursor: pointer; display: flex; align-items: center; padding: 4px; border-radius: 50%;
+    }
+    .icon-btn-header:hover { background: rgba(255, 255, 255, 0.1); }
+    .get-plus-btn {
+      background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffd700; padding: 6px 14px; border-radius: 20px; font-size: 13.5px;
+      display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500;
+    }
+    .get-plus-btn .material-icons { font-size: 16px; }
+
+    /* Sidebar Drawer */
+    .sidebar {
+      position: absolute; top: 0; left: -100%; width: 80%; max-width: 320px; height: 100%;
+      background: #111; border-right: 1px solid #222; z-index: 500;
+      transition: 0.3s ease; display: flex; flex-direction: column;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar-top {
+      padding: 16px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #222;
+    }
+    .sidebar-top h3 { color: #fff; font-size: 17px; font-weight: 600; }
+    .sidebar-links { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+    .s-link {
+      display: flex; align-items: center; gap: 14px; padding: 11px 12px;
+      color: #ccc; text-decoration: none; font-size: 14px; border-radius: 8px; cursor: pointer;
+    }
+    .s-link:hover { background: #1c1c1c; color: #ffd700; }
+    .s-link .material-icons { color: #888; font-size: 20px; }
+    .s-link:hover .material-icons { color: #ffd700; }
+    .sidebar-section-title {
+      font-size: 11px; color: #666; padding: 12px 12px 4px 12px;
+      font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .sidebar-footer {
+      padding: 14px 16px; border-top: 1px solid #222;
+      display: flex; align-items: center; justify-content: space-between; background: #141414;
+    }
+    .user-profile { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 13.5px; }
+    .user-avatar {
+      width: 32px; height: 32px; background: #4a148c; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px;
+    }
+
+    /* Chat View */
+    .chat-box {
+      flex: 1; padding: 16px; overflow-y: auto; display: flex;
+      flex-direction: column; gap: 16px; background: #000;
+    }
+    .home-suggestions {
+      margin: auto 0; display: flex; flex-direction: column; gap: 16px; padding: 10px 4px;
+    }
+    .suggestion-item {
+      display: flex; align-items: center; gap: 16px; color: #bbb;
+      font-size: 15px; cursor: pointer; padding: 6px 0; background: none; border: none; text-align: left;
+    }
+    .suggestion-item:hover { color: #fff; }
+    .suggestion-item .material-icons { font-size: 22px; color: #888; }
+    .suggestion-item:hover .material-icons { color: #ffd700; }
+
+    /* Message Balloons */
+    .msg-group { display: flex; flex-direction: column; gap: 4px; max-width: 88%; }
+    .user-grp { align-self: flex-end; }
+    .ai-grp { align-self: flex-start; }
+    .message {
+      padding: 12px 16px; border-radius: 14px; line-height: 1.45;
+      font-size: 14.5px; word-break: break-word;
+    }
+    .user-msg { background: #262626; color: #fff; border-bottom-right-radius: 4px; }
+    .ai-msg { background: #141414; color: #00ff7f; border: 1px solid #292929; border-bottom-left-radius: 4px; }
+
+    /* Loading animation */
+    .loading-dots { display: flex; align-items: center; gap: 5px; padding: 4px 0; }
+    .loading-dots span {
+      width: 7px; height: 7px; background-color: #ffd700; border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out both;
+    }
+    .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1.0); }
+    }
+
+    /* Input Dock */
+    .input-wrapper-outer { padding: 12px 16px; background: #000; flex-shrink: 0; }
+    .input-container {
+      background: #181818; border-radius: 28px; display: flex;
+      align-items: center; padding: 8px 12px; border: 1px solid #2f2f2f; gap: 8px;
+    }
+    .action-icon {
+      background: none; border: none; color: #888; cursor: pointer;
+      display: flex; align-items: center; padding: 6px; border-radius: 50%;
+    }
+    .action-icon:hover { color: #fff; }
+    .input-container input {
+      flex: 1; background: none; border: none; color: #fff;
+      padding: 6px 0; font-size: 15px; outline: none;
+    }
+    .input-container input::placeholder { color: #666; }
+    .voice-btn {
+      background: #1e88e5; border: none; color: #fff; border-radius: 50%;
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .voice-btn .material-icons { font-size: 19px; }
+  </style>
+</head>
+<body>
+
+  <div id="introChakra"></div>
+
+  <div class="app-frame">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <h3>Sudarshana</h3>
+        <button class="icon-btn-header" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
+      </div>
+      <div class="sidebar-links">
+        <div class="s-link" onclick="newChat(); toggleSidebar()"><span class="material-icons">chat</span> New chat</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">search</span> Search chats</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">image</span> Images</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">grid_view</span> Library</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">folder</span> Projects</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">schedule</span> Scheduled</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">extension</span> Plugins</div>
+        
+        <div class="sidebar-section-title">Recents</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">chat_bubble_outline</span> AI Engine Setup</div>
+        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">chat_bubble_outline</span> Sudarshana Chakra Design</div>
+      </div>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">S</div>
+          <span>Sudarshana Core<br><span style="font-size:10px; color:#ffd700;">ACTIVE</span></span>
+        </div>
+        <button class="icon-btn-header" onclick="alert('Settings menu open')"><span class="material-icons">settings</span></button>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+      <button class="icon-btn-header" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
+      <button class="get-plus-btn" onclick="alert('Sudarshana Pro is currently enabled.')"><span class="material-icons">auto_awesome</span> Get Plus</button>
+      <button class="icon-btn-header" onclick="newChat()"><span class="material-icons">edit_square</span></button>
+    </div>
+
+    <!-- Chat Display Area -->
+    <div class="chat-box" id="chatBox">
+      <div class="home-suggestions" id="homeSuggestions">
+        <button class="suggestion-item" onclick="quickFill('Create an image: ')">
+          <span class="material-icons">image</span> Create an image
+        </button>
+        <button class="suggestion-item" onclick="quickFill('Help me write or edit: ')">
+          <span class="material-icons">edit</span> Write or edit
+        </button>
+        <button class="suggestion-item" onclick="quickFill('Search the web for: ')">
+          <span class="material-icons">language</span> Search the web
+        </button>
+      </div>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="input-wrapper-outer">
+      <div class="input-container">
+        <button class="action-icon" onclick="alert('Attachments available: Photos, Camera, Files')"><span class="material-icons">add</span></button>
+        <input type="text" id="userInput" placeholder="Ask Sudarshana" onkeydown="handleKey(event)">
+        <button class="action-icon" onclick="startMic()"><span class="material-icons" id="micIcon">mic</span></button>
+        <button class="voice-btn" onclick="sendMessage()"><span class="material-icons">send</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    function quickFill(text) {
+      const input = document.getElementById('userInput');
+      input.value = text;
+      input.focus();
+    }
+
+    function newChat() {
+      document.getElementById('chatBox').innerHTML = `
+        <div class="home-suggestions" id="homeSuggestions">
+          <button class="suggestion-item" onclick="quickFill('Create an image: ')">
+            <span class="material-icons">image</span> Create an image
+          </button>
+          <button class="suggestion-item" onclick="quickFill('Help me write or edit: ')">
+            <span class="material-icons">edit</span> Write or edit
+          </button>
+          <button class="suggestion-item" onclick="quickFill('Search the web for: ')">
+            <span class="material-icons">language</span> Search the web
+          </button>
+        </div>
+      `;
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter') sendMessage();
+    }
+
+    function startMic() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) { alert("Speech recognition not supported in this browser."); return; }
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      const micIcon = document.getElementById('micIcon');
+      rec.onstart = () => micIcon.style.color = '#ffd700';
+      rec.onresult = (e) => {
+        document.getElementById('userInput').value = e.results[0][0].transcript;
+        micIcon.style.color = '#888';
+      };
+      rec.onerror = () => micIcon.style.color = '#888';
+      rec.start();
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const suggestions = document.getElementById('homeSuggestions');
+      if (suggestions) suggestions.remove();
+
+      const chatBox = document.getElementById('chatBox');
+      
+      // Append user balloon
+      const userGrp = document.createElement('div');
+      userGrp.className = 'msg-group user-grp';
+      userGrp.innerHTML = `<div class="message user-msg">${escapeHtml(text)}</div>`;
+      chatBox.appendChild(userGrp);
+      input.value = '';
+
+      // Append AI loading balloon
+      const aiGrp = document.createElement('div');
+      aiGrp.className = 'msg-group ai-grp';
+      aiGrp.innerHTML = `<div class="message ai-msg"><div class="loading-dots"><span></span><span></span><span></span></div></div>`;
+      chatBox.appendChild(aiGrp);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      const apiKey = "AQ.Ab8RN6L3bhsu5LmMQLH5gwB0ED_WElMjde8aCKzmGGPY9t8mKg";
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: text }] }] })
+        });
+        const data = await response.json();
+        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to retrieve response.";
+        aiGrp.querySelector('.ai-msg').innerText = reply;
+      } catch (err) {
+        aiGrp.querySelector('.ai-msg').innerText = "Network connection issue. Please retry.";
+      }
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+  </script>
+</body>
+</html>
