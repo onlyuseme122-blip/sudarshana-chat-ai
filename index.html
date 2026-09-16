@@ -8,6 +8,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
+    /* Fullscreen Galaxy Voice Modal */
+.galaxy-voice-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 3000;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 20px 40px;
+}
+.galaxy-voice-modal.active {
+  display: flex;
+}
+
+.g-voice-topbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #71717a;
+  font-size: 14px;
+}
+.g-voice-icon-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 3D Glowing Universe Galaxy Orb */
+.g-orb-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.galaxy-orb {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 35% 35%, #38bdf8 0%, #1e1b4b 50%, #030712 100%);
+  box-shadow: 0 0 60px rgba(56, 189, 248, 0.45), inset 0 0 40px rgba(168, 85, 247, 0.5);
+  animation: cosmicRotate 16s linear infinite, orbBreath 3s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+.galaxy-orb.speaking {
+  animation: cosmicRotate 8s linear infinite, orbPulse 0.8s ease-in-out infinite alternate;
+  box-shadow: 0 0 90px rgba(56, 189, 248, 0.8), inset 0 0 50px rgba(236, 72, 153, 0.7);
+}
+
+.nebula-ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, rgba(56, 189, 248, 0.4), rgba(168, 85, 247, 0.4), transparent);
+  animation: cosmicRotate 10s linear infinite reverse;
+  filter: blur(12px);
+}
+.core-glow {
+  position: absolute;
+  top: 25%; left: 25%;
+  width: 50%; height: 50%;
+  background: radial-gradient(circle, #e0f2fe 0%, rgba(56, 189, 248, 0) 70%);
+  filter: blur(8px);
+}
+
+@keyframes cosmicRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes orbBreath {
+  from { transform: scale(0.96); }
+  to { transform: scale(1.04); }
+}
+@keyframes orbPulse {
+  from { transform: scale(0.92); }
+  to { transform: scale(1.12); }
+}
+
+.g-status-text {
+  color: #a1a1aa;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+/* Voice Bottom Controls */
+.g-voice-bottombar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.g-ctrl-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: #18181b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+}
+.g-ctrl-btn.listening {
+  background: #0284c7;
+}
+.g-end-btn {
+  background: #dc2626;
+}
+    
     /* Chakra Animation */
 .header-chakra {
   width: 28px;
