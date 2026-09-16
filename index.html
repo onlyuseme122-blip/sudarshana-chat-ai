@@ -197,58 +197,49 @@
     </div>
 
     <!-- Header -->
-    <div class="header">
-      <button class="icon-btn-header" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
-      <svg class="header-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="50" cy="50" r="46" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
-  <g fill="#0284c7" stroke="#38bdf8" stroke-width="1.5">
-    <polygon points="50,2 54,14 46,14"/>
-    <polygon points="50,98 54,86 46,86"/>
-    <polygon points="2,50 14,54 14,46"/>
-    <polygon points="98,50 86,54 86,46"/>
-    <polygon points="16,16 26,22 20,28"/>
-    <polygon points="84,84 74,78 80,72"/>
-    <polygon points="16,84 20,72 26,78"/>
-    <polygon points="84,16 80,28 74,22"/>
-    <polygon points="28,5 34,16 26,18"/>
-    <polygon points="72,95 66,84 74,82"/>
-    <polygon points="5,72 16,66 18,74"/>
-    <polygon points="95,28 84,34 82,26"/>
-    <polygon points="72,5 74,18 66,16"/>
-    <polygon points="28,95 26,82 34,84"/>
-    <polygon points="95,72 82,74 84,66"/>
-    <polygon points="5,28 18,26 16,34"/>
-  </g>
-  <circle cx="50" cy="50" r="32" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="50" cy="50" r="28" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3,3"/>
-  <g stroke="#38bdf8" stroke-width="2">
-    <line x1="50" y1="20" x2="50" y2="80"/>
-    <line x1="20" y1="50" x2="80" y2="50"/>
-    <line x1="29" y1="29" x2="71" y2="71"/>
-    <line x1="29" y1="71" x2="71" y2="29"/>
-  </g>
-  <circle cx="50" cy="50" r="14" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
-  <circle cx="50" cy="50" r="6" fill="#f8fafc"/>
-      </svg>
-      
-      <button class="get-plus-btn" onclick="alert('Sudarshana Pro is currently enabled.')"><span class="material-icons">auto_awesome</span> Get Plus</button>
-      <button class="icon-btn-header" onclick="newChat()"><span class="material-icons">edit_square</span></button>
-    </div>
+<div class="header">
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <button class="icon-btn-header" onclick="toggleSidebar()">
+      <span class="material-icons">menu</span>
+    </button>
+    <!-- Sudarshana Spinning Vector Logo -->
+    <svg class="header-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
+      <g fill="#0284c7" stroke="#38bdf8" stroke-width="1.5">
+        <polygon points="50,2 54,14 46,14"/>
+        <polygon points="50,98 54,86 46,86"/>
+        <polygon points="2,50 14,54 14,46"/>
+        <polygon points="98,50 86,54 86,46"/>
+        <polygon points="16,16 26,22 20,28"/>
+        <polygon points="84,84 74,78 80,72"/>
+        <polygon points="16,84 20,72 26,78"/>
+        <polygon points="84,16 80,28 74,22"/>
+      </g>
+      <circle cx="50" cy="50" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="50" cy="50" r="12" fill="#0284c7"/>
+    </svg>
+    <span style="font-weight: 600; font-size: 16px; color: #fff;">Sudarshana</span>
+  </div>
 
-    <!-- Chat Display Area -->
-    <div class="chat-box" id="chatBox">
-      <div class="home-suggestions" id="homeSuggestions">
-        <button class="suggestion-item" onclick="quickFill('Create an image: ')">
-          <span class="material-icons">image</span> Create an image
-        </button>
-        <button class="suggestion-item" onclick="quickFill('Help me write or edit: ')">
-          <span class="material-icons">edit</span> Write or edit
-        </button>
-        <button class="suggestion-item" onclick="quickFill('Search the web for: ')">
-          <span class="material-icons">language</span> Search the web
-        </button>
-      </div>
+  <div style="display: flex; align-items: center; gap: 4px; position: relative;">
+    <button class="icon-btn-header" onclick="newChat()" title="New Chat">
+      <span class="material-icons">edit_square</span>
+    </button>
+    <button class="icon-btn-header" onclick="toggleOptionsMenu()" title="Options">
+      <span class="material-icons">more_vert</span>
+    </button>
+
+    <!-- 3-Dot Options Dropdown Menu -->
+    <div id="optionsDropdown" class="options-dropdown">
+      <div class="opt-item" onclick="shareChat()"><span class="material-icons">share</span> Share conversation</div>
+      <div class="opt-item" onclick="pinCurrentChat()"><span class="material-icons">push_pin</span> Pin</div>
+      <div class="opt-item" onclick="renameCurrentChat()"><span class="material-icons">edit</span> Rename</div>
+      <div class="opt-item" onclick="showHelp()"><span class="material-icons">help_outline</span> Help</div>
+      <div class="opt-item" onclick="sendFeedback()"><span class="material-icons">feedback</span> Feedback</div>
+      <div class="opt-item opt-delete" onclick="deleteCurrentChat()"><span class="material-icons">delete</span> Delete</div>
     </div>
+  </div>
+</div>
 
     <!-- Input Bar -->
     <div class="input-wrapper-outer">
