@@ -518,5 +518,87 @@ function deleteCurrentChat() {
 }
     
   </script>
+    <!-- Backdrop Overlay -->
+<div id="drawerOverlay" class="drawer-overlay" onclick="closePlusDrawer()"></div>
+
+<!-- Plus Drawer Sheet -->
+<div id="plusDrawer" class="plus-drawer">
+  <div class="drawer-handle-bar">
+    <div class="drawer-handle"></div>
+  </div>
+
+  <!-- Top Horizontal Scrolling Chips -->
+  <div class="drawer-top-chips">
+    <div class="chip-card" onclick="triggerAction('Photos')">
+      <div class="chip-icon"><span class="material-icons">photo_library</span></div>
+      <span>Photos</span>
+    </div>
+    <div class="chip-card" onclick="triggerAction('Camera')">
+      <div class="chip-icon"><span class="material-icons">photo_camera</span></div>
+      <span>Camera</span>
+    </div>
+    <div class="chip-card" onclick="triggerAction('Files')">
+      <div class="chip-icon"><span class="material-icons">attach_file</span></div>
+      <span>Files</span>
+    </div>
+    <div class="chip-card" onclick="triggerAction('Drive')">
+      <div class="chip-icon"><span class="material-icons">add_to_drive</span></div>
+      <span>Drive</span>
+    </div>
+    <div class="chip-card" onclick="triggerAction('Notebooks')">
+      <div class="chip-icon"><span class="material-icons">menu_book</span></div>
+      <span>Notebooks</span>
+    </div>
+  </div>
+
+  <div class="drawer-divider"></div>
+
+  <!-- Feature List Items -->
+  <div class="drawer-feature-list">
+    <div class="feature-item" onclick="triggerAction('Create Image')">
+      <span class="material-icons feature-icon">palette</span>
+      <div class="feature-text">
+        <span class="f-title">Images</span>
+        <span class="f-desc">Create and edit</span>
+      </div>
+    </div>
+    <div class="feature-item" onclick="triggerAction('Create Video')">
+      <span class="material-icons feature-icon">smart_display</span>
+      <div class="feature-text">
+        <span class="f-title">Videos</span>
+        <span class="f-desc">Bring ideas to life</span>
+      </div>
+    </div>
+    <div class="feature-item" onclick="triggerAction('Generate Music')">
+      <span class="material-icons feature-icon">music_note</span>
+      <div class="feature-text">
+        <span class="f-title">Music</span>
+        <span class="f-desc">Make audio tracks</span>
+      </div>
+    </div>
+    <div class="feature-item" onclick="triggerAction('Open Canvas')">
+      <span class="material-icons feature-icon">web_stories</span>
+      <div class="feature-text">
+        <span class="f-title">Canvas</span>
+        <span class="f-desc">Code, write, or make slides</span>
+      </div>
+    </div>
+    <div class="feature-item" onclick="triggerAction('Deep Research')">
+      <span class="material-icons feature-icon">travel_explore</span>
+      <div class="feature-text">
+        <span class="f-title">Deep research</span>
+        <span class="f-desc">Get detailed reports</span>
+      </div>
+    </div>
+    <div class="feature-item" onclick="triggerAction('Guided Learning')">
+      <span class="material-icons feature-icon">auto_stories</span>
+      <div class="feature-text">
+        <span class="f-title">Guided learning</span>
+        <span class="f-desc">Get step-by-step help</span>
+      </div>
+    </div>
+  </div>
+</div>
+    
 </body>
 </html>
