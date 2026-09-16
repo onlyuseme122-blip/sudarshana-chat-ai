@@ -889,6 +889,126 @@ function triggerAction(actionName) {
   input.focus();
   toggleInputIcons();
 }
+    // --- LIVE GALAXY VOICE CONVERSATION ENGINE ---
+let voiceRecognition = null;
+let isVoiceActive = false;
+
+// 1. Fullscreen Galaxy Modal Toggle
+function startVoiceConversation() {
+  const modal = document.getElementById('galaxyVoiceModal');
+  if (modal) modal.classList.add('active');
+  initTwoWayVoice();
+}
+
+function closeGalaxyVoice() {
+  const modal = document.getElementById('galaxyVoiceModal');
+  if (modal) modal.classList.remove('active');
+  if (voiceRecognition) {
+    try { voiceRecognition.stop(); } catch(e) {}
+  }
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  isVoiceActive = false;
+  const orb = document.getElementById('galaxyOrb');
+  if (orb) orb.classList.remove('speaking');
+}
+
+// 2. Speech-to-Text Listener
+function initTwoWayVoice() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert("Speech recognition browser support required. Please use Chrome/Edge.");
+    return;
+  }
+
+  try {
+    if (voiceRecognition) voiceRecognition.abort();
+  } catch(e) {}
+
+  voiceRecognition = new SpeechRecognition();
+  voiceRecognition.lang = 'hi-IN';
+  voiceRecognition.continuous = false;
+  voiceRecognition.interimResults = false;
+
+  const statusText = document.getElementById('gStatusText');
+  const micBtn = document.getElementById('gMicBtn');
+
+  voiceRecognition.onstart = () => {
+    isVoiceActive = true;
+    if (statusText) statusText.innerText = "Listening to you...";
+    if (micBtn) micBtn.classList.add('listening');
+  };
+
+  voiceRecognition.onresult = (event) => {
+    const userSaid = event.results[0][0].transcript;
+    if (statusText) statusText.innerText = `You: "${userSaid}"`;
+    respondWithVoice(userSaid);
+  };
+
+  voiceRecognition.onerror = () => {
+    if (statusText) statusText.innerText = "Tap mic to speak";
+    if (micBtn) micBtn.classList.remove('listening');
+    isVoiceActive = false;
+  };
+
+  voiceRecognition.onend = () => {
+    if (micBtn) micBtn.classList.remove('listening');
+    isVoiceActive = false;
+  };
+
+  try {
+    voiceRecognition.start();
+  } catch(e) {}
+}
+
+function toggleVoiceLive() {
+  if (isVoiceActive && voiceRecognition) {
+    voiceRecognition.stop();
+    isVoiceActive = false;
+    const statusText = document.getElementById('gStatusText');
+    if (statusText) statusText.innerText = "Mic paused. Tap to speak.";
+  } else {
+    initTwoWayVoice();
+  }
+}
+
+// 3. AI Smart Vocal Response & Galaxy Orb Pulsing
+function respondWithVoice(promptText) {
+  const statusText = document.getElementById('gStatusText');
+  const orb = document.getElementById('galaxyOrb');
+
+  if (statusText) statusText.innerText = "Sudarshana is thinking...";
+
+  const aiReply = "Namaste! Maine aapka sandesh suna: " + promptText + ". Sudarshana AI aapki sahayata ke liye taiyar hai.";
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(aiReply);
+    utterance.lang = 'hi-IN';
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onstart = () => {
+      if (orb) orb.classList.add('speaking');
+      if (statusText) statusText.innerText = "Sudarshana is speaking...";
+    };
+
+    utterance.onend = () => {
+      if (orb) orb.classList.remove('speaking');
+      if (statusText) statusText.innerText = "Listening again...";
+      setTimeout(() => {
+        const modal = document.getElementById('galaxyVoiceModal');
+        if (modal && modal.classList.contains('active')) {
+          initTwoWayVoice();
+        }
+      }, 400);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+}
+    
     
   </script>
     <!-- Backdrop Overlay -->
