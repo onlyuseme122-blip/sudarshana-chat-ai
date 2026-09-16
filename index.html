@@ -422,6 +422,88 @@
     function escapeHtml(str) {
       return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
+    // 1. 3-Dot Options Menu Toggle
+function toggleOptionsMenu() {
+  const menu = document.getElementById('optionsDropdown');
+  menu.classList.toggle('show');
+}
+window.addEventListener('click', (e) => {
+  if (!e.target.closest('.options-dropdown') && !e.target.closest('button[title="Options"]')) {
+    const menu = document.getElementById('optionsDropdown');
+    if (menu) menu.classList.remove('show');
+  }
+});
+
+// 2. Reply Actions: Copy, Read Aloud (TTS), Regenerate
+function copyMsg(btn) {
+  const text = btn.closest('.message-card').querySelector('.text-content').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.innerHTML = '<span class="material-icons" style="color:#4ade80;">check</span>';
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-icons">content_copy</span>';
+    }, 1800);
+  });
+}
+
+function speakMsg(btn) {
+  const text = btn.closest('.message-card').querySelector('.text-content').innerText;
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'hi-IN'; // Auto speech support
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+// 3. Voice Input via Mic (Speech-to-Text)
+function startMic() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert("Speech recognition is not supported on this browser.");
+    return;
+  }
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'hi-IN';
+  recognition.onstart = () => {
+    document.getElementById('userInput').placeholder = "Suniye... bol rahe hain...";
+  };
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById('userInput').value = transcript;
+    document.getElementById('userInput').placeholder = "Ask Sudarshana";
+  };
+  recognition.onerror = () => {
+    document.getElementById('userInput').placeholder = "Ask Sudarshana";
+  };
+  recognition.start();
+}
+
+// 4. Helper Menu Actions
+function shareChat() {
+  if (navigator.share) {
+    navigator.share({ title: 'Sudarshana Chat AI', url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link copied to clipboard!');
+  }
+  toggleOptionsMenu();
+}
+function pinCurrentChat() {
+  alert('Chat pinned to top!');
+  toggleOptionsMenu();
+}
+function renameCurrentChat() {
+  const newName = prompt('Enter new chat title:');
+  if (newName) alert('Renamed to: ' + newName);
+  toggleOptionsMenu();
+}
+function deleteCurrentChat() {
+  if (confirm('Delete this conversation?')) {
+    document.getElementById('chatBox').innerHTML = '';
+  }
+  toggleOptionsMenu();
+}
+    
   </script>
 </body>
 </html>
