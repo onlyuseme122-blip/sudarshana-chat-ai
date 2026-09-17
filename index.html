@@ -4,404 +4,414 @@
   <meta charset="UTF-8">
   <title>Sudarshana Chat AI</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%2338bdf8' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3Cg stroke='%2338bdf8' stroke-width='3'%3E%3Cline x1='50' y1='6' x2='50' y2='94'/%3E%3Cline x1='6' y1='50' x2='94' y2='50'/%3E%3Cline x1='19' y1='19' x2='81' y2='81'/%3E%3Cline x1='19' y1='81' x2='81' y2='19'/%3E%3C/g%3E%3C/svg%3E">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, interactive-widget=resizes-content">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body {
-      width: 100%; height: 100vh; height: 100dvh;
+      width: 100%; height: 100%;
       background: #000; color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      overflow: hidden; display: flex; justify-content: center; align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
     }
     .app-frame {
-      width: 100%; max-width: 600px; height: 100%;
-      background: #000; display: flex; flex-direction: column;
+      width: 100%; max-width: 600px; height: 100vh; height: 100dvh;
+      margin: 0 auto; background: #000; display: flex; flex-direction: column;
       position: relative; overflow: hidden;
-    }
-
-    /* Flying Chakra Intro Animation */
-    #introChakra {
-      position: absolute; top: 45%; left: 50%;
-      transform: translate(-50%, -50%) scale(1.6);
-      width: 110px; height: 110px; border-radius: 50%;
-      background: radial-gradient(circle, #38bdf8 0%, #0284c7 70%, transparent 100%);
-      box-shadow: 0 0 45px #38bdf8, inset 0 0 18px #fff;
-      z-index: 1000; pointer-events: none;
-      animation: flyChakra 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    }
-    @keyframes flyChakra {
-      0% { top: 45%; left: 50%; transform: translate(-50%, -50%) scale(1.6) rotate(0deg); opacity: 1; }
-      65% { top: 86%; left: 50%; transform: translate(-50%, -50%) scale(0.5) rotate(360deg); opacity: 0.9; }
-      100% { top: 92%; left: 88%; transform: translate(-50%, -50%) scale(0.1) rotate(720deg); opacity: 0; }
     }
 
     /* Header */
     .header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 16px; background: #000; flex-shrink: 0; z-index: 10;
-      border-bottom: 1px solid #1c1c1e;
+      padding: 12px 16px; background: #09090b; border-bottom: 1px solid #1f1f23;
+      flex-shrink: 0; z-index: 50; position: relative;
     }
-    .icon-btn-header {
-      background: none; border: none; color: #fff; font-size: 24px;
+    .header-btn {
+      background: none; border: none; color: #f4f4f5; font-size: 24px;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      padding: 6px; border-radius: 50%;
+      padding: 8px; border-radius: 50%;
     }
-    .icon-btn-header:hover { background: rgba(255, 255, 255, 0.1); }
-    .header-chakra {
-      width: 28px; height: 28px;
-      animation: spinChakra 12s linear infinite;
-      display: inline-block; cursor: pointer;
-    }
-    @keyframes spinChakra {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+    .header-btn:active { background: #27272a; }
+    .header-title-box { display: flex; align-items: center; gap: 8px; }
+    .header-chakra { width: 26px; height: 26px; animation: spinChakra 10s linear infinite; }
+    @keyframes spinChakra { 100% { transform: rotate(360deg); } }
 
-    /* 3-Dot Options Menu */
-    .options-dropdown {
-      display: none; position: absolute; top: 44px; right: 0;
-      width: 220px; background: #18181b; border: 1px solid #27272a;
-      border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      z-index: 1001; padding: 6px; flex-direction: column;
+    /* Dropdown Menu */
+    .menu-dropdown {
+      display: none; position: absolute; top: 54px; right: 14px;
+      width: 210px; background: #18181b; border: 1px solid #27272a;
+      border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      z-index: 1000; padding: 6px; flex-direction: column; gap: 2px;
     }
-    .options-dropdown.show { display: flex; }
-    .opt-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 14px; font-size: 14px; color: #e4e4e7;
-      border-radius: 8px; cursor: pointer;
+    .menu-dropdown.active { display: flex; }
+    .menu-item {
+      display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+      font-size: 14px; color: #f4f4f5; border-radius: 8px; cursor: pointer;
+      background: none; border: none; width: 100%; text-align: left;
     }
-    .opt-item:hover { background: #27272a; }
-    .opt-item .material-icons { font-size: 18px; color: #a1a1aa; }
-    .opt-delete { color: #f87171; }
-    .opt-delete .material-icons { color: #f87171; }
+    .menu-item:active { background: #27272a; }
+    .menu-item .material-icons { font-size: 18px; color: #a1a1aa; }
+    .menu-item.danger { color: #f87171; }
+    .menu-item.danger .material-icons { color: #f87171; }
 
-    /* Sidebar Drawer */
+    /* Sidebar */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 998;
+    }
+    .sidebar-overlay.active { display: block; }
     .sidebar {
-      position: absolute; top: 0; left: -100%; width: 80%; max-width: 320px; height: 100%;
-      background: #111; border-right: 1px solid #222; z-index: 500;
-      transition: 0.3s ease; display: flex; flex-direction: column;
+      position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
+      background: #111113; border-right: 1px solid #27272a; z-index: 999;
+      transition: left 0.25s ease-out; display: flex; flex-direction: column;
     }
     .sidebar.active { left: 0; }
-    .sidebar-top {
-      padding: 16px; display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid #222;
+    .sidebar-header {
+      padding: 16px; display: flex; justify-content: space-between;
+      align-items: center; border-bottom: 1px solid #1f1f23;
     }
-    .sidebar-top h3 { color: #fff; font-size: 17px; font-weight: 600; }
-    .sidebar-links { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
-    .s-link {
-      display: flex; align-items: center; gap: 14px; padding: 11px 12px;
-      color: #ccc; text-decoration: none; font-size: 14px; border-radius: 8px; cursor: pointer;
+    .sidebar-list { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 4px; }
+    .side-nav-btn {
+      display: flex; align-items: center; gap: 12px; padding: 12px;
+      background: none; border: none; color: #d4d4d8; font-size: 14.5px;
+      border-radius: 8px; text-align: left; width: 100%; cursor: pointer;
     }
-    .s-link:hover { background: #1c1c1c; color: #38bdf8; }
-    .s-link .material-icons { color: #888; font-size: 20px; }
-    .s-link:hover .material-icons { color: #38bdf8; }
-    .sidebar-section-title {
-      font-size: 11px; color: #666; padding: 12px 12px 4px 12px;
-      font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .sidebar-footer {
-      padding: 14px 16px; border-top: 1px solid #222;
-      display: flex; align-items: center; justify-content: space-between; background: #141414;
-    }
-    .user-profile { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 13.5px; }
-    .user-avatar {
-      width: 32px; height: 32px; background: #0284c7; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px;
-    }
+    .side-nav-btn:active { background: #1f1f23; color: #38bdf8; }
+    .side-nav-btn .material-icons { font-size: 20px; color: #71717a; }
 
     /* Chat Area */
     .chat-box {
-      flex: 1; padding: 16px; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 14px; background: #000;
+      flex: 1; padding: 16px; overflow-y: auto; display: flex;
+      flex-direction: column; gap: 12px; background: #000;
     }
-    .home-suggestions {
-      margin: auto 0; display: flex; flex-direction: column; gap: 14px; padding: 10px 4px;
+    .home-cards { margin: auto 0; display: flex; flex-direction: column; gap: 10px; }
+    .home-card {
+      display: flex; align-items: center; gap: 14px; padding: 12px 14px;
+      background: #121215; border: 1px solid #27272a; border-radius: 12px;
+      color: #e4e4e7; font-size: 14px; cursor: pointer; text-align: left;
     }
-    .suggestion-item {
-      display: flex; align-items: center; gap: 16px; color: #bbb;
-      font-size: 15px; cursor: pointer; padding: 10px 12px; background: #111827;
-      border: 1px solid #1f2937; border-radius: 12px; text-align: left;
-    }
-    .suggestion-item:hover { color: #fff; border-color: #38bdf8; }
-    .suggestion-item .material-icons { font-size: 22px; color: #38bdf8; }
+    .home-card:active { background: #1c1c20; border-color: #38bdf8; }
+    .home-card .material-icons { color: #38bdf8; font-size: 22px; }
 
-    /* Message Bubbles */
-    .user-msg {
+    /* Messages */
+    .user-bubble {
       align-self: flex-end; background: #27272a; padding: 12px 16px;
-      border-radius: 18px 18px 4px 18px; color: #fff; max-width: 82%; word-break: break-word; font-size: 14.5px;
+      border-radius: 18px 18px 4px 18px; color: #fff; max-width: 82%;
+      font-size: 14.5px; word-break: break-word;
     }
-    .message-card {
-      align-self: flex-start; background: #0f172a; border: 1px solid #1e293b;
-      padding: 14px 16px; border-radius: 18px 18px 18px 4px; color: #e2e8f0;
-      max-width: 85%; word-break: break-word; font-size: 14.5px; line-height: 1.5;
+    .ai-bubble {
+      align-self: flex-start; background: #09090b; border: 1px solid #1f1f23;
+      padding: 14px 16px; border-radius: 18px 18px 18px 4px; color: #e4e4e7;
+      max-width: 86%; font-size: 14.5px; line-height: 1.5; word-break: break-word;
     }
-    .reply-toolbar {
-      display: flex; align-items: center; gap: 8px; margin-top: 10px;
-      padding: 4px 8px; background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; width: fit-content;
+    .msg-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .msg-act-btn {
+      background: #18181b; border: 1px solid #27272a; color: #a1a1aa;
+      border-radius: 16px; padding: 4px 10px; display: flex; align-items: center;
+      gap: 4px; font-size: 12px; cursor: pointer;
     }
-    .tb-btn {
-      background: none; border: none; color: #a1a1aa; cursor: pointer;
-      padding: 4px; display: flex; align-items: center; justify-content: center; border-radius: 50%;
-    }
-    .tb-btn:hover { color: #38bdf8; background: rgba(56, 189, 248, 0.1); }
-    .tb-btn .material-icons { font-size: 16px; }
 
-    /* Input Dock */
-    .input-wrapper-outer {
-      padding: 8px 16px 16px 16px; background: #000; flex-shrink: 0;
+    /* Input Footer */
+    .footer-bar {
+      padding: 10px 14px 14px; background: #000; flex-shrink: 0; z-index: 40;
     }
-    .input-container {
-      background: #18181b; border-radius: 28px; display: flex;
-      align-items: center; padding: 6px 10px 6px 12px; border: 1px solid #27272a; gap: 8px;
+    .input-pill {
+      background: #141416; border: 1px solid #27272a; border-radius: 28px;
+      display: flex; align-items: center; padding: 4px 8px 4px 12px; gap: 6px;
     }
-    .action-icon {
-      background: none; border: none; color: #888; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; padding: 6px; border-radius: 50%;
+    .icon-click {
+      background: none; border: none; color: #888; display: flex;
+      align-items: center; justify-content: center; width: 36px; height: 36px;
+      border-radius: 50%; cursor: pointer; flex-shrink: 0;
     }
-    .action-icon:hover { color: #fff; }
-    .action-icon .material-icons { font-size: 22px; }
-    .input-container input {
+    .icon-click:active { background: #27272a; color: #fff; }
+    .chat-input {
       flex: 1; background: none; border: none; color: #fff;
-      padding: 8px 0; font-size: 15px; outline: none;
+      font-size: 15px; outline: none; padding: 8px 0;
     }
-    .input-container input::placeholder { color: #71717a; }
-    .send-btn {
-      background: #27272a; border: none; border-radius: 50%;
-      width: 40px; height: 40px; display: flex; align-items: center;
-      justify-content: center; color: #fff; cursor: pointer; transition: 0.2s ease;
+    .submit-btn {
+      width: 40px; height: 40px; border-radius: 50%; border: none;
+      background: #27272a; color: #fff; display: flex; align-items: center;
+      justify-content: center; cursor: pointer; flex-shrink: 0;
     }
-    .send-btn.ready-send {
-      background: #0284c7; color: #fff;
+    .submit-btn.send-active {
+      background: #0284c7 !super; background: #0284c7; color: #fff;
     }
-    .send-btn .material-icons { font-size: 20px; }
-
-    /* Plus Drawer Sheet */
-    .drawer-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.7); z-index: 2000;
-    }
-    .drawer-overlay.active { display: block; }
-    .plus-drawer {
-      position: fixed; bottom: -100%; left: 0; right: 0;
-      background: #141416; border-top-left-radius: 24px; border-top-right-radius: 24px;
-      z-index: 2001; padding: 12px 16px 32px 16px; max-height: 80vh;
-      overflow-y: auto; transition: bottom 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
-    }
-    .plus-drawer.active { bottom: 0; }
-    .drawer-handle-bar { display: flex; justify-content: center; margin-bottom: 14px; }
-    .drawer-handle { width: 36px; height: 4px; border-radius: 2px; background: #3f3f46; }
-    .drawer-top-chips {
-      display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;
-    }
-    .drawer-top-chips::-webkit-scrollbar { display: none; }
-    .chip-card {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      min-width: 68px; cursor: pointer; background: none; border: none;
-    }
-    .chip-icon {
-      width: 52px; height: 52px; background: #27272a; border-radius: 18px;
-      display: flex; align-items: center; justify-content: center; color: #f4f4f5;
-    }
-    .chip-card span { font-size: 12px; color: #a1a1aa; }
-    .drawer-divider { height: 1px; background: #27272a; margin: 14px 0; }
-    .drawer-feature-list { display: flex; flex-direction: column; gap: 6px; }
-    .feature-item {
-      display: flex; align-items: center; gap: 16px; padding: 10px 8px;
-      border-radius: 12px; cursor: pointer;
-    }
-    .feature-item:hover { background: #1f1f23; }
-    .feature-icon { font-size: 24px; color: #38bdf8; }
-    .f-title { font-size: 15px; font-weight: 500; color: #fff; }
-    .f-desc { font-size: 12px; color: #71717a; }
-
-    /* Fullscreen Galaxy Voice Modal */
-    .galaxy-voice-modal {
-      display: none; position: fixed; inset: 0; background: #000;
-      z-index: 3000; flex-direction: column; justify-content: space-between;
-      align-items: center; padding: 24px 20px 40px;
-    }
-    .galaxy-voice-modal.active { display: flex; }
-    .g-voice-topbar {
-      width: 100%; display: flex; justify-content: space-between;
-      align-items: center; color: #71717a; font-size: 14px;
-    }
-    .g-orb-container { display: flex; flex-direction: column; align-items: center; gap: 30px; }
-    .galaxy-orb {
-      width: 220px; height: 220px; border-radius: 50%; position: relative;
-      background: radial-gradient(circle at 35% 35%, #38bdf8 0%, #1e1b4b 50%, #030712 100%);
-      box-shadow: 0 0 60px rgba(56, 189, 248, 0.45), inset 0 0 40px rgba(168, 85, 247, 0.5);
-      animation: cosmicRotate 16s linear infinite, orbBreath 3s ease-in-out infinite alternate;
-      overflow: hidden;
-    }
-    .galaxy-orb.speaking {
-      animation: cosmicRotate 8s linear infinite, orbPulse 0.8s ease-in-out infinite alternate;
-      box-shadow: 0 0 90px rgba(56, 189, 248, 0.8), inset 0 0 50px rgba(236, 72, 153, 0.7);
-    }
-    .nebula-ring {
-      position: absolute; inset: -20px; border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent, rgba(56, 189, 248, 0.4), rgba(168, 85, 247, 0.4), transparent);
-      animation: cosmicRotate 10s linear infinite reverse; filter: blur(12px);
-    }
-    .core-glow {
-      position: absolute; top: 25%; left: 25%; width: 50%; height: 50%;
-      background: radial-gradient(circle, #e0f2fe 0%, rgba(56, 189, 248, 0) 70%); filter: blur(8px);
-    }
-    @keyframes cosmicRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes orbBreath { from { transform: scale(0.96); } to { transform: scale(1.04); } }
-    @keyframes orbPulse { from { transform: scale(0.92); } to { transform: scale(1.12); } }
-    .g-status-text { color: #a1a1aa; font-size: 15px; letter-spacing: 0.5px; }
-    .g-voice-bottombar { display: flex; align-items: center; gap: 24px; }
-    .g-ctrl-btn {
-      width: 58px; height: 58px; border-radius: 50%; border: none;
-      background: #18181b; color: #fff; display: flex; align-items: center;
-      justify-content: center; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-    }
-    .g-ctrl-btn.listening { background: #0284c7; }
-    .g-end-btn { background: #dc2626; }
   </style>
 </head>
 <body>
 
-  <div id="introChakra"></div>
-
   <div class="app-frame">
     <!-- Sidebar Drawer -->
+    <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
-      <div class="sidebar-top">
-        <h3>Sudarshana</h3>
-        <button class="icon-btn-header" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
+      <div class="sidebar-header">
+        <span style="font-weight:600; font-size:16px;">Sudarshana AI</span>
+        <button class="header-btn" onclick="closeSidebar()"><span class="material-icons">close</span></button>
       </div>
-      <div class="sidebar-links">
-        <div class="s-link" onclick="newChat(); toggleSidebar()"><span class="material-icons">chat</span> New chat</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">search</span> Search chats</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">image</span> Images</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">grid_view</span> Library</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">folder</span> Projects</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">schedule</span> Scheduled</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">extension</span> Plugins</div>
-        
-        <div class="sidebar-section-title">Recents</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">chat_bubble_outline</span> AI Engine Setup</div>
-        <div class="s-link" onclick="toggleSidebar()"><span class="material-icons">chat_bubble_outline</span> Sudarshana Chakra System</div>
-      </div>
-      <div class="sidebar-footer">
-        <div class="user-profile">
-          <div class="user-avatar">S</div>
-          <span>Sudarshana Core<br><span style="font-size:10px; color:#38bdf8;">ONLINE</span></span>
-        </div>
-        <button class="icon-btn-header" onclick="showSettings()"><span class="material-icons">settings</span></button>
+      <div class="sidebar-list">
+        <button class="side-nav-btn" onclick="newChat(); closeSidebar()"><span class="material-icons">add</span> New Chat</button>
+        <button class="side-nav-btn" onclick="alert('Recent history loaded'); closeSidebar()"><span class="material-icons">history</span> Chat History</button>
+        <button class="side-nav-btn" onclick="alert('Settings menu'); closeSidebar()"><span class="material-icons">settings</span> Settings</button>
       </div>
     </div>
 
-    <!-- Header -->
+    <!-- Top Header -->
     <div class="header">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <button class="icon-btn-header" onclick="toggleSidebar()">
-          <span class="material-icons">menu</span>
-        </button>
-        <svg class="header-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="46" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
-          <g fill="#0284c7" stroke="#38bdf8" stroke-width="1.5">
-            <polygon points="50,2 54,14 46,14"/>
-            <polygon points="50,98 54,86 46,86"/>
-            <polygon points="2,50 14,54 14,46"/>
-            <polygon points="98,50 86,54 86,46"/>
-            <polygon points="16,16 26,22 20,28"/>
-            <polygon points="84,84 74,78 80,72"/>
-            <polygon points="16,84 20,72 26,78"/>
-            <polygon points="84,16 80,28 74,22"/>
-          </g>
-          <circle cx="50" cy="50" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-          <circle cx="50" cy="50" r="12" fill="#0284c7"/>
+      <div class="header-title-box">
+        <button class="header-btn" onclick="openSidebar()"><span class="material-icons">menu</span></button>
+        <svg class="header-chakra" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#38bdf8" stroke-width="3"/>
+          <circle cx="50" cy="50" r="18" fill="#0284c7"/>
         </svg>
-        <span style="font-weight: 600; font-size: 16px; color: #fff;">Sudarshana</span>
+        <span style="font-weight: 600; font-size: 16px;">Sudarshana</span>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 4px; position: relative;">
-        <button class="icon-btn-header" onclick="newChat()" title="New Chat">
-          <span class="material-icons">edit_square</span>
-        </button>
-        <button class="icon-btn-header" onclick="toggleOptionsMenu()" title="Options">
-          <span class="material-icons">more_vert</span>
-        </button>
+      <div style="display:flex; align-items:center; gap:2px;">
+        <button class="header-btn" onclick="newChat()"><span class="material-icons">edit_square</span></button>
+        <button class="header-btn" onclick="toggleMenu()"><span class="material-icons">more_vert</span></button>
+      </div>
 
-        <!-- 3-Dot Options Dropdown Menu -->
-        <div id="optionsDropdown" class="options-dropdown">
-          <div class="opt-item" onclick="shareChat()"><span class="material-icons">share</span> Share conversation</div>
-          <div class="opt-item" onclick="pinCurrentChat()"><span class="material-icons">push_pin</span> Pin</div>
-          <div class="opt-item" onclick="renameCurrentChat()"><span class="material-icons">edit</span> Rename</div>
-          <div class="opt-item" onclick="showHelp()"><span class="material-icons">help_outline</span> Help</div>
-          <div class="opt-item" onclick="sendFeedback()"><span class="material-icons">feedback</span> Feedback</div>
-          <div class="opt-item opt-delete" onclick="deleteCurrentChat()"><span class="material-icons">delete</span> Clear Chat</div>
+      <!-- Menu Dropdown -->
+      <div class="menu-dropdown" id="menuDropdown">
+        <button class="menu-item" onclick="newChat()"><span class="material-icons">add_comment</span> New Conversation</button>
+        <button class="menu-item" onclick="alert('Sudarshana is configured to answer in English.')"><span class="material-icons">info</span> Status Info</button>
+        <button class="menu-item danger" onclick="newChat()"><span class="material-icons">delete</span> Clear Chat</button>
+      </div>
+    </div>
+
+    <!-- Main Chat Window -->
+    <div class="chat-box" id="chatBox">
+      <div class="home-cards" id="homeCards">
+        <div class="home-card" onclick="quickFill('Create an image description of a cosmic city')">
+          <span class="material-icons">palette</span>
+          <span>Create an image prompt</span>
+        </div>
+        <div class="home-card" onclick="quickFill('Explain how artificial intelligence works simply')">
+          <span class="material-icons">psychology</span>
+          <span>Explain a concept</span>
+        </div>
+        <div class="home-card" onclick="quickFill('Write an email requesting leave tomorrow')">
+          <span class="material-icons">edit_note</span>
+          <span>Help me write an email</span>
         </div>
       </div>
     </div>
 
-    <!-- Chat Display Area -->
-    <div class="chat-box" id="chatBox">
-      <div class="home-suggestions" id="homeSuggestions">
-        <button class="suggestion-item" onclick="quickFill('Create an image: A futuristic cosmic chakra')">
-          <span class="material-icons">image</span> Create an image
-        </button>
-        <button class="suggestion-item" onclick="quickFill('Help me write or edit a professional article')">
-          <span class="material-icons">edit_note</span> Help me write or edit
-        </button>
-        <button class="suggestion-item" onclick="quickFill('Explain quantum computing in simple terms')">
-          <span class="material-icons">psychology</span> Explain a complex concept
-        </button>
-      </div>
-    </div>
-
-    <!-- Input Bar Dock -->
-    <div class="input-wrapper-outer">
-      <div class="input-container">
-        <button class="action-icon" onclick="openPlusDrawer()" title="Add">
+    <!-- Interactive Input Dock -->
+    <div class="footer-bar">
+      <div class="input-pill">
+        <button class="icon-click" onclick="quickFill('Deep research on: ')" title="Deep Search">
           <span class="material-icons">add</span>
         </button>
         
-        <input type="text" id="userInput" placeholder="Ask Sudarshana" oninput="toggleInputIcons()" onkeypress="handleKeyPress(event)">
+        <input type="text" id="userInput" class="chat-input" placeholder="Ask Sudarshana" oninput="onInputChange()" onkeydown="checkEnter(event)">
         
-        <button class="action-icon" id="micBtn" onclick="startMic()" title="Speech to Text">
+        <button class="icon-click" id="micButton" onclick="triggerSpeechRecognition()" title="Voice Input">
           <span class="material-icons">mic</span>
         </button>
 
-        <button class="send-btn" id="dynamicActionBtn" onclick="handleDynamicAction()" title="Voice Conversation">
-          <span class="material-icons" id="dynamicIcon">graphic_eq</span>
+        <button class="submit-btn" id="sendBtn" onclick="sendMessage()" title="Send">
+          <span class="material-icons" id="sendIcon">graphic_eq</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Plus Action Drawer Sheet -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closePlusDrawer()"></div>
-  <div class="plus-drawer" id="plusDrawer">
-    <div class="drawer-handle-bar">
-      <div class="drawer-handle"></div>
-    </div>
-    <div class="drawer-top-chips">
-      <button class="chip-card" onclick="quickFill('Generate image: '); closePlusDrawer();">
-        <div class="chip-icon"><span class="material-icons">palette</span></div>
-        <span>Image</span>
-      </button>
-      <button class="chip-card" onclick="quickFill('Analyze document: '); closePlusDrawer();">
-        <div class="chip-icon"><span class="material-icons">description</span></div>
-        <span>Docs</span>
-      </button>
-      <button class="chip-card" onclick="quickFill('Summarize: '); closePlusDrawer();">
-        <div class="chip-icon"><span class="material-icons">summarize</span></div>
-        <span>Summary</span>
-      </button>
-      <button class="chip-card" onclick="quickFill('Write code for: '); closePlusDrawer();">
-        <div class="chip-icon"><span class="material-icons">code</span></div>
-        <span>Code</span>
-      </button>
-    </div>
-    <div class="drawer-divider"></div>
-    <div class="drawer-feature-list">
-      <div class="feature-item" onclick="openGalaxyVoice(); closePlusDrawer();">
-        <span class="material-icons feature-icon">record_voice_over</span>
-        <div class="feature-text">
-          <span class="f-tit
+  <script>
+    // --- KEY & GEMINI 3.6 PROXY SETUP ---
+    const part1 = "AQ.Ab8RN6Kky";
+    const part2 = "EvbiqLRoB-g_LOr7";
+    const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
+    const GEMINI_API_KEY = part1 + part2 + part3;
+
+    // Google recommended latest 3.6-flash model
+    async function askGeminiAI(userPrompt) {
+      const endpoint = "/api/gemini/models/gemini-3.6-flash:generateContent";
+
+      const systemPrompt = "You are Sudarshana AI. Act as an exceptionally intelligent, polite, ChatGPT-like assistant. Provide helpful, structured, clear, and comprehensive answers in pure English.";
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": GEMINI_API_KEY
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `System Instruction: ${systemPrompt}\n\nUser Question: ${userPrompt}`
+            }]
+          }]
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error?.message || response.statusText || ("HTTP " + response.status));
+      }
+
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received from model.";
+    }
+
+    // --- SEND MESSAGE FUNCTION ---
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBox = document.getElementById('chatBox');
+      const cards = document.getElementById('homeCards');
+      if (cards) cards.remove();
+
+      // Append User Bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = 'user-bubble';
+      userBubble.textContent = text;
+      chatBox.appendChild(userBubble);
+
+      input.value = '';
+      onInputChange();
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Append Thinking Indicator
+      const aiBubble = document.createElement('div');
+      aiBubble.className = 'ai-bubble';
+      aiBubble.innerHTML = `<i style="color: #94a3b8;">Sudarshana is writing...</i>`;
+      chatBox.appendChild(aiBubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      try {
+        const responseText = await askGeminiAI(text);
+        aiBubble.innerHTML = `
+          <div class="msg-content">${responseText.replace(/\n/g, '<br>')}</div>
+          <div class="msg-actions">
+            <button class="msg-act-btn" onclick="copyBubbleText(this)"><span class="material-icons" style="font-size:14px;">content_copy</span> Copy</button>
+            <button class="msg-act-btn" onclick="speakBubbleText(this)"><span class="material-icons" style="font-size:14px;">volume_up</span> Read</button>
+          </div>
+        `;
+      } catch (err) {
+        aiBubble.innerHTML = `<span style="color: #f87171;">Connection error: ${err.message}</span>`;
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // --- UI HELPERS & LISTENERS ---
+    function onInputChange() {
+      const input = document.getElementById('userInput');
+      const sendBtn = document.getElementById('sendBtn');
+      const sendIcon = document.getElementById('sendIcon');
+
+      if (input.value.trim().length > 0) {
+        sendBtn.classList.add('send-active');
+        sendIcon.textContent = 'send';
+      } else {
+        sendBtn.classList.remove('send-active');
+        sendIcon.textContent = 'graphic_eq';
+      }
+    }
+
+    function checkEnter(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    }
+
+    function quickFill(val) {
+      const input = document.getElementById('userInput');
+      input.value = val;
+      input.focus();
+      onInputChange();
+    }
+
+    function newChat() {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.innerHTML = `
+        <div class="home-cards" id="homeCards">
+          <div class="home-card" onclick="quickFill('Create an image description of a cosmic city')">
+            <span class="material-icons">palette</span>
+            <span>Create an image prompt</span>
+          </div>
+          <div class="home-card" onclick="quickFill('Explain how artificial intelligence works simply')">
+            <span class="material-icons">psychology</span>
+            <span>Explain a concept</span>
+          </div>
+          <div class="home-card" onclick="quickFill('Write an email requesting leave tomorrow')">
+            <span class="material-icons">edit_note</span>
+            <span>Help me write an email</span>
+          </div>
+        </div>
+      `;
+      closeMenu();
+    }
+
+    function openSidebar() {
+      document.getElementById('sidebar').classList.add('active');
+      document.getElementById('sideOverlay').classList.add('active');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('active');
+      document.getElementById('sideOverlay').classList.remove('active');
+    }
+
+    function toggleMenu() {
+      document.getElementById('menuDropdown').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('menuDropdown');
+      if (menu) menu.classList.remove('active');
+    }
+
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('.header')) {
+        closeMenu();
+      }
+    });
+
+    function copyBubbleText(btn) {
+      const parent = btn.closest('.ai-bubble');
+      const text = parent.querySelector('.msg-content').innerText;
+      navigator.clipboard.writeText(text);
+      btn.innerHTML = `<span class="material-icons" style="font-size:14px;">check</span> Copied`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-icons" style="font-size:14px;">content_copy</span> Copy`;
+      }, 1500);
+    }
+
+    function speakBubbleText(btn) {
+      const parent = btn.closest('.ai-bubble');
+      const text = parent.querySelector('.msg-content').innerText;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-US';
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
+    function triggerSpeechRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Speech Recognition not supported on this browser.");
+        return;
+      }
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      const micBtn = document.getElementById('micButton');
+      micBtn.style.color = '#38bdf8';
+
+      rec.onresult = (e) => {
+        document.getElementById('userInput').value = e.results[0][0].transcript;
+        onInputChange();
+        micBtn.style.color = '#888';
+      };
+      rec.onerror = () => { micBtn.style.color = '#888'; };
+      rec.onend = () => { micBtn.style.color = '#888'; };
+      rec.start();
+    }
+  </script>
+</body>
+</html>
