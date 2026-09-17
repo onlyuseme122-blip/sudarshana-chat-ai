@@ -2,148 +2,431 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana Chat AI</title>
+  <title>Sudarshana Chat AI - Studio & Intelligence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    /* ==========================================================================
+       1. GLOBAL RESET & FOUNDATIONS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease, box-shadow 0.25s ease;
+    }
 
+    /* ==========================================================================
+       2. FULL 8 DYNAMIC THEME SYSTEM (VIBRANT & ACCURATE)
+       ========================================================================== */
     :root {
-      --bg: #030712;
-      --card: #0c1427;
-      --card-hover: #132242;
-      --border: #1a294d;
-      --text: #ffffff;
-      --muted: #94a3b8;
+      /* Dark Default Theme */
+      --bg-base: #030712;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #0e1c3b 0%, #030712 70%);
+      --sidebar-bg: #070c18;
+      --sidebar-border: #131f37;
+      --card-bg: #091122;
+      --card-border: #172442;
+      --card-hover: #0f1d38;
+      --dock-bg: rgba(9, 17, 34, 0.92);
+      --dock-border: #1e3a8a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
       --accent: #38bdf8;
-      --chakra: #f59e0b;
+      --accent-secondary: #818cf8;
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      --chakra-gold: #f59e0b;
+      --chakra-blue: #0284c7;
     }
 
-    body.theme-light { --bg: #f8fafc; --card: #ffffff; --card-hover: #f1f5f9; --border: #cbd5e1; --text: #0f172a; --muted: #64748b; --accent: #0284c7; --chakra: #f59e0b; }
-    body.theme-neon { --bg: #090117; --card: #15052e; --card-hover: #260a52; --border: #3f157f; --text: #ffffff; --muted: #d8b4fe; --accent: #e879f9; --chakra: #e879f9; }
-    body.theme-nature { --bg: #02160f; --card: #07291d; --card-hover: #0c3d2c; --border: #11573c; --text: #ffffff; --muted: #86efac; --accent: #10b981; --chakra: #10b981; }
-    body.theme-cyberpunk { --bg: #0a0118; --card: #1d0338; --card-hover: #32085e; --border: #560e82; --text: #ffffff; --muted: #f472b6; --accent: #f43f5e; --chakra: #f43f5e; }
-    body.theme-sunset { --bg: #160703; --card: #2c1008; --card-hover: #451b0f; --border: #5c2415; --text: #ffffff; --muted: #fdba74; --accent: #f97316; --chakra: #f97316; }
-    body.theme-space { --bg: #020617; --card: #081236; --card-hover: #0f205c; --border: #18307d; --text: #ffffff; --muted: #7dd3fc; --accent: #0ea5e9; --chakra: #38bdf8; }
-    body.theme-minimal { --bg: #f1f5f9; --card: #ffffff; --card-hover: #f8fafc; --border: #cbd5e1; --text: #1e293b; --muted: #64748b; --accent: #6366f1; --chakra: #6366f1; }
+    /* 1. Light Theme */
+    body.theme-light {
+      --bg-base: #f8fafc;
+      --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+      --sidebar-bg: #ffffff;
+      --sidebar-border: #e2e8f0;
+      --card-bg: #ffffff;
+      --card-border: #cbd5e1;
+      --card-hover: #f1f5f9;
+      --dock-bg: rgba(255, 255, 255, 0.96);
+      --dock-border: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-secondary: #0369a1;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+      --chakra-gold: #f59e0b;
+      --chakra-blue: #0284c7;
+    }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      min-height: 100vh;
+    /* 2. Neon Theme */
+    body.theme-neon {
+      --bg-base: #070114;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
+      --sidebar-bg: #0d0221;
+      --sidebar-border: #260f54;
+      --card-bg: #14042e;
+      --card-border: #3b127f;
+      --card-hover: #22084d;
+      --dock-bg: rgba(20, 4, 46, 0.94);
+      --dock-border: #701a75;
+      --text-main: #fdf4ff;
+      --text-muted: #c084fc;
+      --accent: #e879f9;
+      --accent-secondary: #a855f7;
+      --accent-glow: rgba(232, 121, 249, 0.4);
+      --chakra-gold: #e879f9;
+      --chakra-blue: #c084fc;
+    }
+
+    /* 3. Nature Theme */
+    body.theme-nature {
+      --bg-base: #03140e;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
+      --sidebar-bg: #041a12;
+      --sidebar-border: #0d3828;
+      --card-bg: #072419;
+      --card-border: #114a34;
+      --card-hover: #0c3324;
+      --dock-bg: rgba(7, 36, 25, 0.94);
+      --dock-border: #065f46;
+      --text-main: #ecfdf5;
+      --text-muted: #6ee7b7;
+      --accent: #10b981;
+      --accent-secondary: #059669;
+      --accent-glow: rgba(16, 185, 129, 0.35);
+      --chakra-gold: #f59e0b;
+      --chakra-blue: #10b981;
+    }
+
+    /* 4. Cyberpunk Theme */
+    body.theme-cyberpunk {
+      --bg-base: #0a0118;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
+      --sidebar-bg: #120224;
+      --sidebar-border: #3c095c;
+      --card-bg: #1d0338;
+      --card-border: #4d0b74;
+      --card-hover: #2e0557;
+      --dock-bg: rgba(29, 3, 56, 0.94);
+      --dock-border: #be185d;
+      --text-main: #ffffff;
+      --text-muted: #f472b6;
+      --accent: #f43f5e;
+      --accent-secondary: #ec4899;
+      --accent-glow: rgba(244, 63, 94, 0.4);
+      --chakra-gold: #f59e0b;
+      --chakra-blue: #f43f5e;
+    }
+
+    /* 5. Sunset Theme */
+    body.theme-sunset {
+      --bg-base: #140704;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #120502 75%);
+      --sidebar-bg: #1c0a05;
+      --sidebar-border: #3d1b10;
+      --card-bg: #270f08;
+      --card-border: #4a2113;
+      --card-hover: #36170d;
+      --dock-bg: rgba(39, 15, 8, 0.94);
+      --dock-border: #9a3412;
+      --text-main: #fff7ed;
+      --text-muted: #fdba74;
+      --accent: #f97316;
+      --accent-secondary: #ea580c;
+      --accent-glow: rgba(249, 115, 22, 0.4);
+      --chakra-gold: #fbbf24;
+      --chakra-blue: #f97316;
+    }
+
+    /* 6. Space Theme */
+    body.theme-space {
+      --bg-base: #020617;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
+      --sidebar-bg: #040920;
+      --sidebar-border: #0f1c4d;
+      --card-bg: #071033;
+      --card-border: #142466;
+      --card-hover: #0c1c54;
+      --dock-bg: rgba(7, 16, 51, 0.94);
+      --dock-border: #0369a1;
+      --text-main: #f0fdf4;
+      --text-muted: #7dd3fc;
+      --accent: #0ea5e9;
+      --accent-secondary: #38bdf8;
+      --accent-glow: rgba(14, 165, 233, 0.4);
+      --chakra-gold: #f59e0b;
+      --chakra-blue: #0ea5e9;
+    }
+
+    /* 7. Minimal Theme */
+    body.theme-minimal {
+      --bg-base: #f1f5f9;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
+      --sidebar-bg: #ffffff;
+      --sidebar-border: #cbd5e1;
+      --card-bg: #ffffff;
+      --card-border: #cbd5e1;
+      --card-hover: #f8fafc;
+      --dock-bg: rgba(255, 255, 255, 0.96);
+      --dock-border: #94a3b8;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #6366f1;
+      --accent-secondary: #4f46e5;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --chakra-gold: #f59e0b;
+      --chakra-blue: #6366f1;
+    }
+
+    /* ==========================================================================
+       3. DOCUMENT FLOW (FAIL-SAFE BLOCK ARCHITECTURE)
+       ========================================================================== */
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-base);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       overflow-x: hidden;
-      display: block;
+      line-height: 1.5;
     }
 
-    /* Original Glowing Spinning Chakra */
-    .chakra-spin {
+    /* ==========================================================================
+       4. SACRED ORIGINAL ROTATING SUDARSHANA CHAKRA
+       ========================================================================== */
+    .sudarshana-chakra {
       width: 34px;
       height: 34px;
-      animation: spinChakra 10s linear infinite;
+      animation: spinChakra 11s linear infinite;
       cursor: pointer;
+      display: block;
       flex-shrink: 0;
-    }
-    @keyframes spinChakra {
-      100% { transform: rotate(360deg); }
+      filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
     }
 
-    /* Header */
-    .header {
+    @keyframes spinChakra {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ==========================================================================
+       5. TOP STICKY APPLICATION BAR
+       ========================================================================== */
+    .app-header {
       position: sticky;
       top: 0;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 16px;
+      background: var(--bg-base);
+      border-bottom: 1px solid var(--sidebar-border);
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
+      backdrop-filter: blur(12px);
     }
-    .header-left { display: flex; align-items: center; gap: 10px; }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .icon-btn {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 38px;
-      height: 38px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
     }
-    .theme-pill {
-      background: var(--card);
-      border: 1px solid var(--accent);
-      color: var(--text);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
+
+    .icon-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
-    /* Container */
-    .container {
+    .brand-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text-main);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .theme-pill-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       6. MAIN CONTENT WRAPPER & HERO DASHBOARD
+       ========================================================================== */
+    .main-wrapper {
       width: 100%;
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 18px 14px 60px;
+      padding: 24px 16px 60px;
       display: block;
     }
 
-    /* Hero Section */
-    .hero { text-align: center; padding: 10px 0 24px; }
+    .hero-section {
+      text-align: center;
+      padding: 10px 0 32px;
+      position: relative;
+    }
+
+    .hero-chakra-large {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 16px;
+      animation: spinChakra 24s linear infinite;
+      display: block;
+      filter: drop-shadow(0 0 28px rgba(245, 158, 11, 0.7));
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
-      background: var(--card);
+      padding: 6px 16px;
+      background: var(--card-bg);
       border: 1px solid var(--accent);
-      border-radius: 20px;
-      font-size: 12px;
+      border-radius: 30px;
+      font-size: 12.5px;
       color: var(--accent);
       font-weight: 700;
       margin-bottom: 14px;
+      cursor: pointer;
     }
-    .hero h1 { font-size: 34px; font-weight: 800; line-height: 1.18; margin-bottom: 6px; color: var(--text); }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.2px;
+      margin-bottom: 8px;
+    }
+
     .glow-text {
       color: var(--accent);
-      background: linear-gradient(135deg, var(--accent) 0%, #c084fc 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero p { font-size: 13.5px; color: var(--muted); margin-bottom: 22px; }
 
-    /* Input Dock */
-    .input-dock {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 6px 12px 6px 16px;
+    .hero-subtitle {
       display: flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      margin-bottom: 16px;
+      justify-content: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
     }
-    .input-dock input {
+
+    .dot-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ==========================================================================
+       7. MAIN SEARCH DOCK (NEON FLOATING INPUT)
+       ========================================================================== */
+    .search-dock-wrapper {
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .search-dock {
+      background: var(--dock-bg);
+      border: 1px solid var(--dock-border);
+      border-radius: 30px;
+      padding: 8px 14px 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4), 0 0 24px var(--accent-glow);
+    }
+
+    .search-dock:focus-within {
+      border-color: var(--accent);
+    }
+
+    .search-dock input {
       flex: 1;
       background: transparent;
       border: none;
       outline: none;
-      color: var(--text);
-      font-size: 15px;
+      color: var(--text-main);
+      font-size: 15.5px;
+      font-family: inherit;
     }
-    .dock-send {
+
+    .search-dock input::placeholder {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .dock-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dock-icon-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
       width: 38px;
       height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .dock-icon-btn:hover {
+      color: var(--accent);
+    }
+
+    .dock-send-btn {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: var(--accent);
       color: #fff;
@@ -152,256 +435,270 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      box-shadow: 0 2px 14px var(--accent-glow);
     }
 
-    /* Chips */
-    .chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+    .dock-send-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       8. ACTION CHIPS
+       ========================================================================== */
+    .chips-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
     .chip {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      color: var(--muted);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 7px 16px;
+      border-radius: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    .chip .material-icons {
+      font-size: 17px;
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       9. DASHBOARD SECTION HEADINGS & VIEW ALL
+       ========================================================================== */
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .sec-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .view-all-link {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .view-all-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       10. QUICK ACCESS SECTION (5 DISTINCT CARDS)
+       ========================================================================== */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 42px;
+    }
+
+    .quick-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px 14px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .quick-box:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .quick-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .quick-box.blue .quick-icon-box { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .quick-box.cyan .quick-icon-box { background: rgba(45, 212, 191, 0.15); color: #2dd4bf; }
+    .quick-box.purple .quick-icon-box { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+    .quick-box.orange .quick-icon-box { background: rgba(251, 146, 60, 0.15); color: #fb923c; }
+    .quick-box.pink .quick-icon-box { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+
+    .quick-box h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+    .quick-box p { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+
+    /* ==========================================================================
+       11. POPULAR TOOLS (4 DETAILED STUDIO CARDS)
+       ========================================================================== */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin-bottom: 42px;
+    }
+
+    .tool-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+    }
+
+    .tool-box:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .tool-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--card-hover);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tool-box h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 2px; }
+    .tool-box p { font-size: 11.5px; color: var(--text-muted); }
+
+    /* ==========================================================================
+       12. RECENT CHATS LIST
+       ========================================================================== */
+    .recent-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 42px;
+    }
+
+    .recent-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .recent-item:hover {
+      border-color: var(--accent);
+      background: var(--card-hover);
+    }
+
+    .recent-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .recent-left .material-icons {
+      color: var(--accent);
+      font-size: 22px;
+    }
+
+    .recent-item h4 { font-size: 14px; font-weight: 600; }
+    .recent-item p { font-size: 12px; color: var(--text-muted); }
+
+    /* ==========================================================================
+       13. BANNER & PERKS FOOTER
+       ========================================================================== */
+    .banner {
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      border-radius: 22px;
+      padding: 26px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 38px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .banner h3 { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+    .banner p { font-size: 13px; color: var(--text-muted); }
+
+    .banner-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 26px;
+      font-weight: 700;
+      font-size: 13.5px;
       display: flex;
       align-items: center;
       gap: 6px;
       cursor: pointer;
     }
-    .chip:hover { border-color: var(--accent); color: var(--text); }
 
-    /* Titles */
-    .sec-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .sec-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
-
-    /* Grids */
-    .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 30px; }
-    .quick-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 10px;
-      text-align: center;
-      cursor: pointer;
+    .footer-perks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 18px;
+      padding-top: 28px;
+      border-top: 1px solid var(--card-border);
     }
-    .quick-card:hover { border-color: var(--accent); }
-    .quick-card .material-icons { font-size: 26px; color: var(--accent); margin-bottom: 6px; }
-    .quick-card h4 { font-size: 13.5px; margin-bottom: 2px; }
-    .quick-card p { font-size: 11px; color: var(--muted); }
 
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 30px; }
-    .tool-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
+    .perk-box {
       display: flex;
       align-items: center;
       gap: 12px;
-      cursor: pointer;
-    }
-    .tool-card:hover { border-color: var(--accent); background: var(--card-hover); }
-    .tool-card .material-icons { font-size: 24px; color: var(--accent); }
-
-    /* Recent Chats */
-    .recent-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
-    .recent-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-    .recent-item:hover { border-color: var(--accent); background: var(--card-hover); }
-    .recent-item .material-icons { color: var(--accent); }
-
-    /* Banner */
-    .banner {
-      background: var(--card);
-      border: 1px solid var(--accent);
-      border-radius: 18px;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 30px;
-    }
-    .banner-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 13px;
-      cursor: pointer;
     }
 
-    /* Drawer */
-    .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 998; }
-    .drawer-overlay.active { display: block; }
-    .drawer {
-      position: fixed; top: 0; left: -300px; width: 280px; height: 100%;
-      background: var(--card); border-right: 1px solid var(--border);
-      z-index: 999; transition: left 0.25s ease-out; display: flex; flex-direction: column;
+    .perk-box .material-icons {
+      font-size: 26px;
+      color: var(--accent);
     }
-    .drawer.active { left: 0; }
-    .drawer-head { padding: 14px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .drawer-list { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
-    .drawer-btn {
-      display: flex; align-items: center; gap: 12px; padding: 10px 12px;
-      background: none; border: none; color: var(--text); font-size: 13.5px;
-      border-radius: 10px; width: 100%; text-align: left; cursor: pointer;
+
+    .perk-box h5 { font-size: 13.5px; font-weight: 600; }
+    .perk-box p { font-size: 11.5px; color: var(--text-muted); }
+
+    /* ==========================================================================
+       14. LEFT NAVIGATION SIDEBAR DRAWER
+       ========================================================================== */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 998;
     }
-    .drawer-btn:hover { background: var(--card-hover); color: var(--accent); }
-    .drawer-sec-title { font-size: 11px; color: var(--muted); font-weight: 700; text-transform: uppercase; padding: 10px 8px 4px; }
-
-    /* Modals */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; padding: 16px; align-items: center; justify-content: center; }
-    .modal-overlay.active { display: flex; }
-    .modal-box {
-      width: 100%; max-width: 650px; height: 85vh; background: var(--card);
-      border: 1px solid var(--border); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden;
-    }
-    .modal-head { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .chat-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-    .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--border); padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 82%; font-size: 14px; word-break: break-word; }
-    .ai-msg { align-self: flex-start; background: var(--bg); border: 1px solid var(--accent); padding: 14px; border-radius: 16px 16px 16px 4px; max-width: 86%; font-size: 14px; line-height: 1.5; word-break: break-word; }
-    .modal-input-bar { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
-    .modal-input-bar input { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 8px 14px; color: var(--text); outline: none; font-size: 14px; }
-
-    .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; padding: 16px; }
-    .theme-item { padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); cursor: pointer; text-align: center; font-size: 13px; font-weight: 700; }
-    .theme-item:hover { border-color: var(--accent); }
-  </style>
-</head>
-<body class="theme-dark">
-
-  <!-- Drawer -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-  <aside class="drawer" id="sideDrawer">
-    <div class="drawer-head">
-      <div style="display:flex; align-items:center; gap:8px;">
-        <svg class="chakra-spin" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
-          <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
-          <g fill="#f59e0b"><polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/><polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/></g>
-          <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
-          <circle cx="50" cy="50" r="10" fill="#0284c7"/>
-        </svg>
-        <span style="font-weight:700; font-size:16px;">Sudarshana AI</span>
-      </div>
-      <button class="icon-btn" onclick="closeDrawer()"><span class="material-icons">close</span></button>
-    </div>
-
-    <div class="drawer-list">
-      <button class="drawer-btn" onclick="newChat(); closeDrawer()"><span class="material-icons">add_comment</span> New Chat</button>
-      <button class="drawer-btn" onclick="openThemes(); closeDrawer()"><span class="material-icons">palette</span> Themes</button>
-
-      <div class="drawer-sec-title">Core AI Creators</div>
-      <button class="drawer-btn" onclick="triggerPreset('Create script and prompt for AI video: '); closeDrawer()"><span class="material-icons">movie_filter</span> Make AI Videos</button>
-      <button class="drawer-btn" onclick="triggerPreset('Write code and architecture for: '); closeDrawer()"><span class="material-icons">terminal</span> Coding & Developing</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate music melody and beats for: '); closeDrawer()"><span class="material-icons">library_music</span> Music Generator</button>
-
-      <div class="drawer-sec-title">Trending & Integrations</div>
-      <button class="drawer-btn" onclick="triggerPreset('Find trending songs and build a Spotify playlist for: '); closeDrawer()"><span class="material-icons">queue_music</span> Connect to Spotify</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest viral Instagram reels hook and hashtags for: '); closeDrawer()"><span class="material-icons">photo_camera</span> Connect to Instagram</button>
-      <button class="drawer-btn" onclick="triggerPreset('Create viral YouTube shorts title and description for: '); closeDrawer()"><span class="material-icons">smart_display</span> Connect to YouTube</button>
-      <button class="drawer-btn" onclick="triggerPreset('Draft community update post for Weverse: '); closeDrawer()"><span class="material-icons">forum</span> Connect to Weverse</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate background score prompt for Beatoven.ai: '); closeDrawer()"><span class="material-icons">audiotrack</span> Beatoven.ai Music</button>
-      <button class="drawer-btn" onclick="triggerPreset('Break long video into viral shorts using StoryHero: '); closeDrawer()"><span class="material-icons">video_library</span> StoryHero Clips</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate highlight snippets with Vshorts AI: '); closeDrawer()"><span class="material-icons">auto_awesome_motion</span> Vshorts AI Studio</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest graphic cutout adjustments via Cutout.pro: '); closeDrawer()"><span class="material-icons">crop</span> Cutout.pro Design</button>
-      <button class="drawer-btn" onclick="triggerPreset('Transcribe and generate subtitles with HappyScribe: '); closeDrawer()"><span class="material-icons">subtitles</span> HappyScribe Audio</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest organic audience engagement strategies with Kicksta: '); closeDrawer()"><span class="material-icons">trending_up</span> Kicksta Growth</button>
-
-      <div class="drawer-sec-title">Settings & Feedback</div>
-      <button class="drawer-btn" onclick="openFeedback(); closeDrawer()"><span class="material-icons">feedback</span> Feedback</button>
-      <button class="drawer-btn" onclick="openSettings(); closeDrawer()"><span class="material-icons">settings</span> Settings</button>
-    </div>
-  </aside>
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header-left">
-      <button class="icon-btn" onclick="openDrawer()"><span class="material-icons">menu</span></button>
-      <svg class="chakra-spin" onclick="openDrawer()" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
-        <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
-        <g fill="#f59e0b"><polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/><polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/></g>
-        <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
-        <circle cx="50" cy="50" r="10" fill="#0284c7"/>
-      </svg>
-      <span style="font-weight:800; font-size:18px;">Sudarshana</span>
-    </div>
-
-    <div style="display:flex; align-items:center; gap:8px;">
-      <button class="theme-pill" onclick="openThemes()">
-        <span class="material-icons" style="font-size:16px;">palette</span> Themes
-      </button>
-      <button class="icon-btn" onclick="newChat()"><span class="material-icons">edit_square</span></button>
-    </div>
-  </header>
-
-  <!-- Main Body Content -->
-  <main class="container">
-    <div class="hero">
-      <div class="hero-badge"><span class="material-icons" style="font-size:14px;">bolt</span> Smarter Tools</div>
-      <h1>Your Ideas<br><span class="glow-text">Our AI Power</span></h1>
-      <p>Create &bull; Explore &bull; Get Inspired</p>
-
-      <div class="input-dock">
-        <span class="material-icons" style="color:var(--accent);">auto_awesome</span>
-        <input type="text" id="mainInput" placeholder="Ask anything... Write a prompt or question!" onkeydown="if(event.key==='Enter') submitMain();">
-        <button class="icon-btn" style="border:none; background:none;" onclick="startMic()"><span class="material-icons" id="micIcon">mic</span></button>
-        <button class="dock-send" onclick="submitMain()"><span class="material-icons">send</span></button>
-      </div>
-
-      <div class="chips">
-        <div class="chip" onclick="triggerPreset('Create image: ')"><span class="material-icons">palette</span> Create image</div>
-        <div class="chip" onclick="triggerPreset('Write content on: ')"><span class="material-icons">edit_note</span> Write content</div>
-        <div class="chip" onclick="triggerPreset('Generate video script: ')"><span class="material-icons">movie</span> Generate video</div>
-        <div class="chip" onclick="triggerPreset('Code help for: ')"><span class="material-icons">code</span> Code help</div>
-        <div class="chip" onclick="triggerPreset('Deep search on: ')"><span class="material-icons">search</span> Search</div>
-      </div>
-    </div>
-
-    <!-- Quick Access -->
-    <div class="sec-head">
-      <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
-      <span style="font-size:12px; color:var(--accent); cursor:pointer;" onclick="openChatModal('Show me what tools are available.')">View All &rarr;</span>
-    </div>
-    <div class="quick-grid">
-      <div class="quick-card" onclick="triggerPreset('Generate photorealistic visual of: ')">
-        <span class="material-icons">image</span>
-        <h4>Image</h4>
-        <p>Stunning visuals</p>
-      </div>
-      <div class="quick-card" onclick="triggerPreset('Write high impact blogs and captions for: ')">
-        <span class="material-icons">article</span>
-        <h4>Content</h4>
-        <p>Blogs & articles</p>
-      </div>
-      <div class="quick-card" onclick="triggerPreset('Write, build and debug code for: ')">
-        <span class="material-icons">code</span>
-        <h4>Code</h4>
-        <p>Build & debug</p>
-      </div>
-      <div class="quick-card" onclick="triggerPreset('Summarize text into concise key points: ')">
-        <span class="material-icons">list_alt</span>
-        <h4>Summary</h4>
-        <p>Short & clear</p>
-      </div>
-    </div>
-
-    <!-- Popular Tools -->
-    <div class="sec-head">
-      <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
-    </div>
-    <div class="tools-grid">
-      <div class="tool-card" onclick="triggerPreset('Image Studio: Enhance artwork: ')">
-        <span class="material-icons">photo_filter</span>
-        <div><h4>Image Studio</h4><p style="font-size:11px;
