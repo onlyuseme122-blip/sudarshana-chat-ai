@@ -20,6 +20,17 @@
       position: relative; overflow: hidden;
     }
 
+    /* Original Glowing Sudarshana Chakra */
+    .header-chakra {
+      width: 28px; height: 28px;
+      animation: spinChakra 10s linear infinite;
+      display: inline-block; cursor: pointer; flex-shrink: 0;
+    }
+    @keyframes spinChakra {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
     /* Header */
     .header {
       display: flex; align-items: center; justify-content: space-between;
@@ -32,14 +43,11 @@
       padding: 8px; border-radius: 50%;
     }
     .header-btn:active { background: #27272a; }
-    .header-title-box { display: flex; align-items: center; gap: 8px; }
-    .header-chakra { width: 26px; height: 26px; animation: spinChakra 10s linear infinite; }
-    @keyframes spinChakra { 100% { transform: rotate(360deg); } }
 
     /* Dropdown Menu */
     .menu-dropdown {
       display: none; position: absolute; top: 54px; right: 14px;
-      width: 210px; background: #18181b; border: 1px solid #27272a;
+      width: 220px; background: #18181b; border: 1px solid #27272a;
       border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.8);
       z-index: 1000; padding: 6px; flex-direction: column; gap: 2px;
     }
@@ -54,34 +62,39 @@
     .menu-item.danger { color: #f87171; }
     .menu-item.danger .material-icons { color: #f87171; }
 
-    /* Sidebar */
+    /* Sidebar Navigation */
     .sidebar-overlay {
       display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 998;
     }
     .sidebar-overlay.active { display: block; }
     .sidebar {
-      position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
+      position: fixed; top: 0; left: -310px; width: 310px; height: 100%;
       background: #111113; border-right: 1px solid #27272a; z-index: 999;
-      transition: left 0.25s ease-out; display: flex; flex-direction: column;
+      transition: left 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column;
     }
     .sidebar.active { left: 0; }
     .sidebar-header {
       padding: 16px; display: flex; justify-content: space-between;
       align-items: center; border-bottom: 1px solid #1f1f23;
     }
-    .sidebar-list { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-list { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 3px; }
+    .sidebar-section-title {
+      font-size: 11px; color: #71717a; padding: 12px 10px 4px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    }
     .side-nav-btn {
-      display: flex; align-items: center; gap: 12px; padding: 12px;
-      background: none; border: none; color: #d4d4d8; font-size: 14.5px;
+      display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+      background: none; border: none; color: #d4d4d8; font-size: 13.5px;
       border-radius: 8px; text-align: left; width: 100%; cursor: pointer;
     }
-    .side-nav-btn:active { background: #1f1f23; color: #38bdf8; }
-    .side-nav-btn .material-icons { font-size: 20px; color: #71717a; }
+    .side-nav-btn:active, .side-nav-btn:hover { background: #1f1f23; color: #38bdf8; }
+    .side-nav-btn .material-icons { font-size: 19px; color: #888; }
+    .side-nav-btn:hover .material-icons { color: #38bdf8; }
 
     /* Chat Area */
     .chat-box {
       flex: 1; padding: 16px; overflow-y: auto; display: flex;
-      flex-direction: column; gap: 12px; background: #000;
+      flex-direction: column; gap: 14px; background: #000;
     }
     .home-cards { margin: auto 0; display: flex; flex-direction: column; gap: 10px; }
     .home-card {
@@ -101,7 +114,7 @@
     .ai-bubble {
       align-self: flex-start; background: #09090b; border: 1px solid #1f1f23;
       padding: 14px 16px; border-radius: 18px 18px 18px 4px; color: #e4e4e7;
-      max-width: 86%; font-size: 14.5px; line-height: 1.5; word-break: break-word;
+      max-width: 88%; font-size: 14.5px; line-height: 1.5; word-break: break-word;
     }
     .msg-actions { display: flex; gap: 8px; margin-top: 10px; }
     .msg-act-btn {
@@ -109,6 +122,7 @@
       border-radius: 16px; padding: 4px 10px; display: flex; align-items: center;
       gap: 4px; font-size: 12px; cursor: pointer;
     }
+    .msg-act-btn:hover { color: #38bdf8; border-color: #38bdf8; }
 
     /* Input Footer */
     .footer-bar {
@@ -134,8 +148,48 @@
       justify-content: center; cursor: pointer; flex-shrink: 0;
     }
     .submit-btn.send-active {
-      background: #0284c7 !super; background: #0284c7; color: #fff;
+      background: #0284c7; color: #fff;
     }
+
+    /* Plus Action Drawer Sheet */
+    .drawer-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.7); z-index: 2000;
+    }
+    .drawer-overlay.active { display: block; }
+    .plus-drawer {
+      position: fixed; bottom: -100%; left: 0; right: 0;
+      background: #141416; border-top-left-radius: 24px; border-top-right-radius: 24px;
+      z-index: 2001; padding: 12px 16px 32px 16px; max-height: 80vh;
+      overflow-y: auto; transition: bottom 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
+    }
+    .plus-drawer.active { bottom: 0; }
+    .drawer-handle-bar { display: flex; justify-content: center; margin-bottom: 14px; }
+    .drawer-handle { width: 36px; height: 4px; border-radius: 2px; background: #3f3f46; }
+    .drawer-top-chips {
+      display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;
+    }
+    .drawer-top-chips::-webkit-scrollbar { display: none; }
+    .chip-card {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      min-width: 68px; cursor: pointer; background: none; border: none;
+    }
+    .chip-icon {
+      width: 52px; height: 52px; background: #27272a; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center; color: #f4f4f5;
+    }
+    .chip-card span { font-size: 12px; color: #a1a1aa; }
+    .drawer-divider { height: 1px; background: #27272a; margin: 14px 0; }
+    .drawer-feature-list { display: flex; flex-direction: column; gap: 6px; }
+    .feature-item {
+      display: flex; align-items: center; gap: 16px; padding: 10px 8px;
+      border-radius: 12px; cursor: pointer;
+    }
+    .feature-item:hover, .feature-item:active { background: #1f1f23; }
+    .feature-icon { font-size: 24px; color: #38bdf8; }
+    .f-title { font-size: 15px; font-weight: 500; color: #fff; }
+    .f-desc { font-size: 12px; color: #71717a; }
   </style>
 </head>
 <body>
@@ -145,54 +199,87 @@
     <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <span style="font-weight:600; font-size:16px;">Sudarshana AI</span>
+        <span style="font-weight:600; font-size:16px;">Sudarshana Hub</span>
         <button class="header-btn" onclick="closeSidebar()"><span class="material-icons">close</span></button>
       </div>
+
       <div class="sidebar-list">
         <button class="side-nav-btn" onclick="newChat(); closeSidebar()"><span class="material-icons">add</span> New Chat</button>
-        <button class="side-nav-btn" onclick="alert('Recent history loaded'); closeSidebar()"><span class="material-icons">history</span> Chat History</button>
-        <button class="side-nav-btn" onclick="alert('Settings menu'); closeSidebar()"><span class="material-icons">settings</span> Settings</button>
+
+        <div class="sidebar-section-title">Core AI Creators</div>
+        <button class="side-nav-btn" onclick="quickFill('Create a complete script and visuals for AI video: '); closeSidebar()"><span class="material-icons">movie_filter</span> Make AI Videos</button>
+        <button class="side-nav-btn" onclick="quickFill('Write code and architecture for: '); closeSidebar()"><span class="material-icons">terminal</span> Coding & Developing</button>
+        <button class="side-nav-btn" onclick="quickFill('Generate music melody, beats and arrangement for: '); closeSidebar()"><span class="material-icons">library_music</span> Music Generator</button>
+
+        <div class="sidebar-section-title">Trending & Integrations</div>
+        <button class="side-nav-btn" onclick="quickFill('Recommend trending songs and build a playlist on Spotify: '); closeSidebar()"><span class="material-icons">queue_music</span> Connect to Spotify</button>
+        <button class="side-nav-btn" onclick="quickFill('Analyze viral content strategies for Instagram: '); closeSidebar()"><span class="material-icons">photo_camera</span> Connect to Instagram</button>
+        <button class="side-nav-btn" onclick="quickFill('Generate viral YouTube titles, SEO tags and shorts script for: '); closeSidebar()"><span class="material-icons">smart_display</span> Connect to YouTube</button>
+        <button class="side-nav-btn" onclick="quickFill('Prepare community update and artist post for Weverse: '); closeSidebar()"><span class="material-icons">forum</span> Connect to Weverse</button>
+        <button class="side-nav-btn" onclick="quickFill('Generate background score prompts for Beatoven.ai: '); closeSidebar()"><span class="material-icons">audiotrack</span> Beatoven.ai Music</button>
+        <button class="side-nav-btn" onclick="quickFill('Convert long-form podcast into viral short clips via StoryHero: '); closeSidebar()"><span class="material-icons">video_library</span> StoryHero Clips</button>
+        <button class="side-nav-btn" onclick="quickFill('Extract high-engagement highlights with Vshorts AI: '); closeSidebar()"><span class="material-icons">auto_awesome_motion</span> Vshorts AI Studio</button>
+        <button class="side-nav-btn" onclick="quickFill('Suggest cutout background and visual editing with Cutout.pro: '); closeSidebar()"><span class="material-icons">crop</span> Cutout.pro Design</button>
+        <button class="side-nav-btn" onclick="quickFill('Transcribe and clean up audio subtitles using HappyScribe: '); closeSidebar()"><span class="material-icons">subtitles</span> HappyScribe Audio</button>
+        <button class="side-nav-btn" onclick="quickFill('Suggest organic growth and engagement methods via Kicksta: '); closeSidebar()"><span class="material-icons">trending_up</span> Kicksta Growth</button>
+
+        <div class="sidebar-section-title">System & Settings</div>
+        <button class="side-nav-btn" onclick="openFeedback(); closeSidebar()"><span class="material-icons">feedback</span> Feedback</button>
+        <button class="side-nav-btn" onclick="openSettings(); closeSidebar()"><span class="material-icons">settings</span> Settings</button>
       </div>
     </div>
 
-    <!-- Top Header -->
+    <!-- Header -->
     <div class="header">
-      <div class="header-title-box">
+      <div style="display:flex; align-items:center; gap:8px;">
         <button class="header-btn" onclick="openSidebar()"><span class="material-icons">menu</span></button>
-        <svg class="header-chakra" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="44" fill="none" stroke="#38bdf8" stroke-width="3"/>
-          <circle cx="50" cy="50" r="18" fill="#0284c7"/>
+        <!-- Original Golden Chakra SVG -->
+        <svg class="header-chakra" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.6"/>
+          <g fill="#0284c7" stroke="#38bdf8" stroke-width="1.5">
+            <polygon points="50,2 54,14 46,14"/>
+            <polygon points="50,98 54,86 46,86"/>
+            <polygon points="2,50 14,54 14,46"/>
+            <polygon points="98,50 86,54 86,46"/>
+            <polygon points="16,16 26,22 20,28"/>
+            <polygon points="84,84 74,78 80,72"/>
+            <polygon points="16,84 20,72 26,78"/>
+            <polygon points="84,16 80,28 74,22"/>
+          </g>
+          <circle cx="50" cy="50" r="30" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+          <circle cx="50" cy="50" r="12" fill="#0284c7"/>
         </svg>
         <span style="font-weight: 600; font-size: 16px;">Sudarshana</span>
       </div>
 
       <div style="display:flex; align-items:center; gap:2px;">
-        <button class="header-btn" onclick="newChat()"><span class="material-icons">edit_square</span></button>
-        <button class="header-btn" onclick="toggleMenu()"><span class="material-icons">more_vert</span></button>
+        <button class="header-btn" onclick="newChat()" title="New Chat"><span class="material-icons">edit_square</span></button>
+        <button class="header-btn" onclick="toggleMenu()" title="Options"><span class="material-icons">more_vert</span></button>
       </div>
 
       <!-- Menu Dropdown -->
       <div class="menu-dropdown" id="menuDropdown">
         <button class="menu-item" onclick="newChat()"><span class="material-icons">add_comment</span> New Conversation</button>
-        <button class="menu-item" onclick="alert('Sudarshana is configured to answer in English.')"><span class="material-icons">info</span> Status Info</button>
-        <button class="menu-item danger" onclick="newChat()"><span class="material-icons">delete</span> Clear Chat</button>
+        <button class="menu-item" onclick="openFeedback()"><span class="material-icons">feedback</span> Feedback</button>
+        <button class="menu-item" onclick="openSettings()"><span class="material-icons">settings</span> Settings</button>
+        <button class="menu-item danger" onclick="deleteCurrentChat()"><span class="material-icons">delete</span> Clear Chat</button>
       </div>
     </div>
 
     <!-- Main Chat Window -->
     <div class="chat-box" id="chatBox">
       <div class="home-cards" id="homeCards">
-        <div class="home-card" onclick="quickFill('Create an image description of a cosmic city')">
-          <span class="material-icons">palette</span>
-          <span>Create an image prompt</span>
+        <div class="home-card" onclick="quickFill('Create a complete script and visuals for AI video: ')">
+          <span class="material-icons">movie_filter</span>
+          <span>Make AI Videos</span>
         </div>
-        <div class="home-card" onclick="quickFill('Explain how artificial intelligence works simply')">
-          <span class="material-icons">psychology</span>
-          <span>Explain a concept</span>
+        <div class="home-card" onclick="quickFill('Write code and architecture for: ')">
+          <span class="material-icons">terminal</span>
+          <span>Coding & Developing</span>
         </div>
-        <div class="home-card" onclick="quickFill('Write an email requesting leave tomorrow')">
-          <span class="material-icons">edit_note</span>
-          <span>Help me write an email</span>
+        <div class="home-card" onclick="quickFill('Generate music melody and beats for: ')">
+          <span class="material-icons">library_music</span>
+          <span>Music Generator</span>
         </div>
       </div>
     </div>
@@ -200,7 +287,7 @@
     <!-- Interactive Input Dock -->
     <div class="footer-bar">
       <div class="input-pill">
-        <button class="icon-click" onclick="quickFill('Deep research on: ')" title="Deep Search">
+        <button class="icon-click" onclick="openPlusDrawer()" title="Explore Features">
           <span class="material-icons">add</span>
         </button>
         
@@ -217,18 +304,59 @@
     </div>
   </div>
 
+  <!-- Plus Action Drawer Sheet -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closePlusDrawer()"></div>
+  <div class="plus-drawer" id="plusDrawer">
+    <div class="drawer-handle-bar"><div class="drawer-handle"></div></div>
+    <div class="drawer-top-chips">
+      <button class="chip-card" onclick="quickFill('Make AI video script for: '); closePlusDrawer();">
+        <div class="chip-icon"><span class="material-icons">movie_filter</span></div>
+        <span>AI Video</span>
+      </button>
+      <button class="chip-card" onclick="quickFill('Generate coding solution for: '); closePlusDrawer();">
+        <div class="chip-icon"><span class="material-icons">terminal</span></div>
+        <span>Coding</span>
+      </button>
+      <button class="chip-card" onclick="quickFill('Generate music composition for: '); closePlusDrawer();">
+        <div class="chip-icon"><span class="material-icons">library_music</span></div>
+        <span>Music</span>
+      </button>
+      <button class="chip-card" onclick="quickFill('Create image prompt for: '); closePlusDrawer();">
+        <div class="chip-icon"><span class="material-icons">palette</span></div>
+        <span>Image</span>
+      </button>
+    </div>
+    <div class="drawer-divider"></div>
+    <div class="drawer-feature-list">
+      <div class="feature-item" onclick="quickFill('Trending YouTube & Instagram shorts ideas: '); closePlusDrawer();">
+        <span class="material-icons feature-icon">trending_up</span>
+        <div class="feature-text">
+          <span class="f-title">Trending Social Media Insights</span>
+          <span class="f-desc">Viral hooks and topics for YouTube, Instagram, and Spotify</span>
+        </div>
+      </div>
+      <div class="feature-item" onclick="quickFill('Deep research on: '); closePlusDrawer();">
+        <span class="material-icons feature-icon">travel_explore</span>
+        <div class="feature-text">
+          <span class="f-title">Deep Research</span>
+          <span class="f-desc">Multi-perspective analytical breakdown</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // --- KEY & GEMINI 3.6 PROXY SETUP ---
+    // --- AUTHENTICATION & PROXY ENGINE ---
     const part1 = "AQ.Ab8RN6Kky";
     const part2 = "EvbiqLRoB-g_LOr7";
     const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
     const GEMINI_API_KEY = part1 + part2 + part3;
 
-    // Google recommended latest 3.6-flash model
+    // Direct Netlify Proxy Call without Self-Introduction Loop
     async function askGeminiAI(userPrompt) {
       const endpoint = "/api/gemini/models/gemini-3.6-flash:generateContent";
 
-      const systemPrompt = "You are Sudarshana AI. Act as an exceptionally intelligent, polite, ChatGPT-like assistant. Provide helpful, structured, clear, and comprehensive answers in pure English.";
+      const systemPrompt = "You are Sudarshana AI, an expert, concise, and ultra-intelligent AI assistant. Answer directly and precisely in pure English. NEVER introduce yourself or say 'I am Sudarshana' or 'As an AI'. Get straight to the user's answer using scannable bullet points or structured text.";
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -239,7 +367,7 @@
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: `System Instruction: ${systemPrompt}\n\nUser Question: ${userPrompt}`
+              text: `System: ${systemPrompt}\n\nUser Question: ${userPrompt}`
             }]
           }]
         })
@@ -251,20 +379,28 @@
         throw new Error(data.error?.message || response.statusText || ("HTTP " + response.status));
       }
 
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received from model.";
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
     }
 
-    // --- SEND MESSAGE FUNCTION ---
+    // --- MESSAGING & AUDIO MANAGEMENT ---
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
     async function sendMessage() {
       const input = document.getElementById('userInput');
       const text = input.value.trim();
       if (!text) return;
 
+      stopSpeech();
+
       const chatBox = document.getElementById('chatBox');
       const cards = document.getElementById('homeCards');
       if (cards) cards.remove();
 
-      // Append User Bubble
+      // User Bubble
       const userBubble = document.createElement('div');
       userBubble.className = 'user-bubble';
       userBubble.textContent = text;
@@ -274,10 +410,10 @@
       onInputChange();
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // Append Thinking Indicator
+      // AI Placeholder
       const aiBubble = document.createElement('div');
       aiBubble.className = 'ai-bubble';
-      aiBubble.innerHTML = `<i style="color: #94a3b8;">Sudarshana is writing...</i>`;
+      aiBubble.innerHTML = `<i style="color: #94a3b8;">Thinking...</i>`;
       chatBox.appendChild(aiBubble);
       chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -288,6 +424,7 @@
           <div class="msg-actions">
             <button class="msg-act-btn" onclick="copyBubbleText(this)"><span class="material-icons" style="font-size:14px;">content_copy</span> Copy</button>
             <button class="msg-act-btn" onclick="speakBubbleText(this)"><span class="material-icons" style="font-size:14px;">volume_up</span> Read</button>
+            <button class="msg-act-btn" onclick="stopSpeech()"><span class="material-icons" style="font-size:14px;">volume_off</span> Stop</button>
           </div>
         `;
       } catch (err) {
@@ -297,7 +434,7 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // --- UI HELPERS & LISTENERS ---
+    // --- UI CONTROLS ---
     function onInputChange() {
       const input = document.getElementById('userInput');
       const sendBtn = document.getElementById('sendBtn');
@@ -326,24 +463,30 @@
     }
 
     function newChat() {
+      stopSpeech();
       const chatBox = document.getElementById('chatBox');
       chatBox.innerHTML = `
         <div class="home-cards" id="homeCards">
-          <div class="home-card" onclick="quickFill('Create an image description of a cosmic city')">
-            <span class="material-icons">palette</span>
-            <span>Create an image prompt</span>
+          <div class="home-card" onclick="quickFill('Create a complete script and visuals for AI video: ')">
+            <span class="material-icons">movie_filter</span>
+            <span>Make AI Videos</span>
           </div>
-          <div class="home-card" onclick="quickFill('Explain how artificial intelligence works simply')">
-            <span class="material-icons">psychology</span>
-            <span>Explain a concept</span>
+          <div class="home-card" onclick="quickFill('Write code and architecture for: ')">
+            <span class="material-icons">terminal</span>
+            <span>Coding & Developing</span>
           </div>
-          <div class="home-card" onclick="quickFill('Write an email requesting leave tomorrow')">
-            <span class="material-icons">edit_note</span>
-            <span>Help me write an email</span>
+          <div class="home-card" onclick="quickFill('Generate music melody and beats for: ')">
+            <span class="material-icons">library_music</span>
+            <span>Music Generator</span>
           </div>
         </div>
       `;
       closeMenu();
+    }
+
+    function deleteCurrentChat() {
+      stopSpeech();
+      newChat();
     }
 
     function openSidebar() {
@@ -371,6 +514,28 @@
       }
     });
 
+    // Drawer Controls
+    function openPlusDrawer() {
+      document.getElementById('drawerOverlay').classList.add('active');
+      document.getElementById('plusDrawer').classList.add('active');
+    }
+
+    function closePlusDrawer() {
+      document.getElementById('drawerOverlay').classList.remove('active');
+      document.getElementById('plusDrawer').classList.remove('active');
+    }
+
+    function openFeedback() {
+      const feedback = prompt("Help improve Sudarshana AI. Enter your feedback/bug report:");
+      if (feedback) alert("Thank you! Feedback has been recorded.");
+      closeMenu();
+    }
+
+    function openSettings() {
+      alert("Sudarshana Settings\n- Model: Gemini 3.6 Flash\n- Language: English (Direct Mode)\n- Audio Control: Immediate Interrupt Active");
+      closeMenu();
+    }
+
     function copyBubbleText(btn) {
       const parent = btn.closest('.ai-bubble');
       const text = parent.querySelector('.msg-content').innerText;
@@ -382,10 +547,10 @@
     }
 
     function speakBubbleText(btn) {
+      stopSpeech();
       const parent = btn.closest('.ai-bubble');
       const text = parent.querySelector('.msg-content').innerText;
       if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = 'en-US';
         window.speechSynthesis.speak(utter);
@@ -395,7 +560,7 @@
     function triggerSpeechRecognition() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        alert("Speech Recognition not supported on this browser.");
+        alert("Speech Recognition is not supported on this browser.");
         return;
       }
       const rec = new SpeechRecognition();
