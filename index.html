@@ -23,7 +23,7 @@
     }
 
     /* ==========================================================================
-       2. FULL 8 DYNAMIC THEME SYSTEM (PERSISTENT VIA LOCALSTORAGE)
+       2. FULL 8 DYNAMIC THEMES (PERSISTENT STORAGE)
        ========================================================================== */
     :root {
       --bg-base: #030712;
@@ -44,7 +44,6 @@
       --chakra-blue: #0284c7;
     }
 
-    /* 1. Light Theme */
     body.theme-light {
       --bg-base: #f8fafc;
       --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
@@ -64,7 +63,6 @@
       --chakra-blue: #0284c7;
     }
 
-    /* 2. Neon Theme */
     body.theme-neon {
       --bg-base: #070114;
       --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
@@ -84,7 +82,6 @@
       --chakra-blue: #c084fc;
     }
 
-    /* 3. Nature Theme */
     body.theme-nature {
       --bg-base: #03140e;
       --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
@@ -104,7 +101,6 @@
       --chakra-blue: #10b981;
     }
 
-    /* 4. Cyberpunk Theme */
     body.theme-cyberpunk {
       --bg-base: #0a0118;
       --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
@@ -124,7 +120,6 @@
       --chakra-blue: #f43f5e;
     }
 
-    /* 5. Sunset Theme */
     body.theme-sunset {
       --bg-base: #140704;
       --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #120502 75%);
@@ -144,7 +139,6 @@
       --chakra-blue: #f97316;
     }
 
-    /* 6. Space Theme */
     body.theme-space {
       --bg-base: #020617;
       --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
@@ -164,7 +158,6 @@
       --chakra-blue: #0ea5e9;
     }
 
-    /* 7. Minimal Theme */
     body.theme-minimal {
       --bg-base: #f1f5f9;
       --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
@@ -185,7 +178,7 @@
     }
 
     /* ==========================================================================
-       3. DOCUMENT FLOW (FAIL-SAFE BLOCK ARCHITECTURE)
+       3. DOCUMENT LAYOUT & INTRO PRELOADER
        ========================================================================== */
     html, body {
       width: 100%;
@@ -194,13 +187,51 @@
       background-image: var(--bg-gradient);
       background-attachment: fixed;
       color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       overflow-x: hidden;
       line-height: 1.5;
     }
 
+    #introLoader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-base);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #introLoader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .intro-chakra {
+      width: 90px;
+      height: 90px;
+      animation: introSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite, introPulse 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes introSpin {
+      0% { transform: rotate(0deg) scale(0.9); }
+      50% { transform: rotate(180deg) scale(1.1); }
+      100% { transform: rotate(360deg) scale(0.9); }
+    }
+    @keyframes introPulse {
+      from { filter: drop-shadow(0 0 10px var(--accent)); }
+      to { filter: drop-shadow(0 0 30px var(--chakra-gold)); }
+    }
+    .intro-text {
+      margin-top: 18px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
     /* ==========================================================================
-       4. SACRED ROTATING SUDARSHANA CHAKRA
+       4. ROTATING CHAKRA & TOP HEADER
        ========================================================================== */
     .sudarshana-chakra {
       width: 34px;
@@ -211,15 +242,11 @@
       flex-shrink: 0;
       filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
     }
-
     @keyframes spinChakra {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
-    /* ==========================================================================
-       5. TOP STICKY HEADER
-       ========================================================================== */
     .app-header {
       position: sticky;
       top: 0;
@@ -232,13 +259,7 @@
       z-index: 100;
       backdrop-filter: blur(12px);
     }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .header-left { display: flex; align-items: center; gap: 12px; }
     .icon-btn {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -251,24 +272,8 @@
       justify-content: center;
       cursor: pointer;
     }
-
-    .icon-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .brand-title {
-      font-size: 19px;
-      font-weight: 800;
-      letter-spacing: -0.4px;
-      color: var(--text-main);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .brand-title { font-size: 19px; font-weight: 800; letter-spacing: -0.4px; }
 
     .theme-pill-btn {
       display: inline-flex;
@@ -285,36 +290,17 @@
       box-shadow: 0 0 16px var(--accent-glow);
     }
 
-    .theme-pill-btn:hover {
-      transform: translateY(-2px);
-    }
-
     /* ==========================================================================
-       6. MAIN CONTENT WRAPPER & HERO
+       5. VIEW 1: HOME DASHBOARD (CLEAN, NO CENTER CHAKRA)
        ========================================================================== */
-    .main-wrapper {
+    #dashboardView {
       width: 100%;
       max-width: 860px;
       margin: 0 auto;
-      padding: 24px 16px 60px;
+      padding: 30px 16px 60px;
       display: block;
     }
-
-    .hero-section {
-      text-align: center;
-      padding: 10px 0 32px;
-      position: relative;
-    }
-
-    .hero-chakra-large {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 16px;
-      animation: spinChakra 24s linear infinite;
-      display: block;
-      filter: drop-shadow(0 0 28px rgba(245, 158, 11, 0.7));
-    }
-
+    .hero-section { text-align: center; margin-bottom: 30px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -326,10 +312,9 @@
       font-size: 12.5px;
       color: var(--accent);
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       cursor: pointer;
     }
-
     .hero-title {
       font-size: 42px;
       font-weight: 800;
@@ -337,14 +322,12 @@
       letter-spacing: -1.2px;
       margin-bottom: 8px;
     }
-
     .glow-text {
       color: var(--accent);
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .hero-subtitle {
       display: flex;
       align-items: center;
@@ -354,22 +337,9 @@
       color: var(--text-muted);
       margin-bottom: 28px;
     }
+    .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
 
-    .dot-sep {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    /* ==========================================================================
-       7. MAIN SEARCH DOCK
-       ========================================================================== */
-    .search-dock-wrapper {
-      width: 100%;
-      margin-bottom: 18px;
-    }
-
+    /* Search Dock */
     .search-dock {
       background: var(--dock-bg);
       border: 1px solid var(--dock-border);
@@ -379,12 +349,8 @@
       align-items: center;
       gap: 12px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4), 0 0 24px var(--accent-glow);
+      margin-bottom: 18px;
     }
-
-    .search-dock:focus-within {
-      border-color: var(--accent);
-    }
-
     .search-dock input {
       flex: 1;
       background: transparent;
@@ -392,20 +358,8 @@
       outline: none;
       color: var(--text-main);
       font-size: 15.5px;
-      font-family: inherit;
     }
-
-    .search-dock input::placeholder {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .dock-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
+    .dock-actions { display: flex; align-items: center; gap: 6px; }
     .dock-icon-btn {
       background: none;
       border: none;
@@ -418,11 +372,6 @@
       justify-content: center;
       cursor: pointer;
     }
-
-    .dock-icon-btn:hover {
-      color: var(--accent);
-    }
-
     .dock-send-btn {
       width: 42px;
       height: 42px;
@@ -437,21 +386,8 @@
       box-shadow: 0 2px 14px var(--accent-glow);
     }
 
-    .dock-send-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* ==========================================================================
-       8. ACTION CHIPS
-       ========================================================================== */
-    .chips-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 40px;
-    }
-
+    /* Chips */
+    .chips-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
     .chip {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -465,61 +401,15 @@
       cursor: pointer;
       font-weight: 500;
     }
+    .chip:hover { border-color: var(--accent); color: var(--text-main); transform: translateY(-2px); }
+    .chip .material-icons { font-size: 17px; color: var(--accent); }
 
-    .chip:hover {
-      border-color: var(--accent);
-      color: var(--text-main);
-      transform: translateY(-2px);
-    }
+    /* Sections */
+    .sec-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .sec-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
 
-    .chip .material-icons {
-      font-size: 17px;
-      color: var(--accent);
-    }
-
-    /* ==========================================================================
-       9. DASHBOARD SECTION HEADINGS
-       ========================================================================== */
-    .sec-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .sec-title {
-      font-size: 18px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-main);
-    }
-
-    .view-all-link {
-      font-size: 13px;
-      color: var(--accent);
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .view-all-link:hover {
-      text-decoration: underline;
-    }
-
-    /* ==========================================================================
-       10. QUICK ACCESS (5 CARDS)
-       ========================================================================== */
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-bottom: 42px;
-    }
-
+    /* Quick Access (5 Cards) */
+    .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 42px; }
     .quick-box {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -528,13 +418,7 @@
       text-align: center;
       cursor: pointer;
     }
-
-    .quick-box:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    }
-
+    .quick-box:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
     .quick-icon-box {
       width: 50px;
       height: 50px;
@@ -543,27 +427,14 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto 12px;
+      background: var(--card-hover);
+      color: var(--accent);
     }
-
-    .quick-box.blue .quick-icon-box { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
-    .quick-box.cyan .quick-icon-box { background: rgba(45, 212, 191, 0.15); color: #2dd4bf; }
-    .quick-box.purple .quick-icon-box { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-    .quick-box.orange .quick-icon-box { background: rgba(251, 146, 60, 0.15); color: #fb923c; }
-    .quick-box.pink .quick-icon-box { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
-
     .quick-box h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
-    .quick-box p { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+    .quick-box p { font-size: 11.5px; color: var(--text-muted); }
 
-    /* ==========================================================================
-       11. POPULAR TOOLS (4 CARDS)
-       ========================================================================== */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 14px;
-      margin-bottom: 42px;
-    }
-
+    /* Tools Grid */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 42px; }
     .tool-box {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -574,13 +445,7 @@
       gap: 14px;
       cursor: pointer;
     }
-
-    .tool-box:hover {
-      border-color: var(--accent);
-      background: var(--card-hover);
-      transform: translateY(-2px);
-    }
-
+    .tool-box:hover { border-color: var(--accent); background: var(--card-hover); }
     .tool-icon {
       width: 44px;
       height: 44px;
@@ -593,19 +458,8 @@
       flex-shrink: 0;
     }
 
-    .tool-box h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 2px; }
-    .tool-box p { font-size: 11.5px; color: var(--text-muted); }
-
-    /* ==========================================================================
-       12. RECENT CHATS LIST
-       ========================================================================== */
-    .recent-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 42px;
-    }
-
+    /* Recent Chats */
+    .recent-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 42px; }
     .recent-item {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -616,29 +470,9 @@
       justify-content: space-between;
       cursor: pointer;
     }
+    .recent-item:hover { border-color: var(--accent); background: var(--card-hover); }
 
-    .recent-item:hover {
-      border-color: var(--accent);
-      background: var(--card-hover);
-    }
-
-    .recent-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .recent-left .material-icons {
-      color: var(--accent);
-      font-size: 22px;
-    }
-
-    .recent-item h4 { font-size: 14px; font-weight: 600; }
-    .recent-item p { font-size: 12px; color: var(--text-muted); }
-
-    /* ==========================================================================
-       13. BANNER & PERKS
-       ========================================================================== */
+    /* Banner & Perks */
     .banner {
       background: var(--card-bg);
       border: 1px solid var(--accent);
@@ -650,10 +484,6 @@
       margin-bottom: 38px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
-
-    .banner h3 { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
-    .banner p { font-size: 13px; color: var(--text-muted); }
-
     .banner-btn {
       background: var(--accent);
       color: #fff;
@@ -662,9 +492,6 @@
       border-radius: 26px;
       font-weight: 700;
       font-size: 13.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
       cursor: pointer;
     }
 
@@ -675,34 +502,96 @@
       padding-top: 28px;
       border-top: 1px solid var(--card-border);
     }
+    .perk-box { display: flex; align-items: center; gap: 12px; }
+    .perk-box .material-icons { font-size: 26px; color: var(--accent); }
 
-    .perk-box {
+    /* ==========================================================================
+       6. VIEW 2: INTEGRATED NATIVE FULL-SCREEN CHAT
+       ========================================================================== */
+    #fullChatView {
+      display: none;
+      flex-direction: column;
+      height: calc(100vh - 64px);
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .chat-top-nav {
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 16px;
+    }
+    .user-msg {
+      align-self: flex-end;
+      background: var(--card-hover);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 12px 18px;
+      border-radius: 18px 18px 4px 18px;
+      max-width: 82%;
+      font-size: 14.5px;
+      word-break: break-word;
+    }
+    .ai-msg {
+      align-self: flex-start;
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 18px 20px;
+      border-radius: 18px 18px 18px 4px;
+      max-width: 88%;
+      font-size: 14.5px;
+      line-height: 1.55;
+      word-break: break-word;
     }
 
-    .perk-box .material-icons {
-      font-size: 26px;
-      color: var(--accent);
+    /* Generated AI Image Card Container */
+    .ai-image-container {
+      margin-top: 14px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      background: #000;
     }
-
-    .perk-box h5 { font-size: 13.5px; font-weight: 600; }
-    .perk-box p { font-size: 11.5px; color: var(--text-muted); }
+    .ai-image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .ai-image-bar {
+      padding: 8px 12px;
+      background: var(--card-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
         /* ==========================================================================
-       14. LEFT NAVIGATION SIDEBAR DRAWER
+       7. SIDEBAR DRAWER & THEME MODAL
        ========================================================================== */
     .sidebar-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(5px);
       z-index: 998;
     }
     .sidebar-overlay.active { display: block; }
-
     .sidebar-drawer {
       position: fixed;
       top: 0;
@@ -715,36 +604,11 @@
       transition: left 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
       display: flex;
       flex-direction: column;
-      box-shadow: 10px 0 35px rgba(0, 0, 0, 0.7);
     }
     .sidebar-drawer.active { left: 0; }
-
-    .drawer-head {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--sidebar-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .drawer-list {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .drawer-sec-title {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 14px 10px 6px;
-      letter-spacing: 0.6px;
-    }
-
+    .drawer-head { padding: 16px 20px; border-bottom: 1px solid var(--sidebar-border); display: flex; justify-content: space-between; align-items: center; }
+    .drawer-list { flex: 1; overflow-y: auto; padding: 14px 12px; display: flex; flex-direction: column; gap: 2px; }
+    .drawer-sec-title { font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; padding: 14px 10px 6px; }
     .drawer-btn {
       display: flex;
       align-items: center;
@@ -754,175 +618,49 @@
       border: none;
       color: var(--text-main);
       font-size: 14px;
-      font-weight: 500;
       border-radius: 10px;
       width: 100%;
       text-align: left;
       cursor: pointer;
     }
+    .drawer-btn:hover { background: var(--card-hover); color: var(--accent); }
+    .drawer-btn .material-icons { font-size: 20px; color: var(--text-muted); }
+    .drawer-btn:hover .material-icons { color: var(--accent); }
 
-    .drawer-btn:hover {
-      background: var(--card-hover);
-      color: var(--accent);
-    }
-
-    .drawer-btn .material-icons {
-      font-size: 20px;
-      color: var(--text-muted);
-    }
-
-    .drawer-btn:hover .material-icons {
-      color: var(--accent);
-    }
-
-    /* ==========================================================================
-       15. LIVE CHAT MODAL ENGINE
-       ========================================================================== */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(8px);
       z-index: 2000;
       padding: 16px;
       align-items: center;
       justify-content: center;
     }
-    .modal-overlay.active { display: flex; }
-
-    .modal-box {
-      width: 100%;
-      max-width: 700px;
-      height: 85vh;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
-    }
-
-    .modal-head {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--sidebar-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chat-body {
-      flex: 1;
-      padding: 18px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .user-msg {
-      align-self: flex-end;
-      background: var(--card-hover);
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      padding: 12px 16px;
-      border-radius: 18px 18px 4px 18px;
-      max-width: 82%;
-      font-size: 14.5px;
-      word-break: break-word;
-    }
-
-    .ai-msg {
-      align-self: flex-start;
-      background: var(--bg-base);
-      border: 1px solid var(--accent);
-      color: var(--text-main);
-      padding: 16px;
-      border-radius: 18px 18px 18px 4px;
-      max-width: 88%;
-      font-size: 14.5px;
-      line-height: 1.55;
-      word-break: break-word;
-    }
-
-    .modal-input-bar {
-      padding: 14px 18px;
-      border-top: 1px solid var(--sidebar-border);
-      display: flex;
-      gap: 8px;
-    }
-
-    .modal-input-bar input {
-      flex: 1;
-      background: var(--bg-base);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 10px 16px;
-      color: var(--text-main);
-      outline: none;
-      font-size: 14.5px;
-    }
-
-        /* ==========================================================================
-       16. FULL 8 THEMES SELECTION MODAL
-       ========================================================================== */
     .themes-modal-box {
       width: 100%;
       max-width: 580px;
-      max-height: 90vh;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 24px;
-      display: flex;
-      flex-direction: column;
       overflow: hidden;
     }
-
-    .themes-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 18px;
-      overflow-y: auto;
-    }
-
+    .themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 18px; }
     .theme-card-choice {
       padding: 16px 14px;
       border: 2px solid var(--card-border);
       border-radius: 16px;
       background: var(--bg-base);
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
       text-align: center;
     }
+    .theme-card-choice:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .theme-circle-dot { width: 26px; height: 26px; border-radius: 50%; margin: 0 auto 8px; }
 
-    .theme-card-choice:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .theme-circle-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    .theme-card-choice h5 { font-size: 14px; font-weight: 700; }
-    .theme-card-choice span { font-size: 11.5px; color: var(--text-muted); }
-
-    /* ==========================================================================
-       17. RESPONSIVE BREAKPOINTS
-       ========================================================================== */
     @media (max-width: 600px) {
       .hero-title { font-size: 30px; }
       .quick-grid { grid-template-columns: repeat(2, 1fr); }
-      .tools-grid { grid-template-columns: 1fr; }
-      .banner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .banner { flex-direction: column; align-items: flex-start; gap: 14px; }
       .themes-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -930,7 +668,30 @@
 <body class="theme-dark">
 
   <!-- ==========================================================================
-       18. LEFT SIDEBAR NAVIGATION DRAWER
+       INTRO SPLASH PRELOADER ANIMATION
+       ========================================================================== -->
+  <div id="introLoader">
+    <svg class="intro-chakra" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
+      <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="2"/>
+      <g fill="#f59e0b">
+        <polygon points="50,4 53,16 47,16"/>
+        <polygon points="50,96 53,84 47,84"/>
+        <polygon points="4,50 16,53 16,47"/>
+        <polygon points="96,50 84,53 84,47"/>
+        <polygon points="17,17 26,23 21,28"/>
+        <polygon points="83,83 74,77 79,72"/>
+        <polygon points="17,83 21,72 26,77"/>
+        <polygon points="83,17 79,28 74,23"/>
+      </g>
+      <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+      <circle cx="50" cy="50" r="10" fill="#0284c7"/>
+    </svg>
+    <div class="intro-text">Sudarshana AI</div>
+  </div>
+
+  <!-- ==========================================================================
+       LEFT SIDEBAR NAVIGATION DRAWER
        ========================================================================== -->
   <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
   <aside class="sidebar-drawer" id="sideDrawer">
@@ -952,7 +713,7 @@
           <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
           <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
         </svg>
-        <span style="font-weight:800; font-size:18px;">Sudarshana AI</span>
+        <span style="font-weight:800; font-size:18px;">Sudarshana</span>
       </div>
       <button class="icon-btn" onclick="closeSidebar()"><span class="material-icons">close</span></button>
     </div>
@@ -962,6 +723,7 @@
       <button class="drawer-btn" onclick="openThemeModal(); closeSidebar()"><span class="material-icons">palette</span> Themes (8 Styles)</button>
 
       <div class="drawer-sec-title">Core AI Creators</div>
+      <button class="drawer-btn" onclick="triggerPreset('Generate photorealistic image of: '); closeSidebar()"><span class="material-icons">image</span> Generate AI Image</button>
       <button class="drawer-btn" onclick="triggerPreset('Create script and prompt for AI video: '); closeSidebar()"><span class="material-icons">movie_filter</span> Make AI Videos</button>
       <button class="drawer-btn" onclick="triggerPreset('Write clean code and architecture for: '); closeSidebar()"><span class="material-icons">terminal</span> Coding & Developing</button>
       <button class="drawer-btn" onclick="triggerPreset('Generate music melody and beats for: '); closeSidebar()"><span class="material-icons">library_music</span> Music Generator</button>
@@ -985,7 +747,7 @@
   </aside>
 
   <!-- ==========================================================================
-       19. TOP APPLICATION HEADER
+       TOP APPLICATION HEADER
        ========================================================================== -->
   <header class="app-header">
     <div class="header-left">
@@ -1006,36 +768,22 @@
         <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
         <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
       </svg>
-      <span class="brand-title">Sudarshana</span>
+      <span class="brand-title" onclick="backToHome()" style="cursor:pointer;">Sudarshana</span>
     </div>
 
-    <div class="header-right">
+    <div style="display:flex; align-items:center; gap:8px;">
       <button class="theme-pill-btn" onclick="openThemeModal()">
         <span class="material-icons" style="font-size:16px;">palette</span> Themes
       </button>
-      <button class="icon-btn" onclick="newChat()" title="New Chat"><span class="material-icons">edit_square</span></button>
+      <button class="icon-btn" onclick="newChat()"><span class="material-icons">edit_square</span></button>
     </div>
   </header>
 
   <!-- ==========================================================================
-       20. MAIN DASHBOARD CONTENT
+       VIEW 1: CLEAN HOME DASHBOARD
        ========================================================================== -->
-  <main class="main-wrapper">
-    <!-- Hero Section -->
+  <main id="dashboardView">
     <section class="hero-section">
-      <svg class="hero-chakra-large" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="48" fill="none" stroke="var(--chakra-gold)" stroke-width="1.5" stroke-dasharray="4 2"/>
-        <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1"/>
-        <g stroke="var(--chakra-gold)" stroke-width="1.5">
-          <line x1="50" y1="2" x2="50" y2="98" />
-          <line x1="2" y1="50" x2="98" y2="50" />
-          <line x1="16" y1="16" x2="84" y2="84" />
-          <line x1="16" y1="84" x2="84" y2="16" />
-        </g>
-        <circle cx="50" cy="50" r="22" fill="#0b132b" stroke="var(--chakra-gold)" stroke-width="2"/>
-        <circle cx="50" cy="50" r="10" fill="var(--chakra-gold)"/>
-      </svg>
-
       <div class="hero-badge" onclick="openThemeModal()">
         <span class="material-icons" style="font-size:14px;">bolt</span> Smarter Tools &bull; Limitless AI
       </div>
@@ -1050,25 +798,22 @@
       </div>
 
       <!-- Search Input Dock -->
-      <div class="search-dock-wrapper">
-        <div class="search-dock">
-          <span class="material-icons" style="color:var(--accent);">auto_awesome</span>
-          <input type="text" id="mainInput" placeholder="Ask anything... Write a prompt, ask a question, or say hello!">
-          <div class="dock-actions">
-            <button class="dock-icon-btn" onclick="alert('File attachment synced.')" title="Attach file"><span class="material-icons">attach_file</span></button>
-            <button class="dock-icon-btn" onclick="startMic()" title="Voice input"><span class="material-icons" id="micIcon">mic</span></button>
-            <button class="dock-send-btn" onclick="submitMain()" title="Send query"><span class="material-icons">send</span></button>
-          </div>
+      <div class="search-dock">
+        <span class="material-icons" style="color:var(--accent);">auto_awesome</span>
+        <input type="text" id="mainInput" placeholder="Ask anything, or generate images... Write a prompt!">
+        <div class="dock-actions">
+          <button class="dock-icon-btn" onclick="alert('File attachment synced.')"><span class="material-icons">attach_file</span></button>
+          <button class="dock-icon-btn" onclick="startMic()"><span class="material-icons" id="micIcon">mic</span></button>
+          <button class="dock-send-btn" onclick="submitMain()"><span class="material-icons">send</span></button>
         </div>
       </div>
 
       <!-- Action Chips -->
       <div class="chips-row">
-        <div class="chip" onclick="triggerPreset('Create image: ')"><span class="material-icons">palette</span> Create image</div>
+        <div class="chip" onclick="triggerPreset('Generate photorealistic image of: ')"><span class="material-icons">image</span> Generate Image</div>
         <div class="chip" onclick="triggerPreset('Write content on: ')"><span class="material-icons">edit_note</span> Write content</div>
         <div class="chip" onclick="triggerPreset('Generate video script: ')"><span class="material-icons">movie</span> Generate video</div>
         <div class="chip" onclick="triggerPreset('Code help for: ')"><span class="material-icons">code</span> Code help</div>
-        <div class="chip" onclick="triggerPreset('Deep search on: ')"><span class="material-icons">search</span> Search</div>
       </div>
     </section>
 
@@ -1076,49 +821,47 @@
     <section>
       <div class="sec-head">
         <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
-        <span class="view-all-link" onclick="openChatModal('Show me what tools are available.')">View All &rarr;</span>
       </div>
       <div class="quick-grid">
-        <div class="quick-box blue" onclick="triggerPreset('Generate photorealistic visual of: ')">
+        <div class="quick-box" onclick="triggerPreset('Generate photorealistic visual of: ')">
           <div class="quick-icon-box"><span class="material-icons">image</span></div>
           <h4>Generate Image</h4>
-          <p>Turn your ideas into stunning visuals</p>
+          <p>Turn ideas into stunning visuals</p>
         </div>
-        <div class="quick-box cyan" onclick="triggerPreset('Write high-impact blogs and captions for: ')">
+        <div class="quick-box" onclick="triggerPreset('Write high-impact blogs and captions for: ')">
           <div class="quick-icon-box"><span class="material-icons">article</span></div>
           <h4>Create Content</h4>
-          <p>Blogs, captions, & more</p>
+          <p>Blogs, captions & more</p>
         </div>
-        <div class="quick-box purple" onclick="triggerPreset('Write, build, and debug code for: ')">
+        <div class="quick-box" onclick="triggerPreset('Write, build, and debug code for: ')">
           <div class="quick-icon-box"><span class="material-icons">code</span></div>
           <h4>Write Code</h4>
-          <p>Build, debug, & improve</p>
+          <p>Build, debug & improve</p>
         </div>
-        <div class="quick-box orange" onclick="triggerPreset('Summarize text into concise key points: ')">
+        <div class="quick-box" onclick="triggerPreset('Summarize text into concise key points: ')">
           <div class="quick-icon-box"><span class="material-icons">list_alt</span></div>
           <h4>Summarize</h4>
           <p>Long text to short & clear</p>
         </div>
-        <div class="quick-box pink" onclick="triggerPreset('Deep research and information analysis on: ')">
+        <div class="quick-box" onclick="triggerPreset('Deep research and information analysis on: ')">
           <div class="quick-icon-box"><span class="material-icons">search</span></div>
           <h4>Research</h4>
-          <p>Find information instantly</p>
+          <p>Find insights instantly</p>
         </div>
       </div>
     </section>
 
-    <!-- Popular Tools (4 Cards) -->
+    <!-- Popular Tools -->
     <section>
       <div class="sec-head">
         <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
-        <span class="view-all-link" onclick="openChatModal('List all features in audio and video studios.')">View All &rarr;</span>
       </div>
       <div class="tools-grid">
-        <div class="tool-box" onclick="triggerPreset('Image Studio: Enhance artwork: ')">
+        <div class="tool-box" onclick="triggerPreset('Generate photorealistic artwork portrait of: ')">
           <div class="tool-icon"><span class="material-icons">photo_filter</span></div>
-          <div><h4>Image Studio</h4><p>Edit &bull; Enhance &bull; Create</p></div>
+          <div><h4>Image Studio</h4><p>Create &bull; Enhance &bull; Edit</p></div>
         </div>
-        <div class="tool-box" onclick="triggerPreset('Video Studio: Add subtitles: ')">
+        <div class="tool-box" onclick="triggerPreset('Video Studio: Add subtitles and cuts: ')">
           <div class="tool-icon"><span class="material-icons">smart_display</span></div>
           <div><h4>Video Studio</h4><p>Edit &bull; Subtitles &bull; More</p></div>
         </div>
@@ -1137,51 +880,32 @@
     <section>
       <div class="sec-head">
         <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
-        <span class="view-all-link" onclick="openChatModal('Show recent discussions.')">View All &rarr;</span>
       </div>
       <div class="recent-group">
-        <div class="recent-item" onclick="openChatModal('Design a modern villa with clean architecture')">
-          <div class="recent-left">
-            <span class="material-icons">image</span>
-            <div><h4>Create a modern house design</h4><p>Here's a modern Minecraft house design with...</p></div>
+        <div class="recent-item" onclick="startChat('Generate photorealistic image of a futuristic cyber city at night')">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="material-icons" style="color:var(--accent);">image</span>
+            <div><h4>Futuristic cyber city at night</h4><p style="font-size:11.5px; color:var(--text-muted);">AI Image generation prompt</p></div>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:12px;">
-            <span>2h ago</span>
-            <span class="material-icons">chevron_right</span>
-          </div>
+          <span class="material-icons">chevron_right</span>
         </div>
-        <div class="recent-item" onclick="openChatModal('Draft a well-structured blog post on AI trends')">
-          <div class="recent-left">
-            <span class="material-icons">article</span>
-            <div><h4>Write a blog post</h4><p>Here's a well-structured blog post on...</p></div>
+        <div class="recent-item" onclick="startChat('Design a modern villa with clean architecture')">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span class="material-icons" style="color:var(--accent);">article</span>
+            <div><h4>Modern villa design concepts</h4><p style="font-size:11.5px; color:var(--text-muted);">Architecture and styling ideas</p></div>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:12px;">
-            <span>4h ago</span>
-            <span class="material-icons">chevron_right</span>
-          </div>
-        </div>
-        <div class="recent-item" onclick="openChatModal('Describe a cinematic mountain sunset landscape')">
-          <div class="recent-left">
-            <span class="material-icons">landscape</span>
-            <div><h4>Generate a cinematic landscape</h4><p>A breathtaking mountain landscape at sunset...</p></div>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:12px;">
-            <span>6h ago</span>
-            <span class="material-icons">chevron_right</span>
-          </div>
+          <span class="material-icons">chevron_right</span>
         </div>
       </div>
     </section>
 
-    <!-- Explore Banner -->
+    <!-- Banner -->
     <div class="banner">
       <div>
         <h3>Explore Endless Possibilities</h3>
         <p>Your imagination + AI = Limitless creation</p>
       </div>
-      <button class="banner-btn" onclick="triggerPreset('Show me 5 revolutionary ideas I can build with AI today')">
-        Start Creating <span class="material-icons" style="font-size:16px;">arrow_forward</span>
-      </button>
+      <button class="banner-btn" onclick="triggerPreset('Show 5 breakthrough ideas I can build with AI today')">Start Creating</button>
     </div>
 
     <!-- Footer Perks -->
@@ -1194,99 +918,98 @@
   </main>
 
   <!-- ==========================================================================
-       21. WORKING GEMINI LIVE CHAT DIALOG MODAL
+       VIEW 2: SEAMLESS FULL-SCREEN NATIVE CONVERSATION
        ========================================================================== -->
-  <div class="modal-overlay" id="chatModal">
-    <div class="modal-box">
-      <div class="modal-head">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span class="material-icons" style="color:var(--accent);">auto_awesome</span>
-          <span style="font-weight:700; font-size:16px;">Sudarshana Live Chat</span>
-        </div>
-        <button class="icon-btn" onclick="closeChatModal()"><span class="material-icons">close</span></button>
-      </div>
-
-      <div class="chat-body" id="chatBody"></div>
-
-      <div class="modal-input-bar">
-        <input type="text" id="modalInput" placeholder="Type your follow-up query...">
-        <button class="dock-send-btn" onclick="sendModalMsg()"><span class="material-icons">send</span></button>
-      </div>
+  <main id="fullChatView">
+    <div class="chat-top-nav">
+      <button class="icon-btn" onclick="backToHome()"><span class="material-icons">arrow_back</span></button>
+      <div style="font-weight:700; font-size:16px;">Sudarshana Live Conversation</div>
+      <button class="icon-btn" onclick="newChat()"><span class="material-icons">refresh</span></button>
     </div>
-  </div>
+
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <div class="search-dock" style="margin-bottom:0;">
+      <input type="text" id="chatInput" placeholder="Type your follow-up message or generate another image...">
+      <button class="dock-send-btn" onclick="sendChatMessage()"><span class="material-icons">send</span></button>
+    </div>
+  </main>
 
   <!-- ==========================================================================
-       22. 8 THEMES SELECTION MODAL
+       8 THEMES GALLERY MODAL
        ========================================================================== -->
   <div class="modal-overlay" id="themeModal">
     <div class="themes-modal-box">
-      <div class="modal-head">
-        <div>
-          <span style="font-weight:800; font-size:17px;">Choose Your Theme</span>
-          <div style="font-size:12px; color:var(--text-muted);">Custom styling saved automatically</div>
-        </div>
+      <div style="padding:16px 20px; border-bottom:1px solid var(--card-border); display:flex; justify-content:space-between; align-items:center;">
+        <div><span style="font-weight:800; font-size:17px;">Choose Your Theme</span></div>
         <button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button>
       </div>
-
       <div class="themes-grid">
         <div class="theme-card-choice" onclick="applyTheme('dark')">
           <div class="theme-circle-dot" style="background:#030712; border:2px solid #38bdf8;"></div>
           <h5>Dark (Default)</h5>
-          <span>Clean &bull; Modern &bull; Focused</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('light')">
           <div class="theme-circle-dot" style="background:#f8fafc; border:2px solid #0284c7;"></div>
           <h5>Light</h5>
-          <span>Simple &bull; Clean &bull; Fresh</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('neon')">
           <div class="theme-circle-dot" style="background:#070114; border:2px solid #e879f9;"></div>
           <h5>Neon</h5>
-          <span>Bold &bull; Vibrant &bull; Futuristic</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('nature')">
           <div class="theme-circle-dot" style="background:#03140e; border:2px solid #10b981;"></div>
           <h5>Nature</h5>
-          <span>Calm &bull; Peaceful &bull; Refreshing</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('cyberpunk')">
           <div class="theme-circle-dot" style="background:#0a0118; border:2px solid #f43f5e;"></div>
           <h5>Cyberpunk</h5>
-          <span>High Tech &bull; Energetic &bull; Stylish</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('sunset')">
           <div class="theme-circle-dot" style="background:#140704; border:2px solid #f97316;"></div>
           <h5>Sunset</h5>
-          <span>Warm &bull; Cozy &bull; Relaxing</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('space')">
           <div class="theme-circle-dot" style="background:#020617; border:2px solid #0ea5e9;"></div>
           <h5>Space</h5>
-          <span>Mystic &bull; Immersive &bull; Dreamy</span>
         </div>
         <div class="theme-card-choice" onclick="applyTheme('minimal')">
           <div class="theme-circle-dot" style="background:#f1f5f9; border:2px solid #6366f1;"></div>
           <h5>Minimal</h5>
-          <span>Elegant &bull; Light &bull; Modern</span>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ==========================================================================
-       23. JAVASCRIPT: AUTHENTICATION, DIRECT API, CHAT & UI CONTROLS
+       JAVASCRIPT: ENGINE & AI SERVICES
        ========================================================================== -->
   <script>
-    // --- KEY AUTHENTICATION ---
+    // --- AUTHENTICATION & DIRECT OFFICIAL GEMINI 3.6 FLASH ENDPOINT ---
     const part1 = "AQ.Ab8RN6Kky";
     const part2 = "EvbiqLRoB-g_LOr7";
     const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
     const GEMINI_API_KEY = part1 + part2 + part3;
 
-    // --- DIRECT GOOGLE GEMINI API CALL ---
+    // --- CHECK IF PROMPT REQUESTS IMAGE GENERATION ---
+    function isImageRequest(prompt) {
+      const p = prompt.toLowerCase();
+      return (
+        p.includes('generate image') ||
+        p.includes('create image') ||
+        p.includes('draw') ||
+        p.includes('picture of') ||
+        p.includes('image of') ||
+        p.includes('photo of') ||
+        p.startsWith('image:') ||
+        p.startsWith('generate image of:')
+      );
+    }
+
+    // --- TEXT AI GENERATOR (GEMINI 3.6 FLASH) ---
     async function callGeminiDirect(userPrompt) {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-      const systemPrompt = "You are Sudarshana AI. Provide clear, direct, and insightful answers in pure English. Never introduce yourself or say 'I am Sudarshana'. Provide immediate, high-value assistance.";
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
+      const systemPrompt = "You are Sudarshana AI. Provide clear, direct, and insightful answers in pure English. Never introduce yourself or say 'I am an AI'. Jump straight to answering the user.";
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -1303,59 +1026,94 @@
       return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
     }
 
-    // --- CHAT MODAL ENGINE ---
-    function openChatModal(promptText = '') {
-      stopAudio();
-      document.getElementById('chatModal').classList.add('active');
-      if (promptText) runQuery(promptText);
+    // --- LIVE AI IMAGE GENERATOR ENGINE ---
+    function generateImageUrl(prompt) {
+      const cleanPrompt = prompt.replace(/(generate image of|create image of|image of|picture of|generate visual of|photo of)/gi, '').trim();
+      const seed = Math.floor(Math.random() * 999999);
+      return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt || prompt)}?width=1024&height=1024&nologo=true&seed=${seed}`;
     }
 
-    function closeChatModal() {
+    // --- SEAMLESS FULL-SCREEN INTERFACE CONTROLS ---
+    function startChat(promptText) {
       stopAudio();
-      document.getElementById('chatModal').classList.remove('active');
+      document.getElementById('dashboardView').style.display = 'none';
+      document.getElementById('fullChatView').style.display = 'flex';
+      runQuery(promptText);
+    }
+
+    function backToHome() {
+      stopAudio();
+      document.getElementById('fullChatView').style.display = 'none';
+      document.getElementById('dashboardView').style.display = 'block';
+    }
+
+    function newChat() {
+      stopAudio();
+      document.getElementById('chatMessages').innerHTML = '';
+      startChat('Hello! How can you assist me today?');
     }
 
     function stopAudio() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     async function runQuery(text) {
-      const body = document.getElementById('chatBody');
+      const container = document.getElementById('chatMessages');
 
       const u = document.createElement('div');
       u.className = 'user-msg';
       u.textContent = text;
-      body.appendChild(u);
-      body.scrollTop = body.scrollHeight;
+      container.appendChild(u);
+      container.scrollTop = container.scrollHeight;
 
       const a = document.createElement('div');
       a.className = 'ai-msg';
       a.innerHTML = `<i style="color:var(--text-muted);">Sudarshana is formulating response...</i>`;
-      body.appendChild(a);
-      body.scrollTop = body.scrollHeight;
+      container.appendChild(a);
+      container.scrollTop = container.scrollHeight;
 
-      try {
-        const res = await callGeminiDirect(text);
+      // Handle Image Generation versus Text Response
+      if (isImageRequest(text)) {
+        const imgUrl = generateImageUrl(text);
         a.innerHTML = `
-          <div>${res.replace(/\n/g, '<br>')}</div>
+          <div><b>Here is your generated artwork:</b></div>
+          <div class="ai-image-container">
+            <img src="${imgUrl}" alt="${text}" loading="lazy" onload="document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;">
+            <div class="ai-image-bar">
+              <span style="font-size:12px; color:var(--text-muted);">1024x1024 &bull; High Resolution</span>
+              <a href="${imgUrl}" target="_blank" download="sudarshana-ai-image.jpg" style="color:var(--accent); text-decoration:none; font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:4px;">
+                <span class="material-icons" style="font-size:15px;">download</span> Download
+              </a>
+            </div>
+          </div>
           <div style="display:flex; gap:8px; margin-top:12px;">
             <button onclick="copyMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-              <span class="material-icons" style="font-size:14px;">content_copy</span> Copy
-            </button>
-            <button onclick="readMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-              <span class="material-icons" style="font-size:14px;">volume_up</span> Read
-            </button>
-            <button onclick="stopAudio()" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-              <span class="material-icons" style="font-size:14px;">volume_off</span> Stop
+              <span class="material-icons" style="font-size:14px;">content_copy</span> Copy URL
             </button>
           </div>
         `;
-      } catch (err) {
-        a.innerHTML = `<span style="color:#f87171;">Connection error: ${err.message}</span>`;
+      } else {
+        try {
+          const reply = await callGeminiDirect(text);
+          a.innerHTML = `
+            <div>${reply.replace(/\n/g, '<br>')}</div>
+            <div style="display:flex; gap:8px; margin-top:12px;">
+              <button onclick="copyMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
+                <span class="material-icons" style="font-size:14px;">content_copy</span> Copy
+              </button>
+              <button onclick="readMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
+                <span class="material-icons" style="font-size:14px;">volume_up</span> Read
+              </button>
+              <button onclick="stopAudio()" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
+                <span class="material-icons" style="font-size:14px;">volume_off</span> Stop
+              </button>
+            </div>
+          `;
+        } catch (err) {
+          a.innerHTML = `<span style="color:#f87171;">Connection error: ${err.message}</span>`;
+        }
       }
-      body.scrollTop = body.scrollHeight;
+      container.scrollTop = container.scrollHeight;
     }
 
     function submitMain() {
@@ -1363,11 +1121,11 @@
       const val = inp.value.trim();
       if (!val) return;
       inp.value = '';
-      openChatModal(val);
+      startChat(val);
     }
 
-    function sendModalMsg() {
-      const inp = document.getElementById('modalInput');
+    function sendChatMessage() {
+      const inp = document.getElementById('chatInput');
       const val = inp.value.trim();
       if (!val) return;
       inp.value = '';
@@ -1381,19 +1139,11 @@
       window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    function newChat() {
-      stopAudio();
-      document.getElementById('chatBody').innerHTML = '';
-      openChatModal('How can I help you right now?');
-    }
-
     function copyMsg(btn) {
       const text = btn.closest('.ai-msg').innerText;
       navigator.clipboard.writeText(text);
       btn.innerHTML = `<span class="material-icons" style="font-size:14px;">check</span> Copied`;
-      setTimeout(() => {
-        btn.innerHTML = `<span class="material-icons" style="font-size:14px;">content_copy</span> Copy`;
-      }, 1500);
+      setTimeout(() => { btn.innerHTML = `<span class="material-icons" style="font-size:14px;">content_copy</span> Copy`; }, 1500);
     }
 
     function readMsg(btn) {
@@ -1406,24 +1156,17 @@
       }
     }
 
-    // --- SIDEBAR & THEME MODALS ---
+    // --- SIDEBAR & THEMES ---
     function openSidebar() {
       document.getElementById('sideDrawer').classList.add('active');
-      document.getElementById('sideOverlay').classList.add('active');
+      document.getElementById('sideOverlay').style.display = 'block';
     }
-
     function closeSidebar() {
       document.getElementById('sideDrawer').classList.remove('active');
-      document.getElementById('sideOverlay').classList.remove('active');
+      document.getElementById('sideOverlay').style.display = 'none';
     }
-
-    function openThemeModal() {
-      document.getElementById('themeModal').classList.add('active');
-    }
-
-    function closeThemeModal() {
-      document.getElementById('themeModal').classList.remove('active');
-    }
+    function openThemeModal() { document.getElementById('themeModal').style.display = 'flex'; }
+    function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
 
     function applyTheme(name) {
       document.body.className = '';
@@ -1436,9 +1179,8 @@
       const f = prompt("Enter your feedback for Sudarshana AI:");
       if (f) alert("Thank you! Feedback recorded.");
     }
-
     function openSettings() {
-      alert("Sudarshana AI System\nModel: Gemini 2.5 Flash\nLanguage: English Direct\nTheme: " + (localStorage.getItem('sudarshana_theme') || 'dark'));
+      alert("Sudarshana AI Core\nModel: Gemini 3.6 Flash Active\nImage Engine: High Resolution Active\nStatus: Operational");
     }
 
     function startMic() {
@@ -1457,19 +1199,27 @@
       rec.start();
     }
 
-    // --- KEYBOARD LISTENERS ---
+    //    // --- KEYBOARD LISTENERS ---
     document.getElementById('mainInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') submitMain();
     });
-    document.getElementById('modalInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') sendModalMsg();
+    document.getElementById('chatInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendChatMessage();
     });
 
-    // --- RESTORE SAVED THEME IMMEDIATELY ---
+    // --- PERSISTENCE & INTRO SPLASH TIMER ---
     (function() {
       const saved = localStorage.getItem('sudarshana_theme') || 'dark';
       document.body.className = 'theme-' + saved;
     })();
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('introLoader');
+        if (loader) loader.classList.add('hide');
+      }, 1500);
+    });
   </script>
 </body>
 </html>
+
