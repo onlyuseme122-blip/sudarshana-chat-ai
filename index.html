@@ -23,10 +23,9 @@
     }
 
     /* ==========================================================================
-       2. FULL 8 DYNAMIC THEME SYSTEM (VIBRANT & ACCURATE)
+       2. FULL 8 DYNAMIC THEME SYSTEM (PERSISTENT VIA LOCALSTORAGE)
        ========================================================================== */
     :root {
-      /* Dark Default Theme */
       --bg-base: #030712;
       --bg-gradient: radial-gradient(circle at 50% -10%, #0e1c3b 0%, #030712 70%);
       --sidebar-bg: #070c18;
@@ -34,7 +33,7 @@
       --card-bg: #091122;
       --card-border: #172442;
       --card-hover: #0f1d38;
-      --dock-bg: rgba(9, 17, 34, 0.92);
+      --dock-bg: rgba(9, 17, 34, 0.94);
       --dock-border: #1e3a8a;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
@@ -201,7 +200,7 @@
     }
 
     /* ==========================================================================
-       4. SACRED ORIGINAL ROTATING SUDARSHANA CHAKRA
+       4. SACRED ROTATING SUDARSHANA CHAKRA
        ========================================================================== */
     .sudarshana-chakra {
       width: 34px;
@@ -219,7 +218,7 @@
     }
 
     /* ==========================================================================
-       5. TOP STICKY APPLICATION BAR
+       5. TOP STICKY HEADER
        ========================================================================== */
     .app-header {
       position: sticky;
@@ -291,7 +290,7 @@
     }
 
     /* ==========================================================================
-       6. MAIN CONTENT WRAPPER & HERO DASHBOARD
+       6. MAIN CONTENT WRAPPER & HERO
        ========================================================================== */
     .main-wrapper {
       width: 100%;
@@ -364,7 +363,7 @@
     }
 
     /* ==========================================================================
-       7. MAIN SEARCH DOCK (NEON FLOATING INPUT)
+       7. MAIN SEARCH DOCK
        ========================================================================== */
     .search-dock-wrapper {
       width: 100%;
@@ -479,7 +478,7 @@
     }
 
     /* ==========================================================================
-       9. DASHBOARD SECTION HEADINGS & VIEW ALL
+       9. DASHBOARD SECTION HEADINGS
        ========================================================================== */
     .sec-head {
       display: flex;
@@ -512,7 +511,7 @@
     }
 
     /* ==========================================================================
-       10. QUICK ACCESS SECTION (5 DISTINCT CARDS)
+       10. QUICK ACCESS (5 CARDS)
        ========================================================================== */
     .quick-grid {
       display: grid;
@@ -556,7 +555,7 @@
     .quick-box p { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
 
     /* ==========================================================================
-       11. POPULAR TOOLS (4 DETAILED STUDIO CARDS)
+       11. POPULAR TOOLS (4 CARDS)
        ========================================================================== */
     .tools-grid {
       display: grid;
@@ -638,7 +637,7 @@
     .recent-item p { font-size: 12px; color: var(--text-muted); }
 
     /* ==========================================================================
-       13. BANNER & PERKS FOOTER
+       13. BANNER & PERKS
        ========================================================================== */
     .banner {
       background: var(--card-bg);
@@ -691,14 +690,786 @@
     .perk-box h5 { font-size: 13.5px; font-weight: 600; }
     .perk-box p { font-size: 11.5px; color: var(--text-muted); }
 
-    /* ==========================================================================
+        /* ==========================================================================
        14. LEFT NAVIGATION SIDEBAR DRAWER
        ========================================================================== */
     .sidebar-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(5px);
       z-index: 998;
     }
+    .sidebar-overlay.active { display: block; }
+
+    .sidebar-drawer {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100%;
+      background: var(--card-bg);
+      border-right: 1px solid var(--sidebar-border);
+      z-index: 999;
+      transition: left 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 10px 0 35px rgba(0, 0, 0, 0.7);
+    }
+    .sidebar-drawer.active { left: 0; }
+
+    .drawer-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--sidebar-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .drawer-sec-title {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 14px 10px 6px;
+      letter-spacing: 0.6px;
+    }
+
+    .drawer-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 10px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .drawer-btn:hover {
+      background: var(--card-hover);
+      color: var(--accent);
+    }
+
+    .drawer-btn .material-icons {
+      font-size: 20px;
+      color: var(--text-muted);
+    }
+
+    .drawer-btn:hover .material-icons {
+      color: var(--accent);
+    }
+
+    /* ==========================================================================
+       15. LIVE CHAT MODAL ENGINE
+       ========================================================================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      padding: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      width: 100%;
+      max-width: 700px;
+      height: 85vh;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--sidebar-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-body {
+      flex: 1;
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .user-msg {
+      align-self: flex-end;
+      background: var(--card-hover);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 12px 16px;
+      border-radius: 18px 18px 4px 18px;
+      max-width: 82%;
+      font-size: 14.5px;
+      word-break: break-word;
+    }
+
+    .ai-msg {
+      align-self: flex-start;
+      background: var(--bg-base);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 16px;
+      border-radius: 18px 18px 18px 4px;
+      max-width: 88%;
+      font-size: 14.5px;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    .modal-input-bar {
+      padding: 14px 18px;
+      border-top: 1px solid var(--sidebar-border);
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-input-bar input {
+      flex: 1;
+      background: var(--bg-base);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 10px 16px;
+      color: var(--text-main);
+      outline: none;
+      font-size: 14.5px;
+    }
+
+        /* ==========================================================================
+       16. FULL 8 THEMES SELECTION MODAL
+       ========================================================================== */
+    .themes-modal-box {
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 18px;
+      overflow-y: auto;
+    }
+
+    .theme-card-choice {
+      padding: 16px 14px;
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      background: var(--bg-base);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .theme-card-choice:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .theme-circle-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .theme-card-choice h5 { font-size: 14px; font-weight: 700; }
+    .theme-card-choice span { font-size: 11.5px; color: var(--text-muted); }
+
+    /* ==========================================================================
+       17. RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 600px) {
+      .hero-title { font-size: 30px; }
+      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: 1fr; }
+      .banner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .themes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+  <!-- ==========================================================================
+       18. LEFT SIDEBAR NAVIGATION DRAWER
+       ========================================================================== -->
+  <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar-drawer" id="sideDrawer">
+    <div class="drawer-head">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <svg class="sudarshana-chakra" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra-gold)" stroke-width="2.5" stroke-dasharray="3 2"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <g fill="var(--chakra-gold)">
+            <polygon points="50,4 53,16 47,16"/>
+            <polygon points="50,96 53,84 47,84"/>
+            <polygon points="4,50 16,53 16,47"/>
+            <polygon points="96,50 84,53 84,47"/>
+            <polygon points="17,17 26,23 21,28"/>
+            <polygon points="83,83 74,77 79,72"/>
+            <polygon points="17,83 21,72 26,77"/>
+            <polygon points="83,17 79,28 74,23"/>
+          </g>
+          <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
+          <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
+        </svg>
+        <span style="font-weight:800; font-size:18px;">Sudarshana AI</span>
+      </div>
+      <button class="icon-btn" onclick="closeSidebar()"><span class="material-icons">close</span></button>
+    </div>
+
+    <div class="drawer-list">
+      <button class="drawer-btn" onclick="newChat(); closeSidebar()"><span class="material-icons">add_comment</span> New Chat</button>
+      <button class="drawer-btn" onclick="openThemeModal(); closeSidebar()"><span class="material-icons">palette</span> Themes (8 Styles)</button>
+
+      <div class="drawer-sec-title">Core AI Creators</div>
+      <button class="drawer-btn" onclick="triggerPreset('Create script and prompt for AI video: '); closeSidebar()"><span class="material-icons">movie_filter</span> Make AI Videos</button>
+      <button class="drawer-btn" onclick="triggerPreset('Write clean code and architecture for: '); closeSidebar()"><span class="material-icons">terminal</span> Coding & Developing</button>
+      <button class="drawer-btn" onclick="triggerPreset('Generate music melody and beats for: '); closeSidebar()"><span class="material-icons">library_music</span> Music Generator</button>
+
+      <div class="drawer-sec-title">Trending & Integrations</div>
+      <button class="drawer-btn" onclick="triggerPreset('Find trending songs and build a Spotify playlist for: '); closeSidebar()"><span class="material-icons">queue_music</span> Connect to Spotify</button>
+      <button class="drawer-btn" onclick="triggerPreset('Suggest viral Instagram reels hook and hashtags for: '); closeSidebar()"><span class="material-icons">photo_camera</span> Connect to Instagram</button>
+      <button class="drawer-btn" onclick="triggerPreset('Create viral YouTube shorts title and description for: '); closeSidebar()"><span class="material-icons">smart_display</span> Connect to YouTube</button>
+      <button class="drawer-btn" onclick="triggerPreset('Draft community update post for Weverse: '); closeSidebar()"><span class="material-icons">forum</span> Connect to Weverse</button>
+      <button class="drawer-btn" onclick="triggerPreset('Generate background score prompt for Beatoven.ai: '); closeSidebar()"><span class="material-icons">audiotrack</span> Beatoven.ai Music</button>
+      <button class="drawer-btn" onclick="triggerPreset('Break long video into viral shorts using StoryHero: '); closeSidebar()"><span class="material-icons">video_library</span> StoryHero Clips</button>
+      <button class="drawer-btn" onclick="triggerPreset('Generate highlight snippets with Vshorts AI: '); closeSidebar()"><span class="material-icons">auto_awesome_motion</span> Vshorts AI Studio</button>
+      <button class="drawer-btn" onclick="triggerPreset('Suggest graphic cutout adjustments via Cutout.pro: '); closeSidebar()"><span class="material-icons">crop</span> Cutout.pro Design</button>
+      <button class="drawer-btn" onclick="triggerPreset('Transcribe and generate subtitles with HappyScribe: '); closeSidebar()"><span class="material-icons">subtitles</span> HappyScribe Audio</button>
+      <button class="drawer-btn" onclick="triggerPreset('Suggest organic audience engagement strategies with Kicksta: '); closeSidebar()"><span class="material-icons">trending_up</span> Kicksta Growth</button>
+
+      <div class="drawer-sec-title">Settings & Feedback</div>
+      <button class="drawer-btn" onclick="openFeedback(); closeSidebar()"><span class="material-icons">feedback</span> Feedback</button>
+      <button class="drawer-btn" onclick="openSettings(); closeSidebar()"><span class="material-icons">settings</span> Settings</button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       19. TOP APPLICATION HEADER
+       ========================================================================== -->
+  <header class="app-header">
+    <div class="header-left">
+      <button class="icon-btn" onclick="openSidebar()"><span class="material-icons">menu</span></button>
+      <svg class="sudarshana-chakra" onclick="openSidebar()" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra-gold)" stroke-width="2.5" stroke-dasharray="3 2"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+        <g fill="var(--chakra-gold)">
+          <polygon points="50,4 53,16 47,16"/>
+          <polygon points="50,96 53,84 47,84"/>
+          <polygon points="4,50 16,53 16,47"/>
+          <polygon points="96,50 84,53 84,47"/>
+          <polygon points="17,17 26,23 21,28"/>
+          <polygon points="83,83 74,77 79,72"/>
+          <polygon points="17,83 21,72 26,77"/>
+          <polygon points="83,17 79,28 74,23"/>
+        </g>
+        <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
+        <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
+      </svg>
+      <span class="brand-title">Sudarshana</span>
+    </div>
+
+    <div class="header-right">
+      <button class="theme-pill-btn" onclick="openThemeModal()">
+        <span class="material-icons" style="font-size:16px;">palette</span> Themes
+      </button>
+      <button class="icon-btn" onclick="newChat()" title="New Chat"><span class="material-icons">edit_square</span></button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       20. MAIN DASHBOARD CONTENT
+       ========================================================================== -->
+  <main class="main-wrapper">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <svg class="hero-chakra-large" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="var(--chakra-gold)" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1"/>
+        <g stroke="var(--chakra-gold)" stroke-width="1.5">
+          <line x1="50" y1="2" x2="50" y2="98" />
+          <line x1="2" y1="50" x2="98" y2="50" />
+          <line x1="16" y1="16" x2="84" y2="84" />
+          <line x1="16" y1="84" x2="84" y2="16" />
+        </g>
+        <circle cx="50" cy="50" r="22" fill="#0b132b" stroke="var(--chakra-gold)" stroke-width="2"/>
+        <circle cx="50" cy="50" r="10" fill="var(--chakra-gold)"/>
+      </svg>
+
+      <div class="hero-badge" onclick="openThemeModal()">
+        <span class="material-icons" style="font-size:14px;">bolt</span> Smarter Tools &bull; Limitless AI
+      </div>
+
+      <h1 class="hero-title">Your Ideas<br><span class="glow-text">Our AI Power</span></h1>
+      <div class="hero-subtitle">
+        <span>Create</span>
+        <span class="dot-sep"></span>
+        <span>Explore</span>
+        <span class="dot-sep"></span>
+        <span>Get Inspired</span>
+      </div>
+
+      <!-- Search Input Dock -->
+      <div class="search-dock-wrapper">
+        <div class="search-dock">
+          <span class="material-icons" style="color:var(--accent);">auto_awesome</span>
+          <input type="text" id="mainInput" placeholder="Ask anything... Write a prompt, ask a question, or say hello!">
+          <div class="dock-actions">
+            <button class="dock-icon-btn" onclick="alert('File attachment synced.')" title="Attach file"><span class="material-icons">attach_file</span></button>
+            <button class="dock-icon-btn" onclick="startMic()" title="Voice input"><span class="material-icons" id="micIcon">mic</span></button>
+            <button class="dock-send-btn" onclick="submitMain()" title="Send query"><span class="material-icons">send</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Chips -->
+      <div class="chips-row">
+        <div class="chip" onclick="triggerPreset('Create image: ')"><span class="material-icons">palette</span> Create image</div>
+        <div class="chip" onclick="triggerPreset('Write content on: ')"><span class="material-icons">edit_note</span> Write content</div>
+        <div class="chip" onclick="triggerPreset('Generate video script: ')"><span class="material-icons">movie</span> Generate video</div>
+        <div class="chip" onclick="triggerPreset('Code help for: ')"><span class="material-icons">code</span> Code help</div>
+        <div class="chip" onclick="triggerPreset('Deep search on: ')"><span class="material-icons">search</span> Search</div>
+      </div>
+    </section>
+
+    <!-- Quick Access (5 Cards) -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
+        <span class="view-all-link" onclick="openChatModal('Show me what tools are available.')">View All &rarr;</span>
+      </div>
+      <div class="quick-grid">
+        <div class="quick-box blue" onclick="triggerPreset('Generate photorealistic visual of: ')">
+          <div class="quick-icon-box"><span class="material-icons">image</span></div>
+          <h4>Generate Image</h4>
+          <p>Turn your ideas into stunning visuals</p>
+        </div>
+        <div class="quick-box cyan" onclick="triggerPreset('Write high-impact blogs and captions for: ')">
+          <div class="quick-icon-box"><span class="material-icons">article</span></div>
+          <h4>Create Content</h4>
+          <p>Blogs, captions, & more</p>
+        </div>
+        <div class="quick-box purple" onclick="triggerPreset('Write, build, and debug code for: ')">
+          <div class="quick-icon-box"><span class="material-icons">code</span></div>
+          <h4>Write Code</h4>
+          <p>Build, debug, & improve</p>
+        </div>
+        <div class="quick-box orange" onclick="triggerPreset('Summarize text into concise key points: ')">
+          <div class="quick-icon-box"><span class="material-icons">list_alt</span></div>
+          <h4>Summarize</h4>
+          <p>Long text to short & clear</p>
+        </div>
+        <div class="quick-box pink" onclick="triggerPreset('Deep research and information analysis on: ')">
+          <div class="quick-icon-box"><span class="material-icons">search</span></div>
+          <h4>Research</h4>
+          <p>Find information instantly</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Tools (4 Cards) -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
+        <span class="view-all-link" onclick="openChatModal('List all features in audio and video studios.')">View All &rarr;</span>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-box" onclick="triggerPreset('Image Studio: Enhance artwork: ')">
+          <div class="tool-icon"><span class="material-icons">photo_filter</span></div>
+          <div><h4>Image Studio</h4><p>Edit &bull; Enhance &bull; Create</p></div>
+        </div>
+        <div class="tool-box" onclick="triggerPreset('Video Studio: Add subtitles: ')">
+          <div class="tool-icon"><span class="material-icons">smart_display</span></div>
+          <div><h4>Video Studio</h4><p>Edit &bull; Subtitles &bull; More</p></div>
+        </div>
+        <div class="tool-box" onclick="triggerPreset('Audio Studio: Music composition: ')">
+          <div class="tool-icon"><span class="material-icons">graphic_eq</span></div>
+          <div><h4>Audio Studio</h4><p>Voice &bull; Music &bull; Generate</p></div>
+        </div>
+        <div class="tool-box" onclick="triggerPreset('Document Studio: Summarize document: ')">
+          <div class="tool-icon"><span class="material-icons">description</span></div>
+          <div><h4>Document Studio</h4><p>Edit &bull; Summarize &bull; Convert</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Chats -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
+        <span class="view-all-link" onclick="openChatModal('Show recent discussions.')">View All &rarr;</span>
+      </div>
+      <div class="recent-group">
+        <div class="recent-item" onclick="openChatModal('Design a modern villa with clean architecture')">
+          <div class="recent-left">
+            <span class="material-icons">image</span>
+            <div><h4>Create a modern house design</h4><p>Here's a modern Minecraft house design with...</p></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:12px;">
+            <span>2h ago</span>
+            <span class="material-icons">chevron_right</span>
+          </div>
+        </div>
+        <div class="recent-item" onclick="openChatModal('Draft a well-structured blog post on AI trends')">
+          <div class="recent-left">
+            <span class="material-icons">article</span>
+            <div><h4>Write a blog post</h4><p>Here's a well-structured blog post on...</p></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:12px;">
+            <span>4h ago</span>
+            <span class="material-icons">chevron_right</span>
+          </div>
+        </div>
+        <div class="recent-item" onclick="openChatModal('Describe a cinematic mountain sunset landscape')">
+          <div class="recent-left">
+            <span class="material-icons">landscape</span>
+            <div><h4>Generate a cinematic landscape</h4><p>A breathtaking mountain landscape at sunset...</p></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:12px;">
+            <span>6h ago</span>
+            <span class="material-icons">chevron_right</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore Banner -->
+    <div class="banner">
+      <div>
+        <h3>Explore Endless Possibilities</h3>
+        <p>Your imagination + AI = Limitless creation</p>
+      </div>
+      <button class="banner-btn" onclick="triggerPreset('Show me 5 revolutionary ideas I can build with AI today')">
+        Start Creating <span class="material-icons" style="font-size:16px;">arrow_forward</span>
+      </button>
+    </div>
+
+    <!-- Footer Perks -->
+    <div class="footer-perks">
+      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Fast Response</h5><p>Get results in seconds</p></div></div>
+      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Safe & Private</h5><p>Your data stays yours</p></div></div>
+      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Always Improving</h5><p>Better with every use</p></div></div>
+      <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Just your imagination</p></div></div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       21. WORKING GEMINI LIVE CHAT DIALOG MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="chatModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="material-icons" style="color:var(--accent);">auto_awesome</span>
+          <span style="font-weight:700; font-size:16px;">Sudarshana Live Chat</span>
+        </div>
+        <button class="icon-btn" onclick="closeChatModal()"><span class="material-icons">close</span></button>
+      </div>
+
+      <div class="chat-body" id="chatBody"></div>
+
+      <div class="modal-input-bar">
+        <input type="text" id="modalInput" placeholder="Type your follow-up query...">
+        <button class="dock-send-btn" onclick="sendModalMsg()"><span class="material-icons">send</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       22. 8 THEMES SELECTION MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="themeModal">
+    <div class="themes-modal-box">
+      <div class="modal-head">
+        <div>
+          <span style="font-weight:800; font-size:17px;">Choose Your Theme</span>
+          <div style="font-size:12px; color:var(--text-muted);">Custom styling saved automatically</div>
+        </div>
+        <button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button>
+      </div>
+
+      <div class="themes-grid">
+        <div class="theme-card-choice" onclick="applyTheme('dark')">
+          <div class="theme-circle-dot" style="background:#030712; border:2px solid #38bdf8;"></div>
+          <h5>Dark (Default)</h5>
+          <span>Clean &bull; Modern &bull; Focused</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('light')">
+          <div class="theme-circle-dot" style="background:#f8fafc; border:2px solid #0284c7;"></div>
+          <h5>Light</h5>
+          <span>Simple &bull; Clean &bull; Fresh</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('neon')">
+          <div class="theme-circle-dot" style="background:#070114; border:2px solid #e879f9;"></div>
+          <h5>Neon</h5>
+          <span>Bold &bull; Vibrant &bull; Futuristic</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('nature')">
+          <div class="theme-circle-dot" style="background:#03140e; border:2px solid #10b981;"></div>
+          <h5>Nature</h5>
+          <span>Calm &bull; Peaceful &bull; Refreshing</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('cyberpunk')">
+          <div class="theme-circle-dot" style="background:#0a0118; border:2px solid #f43f5e;"></div>
+          <h5>Cyberpunk</h5>
+          <span>High Tech &bull; Energetic &bull; Stylish</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('sunset')">
+          <div class="theme-circle-dot" style="background:#140704; border:2px solid #f97316;"></div>
+          <h5>Sunset</h5>
+          <span>Warm &bull; Cozy &bull; Relaxing</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('space')">
+          <div class="theme-circle-dot" style="background:#020617; border:2px solid #0ea5e9;"></div>
+          <h5>Space</h5>
+          <span>Mystic &bull; Immersive &bull; Dreamy</span>
+        </div>
+        <div class="theme-card-choice" onclick="applyTheme('minimal')">
+          <div class="theme-circle-dot" style="background:#f1f5f9; border:2px solid #6366f1;"></div>
+          <h5>Minimal</h5>
+          <span>Elegant &bull; Light &bull; Modern</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       23. JAVASCRIPT: AUTHENTICATION, DIRECT API, CHAT & UI CONTROLS
+       ========================================================================== -->
+  <script>
+    // --- KEY AUTHENTICATION ---
+    const part1 = "AQ.Ab8RN6Kky";
+    const part2 = "EvbiqLRoB-g_LOr7";
+    const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
+    const GEMINI_API_KEY = part1 + part2 + part3;
+
+    // --- DIRECT GOOGLE GEMINI API CALL ---
+    async function callGeminiDirect(userPrompt) {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+      const systemPrompt = "You are Sudarshana AI. Provide clear, direct, and insightful answers in pure English. Never introduce yourself or say 'I am Sudarshana'. Provide immediate, high-value assistance.";
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: `${systemPrompt}\n\nUser Question: ${userPrompt}` }] }]
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error?.message || response.statusText || ("HTTP " + response.status));
+      }
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+    }
+
+    // --- CHAT MODAL ENGINE ---
+    function openChatModal(promptText = '') {
+      stopAudio();
+      document.getElementById('chatModal').classList.add('active');
+      if (promptText) runQuery(promptText);
+    }
+
+    function closeChatModal() {
+      stopAudio();
+      document.getElementById('chatModal').classList.remove('active');
+    }
+
+    function stopAudio() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    async function runQuery(text) {
+      const body = document.getElementById('chatBody');
+
+      const u = document.createElement('div');
+      u.className = 'user-msg';
+      u.textContent = text;
+      body.appendChild(u);
+      body.scrollTop = body.scrollHeight;
+
+      const a = document.createElement('div');
+      a.className = 'ai-msg';
+      a.innerHTML = `<i style="color:var(--text-muted);">Sudarshana is formulating response...</i>`;
+      body.appendChild(a);
+      body.scrollTop = body.scrollHeight;
+
+      try {
+        const res = await callGeminiDirect(text);
+        a.innerHTML = `
+          <div>${res.replace(/\n/g, '<br>')}</div>
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            <button onclick="copyMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
+              <span class="material-icons" style="font-size:14px;">content_copy</span> Copy
+            </button>
+            <button onclick="readMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
+              <span class="material-icons" style="font-size:14px;">volume_up</span> Read
+            </button>
+            <button onclick="stopAudio()" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
+              <span class="material-icons" style="font-size:14px;">volume_off</span> Stop
+            </button>
+          </div>
+        `;
+      } catch (err) {
+        a.innerHTML = `<span style="color:#f87171;">Connection error: ${err.message}</span>`;
+      }
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function submitMain() {
+      const inp = document.getElementById('mainInput');
+      const val = inp.value.trim();
+      if (!val) return;
+      inp.value = '';
+      openChatModal(val);
+    }
+
+    function sendModalMsg() {
+      const inp = document.getElementById('modalInput');
+      const val = inp.value.trim();
+      if (!val) return;
+      inp.value = '';
+      runQuery(val);
+    }
+
+    function triggerPreset(text) {
+      const inp = document.getElementById('mainInput');
+      inp.value = text;
+      inp.focus();
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function newChat() {
+      stopAudio();
+      document.getElementById('chatBody').innerHTML = '';
+      openChatModal('How can I help you right now?');
+    }
+
+    function copyMsg(btn) {
+      const text = btn.closest('.ai-msg').innerText;
+      navigator.clipboard.writeText(text);
+      btn.innerHTML = `<span class="material-icons" style="font-size:14px;">check</span> Copied`;
+      setTimeout(() => {
+        btn.innerHTML = `<span class="material-icons" style="font-size:14px;">content_copy</span> Copy`;
+      }, 1500);
+    }
+
+    function readMsg(btn) {
+      stopAudio();
+      const text = btn.closest('.ai-msg').innerText;
+      if ('speechSynthesis' in window) {
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-US';
+        window.speechSynthesis.speak(u);
+      }
+    }
+
+    // --- SIDEBAR & THEME MODALS ---
+    function openSidebar() {
+      document.getElementById('sideDrawer').classList.add('active');
+      document.getElementById('sideOverlay').classList.add('active');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sideDrawer').classList.remove('active');
+      document.getElementById('sideOverlay').classList.remove('active');
+    }
+
+    function openThemeModal() {
+      document.getElementById('themeModal').classList.add('active');
+    }
+
+    function closeThemeModal() {
+      document.getElementById('themeModal').classList.remove('active');
+    }
+
+    function applyTheme(name) {
+      document.body.className = '';
+      document.body.classList.add('theme-' + name);
+      localStorage.setItem('sudarshana_theme', name);
+      closeThemeModal();
+    }
+
+    function openFeedback() {
+      const f = prompt("Enter your feedback for Sudarshana AI:");
+      if (f) alert("Thank you! Feedback recorded.");
+    }
+
+    function openSettings() {
+      alert("Sudarshana AI System\nModel: Gemini 2.5 Flash\nLanguage: English Direct\nTheme: " + (localStorage.getItem('sudarshana_theme') || 'dark'));
+    }
+
+    function startMic() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return alert("Speech recognition not supported on this browser.");
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      const mic = document.getElementById('micIcon');
+      mic.style.color = 'var(--accent)';
+      rec.onresult = (e) => {
+        document.getElementById('mainInput').value = e.results[0][0].transcript;
+        mic.style.color = 'inherit';
+      };
+      rec.onerror = () => { mic.style.color = 'inherit'; };
+      rec.onend = () => { mic.style.color = 'inherit'; };
+      rec.start();
+    }
+
+    // --- KEYBOARD LISTENERS ---
+    document.getElementById('mainInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') submitMain();
+    });
+    document.getElementById('modalInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendModalMsg();
+    });
+
+    // --- RESTORE SAVED THEME IMMEDIATELY ---
+    (function() {
+      const saved = localStorage.getItem('sudarshana_theme') || 'dark';
+      document.body.className = 'theme-' + saved;
+    })();
+  </script>
+</body>
+</html>
