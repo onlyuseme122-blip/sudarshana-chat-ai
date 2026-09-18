@@ -1,5 +1,5 @@
 {
-  "name": "sudarshana-ai-backend",
+  "name": "sudarshana-chat-ai",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -10,4 +10,3 @@
     "node": ">=20"
   }
 }
-
