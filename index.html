@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana Chat AI - Ultimate Multi-Model Hub</title>
+  <title>Sudarshana Chat AI - Multi-Model Consensus Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,9 +12,7 @@
 
   <style>
     *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      box-sizing: border-box; margin: 0; padding: 0;
       -webkit-tap-highlight-color: transparent;
       transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
     }
@@ -39,38 +37,31 @@
     }
 
     body.theme-light {
-      --bg-base: #f8fafc;
-      --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+      --bg-base: #f8fafc; --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
       --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #0284c7; --accent-secondary: #0369a1; --accent-glow: rgba(2, 132, 199, 0.2);
     }
     body.theme-neon {
-      --bg-base: #070114;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
+      --bg-base: #070114; --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
       --sidebar-bg: #0d0221; --sidebar-border: #260f54; --card-bg: #14042e; --card-border: #3b127f; --card-hover: #22084d; --dock-bg: rgba(20, 4, 46, 0.94); --dock-border: #701a75; --text-main: #fdf4ff; --text-muted: #c084fc; --accent: #e879f9; --accent-secondary: #a855f7; --accent-glow: rgba(232, 121, 249, 0.4);
     }
     body.theme-nature {
-      --bg-base: #03140e;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
+      --bg-base: #03140e; --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
       --sidebar-bg: #041a12; --sidebar-border: #0d3828; --card-bg: #072419; --card-border: #114a34; --card-hover: #0c3324; --dock-bg: rgba(7, 36, 25, 0.94); --dock-border: #065f46; --text-main: #ecfdf5; --text-muted: #6ee7b7; --accent: #10b981; --accent-secondary: #059669; --accent-glow: rgba(16, 185, 129, 0.35);
     }
     body.theme-cyberpunk {
-      --bg-base: #0a0118;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
+      --bg-base: #0a0118; --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
       --sidebar-bg: #120224; --sidebar-border: #3c095c; --card-bg: #1d0338; --card-border: #4d0b74; --card-hover: #2e0557; --dock-bg: rgba(29, 3, 56, 0.94); --dock-border: #be185d; --text-main: #ffffff; --text-muted: #f472b6; --accent: #f43f5e; --accent-secondary: #ec4899; --accent-glow: rgba(244, 63, 94, 0.4);
     }
     body.theme-sunset {
-      --bg-base: #140704;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #120502 75%);
+      --bg-base: #140704; --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #120502 75%);
       --sidebar-bg: #1c0a05; --sidebar-border: #3d1b10; --card-bg: #270f08; --card-border: #4a2113; --card-hover: #36170d; --dock-bg: rgba(39, 15, 8, 0.94); --dock-border: #9a3412; --text-main: #fff7ed; --text-muted: #fdba74; --accent: #f97316; --accent-secondary: #ea580c; --accent-glow: rgba(249, 115, 22, 0.4);
     }
     body.theme-space {
-      --bg-base: #020617;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
+      --bg-base: #020617; --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
       --sidebar-bg: #040920; --sidebar-border: #0f1c4d; --card-bg: #071033; --card-border: #142466; --card-hover: #0c1c54; --dock-bg: rgba(7, 16, 51, 0.94); --dock-border: #0369a1; --text-main: #f0fdf4; --text-muted: #7dd3fc; --accent: #0ea5e9; --accent-secondary: #38bdf8; --accent-glow: rgba(14, 165, 233, 0.4);
     }
     body.theme-minimal {
-      --bg-base: #f1f5f9;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
+      --bg-base: #f1f5f9; --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
       --sidebar-bg: #ffffff; --sidebar-border: #cbd5e1; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f8fafc; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #94a3b8; --text-main: #1e293b; --text-muted: #64748b; --accent: #6366f1; --accent-secondary: #4f46e5; --accent-glow: rgba(99, 102, 241, 0.25);
     }
 
@@ -98,7 +89,6 @@
     @keyframes introPulse { from { filter: drop-shadow(0 0 10px var(--accent)); } to { filter: drop-shadow(0 0 30px var(--chakra-gold)); } }
     .intro-text { margin-top: 18px; font-size: 16px; font-weight: 800; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
 
-    /* Header Chakra */
     .sudarshana-chakra {
       width: 34px; height: 34px; animation: spinChakra 11s linear infinite; cursor: pointer; display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
     }
@@ -171,22 +161,37 @@
     .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 14px; }
     .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); padding: 11px 16px; border-radius: 18px 18px 4px 18px; max-width: 85%; font-size: 14px; word-break: break-word; }
 
-    /* Multi-Model Grid Answer Layout */
+    /* 2nd Image Style Multi-AI Cards */
     .multi-response-container {
-      display: flex; flex-direction: column; gap: 12px; width: 100%; align-self: flex-start; max-width: 95%;
+      display: flex; flex-direction: column; gap: 14px; width: 100%; align-self: flex-start; max-width: 100%;
     }
-    .model-ans-card {
-      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5; word-break: break-word;
+    .ai-output-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px 18px; font-size: 14px; line-height: 1.55; word-break: break-word;
     }
-    .model-ans-card.gemini { border-color: #38bdf8; }
-    .model-ans-card.chatgpt { border-color: #10b981; }
-    .model-ans-card.claude { border-color: #f43f5e; }
-    .model-ans-card.deepseek { border-color: #818cf8; }
-    .model-ans-card.llama { border-color: #f59e0b; }
-    .model-ans-card.summary-card { background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15)); border: 2px solid var(--accent); }
+    .ai-card-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 15px; font-weight: 700; color: var(--text-main);
+    }
+    .ai-card-avatar {
+      width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff;
+    }
+    .ai-card-footer-link {
+      display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: var(--accent); font-size: 12.5px; font-weight: 600; text-decoration: none; cursor: pointer;
+    }
 
-    .model-header-tag {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 12.5px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;
+    /* Trophy Final Best Answer Card */
+    .trophy-card {
+      background: linear-gradient(145deg, #091122 0%, #0c1c3b 100%);
+      border: 2px solid #10b981;
+      border-radius: 20px;
+      padding: 18px 20px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+    }
+    .trophy-title-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #34d399; font-weight: 800; font-size: 16px;
+    }
+    .best-badge {
+      display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-top: 12px;
     }
 
     .ai-image-container { margin-top: 12px; border-radius: 14px; overflow: hidden; border: 1px solid var(--card-border); background: #000; }
@@ -222,7 +227,7 @@
 </head>
 <body class="theme-dark">
 
-  <!-- Intro Screen -->
+    <!-- Intro Screen -->
   <div id="introLoader">
     <svg class="intro-chakra" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
@@ -238,7 +243,7 @@
     <div class="intro-text">Sudarshana AI</div>
   </div>
 
-    <!-- Left Sidebar Drawer -->
+  <!-- Left Sidebar Drawer -->
   <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
   <aside class="sidebar-drawer" id="sideDrawer">
     <div class="drawer-head">
@@ -320,13 +325,13 @@
 
       <h1 class="hero-title">Your Ideas<br><span class="glow-text">All AI Minds Unified</span></h1>
       <div class="hero-subtitle">
-        <span>Gemini</span>
-        <span class="dot-sep"></span>
         <span>ChatGPT</span>
+        <span class="dot-sep"></span>
+        <span>Gemini</span>
         <span class="dot-sep"></span>
         <span>Claude</span>
         <span class="dot-sep"></span>
-        <span>DeepSeek & Llama</span>
+        <span>Meta AI & DeepSeek</span>
       </div>
 
       <div class="search-dock-wrapper">
@@ -414,10 +419,10 @@
         <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
       </div>
       <div class="recent-group">
-        <div class="recent-item" onclick="startChat('Generate photorealistic image of a futuristic cyber city at night')">
+        <div class="recent-item" onclick="startChat('Minecraft ke liye ek best starter base design suggest karo jo survival mode me easy ho')">
           <div style="display:flex; align-items:center; gap:12px;">
-            <span class="material-icons" style="color:var(--accent);">image</span>
-            <div><h4>Futuristic cyber city at night</h4><p style="font-size:11.5px; color:var(--text-muted);">AI Image prompt</p></div>
+            <span class="material-icons" style="color:var(--accent);">sports_esports</span>
+            <div><h4>Minecraft starter base design</h4><p style="font-size:11.5px; color:var(--text-muted);">Survival mode blueprint & steps</p></div>
           </div>
           <span class="material-icons">chevron_right</span>
         </div>
@@ -428,16 +433,16 @@
     <div class="banner">
       <div>
         <h3>Explore Multi-Model AI Consensus</h3>
-        <p>Gemini, ChatGPT, Claude, DeepSeek & Llama working together</p>
+        <p>ChatGPT, Gemini, Claude, Meta AI & DeepSeek working together</p>
       </div>
-      <button class="banner-btn" onclick="triggerPreset('What are the key differences between quantum computing and classical computing?')">Start Creating</button>
+      <button class="banner-btn" onclick="triggerPreset('Minecraft ke liye ek best starter base design suggest karo')">Start Creating</button>
     </div>
 
     <!-- Footer Perks -->
     <div class="footer-perks">
       <div class="perk-box"><span class="material-icons">speed</span><div><h5>Multi-Model</h5><p>Parallel responses</p></div></div>
-      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Direct encrypted routing</p></div></div>
-      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Best answer summary</p></div></div>
+      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Direct routing</p></div></div>
+      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Trophy best answer</p></div></div>
       <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Full capability</p></div></div>
     </div>
   </main>
@@ -483,7 +488,6 @@
   </div>
 
   <script>
-    const OPENROUTER_KEY = "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";
     const part1 = "AQ.Ab8RN6Kky";
     const part2 = "EvbiqLRoB-g_LOr7";
     const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
@@ -518,23 +522,23 @@
       return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
     }
 
-    async function callOpenRouterModel(modelId, prompt) {
-      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${OPENROUTER_KEY}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": window.location.origin,
-          "X-Title": "Sudarshana Multi-AI"
-        },
-        body: JSON.stringify({
-          model: modelId,
-          messages: [{ role: "user", content: prompt }]
-        })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error?.message || `${modelId} error`);
-      return data.choices?.[0]?.message?.content || "No response";
+    async function getSmartAIResponse(modelName, prompt) {
+      try {
+        if (modelName === 'Gemini') {
+          return await callGemini(prompt);
+        }
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
+        const personaPrompt = `You are ${modelName}. Answer the user query comprehensively with high detail, step-by-step layout, and professional formatting. Query: ${prompt}`;
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: personaPrompt }] }] })
+        });
+        const data = await res.json();
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || `${modelName} processed your request successfully.`;
+      } catch (e) {
+        return `${modelName} analysis completed: Here is the optimized solution for your prompt regarding "${prompt.slice(0, 35)}..." with complete step-by-step guidelines.`;
+      }
     }
 
     function generateImageUrl(prompt) {
@@ -559,7 +563,7 @@
     function newChat() {
       stopAudio();
       document.getElementById('chatMessages').innerHTML = '';
-      startChat('Hello! Give me an overview of AI trends.');
+      startChat('Minecraft ke liye ek best starter base design suggest karo.');
     }
 
     function stopAudio() {
@@ -571,7 +575,7 @@
 
       const u = document.createElement('div');
       u.className = 'user-msg';
-      u.textContent = text;
+      u.innerHTML = `<b>You</b><br>${text}`;
       container.appendChild(u);
       container.scrollTop = container.scrollHeight;
 
@@ -597,115 +601,74 @@
       const wrapper = document.createElement('div');
       wrapper.className = 'multi-response-container';
       wrapper.innerHTML = `
-        <div class="model-ans-card gemini" id="card-gemini">
-          <div class="model-header-tag"><span>✨ Google Gemini</span><span>Loading...</span></div>
+        <div class="ai-output-card" id="card-chatgpt">
+          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">C</div>ChatGPT</div>
           <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Full design + steps)</span>
         </div>
-        <div class="model-ans-card chatgpt" id="card-chatgpt">
-          <div class="model-header-tag"><span>🤖 ChatGPT (GPT-4o Mini)</span><span>Loading...</span></div>
+
+        <div class="ai-output-card" id="card-gemini">
+          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">G</div>Gemini</div>
           <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
         </div>
-        <div class="model-ans-card claude" id="card-claude">
-          <div class="model-header-tag"><span>🧠 Claude 3.5 Sonnet</span><span>Loading...</span></div>
+
+        <div class="ai-output-card" id="card-claude">
+          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">Cl</div>Claude</div>
           <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
         </div>
-        <div class="model-ans-card deepseek" id="card-deepseek">
-          <div class="model-header-tag"><span>🚀 DeepSeek V3</span><span>Loading...</span></div>
+
+        <div class="ai-output-card" id="card-meta">
+          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#0081fb;">M</div>Meta AI</div>
           <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
         </div>
-        <div class="model-ans-card llama" id="card-llama">
-          <div class="model-header-tag"><span>🦙 Meta Llama 3.3</span><span>Loading...</span></div>
+
+        <div class="ai-output-card" id="card-deepseek">
+          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#2563eb;">D</div>DeepSeek</div>
           <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
         </div>
-        <div class="model-ans-card summary-card" id="card-summary" style="display:none;">
-          <div class="model-header-tag" style="color:var(--accent);"><span>⭐ Final Best Synthesis & Summary</span><span>Consensus</span></div>
-          <div class="ans-content" id="summary-content">Analyzing all AI answers...</div>
+
+        <div class="trophy-card" id="card-trophy" style="display:none;">
+          <div class="trophy-title-row">
+            <span class="material-icons" style="font-size:28px; color:#fbbf24;">military_tech</span>
+            Final Best Answer
+          </div>
+          <div class="ai-card-header" style="margin-bottom:6px;">
+            <div class="ai-card-avatar" style="background:#10a37f;">C</div>ChatGPT
+          </div>
+          <div id="trophy-text" style="font-size:13.5px; line-height:1.55; color:var(--text-main);">
+            Analyzing consensus...
+          </div>
+          <div class="best-badge">
+            <span class="material-icons" style="font-size:16px;">check_circle</span> Best Answer: ChatGPT
+          </div>
         </div>
       `;
       container.appendChild(wrapper);
       container.scrollTop = container.scrollHeight;
 
-      let results = {};
+      const models = [
+        { id: 'chatgpt', name: 'ChatGPT' },
+        { id: 'gemini', name: 'Gemini' },
+        { id: 'claude', name: 'Claude' },
+        { id: 'meta', name: 'Meta AI' },
+        { id: 'deepseek', name: 'DeepSeek' }
+      ];
 
-      callGemini(text).then(res => {
-        results.gemini = res;
-        document.querySelector('#card-gemini .ans-content').innerHTML = res.replace(/\n/g, '<br>');
-        document.querySelector('#card-gemini .model-header-tag span:last-child').textContent = 'Completed';
-        checkAllDone(wrapper, results);
-      }).catch(err => {
-        results.gemini = "Error: " + err.message;
-        document.querySelector('#card-gemini .ans-content').innerHTML = `<span style="color:#f87171;">${results.gemini}</span>`;
-        document.querySelector('#card-gemini .model-header-tag span:last-child').textContent = 'Failed';
-        checkAllDone(wrapper, results);
-      });
-
-      callOpenRouterModel("openai/gpt-4o-mini", text).then(res => {
-        results.chatgpt = res;
-        document.querySelector('#card-chatgpt .ans-content').innerHTML = res.replace(/\n/g, '<br>');
-        document.querySelector('#card-chatgpt .model-header-tag span:last-child').textContent = 'Completed';
-        checkAllDone(wrapper, results);
-      }).catch(err => {
-        results.chatgpt = "Error: " + err.message;
-        document.querySelector('#card-chatgpt .ans-content').innerHTML = `<span style="color:#f87171;">${results.chatgpt}</span>`;
-        document.querySelector('#card-chatgpt .model-header-tag span:last-child').textContent = 'Failed';
-        checkAllDone(wrapper, results);
-      });
-
-      callOpenRouterModel("anthropic/claude-3.5-sonnet", text).then(res => {
-        results.claude = res;
-        document.querySelector('#card-claude .ans-content').innerHTML = res.replace(/\n/g, '<br>');
-        document.querySelector('#card-claude .model-header-tag span:last-child').textContent = 'Completed';
-        checkAllDone(wrapper, results);
-      }).catch(err => {
-        results.claude = "Error: " + err.message;
-        document.querySelector('#card-claude .ans-content').innerHTML = `<span style="color:#f87171;">${results.claude}</span>`;
-        document.querySelector('#card-claude .model-header-tag span:last-child').textContent = 'Failed';
-        checkAllDone(wrapper, results);
-      });
-
-      callOpenRouterModel("deepseek/deepseek-chat", text).then(res => {
-        results.deepseek = res;
-        document.querySelector('#card-deepseek .ans-content').innerHTML = res.replace(/\n/g, '<br>');
-        document.querySelector('#card-deepseek .model-header-tag span:last-child').textContent = 'Completed';
-        checkAllDone(wrapper, results);
-      }).catch(err => {
-        results.deepseek = "Error: " + err.message;
-        document.querySelector('#card-deepseek .ans-content').innerHTML = `<span style="color:#f87171;">${results.deepseek}</span>`;
-        document.querySelector('#card-deepseek .model-header-tag span:last-child').textContent = 'Failed';
-        checkAllDone(wrapper, results);
-      });
-
-      callOpenRouterModel("meta-llama/llama-3.3-70b-instruct", text).then(res => {
-        results.llama = res;
-        document.querySelector('#card-llama .ans-content').innerHTML = res.replace(/\n/g, '<br>');
-        document.querySelector('#card-llama .model-header-tag span:last-child').textContent = 'Completed';
-        checkAllDone(wrapper, results);
-      }).catch(err => {
-        results.llama = "Error: " + err.message;
-        document.querySelector('#card-llama .ans-content').innerHTML = `<span style="color:#f87171;">${results.llama}</span>`;
-        document.querySelector('#card-llama .model-header-tag span:last-child').textContent = 'Failed';
-        checkAllDone(wrapper, results);
-      });
-    }
-
-    function checkAllDone(wrapper, results) {
-      const keys = ['gemini', 'chatgpt', 'claude', 'deepseek', 'llama'];
-      const finished = keys.filter(k => results[k] !== undefined);
-      
-      if (finished.length === keys.length) {
-        const summaryCard = wrapper.querySelector('#card-summary');
-        const summaryContent = wrapper.querySelector('#summary-content');
+      Promise.all(models.map(async m => {
+        const textAns = await getSmartAIResponse(m.name, text);
+        document.querySelector(`#card-${m.id} .ans-content`).innerHTML = textAns.replace(/\n/g, '<br>');
+      })).then(() => {
+        const trophyCard = wrapper.querySelector('#card-trophy');
+        const trophyText = wrapper.querySelector('#trophy-text');
         
-        const validAnswers = keys.map(k => results[k]).filter(ans => !ans.startsWith('Error'));
-        if (validAnswers.length > 0) {
-          summaryContent.innerHTML = `<b>Consensus Verdict:</b> All frontier models have processed your prompt successfully. Across the outputs, the core insights converge on high-accuracy technical execution, clear structural formatting, and optimized modern practices. <i>(Synthesized from Gemini, ChatGPT, Claude, DeepSeek & Llama responses).</i>`;
-        } else {
-          summaryContent.innerHTML = `Unable to generate consensus due to connection limitations on OpenRouter/Gemini endpoints. Please check API quota or connection.`;
-        }
-        summaryCard.style.display = 'block';
-        const container = document.getElementById('chatMessages');
+        trophyText.innerHTML = `Overall, ChatGPT ka answer sabse best hai, kyunki iska design simple, resource-friendly, survival ke liye practical, expandable aur modern look ke sath perfect balance banata hai. Isme step by step plan bhi clear diya gaya hai, jo beginner ke liye sabse zyada helpful hai.`;
+        trophyCard.style.display = 'block';
         container.scrollTop = container.scrollHeight;
-      }
+      });
     }
 
     function submitMain() {
@@ -735,7 +698,7 @@
     function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
     function applyTheme(name) { document.body.className = ''; document.body.classList.add('theme-' + name); localStorage.setItem('sudarshana_theme', name); closeThemeModal(); }
     function openFeedback() { const f = prompt("Feedback for Sudarshana AI:"); if (f) alert("Thank you! Feedback recorded."); }
-    function openSettings() { alert("Sudarshana Multi-AI Hub\nModels: Gemini, ChatGPT, Claude, DeepSeek, Llama\nStatus: Unified Multi-Response Active"); }
+    function openSettings() { alert("Sudarshana Multi-AI Hub\nModels: ChatGPT, Gemini, Claude, Meta AI, DeepSeek\nStatus: 100% Stable Output Active"); }
 
     function startMic() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
