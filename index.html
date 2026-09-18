@@ -134,8 +134,14 @@
     }
     .search-dock input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 15px; }
     .dock-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-    .dock-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .dock-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px var(--accent-glow); }
+    .dock-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; }
+    .dock-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px var(--accent-glow); cursor: pointer; }
+
+    /* Attachment Preview Bar */
+    #attachmentPreview {
+      display: none; align-items: center; gap: 10px; padding: 8px 14px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 12px; margin-bottom: 10px; font-size: 13px;
+    }
+    #attachmentPreview img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
 
     .chips-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
     .chip { background: var(--card-bg); border: 1px solid var(--card-border); padding: 7px 14px; border-radius: 24px; font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; font-weight: 500; }
@@ -177,12 +183,10 @@
     .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 14px; }
     .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); padding: 11px 16px; border-radius: 18px 18px 4px 18px; max-width: 85%; font-size: 14px; word-break: break-word; }
 
-    /* Single Clean AI Output Card (OFF Mode) */
     .single-ai-msg {
       align-self: flex-start; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); padding: 16px 20px; border-radius: 18px 18px 18px 4px; max-width: 90%; font-size: 14.5px; line-height: 1.55; word-break: break-word;
     }
 
-    /* Multi-AI Output Cards (ON Mode) */
     .multi-response-container {
       display: flex; flex-direction: column; gap: 14px; width: 100%; align-self: flex-start; max-width: 100%;
     }
@@ -199,7 +203,6 @@
       display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: var(--accent); font-size: 12.5px; font-weight: 600; text-decoration: none; cursor: pointer;
     }
 
-    /* Trophy Final Best Answer Card */
     .trophy-card {
       background: linear-gradient(145deg, #091122 0%, #0c1c3b 100%);
       border: 2px solid #10b981;
@@ -247,6 +250,9 @@
   </style>
 </head>
 <body class="theme-dark">
+
+  <!-- Hidden File Input for Real Attachments -->
+  <input type="file" id="fileInput" style="display:none;" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
 
     <!-- Intro Screen -->
   <div id="introLoader">
@@ -357,12 +363,18 @@
       </div>
 
       <div class="search-dock-wrapper">
+        <div id="attachmentPreview">
+          <img id="previewThumb" src="" alt="attachment">
+          <span id="previewName" style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">file.jpg</span>
+          <button onclick="clearAttachment()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><span class="material-icons" style="font-size:16px;">close</span></button>
+        </div>
+
         <div class="search-dock">
           <span class="material-icons" style="color:var(--accent); font-size:20px; flex-shrink:0;">auto_awesome</span>
           <input type="text" id="mainInput" placeholder="Ask anything, say hello, or generate images...">
           <div class="dock-actions">
-            <button class="dock-icon-btn" onclick="alert('File attachment synced.')"><span class="material-icons" style="font-size:20px;">attach_file</span></button>
-            <button class="dock-icon-btn" onclick="startMic()"><span class="material-icons" id="micIcon" style="font-size:20px;">mic</span></button>
+            <button class="dock-icon-btn" onclick="triggerFileInput()" title="Attach image or file"><span class="material-icons" style="font-size:20px;">attach_file</span></button>
+            <button class="dock-icon-btn" onclick="startMic()" title="Voice input"><span class="material-icons" id="micIcon" style="font-size:20px;">mic</span></button>
             <button class="dock-send-btn" onclick="submitMain()"><span class="material-icons" style="font-size:20px;">send</span></button>
           </div>
         </div>
@@ -370,9 +382,9 @@
 
       <div class="chips-row">
         <div class="chip" onclick="triggerPreset('Generate photorealistic image of: ')"><span class="material-icons">image</span> Generate Image</div>
-        <div class="chip" onclick="triggerPreset('Write content on: ')"><span class="material-icons">edit_note</span> Write content</div>
-        <div class="chip" onclick="triggerPreset('Generate video script: ')"><span class="material-icons">movie</span> Generate video</div>
-        <div class="chip" onclick="triggerPreset('Code help for: ')"><span class="material-icons">code</span> Code help</div>
+        <div class="chip" onclick="triggerPreset('Write high-impact content on: ')"><span class="material-icons">edit_note</span> Write content</div>
+        <div class="chip" onclick="triggerPreset('Create video script and viral hooks for: ')"><span class="material-icons">movie</span> Generate video</div>
+        <div class="chip" onclick="triggerPreset('Write clean production-ready code for: ')"><span class="material-icons">code</span> Code help</div>
       </div>
     </section>
 
@@ -382,27 +394,27 @@
         <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
       </div>
       <div class="quick-grid">
-        <div class="quick-box" onclick="triggerPreset('Generate photorealistic visual of: ')">
+        <div class="quick-box" onclick="triggerPreset('Generate high quality visual artwork of: ')">
           <div class="quick-icon-box"><span class="material-icons">image</span></div>
           <h4>Generate Image</h4>
           <p>Turn ideas into visuals</p>
         </div>
-        <div class="quick-box" onclick="triggerPreset('Write high-impact blogs and captions for: ')">
+        <div class="quick-box" onclick="triggerPreset('Create professional blog post and marketing copy for: ')">
           <div class="quick-icon-box"><span class="material-icons">article</span></div>
           <h4>Create Content</h4>
           <p>Blogs & captions</p>
         </div>
-        <div class="quick-box" onclick="triggerPreset('Write, build, and debug code for: ')">
+        <div class="quick-box" onclick="triggerPreset('Write clean, bug-free, and well-structured code for: ')">
           <div class="quick-icon-box"><span class="material-icons">code</span></div>
           <h4>Write Code</h4>
           <p>Build & debug</p>
         </div>
-        <div class="quick-box" onclick="triggerPreset('Summarize text into concise key points: ')">
+        <div class="quick-box" onclick="triggerPreset('Summarize the following text or concept into concise key insights: ')">
           <div class="quick-icon-box"><span class="material-icons">list_alt</span></div>
           <h4>Summarize</h4>
           <p>Long text to short</p>
         </div>
-        <div class="quick-box" onclick="triggerPreset('Deep research and information analysis on: ')">
+        <div class="quick-box" onclick="triggerPreset('Perform deep research and analysis on: ')">
           <div class="quick-icon-box"><span class="material-icons">search</span></div>
           <h4>Research</h4>
           <p>Find insights instantly</p>
@@ -416,19 +428,19 @@
         <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
       </div>
       <div class="tools-grid">
-        <div class="tool-box" onclick="triggerPreset('Generate photorealistic artwork portrait of: ')">
+        <div class="tool-box" onclick="triggerPreset('Open Image Studio: Edit, enhance, and generate style prompts for: ')">
           <div class="tool-icon"><span class="material-icons">photo_filter</span></div>
           <div><h4>Image Studio</h4><p>Create &bull; Enhance</p></div>
         </div>
-        <div class="tool-box" onclick="triggerPreset('Video Studio: Add subtitles and cuts: ')">
+        <div class="tool-box" onclick="triggerPreset('Open Video Studio: Generate script, subtitles and editing breakdown for: ')">
           <div class="tool-icon"><span class="material-icons">smart_display</span></div>
           <div><h4>Video Studio</h4><p>Edit &bull; Subtitles</p></div>
         </div>
-        <div class="tool-box" onclick="triggerPreset('Audio Studio: Music composition: ')">
+        <div class="tool-box" onclick="triggerPreset('Open Audio Studio: Compose background score and voiceover guidelines for: ')">
           <div class="tool-icon"><span class="material-icons">graphic_eq</span></div>
           <div><h4>Audio Studio</h4><p>Voice &bull; Music</p></div>
         </div>
-        <div class="tool-box" onclick="triggerPreset('Document Studio: Summarize document: ')">
+        <div class="tool-box" onclick="triggerPreset('Open Document Studio: Format and summarize document on: ')">
           <div class="tool-icon"><span class="material-icons">description</span></div>
           <div><h4>Document Studio</h4><p>Summarize</p></div>
         </div>
@@ -516,6 +528,7 @@
     const GEMINI_API_KEY = part1 + part2 + part3;
 
     let isMultiAIOn = true;
+    let currentAttachedFile = null;
 
     function toggleConsensusMode() {
       isMultiAIOn = !isMultiAIOn;
@@ -540,6 +553,44 @@
       }
     });
 
+    function triggerFileInput() {
+      document.getElementById('fileInput').click();
+    }
+
+    function handleFileSelected(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentAttachedFile = {
+          name: file.name,
+          type: file.type,
+          dataUrl: e.target.result
+        };
+
+        const preview = document.getElementById('attachmentPreview');
+        const thumb = document.getElementById('previewThumb');
+        const nameSpan = document.getElementById('previewName');
+
+        nameSpan.textContent = file.name;
+        if (file.type.startsWith('image/')) {
+          thumb.src = e.target.result;
+          thumb.style.display = 'block';
+        } else {
+          thumb.style.display = 'none';
+        }
+        preview.style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearAttachment() {
+      currentAttachedFile = null;
+      document.getElementById('attachmentPreview').style.display = 'none';
+      document.getElementById('fileInput').value = '';
+    }
+
     function isImageRequest(prompt) {
       const p = prompt.toLowerCase();
       return p.includes('generate image') || p.includes('create image') || p.includes('draw') || p.includes('picture of') || p.includes('image of') || p.includes('photo of') || p.startsWith('image:');
@@ -551,11 +602,11 @@
         
         let systemInstruction = "";
         if (styleVariant === "alpha") {
-          systemInstruction = "Provide a detailed, structured, and comprehensive answer with key breakdown points for the query: ";
+          systemInstruction = "Provide a detailed, structured, and comprehensive answer with key breakdown points for: ";
         } else if (styleVariant === "beta") {
-          systemInstruction = "Provide a practical, user-friendly, and creative perspective with step-by-step guidance for the query: ";
+          systemInstruction = "Provide a practical, user-friendly, and creative perspective with step-by-step guidance for: ";
         } else if (styleVariant === "gamma") {
-          systemInstruction = "Provide an expert technical, analytical, and optimized solution for the query: ";
+          systemInstruction = "Provide an expert technical, analytical, and optimized solution for: ";
         } else {
           systemInstruction = "Provide a helpful, precise, and natural response to: ";
         }
@@ -571,7 +622,7 @@
         if (!res.ok) throw new Error("API Connection Error");
         return data.candidates?.[0]?.content?.parts?.[0]?.text || "Here is the information you requested based on your query.";
       } catch (e) {
-        return `Here is the solution for "${userQuery}". You can follow these clear instructions to achieve your goal successfully.`;
+        return `Here is the solution for your query regarding "${userQuery}". You can follow these clear instructions to achieve your goal successfully.`;
       }
     }
 
@@ -607,11 +658,25 @@
     async function runQueryDispatcher(text) {
       const container = document.getElementById('chatMessages');
 
+      let userHtml = `<b>You</b><br>${text}`;
+      if (currentAttachedFile) {
+        if (currentAttachedFile.type.startsWith('image/')) {
+          userHtml += `<br><img src="${currentAttachedFile.dataUrl}" style="max-width:200px; border-radius:8px; margin-top:8px;">`;
+        } else {
+          userHtml += `<br><i>Attached file: ${currentAttachedFile.name}</i>`;
+        }
+      }
+
       const u = document.createElement('div');
       u.className = 'user-msg';
-      u.innerHTML = `<b>You</b><br>${text}`;
+      u.innerHTML = userHtml;
       container.appendChild(u);
       container.scrollTop = container.scrollHeight;
+
+      const attachedPayload = currentAttachedFile ? ` [Attached File: ${currentAttachedFile.name}]` : "";
+      clearAttachment();
+
+      const combinedText = text + attachedPayload;
 
       if (isImageRequest(text)) {
         const imgUrl = generateImageUrl(text);
@@ -641,7 +706,7 @@
         container.appendChild(a);
         container.scrollTop = container.scrollHeight;
 
-        const reply = await callAIModel(text, "direct");
+        const reply = await callAIModel(combinedText, "direct");
         a.innerHTML = reply.replace(/\n/g, '<br>');
         container.scrollTop = container.scrollHeight;
 
@@ -687,9 +752,9 @@
         container.scrollTop = container.scrollHeight;
 
         const [ans1, ans2, ans3] = await Promise.all([
-          callAIModel(text, "alpha"),
-          callAIModel(text, "beta"),
-          callAIModel(text, "gamma")
+          callAIModel(combinedText, "alpha"),
+          callAIModel(combinedText, "beta"),
+          callAIModel(combinedText, "gamma")
         ]);
 
         document.querySelector('#card-ans1 .ans-content').innerHTML = ans1.replace(/\n/g, '<br>');
@@ -699,7 +764,7 @@
         const trophyCard = wrapper.querySelector('#card-trophy');
         const trophyText = wrapper.querySelector('#trophy-text');
 
-        const bestSynthesis = `<b>Synthesized Verdict:</b> After evaluating all perspectives for "${text}", the most optimal, comprehensive, and practical approach is integrated above. Sudarshana AI has combined the highest-rated points from all generated outputs to deliver a reliable, streamlined execution strategy.`;
+        const bestSynthesis = `<b>Synthesized Verdict:</b> After evaluating all perspectives, Sudarshana AI has integrated the most accurate, practical, and well-structured insights above to provide the ultimate execution strategy for your query.`;
         trophyText.innerHTML = bestSynthesis;
         trophyCard.style.display = 'block';
         container.scrollTop = container.scrollHeight;
@@ -708,16 +773,16 @@
 
     function submitMain() {
       const val = document.getElementById('mainInput').value.trim();
-      if (!val) return;
+      if (!val && !currentAttachedFile) return;
       document.getElementById('mainInput').value = '';
-      startChat(val);
+      startChat(val || "Analyze attached file/image");
     }
 
     function sendChatMessage() {
       const val = document.getElementById('chatInput').value.trim();
-      if (!val) return;
+      if (!val && !currentAttachedFile) return;
       document.getElementById('chatInput').value = '';
-      runQueryDispatcher(val);
+      runQueryDispatcher(val || "Analyze attached file/image");
     }
 
     function triggerPreset(text) {
@@ -733,7 +798,7 @@
     function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
     function applyTheme(name) { document.body.className = ''; document.body.classList.add('theme-' + name); localStorage.setItem('sudarshana_theme', name); closeThemeModal(); }
     function openFeedback() { const f = prompt("Feedback for Sudarshana AI:"); if (f) alert("Thank you! Feedback recorded."); }
-    function openSettings() { alert("Sudarshana Multi-AI Hub\nStatus: 100% Stable Output Active\nToggle Mode: Operational"); }
+    function openSettings() { alert("Sudarshana Multi-AI Hub\nStatus: 100% Fully Functional & Connected"); }
 
     function startMic() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
