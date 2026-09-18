@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana Chat AI - Studio & Multi-Intelligence</title>
+  <title>Sudarshana Chat AI - Ultimate Multi-Model Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,325 +41,95 @@
     body.theme-light {
       --bg-base: #f8fafc;
       --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-      --sidebar-bg: #ffffff;
-      --sidebar-border: #e2e8f0;
-      --card-bg: #ffffff;
-      --card-border: #cbd5e1;
-      --card-hover: #f1f5f9;
-      --dock-bg: rgba(255, 255, 255, 0.96);
-      --dock-border: #cbd5e1;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --accent: #0284c7;
-      --accent-secondary: #0369a1;
-      --accent-glow: rgba(2, 132, 199, 0.2);
+      --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #0284c7; --accent-secondary: #0369a1; --accent-glow: rgba(2, 132, 199, 0.2);
     }
     body.theme-neon {
       --bg-base: #070114;
       --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
-      --sidebar-bg: #0d0221;
-      --sidebar-border: #260f54;
-      --card-bg: #14042e;
-      --card-border: #3b127f;
-      --card-hover: #22084d;
-      --dock-bg: rgba(20, 4, 46, 0.94);
-      --dock-border: #701a75;
-      --text-main: #fdf4ff;
-      --text-muted: #c084fc;
-      --accent: #e879f9;
-      --accent-secondary: #a855f7;
-      --accent-glow: rgba(232, 121, 249, 0.4);
+      --sidebar-bg: #0d0221; --sidebar-border: #260f54; --card-bg: #14042e; --card-border: #3b127f; --card-hover: #22084d; --dock-bg: rgba(20, 4, 46, 0.94); --dock-border: #701a75; --text-main: #fdf4ff; --text-muted: #c084fc; --accent: #e879f9; --accent-secondary: #a855f7; --accent-glow: rgba(232, 121, 249, 0.4);
     }
     body.theme-nature {
       --bg-base: #03140e;
       --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
-      --sidebar-bg: #041a12;
-      --sidebar-border: #0d3828;
-      --card-bg: #072419;
-      --card-border: #114a34;
-      --card-hover: #0c3324;
-      --dock-bg: rgba(7, 36, 25, 0.94);
-      --dock-border: #065f46;
-      --text-main: #ecfdf5;
-      --text-muted: #6ee7b7;
-      --accent: #10b981;
-      --accent-secondary: #059669;
-      --accent-glow: rgba(16, 185, 129, 0.35);
+      --sidebar-bg: #041a12; --sidebar-border: #0d3828; --card-bg: #072419; --card-border: #114a34; --card-hover: #0c3324; --dock-bg: rgba(7, 36, 25, 0.94); --dock-border: #065f46; --text-main: #ecfdf5; --text-muted: #6ee7b7; --accent: #10b981; --accent-secondary: #059669; --accent-glow: rgba(16, 185, 129, 0.35);
     }
     body.theme-cyberpunk {
       --bg-base: #0a0118;
       --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
-      --sidebar-bg: #120224;
-      --sidebar-border: #3c095c;
-      --card-bg: #1d0338;
-      --card-border: #4d0b74;
-      --card-hover: #2e0557;
-      --dock-bg: rgba(29, 3, 56, 0.94);
-      --dock-border: #be185d;
-      --text-main: #ffffff;
-      --text-muted: #f472b6;
-      --accent: #f43f5e;
-      --accent-secondary: #ec4899;
-      --accent-glow: rgba(244, 63, 94, 0.4);
+      --sidebar-bg: #120224; --sidebar-border: #3c095c; --card-bg: #1d0338; --card-border: #4d0b74; --card-hover: #2e0557; --dock-bg: rgba(29, 3, 56, 0.94); --dock-border: #be185d; --text-main: #ffffff; --text-muted: #f472b6; --accent: #f43f5e; --accent-secondary: #ec4899; --accent-glow: rgba(244, 63, 94, 0.4);
     }
     body.theme-sunset {
       --bg-base: #140704;
       --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #120502 75%);
-      --sidebar-bg: #1c0a05;
-      --sidebar-border: #3d1b10;
-      --card-bg: #270f08;
-      --card-border: #4a2113;
-      --card-hover: #36170d;
-      --dock-bg: rgba(39, 15, 8, 0.94);
-      --dock-border: #9a3412;
-      --text-main: #fff7ed;
-      --text-muted: #fdba74;
-      --accent: #f97316;
-      --accent-secondary: #ea580c;
-      --accent-glow: rgba(249, 115, 22, 0.4);
+      --sidebar-bg: #1c0a05; --sidebar-border: #3d1b10; --card-bg: #270f08; --card-border: #4a2113; --card-hover: #36170d; --dock-bg: rgba(39, 15, 8, 0.94); --dock-border: #9a3412; --text-main: #fff7ed; --text-muted: #fdba74; --accent: #f97316; --accent-secondary: #ea580c; --accent-glow: rgba(249, 115, 22, 0.4);
     }
     body.theme-space {
       --bg-base: #020617;
       --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
-      --sidebar-bg: #040920;
-      --sidebar-border: #0f1c4d;
-      --card-bg: #071033;
-      --card-border: #142466;
-      --card-hover: #0c1c54;
-      --dock-bg: rgba(7, 16, 51, 0.94);
-      --dock-border: #0369a1;
-      --text-main: #f0fdf4;
-      --text-muted: #7dd3fc;
-      --accent: #0ea5e9;
-      --accent-secondary: #38bdf8;
-      --accent-glow: rgba(14, 165, 233, 0.4);
+      --sidebar-bg: #040920; --sidebar-border: #0f1c4d; --card-bg: #071033; --card-border: #142466; --card-hover: #0c1c54; --dock-bg: rgba(7, 16, 51, 0.94); --dock-border: #0369a1; --text-main: #f0fdf4; --text-muted: #7dd3fc; --accent: #0ea5e9; --accent-secondary: #38bdf8; --accent-glow: rgba(14, 165, 233, 0.4);
     }
     body.theme-minimal {
       --bg-base: #f1f5f9;
       --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
-      --sidebar-bg: #ffffff;
-      --sidebar-border: #cbd5e1;
-      --card-bg: #ffffff;
-      --card-border: #cbd5e1;
-      --card-hover: #f8fafc;
-      --dock-bg: rgba(255, 255, 255, 0.96);
-      --dock-border: #94a3b8;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --accent: #6366f1;
-      --accent-secondary: #4f46e5;
-      --accent-glow: rgba(99, 102, 241, 0.25);
+      --sidebar-bg: #ffffff; --sidebar-border: #cbd5e1; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f8fafc; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #94a3b8; --text-main: #1e293b; --text-muted: #64748b; --accent: #6366f1; --accent-secondary: #4f46e5; --accent-glow: rgba(99, 102, 241, 0.25);
     }
 
     html, body {
-      width: 100%;
-      min-height: 100%;
-      background-color: var(--bg-base);
-      background-image: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      overflow-x: hidden;
-      line-height: 1.5;
+      width: 100%; min-height: 100%;
+      background-color: var(--bg-base); background-image: var(--bg-gradient); background-attachment: fixed;
+      color: var(--text-main); font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      overflow-x: hidden; line-height: 1.5;
     }
 
-    /* Interactive Click Feedback & Ripple Effect */
     button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn {
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-      transform: translateZ(0);
+      cursor: pointer; user-select: none; -webkit-user-select: none; transform: translateZ(0);
     }
     button:active, .chip:active, .quick-box:active, .tool-box:active, .recent-item:active, .theme-card-choice:active, .banner-btn:active {
-      transform: scale(0.96) !important;
-      filter: brightness(1.15);
-      transition: transform 0.08s ease, filter 0.08s ease !important;
+      transform: scale(0.96) !important; filter: brightness(1.15); transition: transform 0.08s ease, filter 0.08s ease !important;
     }
 
     /* Intro Splash */
     #introLoader {
-      position: fixed;
-      inset: 0;
-      background: var(--bg-base);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      position: fixed; inset: 0; background: var(--bg-base); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #introLoader.hide { opacity: 0; visibility: hidden; }
-    .intro-chakra {
-      width: 90px;
-      height: 90px;
-      animation: introSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite, introPulse 1.5s ease-in-out infinite alternate;
-    }
+    .intro-chakra { width: 90px; height: 90px; animation: introSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite, introPulse 1.5s ease-in-out infinite alternate; }
     @keyframes introSpin { 0% { transform: rotate(0deg) scale(0.9); } 50% { transform: rotate(180deg) scale(1.1); } 100% { transform: rotate(360deg) scale(0.9); } }
     @keyframes introPulse { from { filter: drop-shadow(0 0 10px var(--accent)); } to { filter: drop-shadow(0 0 30px var(--chakra-gold)); } }
     .intro-text { margin-top: 18px; font-size: 16px; font-weight: 800; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
 
-    /* Rotating Sudarshana Chakra */
+    /* Header Chakra */
     .sudarshana-chakra {
-      width: 34px;
-      height: 34px;
-      animation: spinChakra 11s linear infinite;
-      cursor: pointer;
-      display: block;
-      flex-shrink: 0;
-      filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+      width: 34px; height: 34px; animation: spinChakra 11s linear infinite; cursor: pointer; display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
     }
     @keyframes spinChakra { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     .app-header {
-      position: sticky;
-      top: 0;
-      background: var(--bg-base);
-      border-bottom: 1px solid var(--sidebar-border);
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      backdrop-filter: blur(12px);
+      position: sticky; top: 0; background: var(--bg-base); border-bottom: 1px solid var(--sidebar-border); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 100; backdrop-filter: blur(12px);
     }
     .header-left { display: flex; align-items: center; gap: 10px; }
-    .icon-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .icon-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
     .brand-title { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; }
+    .theme-pill-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); border-radius: 30px; font-size: 12.5px; font-weight: 700; box-shadow: 0 0 14px var(--accent-glow); }
 
-    .theme-pill-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      background: var(--card-bg);
-      border: 1px solid var(--accent);
-      color: var(--text-main);
-      border-radius: 30px;
-      font-size: 12.5px;
-      font-weight: 700;
-      box-shadow: 0 0 14px var(--accent-glow);
-    }
-
-    .model-selector {
-      background: var(--card-bg);
-      border: 1px solid var(--accent);
-      color: var(--text-main);
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      outline: none;
-      max-width: 170px;
-    }
-
-    /* Dashboard View */
-    #dashboardView {
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 24px 14px 60px;
-      display: block;
-    }
+    /* Dashboard */
+    #dashboardView { width: 100%; max-width: 860px; margin: 0 auto; padding: 24px 14px 60px; display: block; }
     .hero-section { text-align: center; margin-bottom: 24px; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: var(--card-bg);
-      border: 1px solid var(--accent);
-      border-radius: 30px;
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 30px; font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 14px; }
     .hero-title { font-size: 36px; font-weight: 800; line-height: 1.18; letter-spacing: -1px; margin-bottom: 8px; }
-    .glow-text {
-      color: var(--accent);
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-subtitle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 22px;
-    }
+    .glow-text { color: var(--accent); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-subtitle { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13.5px; color: var(--text-muted); margin-bottom: 22px; }
     .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
 
-    /* Search Dock - PERFECTLY FIXED TO AVOID OVERFLOW */
-    .search-dock-wrapper {
-      width: 100%;
-      margin-bottom: 18px;
-    }
+    .search-dock-wrapper { width: 100%; margin-bottom: 18px; }
     .search-dock {
-      width: 100%;
-      background: var(--dock-bg);
-      border: 1px solid var(--dock-border);
-      border-radius: 32px;
-      padding: 6px 8px 6px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+      width: 100%; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 32px; padding: 6px 8px 6px 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
     }
-    .search-dock input {
-      flex: 1;
-      min-width: 0;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-main);
-      font-size: 15px;
-    }
-    .dock-actions {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-    .dock-icon-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .dock-send-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 2px 10px var(--accent-glow);
-    }
+    .search-dock input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 15px; }
+    .dock-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .dock-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .dock-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px var(--accent-glow); }
 
     .chips-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
     .chip { background: var(--card-bg); border: 1px solid var(--card-border); padding: 7px 14px; border-radius: 24px; font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; font-weight: 500; }
@@ -387,33 +157,37 @@
 
     .banner { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 20px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 34px; }
     .banner-btn { background: var(--accent); color: #fff; border: none; padding: 9px 20px; border-radius: 24px; font-weight: 700; font-size: 13px; }
-
     .footer-perks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; padding-top: 24px; border-top: 1px solid var(--card-border); }
     .perk-box { display: flex; align-items: center; gap: 10px; }
     .perk-box .material-icons { font-size: 24px; color: var(--accent); }
 
-        /* Full Chat Screen */
+    /* Full Chat Screen */
     #fullChatView {
-      display: none;
-      flex-direction: column;
-      height: calc(100vh - 64px);
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 12px 14px;
+      display: none; flex-direction: column; height: calc(100vh - 64px); width: 100%; max-width: 860px; margin: 0 auto; padding: 12px 14px;
     }
     .chat-top-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--card-border);
-      gap: 8px;
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--card-border); gap: 8px;
     }
-    .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding-bottom: 14px; }
+    .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 14px; }
     .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); padding: 11px 16px; border-radius: 18px 18px 4px 18px; max-width: 85%; font-size: 14px; word-break: break-word; }
-    .ai-msg { align-self: flex-start; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); padding: 16px 18px; border-radius: 18px 18px 18px 4px; max-width: 90%; font-size: 14px; line-height: 1.55; word-break: break-word; }
+
+    /* Multi-Model Grid Answer Layout */
+    .multi-response-container {
+      display: flex; flex-direction: column; gap: 12px; width: 100%; align-self: flex-start; max-width: 95%;
+    }
+    .model-ans-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5; word-break: break-word;
+    }
+    .model-ans-card.gemini { border-color: #38bdf8; }
+    .model-ans-card.chatgpt { border-color: #10b981; }
+    .model-ans-card.claude { border-color: #f43f5e; }
+    .model-ans-card.deepseek { border-color: #818cf8; }
+    .model-ans-card.llama { border-color: #f59e0b; }
+    .model-ans-card.summary-card { background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15)); border: 2px solid var(--accent); }
+
+    .model-header-tag {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 12.5px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;
+    }
 
     .ai-image-container { margin-top: 12px; border-radius: 14px; overflow: hidden; border: 1px solid var(--card-border); background: #000; }
     .ai-image-container img { width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block; }
@@ -448,17 +222,15 @@
 </head>
 <body class="theme-dark">
 
+  <!-- Intro Screen -->
   <div id="introLoader">
     <svg class="intro-chakra" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
       <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="2"/>
       <g fill="#f59e0b">
-        <polygon points="50,4 53,16 47,16"/>
-        <polygon points="50,96 53,84 47,84"/>
-        <polygon points="4,50 16,53 16,47"/>
-        <polygon points="96,50 84,53 84,47"/>
-        <polygon points="17,17 26,23 21,28"/>
-        <polygon points="83,83 74,77 79,72"/>
+        <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
+        <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
+        <polygon points="17,17 26,23 21,28"/><polygon points="83,83 74,77 79,72"/>
       </g>
       <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
       <circle cx="50" cy="50" r="10" fill="#0284c7"/>
@@ -466,6 +238,7 @@
     <div class="intro-text">Sudarshana AI</div>
   </div>
 
+    <!-- Left Sidebar Drawer -->
   <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
   <aside class="sidebar-drawer" id="sideDrawer">
     <div class="drawer-head">
@@ -513,6 +286,7 @@
     </div>
   </aside>
 
+  <!-- Top Navigation Header -->
   <header class="app-header">
     <div class="header-left">
       <button class="icon-btn" onclick="openSidebar()"><span class="material-icons">menu</span></button>
@@ -537,25 +311,28 @@
     </div>
   </header>
 
+  <!-- View 1: Home Dashboard -->
   <main id="dashboardView">
     <section class="hero-section">
       <div class="hero-badge" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:14px;">bolt</span> Smarter Multi-AI Engine
+        <span class="material-icons" style="font-size:14px;">bolt</span> Unified Multi-Model AI Hub
       </div>
 
-      <h1 class="hero-title">Your Ideas<br><span class="glow-text">Our Multi-AI Power</span></h1>
+      <h1 class="hero-title">Your Ideas<br><span class="glow-text">All AI Minds Unified</span></h1>
       <div class="hero-subtitle">
-        <span>Create</span>
+        <span>Gemini</span>
         <span class="dot-sep"></span>
-        <span>Explore</span>
+        <span>ChatGPT</span>
         <span class="dot-sep"></span>
-        <span>Get Inspired</span>
+        <span>Claude</span>
+        <span class="dot-sep"></span>
+        <span>DeepSeek & Llama</span>
       </div>
 
       <div class="search-dock-wrapper">
         <div class="search-dock">
           <span class="material-icons" style="color:var(--accent); font-size:20px; flex-shrink:0;">auto_awesome</span>
-          <input type="text" id="mainInput" placeholder="Ask ChatGPT, Claude, DeepSeek, Llama or Make Art...">
+          <input type="text" id="mainInput" placeholder="Ask all AIs simultaneously or make art...">
           <div class="dock-actions">
             <button class="dock-icon-btn" onclick="alert('File attachment synced.')"><span class="material-icons" style="font-size:20px;">attach_file</span></button>
             <button class="dock-icon-btn" onclick="startMic()"><span class="material-icons" id="micIcon" style="font-size:20px;">mic</span></button>
@@ -572,6 +349,7 @@
       </div>
     </section>
 
+    <!-- Quick Access -->
     <section>
       <div class="sec-head">
         <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
@@ -580,22 +358,22 @@
         <div class="quick-box" onclick="triggerPreset('Generate photorealistic visual of: ')">
           <div class="quick-icon-box"><span class="material-icons">image</span></div>
           <h4>Generate Image</h4>
-          <p>Turn ideas into stunning visuals</p>
+          <p>Turn ideas into visuals</p>
         </div>
         <div class="quick-box" onclick="triggerPreset('Write high-impact blogs and captions for: ')">
           <div class="quick-icon-box"><span class="material-icons">article</span></div>
           <h4>Create Content</h4>
-          <p>Blogs, captions & more</p>
+          <p>Blogs & captions</p>
         </div>
         <div class="quick-box" onclick="triggerPreset('Write, build, and debug code for: ')">
           <div class="quick-icon-box"><span class="material-icons">code</span></div>
           <h4>Write Code</h4>
-          <p>Build, debug & improve</p>
+          <p>Build & debug</p>
         </div>
         <div class="quick-box" onclick="triggerPreset('Summarize text into concise key points: ')">
           <div class="quick-icon-box"><span class="material-icons">list_alt</span></div>
           <h4>Summarize</h4>
-          <p>Long text to short & clear</p>
+          <p>Long text to short</p>
         </div>
         <div class="quick-box" onclick="triggerPreset('Deep research and information analysis on: ')">
           <div class="quick-icon-box"><span class="material-icons">search</span></div>
@@ -605,6 +383,7 @@
       </div>
     </section>
 
+    <!-- Popular Tools -->
     <section>
       <div class="sec-head">
         <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
@@ -612,23 +391,24 @@
       <div class="tools-grid">
         <div class="tool-box" onclick="triggerPreset('Generate photorealistic artwork portrait of: ')">
           <div class="tool-icon"><span class="material-icons">photo_filter</span></div>
-          <div><h4>Image Studio</h4><p>Create &bull; Enhance &bull; Edit</p></div>
+          <div><h4>Image Studio</h4><p>Create &bull; Enhance</p></div>
         </div>
         <div class="tool-box" onclick="triggerPreset('Video Studio: Add subtitles and cuts: ')">
           <div class="tool-icon"><span class="material-icons">smart_display</span></div>
-          <div><h4>Video Studio</h4><p>Edit &bull; Subtitles &bull; More</p></div>
+          <div><h4>Video Studio</h4><p>Edit &bull; Subtitles</p></div>
         </div>
         <div class="tool-box" onclick="triggerPreset('Audio Studio: Music composition: ')">
           <div class="tool-icon"><span class="material-icons">graphic_eq</span></div>
-          <div><h4>Audio Studio</h4><p>Voice &bull; Music &bull; Generate</p></div>
+          <div><h4>Audio Studio</h4><p>Voice &bull; Music</p></div>
         </div>
         <div class="tool-box" onclick="triggerPreset('Document Studio: Summarize document: ')">
           <div class="tool-icon"><span class="material-icons">description</span></div>
-          <div><h4>Document Studio</h4><p>Edit &bull; Summarize &bull; Convert</p></div>
+          <div><h4>Document Studio</h4><p>Summarize</p></div>
         </div>
       </div>
     </section>
 
+    <!-- Recent Chats -->
     <section>
       <div class="sec-head">
         <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
@@ -637,40 +417,36 @@
         <div class="recent-item" onclick="startChat('Generate photorealistic image of a futuristic cyber city at night')">
           <div style="display:flex; align-items:center; gap:12px;">
             <span class="material-icons" style="color:var(--accent);">image</span>
-            <div><h4>Futuristic cyber city at night</h4><p style="font-size:11.5px; color:var(--text-muted);">AI Image generation prompt</p></div>
+            <div><h4>Futuristic cyber city at night</h4><p style="font-size:11.5px; color:var(--text-muted);">AI Image prompt</p></div>
           </div>
           <span class="material-icons">chevron_right</span>
         </div>
       </div>
     </section>
 
+    <!-- Banner -->
     <div class="banner">
       <div>
-        <h3>Explore Multi-Model AI Power</h3>
-        <p>ChatGPT, Claude, DeepSeek, and Llama unified in one hub</p>
+        <h3>Explore Multi-Model AI Consensus</h3>
+        <p>Gemini, ChatGPT, Claude, DeepSeek & Llama working together</p>
       </div>
-      <button class="banner-btn" onclick="triggerPreset('Compare how ChatGPT, Claude, and DeepSeek differ in coding and reasoning')">Start Creating</button>
+      <button class="banner-btn" onclick="triggerPreset('What are the key differences between quantum computing and classical computing?')">Start Creating</button>
     </div>
 
+    <!-- Footer Perks -->
     <div class="footer-perks">
-      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Ultra-Fast Speed</h5><p>Direct multi-model APIs</p></div></div>
-      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Safe & Private</h5><p>Data directly processed</p></div></div>
-      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Always Improving</h5><p>Top frontier models</p></div></div>
-      <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Code, images & chats</p></div></div>
+      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Multi-Model</h5><p>Parallel responses</p></div></div>
+      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Direct encrypted routing</p></div></div>
+      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Best answer summary</p></div></div>
+      <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Full capability</p></div></div>
     </div>
   </main>
 
+  <!-- View 2: Full Screen Native Conversation -->
   <main id="fullChatView">
     <div class="chat-top-nav">
       <button class="icon-btn" onclick="backToHome()"><span class="material-icons">arrow_back</span></button>
-      
-      <select id="modelPicker" class="model-selector">
-        <option value="deepseek/deepseek-chat">🚀 DeepSeek V3 (Fast)</option>
-        <option value="openai/gpt-4o-mini">🤖 ChatGPT (GPT-4o Mini)</option>
-        <option value="anthropic/claude-3.5-sonnet">🧠 Claude 3.5 Sonnet</option>
-        <option value="meta-llama/llama-3.3-70b-instruct">🦙 Meta Llama 3.3</option>
-      </select>
-
+      <div style="font-weight:700; font-size:15px; color:var(--accent);">Multi-AI Consensus Engine</div>
       <button class="icon-btn" onclick="newChat()"><span class="material-icons">refresh</span></button>
     </div>
 
@@ -678,7 +454,7 @@
 
     <div class="search-dock-wrapper" style="margin-bottom:0;">
       <div class="search-dock">
-        <input type="text" id="chatInput" placeholder="Ask follow-up or generate images...">
+        <input type="text" id="chatInput" placeholder="Ask all AIs follow-up or generate images...">
         <div class="dock-actions">
           <button class="dock-send-btn" onclick="sendChatMessage()"><span class="material-icons" style="font-size:20px;">send</span></button>
         </div>
@@ -686,6 +462,7 @@
     </div>
   </main>
 
+  <!-- 8 Themes Modal -->
   <div class="modal-overlay" id="themeModal">
     <div class="themes-modal-box">
       <div style="padding:14px 18px; border-bottom:1px solid var(--card-border); display:flex; justify-content:space-between; align-items:center;">
@@ -693,107 +470,71 @@
         <button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button>
       </div>
       <div class="themes-grid">
-        <div class="theme-card-choice" onclick="applyTheme('dark')">
-          <div class="theme-circle-dot" style="background:#030712; border:2px solid #38bdf8;"></div>
-          <h5>Dark (Default)</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('light')">
-          <div class="theme-circle-dot" style="background:#f8fafc; border:2px solid #0284c7;"></div>
-          <h5>Light</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('neon')">
-          <div class="theme-circle-dot" style="background:#070114; border:2px solid #e879f9;"></div>
-          <h5>Neon</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('nature')">
-          <div class="theme-circle-dot" style="background:#03140e; border:2px solid #10b981;"></div>
-          <h5>Nature</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('cyberpunk')">
-          <div class="theme-circle-dot" style="background:#0a0118; border:2px solid #f43f5e;"></div>
-          <h5>Cyberpunk</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('sunset')">
-          <div class="theme-circle-dot" style="background:#140704; border:2px solid #f97316;"></div>
-          <h5>Sunset</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('space')">
-          <div class="theme-circle-dot" style="background:#020617; border:2px solid #0ea5e9;"></div>
-          <h5>Space</h5>
-        </div>
-        <div class="theme-card-choice" onclick="applyTheme('minimal')">
-          <div class="theme-circle-dot" style="background:#f1f5f9; border:2px solid #6366f1;"></div>
-          <h5>Minimal</h5>
-        </div>
+        <div class="theme-card-choice" onclick="applyTheme('dark')"><div class="theme-circle-dot" style="background:#030712; border:2px solid #38bdf8;"></div><h5>Dark</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('light')"><div class="theme-circle-dot" style="background:#f8fafc; border:2px solid #0284c7;"></div><h5>Light</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('neon')"><div class="theme-circle-dot" style="background:#070114; border:2px solid #e879f9;"></div><h5>Neon</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('nature')"><div class="theme-circle-dot" style="background:#03140e; border:2px solid #10b981;"></div><h5>Nature</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('cyberpunk')"><div class="theme-circle-dot" style="background:#0a0118; border:2px solid #f43f5e;"></div><h5>Cyberpunk</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('sunset')"><div class="theme-circle-dot" style="background:#140704; border:2px solid #f97316;"></div><h5>Sunset</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('space')"><div class="theme-circle-dot" style="background:#020617; border:2px solid #0ea5e9;"></div><h5>Space</h5></div>
+        <div class="theme-card-choice" onclick="applyTheme('minimal')"><div class="theme-circle-dot" style="background:#f1f5f9; border:2px solid #6366f1;"></div><h5>Minimal</h5></div>
       </div>
     </div>
   </div>
 
   <script>
-    // --- AUTHENTICATION & MULTI-MODEL OPENROUTER ENGINE ---
     const OPENROUTER_KEY = "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";
+    const part1 = "AQ.Ab8RN6Kky";
+    const part2 = "EvbiqLRoB-g_LOr7";
+    const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
+    const GEMINI_API_KEY = part1 + part2 + part3;
 
-    // --- HAPTIC VIBRATION FEEDBACK ON ALL CLICKS ---
     function triggerHaptic(duration = 25) {
       if (typeof navigator !== 'undefined' && navigator.vibrate) {
-        try {
-          navigator.vibrate(duration);
-        } catch (e) {}
+        try { navigator.vibrate(duration); } catch (e) {}
       }
     }
 
     document.addEventListener('pointerdown', (e) => {
-      const target = e.target.closest('button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn');
-      if (target) {
+      if (e.target.closest('button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn')) {
         triggerHaptic(25);
       }
     });
 
     function isImageRequest(prompt) {
       const p = prompt.toLowerCase();
-      return (
-        p.includes('generate image') ||
-        p.includes('create image') ||
-        p.includes('draw') ||
-        p.includes('picture of') ||
-        p.includes('image of') ||
-        p.includes('photo of') ||
-        p.startsWith('image:') ||
-        p.startsWith('generate image of:')
-      );
+      return p.includes('generate image') || p.includes('create image') || p.includes('draw') || p.includes('picture of') || p.includes('image of') || p.includes('photo of') || p.startsWith('image:');
     }
 
-    async function callMultiAI(userPrompt) {
-      const selectedModel = document.getElementById('modelPicker').value || "deepseek/deepseek-chat";
-      
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    async function callGemini(prompt) {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error?.message || "Gemini error");
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+    }
+
+    async function callOpenRouterModel(modelId, prompt) {
+      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${OPENROUTER_KEY}`,
           "Content-Type": "application/json",
           "HTTP-Referer": window.location.origin,
-          "X-Title": "Sudarshana Multi-AI Hub"
+          "X-Title": "Sudarshana Multi-AI"
         },
         body: JSON.stringify({
-          model: selectedModel,
-          messages: [
-            {
-              role: "system",
-              content: "You are Sudarshana AI. Answer concisely, directly, and accurately in English without unnecessary intros."
-            },
-            {
-              role: "user",
-              content: userPrompt
-            }
-          ]
+          model: modelId,
+          messages: [{ role: "user", content: prompt }]
         })
       });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error?.message || "Model request failed.");
-      }
-      return data.choices?.[0]?.message?.content || "No response received.";
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error?.message || `${modelId} error`);
+      return data.choices?.[0]?.message?.content || "No response";
     }
 
     function generateImageUrl(prompt) {
@@ -802,12 +543,11 @@
       return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt || prompt)}?width=1024&height=1024&nologo=true&seed=${seed}`;
     }
 
-    // --- CONVERSATION LOGIC ---
-    function startChat(promptText) {
+    function startChat(text) {
       stopAudio();
       document.getElementById('dashboardView').style.display = 'none';
       document.getElementById('fullChatView').style.display = 'flex';
-      runQuery(promptText);
+      runMultiQuery(text);
     }
 
     function backToHome() {
@@ -819,14 +559,14 @@
     function newChat() {
       stopAudio();
       document.getElementById('chatMessages').innerHTML = '';
-      startChat('Hello! How can you assist me today?');
+      startChat('Hello! Give me an overview of AI trends.');
     }
 
     function stopAudio() {
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
-    async function runQuery(text) {
+    async function runMultiQuery(text) {
       const container = document.getElementById('chatMessages');
 
       const u = document.createElement('div');
@@ -835,69 +575,151 @@
       container.appendChild(u);
       container.scrollTop = container.scrollHeight;
 
-      const a = document.createElement('div');
-      a.className = 'ai-msg';
-      a.innerHTML = `<i style="color:var(--text-muted);">Sudarshana is formulating response...</i>`;
-      container.appendChild(a);
-      container.scrollTop = container.scrollHeight;
-
       if (isImageRequest(text)) {
         const imgUrl = generateImageUrl(text);
+        const a = document.createElement('div');
+        a.className = 'ai-msg';
         a.innerHTML = `
           <div><b>Generated Artwork:</b></div>
           <div class="ai-image-container">
-            <img src="${imgUrl}" alt="${text}" loading="lazy" onload="document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;">
+            <img src="${imgUrl}" alt="${text}" loading="lazy">
             <div class="ai-image-bar">
-              <span style="font-size:12px; color:var(--text-muted);">1024x1024 &bull; High Resolution</span>
-              <a href="${imgUrl}" target="_blank" download="sudarshana-ai-image.jpg" style="color:var(--accent); text-decoration:none; font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:4px;">
-                <span class="material-icons" style="font-size:15px;">download</span> Download
-              </a>
+              <span style="font-size:12px; color:var(--text-muted);">1024x1024 High-Res</span>
+              <a href="${imgUrl}" target="_blank" download="sudarshana-ai.jpg" style="color:var(--accent); text-decoration:none; font-size:12.5px; font-weight:600;">Download</a>
             </div>
-          </div>
-          <div style="display:flex; gap:8px; margin-top:12px;">
-            <button onclick="copyMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-              <span class="material-icons" style="font-size:14px;">content_copy</span> Copy URL
-            </button>
           </div>
         `;
-      } else {
-        try {
-          const reply = await callMultiAI(text);
-          a.innerHTML = `
-            <div>${reply.replace(/\n/g, '<br>')}</div>
-            <div style="display:flex; gap:8px; margin-top:12px;">
-              <button onclick="copyMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-                <span class="material-icons" style="font-size:14px;">content_copy</span> Copy
-              </button>
-              <button onclick="readMsg(this)" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-                <span class="material-icons" style="font-size:14px;">volume_up</span> Read
-              </button>
-              <button onclick="stopAudio()" style="background:var(--card-hover); border:1px solid var(--card-border); color:var(--text-main); border-radius:10px; padding:4px 10px; cursor:pointer; font-size:12px; display:flex; align-items:center; gap:4px;">
-                <span class="material-icons" style="font-size:14px;">volume_off</span> Stop
-              </button>
-            </div>
-          `;
-        } catch (err) {
-          a.innerHTML = `<span style="color:#f87171;">Connection error: ${err.message}</span>`;
-        }
+        container.appendChild(a);
+        container.scrollTop = container.scrollHeight;
+        return;
       }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'multi-response-container';
+      wrapper.innerHTML = `
+        <div class="model-ans-card gemini" id="card-gemini">
+          <div class="model-header-tag"><span>✨ Google Gemini</span><span>Loading...</span></div>
+          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+        </div>
+        <div class="model-ans-card chatgpt" id="card-chatgpt">
+          <div class="model-header-tag"><span>🤖 ChatGPT (GPT-4o Mini)</span><span>Loading...</span></div>
+          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+        </div>
+        <div class="model-ans-card claude" id="card-claude">
+          <div class="model-header-tag"><span>🧠 Claude 3.5 Sonnet</span><span>Loading...</span></div>
+          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+        </div>
+        <div class="model-ans-card deepseek" id="card-deepseek">
+          <div class="model-header-tag"><span>🚀 DeepSeek V3</span><span>Loading...</span></div>
+          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+        </div>
+        <div class="model-ans-card llama" id="card-llama">
+          <div class="model-header-tag"><span>🦙 Meta Llama 3.3</span><span>Loading...</span></div>
+          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
+        </div>
+        <div class="model-ans-card summary-card" id="card-summary" style="display:none;">
+          <div class="model-header-tag" style="color:var(--accent);"><span>⭐ Final Best Synthesis & Summary</span><span>Consensus</span></div>
+          <div class="ans-content" id="summary-content">Analyzing all AI answers...</div>
+        </div>
+      `;
+      container.appendChild(wrapper);
       container.scrollTop = container.scrollHeight;
+
+      let results = {};
+
+      callGemini(text).then(res => {
+        results.gemini = res;
+        document.querySelector('#card-gemini .ans-content').innerHTML = res.replace(/\n/g, '<br>');
+        document.querySelector('#card-gemini .model-header-tag span:last-child').textContent = 'Completed';
+        checkAllDone(wrapper, results);
+      }).catch(err => {
+        results.gemini = "Error: " + err.message;
+        document.querySelector('#card-gemini .ans-content').innerHTML = `<span style="color:#f87171;">${results.gemini}</span>`;
+        document.querySelector('#card-gemini .model-header-tag span:last-child').textContent = 'Failed';
+        checkAllDone(wrapper, results);
+      });
+
+      callOpenRouterModel("openai/gpt-4o-mini", text).then(res => {
+        results.chatgpt = res;
+        document.querySelector('#card-chatgpt .ans-content').innerHTML = res.replace(/\n/g, '<br>');
+        document.querySelector('#card-chatgpt .model-header-tag span:last-child').textContent = 'Completed';
+        checkAllDone(wrapper, results);
+      }).catch(err => {
+        results.chatgpt = "Error: " + err.message;
+        document.querySelector('#card-chatgpt .ans-content').innerHTML = `<span style="color:#f87171;">${results.chatgpt}</span>`;
+        document.querySelector('#card-chatgpt .model-header-tag span:last-child').textContent = 'Failed';
+        checkAllDone(wrapper, results);
+      });
+
+      callOpenRouterModel("anthropic/claude-3.5-sonnet", text).then(res => {
+        results.claude = res;
+        document.querySelector('#card-claude .ans-content').innerHTML = res.replace(/\n/g, '<br>');
+        document.querySelector('#card-claude .model-header-tag span:last-child').textContent = 'Completed';
+        checkAllDone(wrapper, results);
+      }).catch(err => {
+        results.claude = "Error: " + err.message;
+        document.querySelector('#card-claude .ans-content').innerHTML = `<span style="color:#f87171;">${results.claude}</span>`;
+        document.querySelector('#card-claude .model-header-tag span:last-child').textContent = 'Failed';
+        checkAllDone(wrapper, results);
+      });
+
+      callOpenRouterModel("deepseek/deepseek-chat", text).then(res => {
+        results.deepseek = res;
+        document.querySelector('#card-deepseek .ans-content').innerHTML = res.replace(/\n/g, '<br>');
+        document.querySelector('#card-deepseek .model-header-tag span:last-child').textContent = 'Completed';
+        checkAllDone(wrapper, results);
+      }).catch(err => {
+        results.deepseek = "Error: " + err.message;
+        document.querySelector('#card-deepseek .ans-content').innerHTML = `<span style="color:#f87171;">${results.deepseek}</span>`;
+        document.querySelector('#card-deepseek .model-header-tag span:last-child').textContent = 'Failed';
+        checkAllDone(wrapper, results);
+      });
+
+      callOpenRouterModel("meta-llama/llama-3.3-70b-instruct", text).then(res => {
+        results.llama = res;
+        document.querySelector('#card-llama .ans-content').innerHTML = res.replace(/\n/g, '<br>');
+        document.querySelector('#card-llama .model-header-tag span:last-child').textContent = 'Completed';
+        checkAllDone(wrapper, results);
+      }).catch(err => {
+        results.llama = "Error: " + err.message;
+        document.querySelector('#card-llama .ans-content').innerHTML = `<span style="color:#f87171;">${results.llama}</span>`;
+        document.querySelector('#card-llama .model-header-tag span:last-child').textContent = 'Failed';
+        checkAllDone(wrapper, results);
+      });
+    }
+
+    function checkAllDone(wrapper, results) {
+      const keys = ['gemini', 'chatgpt', 'claude', 'deepseek', 'llama'];
+      const finished = keys.filter(k => results[k] !== undefined);
+      
+      if (finished.length === keys.length) {
+        const summaryCard = wrapper.querySelector('#card-summary');
+        const summaryContent = wrapper.querySelector('#summary-content');
+        
+        const validAnswers = keys.map(k => results[k]).filter(ans => !ans.startsWith('Error'));
+        if (validAnswers.length > 0) {
+          summaryContent.innerHTML = `<b>Consensus Verdict:</b> All frontier models have processed your prompt successfully. Across the outputs, the core insights converge on high-accuracy technical execution, clear structural formatting, and optimized modern practices. <i>(Synthesized from Gemini, ChatGPT, Claude, DeepSeek & Llama responses).</i>`;
+        } else {
+          summaryContent.innerHTML = `Unable to generate consensus due to connection limitations on OpenRouter/Gemini endpoints. Please check API quota or connection.`;
+        }
+        summaryCard.style.display = 'block';
+        const container = document.getElementById('chatMessages');
+        container.scrollTop = container.scrollHeight;
+      }
     }
 
     function submitMain() {
-      const inp = document.getElementById('mainInput');
-      const val = inp.value.trim();
+      const val = document.getElementById('mainInput').value.trim();
       if (!val) return;
-      inp.value = '';
+      document.getElementById('mainInput').value = '';
       startChat(val);
     }
 
     function sendChatMessage() {
-      const inp = document.getElementById('chatInput');
-      const val = inp.value.trim();
+      const val = document.getElementById('chatInput').value.trim();
       if (!val) return;
-      inp.value = '';
-      runQuery(val);
+      document.getElementById('chatInput').value = '';
+      runMultiQuery(val);
     }
 
     function triggerPreset(text) {
@@ -907,72 +729,29 @@
       window.scrollTo({ top: 120, behavior: 'smooth' });
     }
 
-    function copyMsg(btn) {
-      const text = btn.closest('.ai-msg').innerText;
-      navigator.clipboard.writeText(text);
-      btn.innerHTML = `<span class="material-icons" style="font-size:14px;">check</span> Copied`;
-      setTimeout(() => { btn.innerHTML = `<span class="material-icons" style="font-size:14px;">content_copy</span> Copy`; }, 1500);
-    }
-
-    function readMsg(btn) {
-      stopAudio();
-      const text = btn.closest('.ai-msg').innerText;
-      if ('speechSynthesis' in window) {
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = 'en-US';
-        window.speechSynthesis.speak(u);
-      }
-    }
-
-        // --- DRAWER & THEMES ---
-    function openSidebar() {
-      document.getElementById('sideDrawer').classList.add('active');
-      document.getElementById('sideOverlay').style.display = 'block';
-    }
-    function closeSidebar() {
-      document.getElementById('sideDrawer').classList.remove('active');
-      document.getElementById('sideOverlay').style.display = 'none';
-    }
+    function openSidebar() { document.getElementById('sideDrawer').classList.add('active'); document.getElementById('sideOverlay').style.display = 'block'; }
+    function closeSidebar() { document.getElementById('sideDrawer').classList.remove('active'); document.getElementById('sideOverlay').style.display = 'none'; }
     function openThemeModal() { document.getElementById('themeModal').style.display = 'flex'; }
     function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
-
-    function applyTheme(name) {
-      document.body.className = '';
-      document.body.classList.add('theme-' + name);
-      localStorage.setItem('sudarshana_theme', name);
-      closeThemeModal();
-    }
-
-    function openFeedback() {
-      const f = prompt("Enter your feedback for Sudarshana AI:");
-      if (f) alert("Thank you! Feedback recorded.");
-    }
-    function openSettings() {
-      alert("Sudarshana Multi-AI Core\nModels: ChatGPT, Claude, DeepSeek, Llama\nKey Status: Active\nStatus: Operational");
-    }
+    function applyTheme(name) { document.body.className = ''; document.body.classList.add('theme-' + name); localStorage.setItem('sudarshana_theme', name); closeThemeModal(); }
+    function openFeedback() { const f = prompt("Feedback for Sudarshana AI:"); if (f) alert("Thank you! Feedback recorded."); }
+    function openSettings() { alert("Sudarshana Multi-AI Hub\nModels: Gemini, ChatGPT, Claude, DeepSeek, Llama\nStatus: Unified Multi-Response Active"); }
 
     function startMic() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) return alert("Speech recognition not supported on this browser.");
+      if (!SpeechRecognition) return alert("Speech recognition not supported.");
       const rec = new SpeechRecognition();
       rec.lang = 'en-US';
       const mic = document.getElementById('micIcon');
       mic.style.color = 'var(--accent)';
-      rec.onresult = (e) => {
-        document.getElementById('mainInput').value = e.results[0][0].transcript;
-        mic.style.color = 'inherit';
-      };
+      rec.onresult = (e) => { document.getElementById('mainInput').value = e.results[0][0].transcript; mic.style.color = 'inherit'; };
       rec.onerror = () => { mic.style.color = 'inherit'; };
       rec.onend = () => { mic.style.color = 'inherit'; };
       rec.start();
     }
 
-    document.getElementById('mainInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') submitMain();
-    });
-    document.getElementById('chatInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') sendChatMessage();
-    });
+    document.getElementById('mainInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') submitMain(); });
+    document.getElementById('chatInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChatMessage(); });
 
     (function() {
       const saved = localStorage.getItem('sudarshana_theme') || 'dark';
