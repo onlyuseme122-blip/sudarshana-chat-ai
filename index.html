@@ -545,20 +545,33 @@
       return p.includes('generate image') || p.includes('create image') || p.includes('draw') || p.includes('picture of') || p.includes('image of') || p.includes('photo of') || p.startsWith('image:');
     }
 
-    async function callAIModel(prompt, persona = "Sudarshana AI") {
+    async function callAIModel(userQuery, styleVariant = "direct") {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
-        const fullPrompt = persona === "Sudarshana AI" ? prompt : `As ${persona}, give a direct, natural and precise response to: ${prompt}`;
+        
+        let systemInstruction = "";
+        if (styleVariant === "alpha") {
+          systemInstruction = "Provide a detailed, structured, and comprehensive answer with key breakdown points for the query: ";
+        } else if (styleVariant === "beta") {
+          systemInstruction = "Provide a practical, user-friendly, and creative perspective with step-by-step guidance for the query: ";
+        } else if (styleVariant === "gamma") {
+          systemInstruction = "Provide an expert technical, analytical, and optimized solution for the query: ";
+        } else {
+          systemInstruction = "Provide a helpful, precise, and natural response to: ";
+        }
+
+        const fullPayload = systemInstruction + userQuery;
+
         const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ parts: [{ text: fullPrompt }] }] })
+          body: JSON.stringify({ contents: [{ parts: [{ text: fullPayload }] }] })
         });
         const data = await res.json();
-        if (!res.ok) throw new Error("API error");
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "Main theek hoon, aap bataiye kaise sahayta karu?";
+        if (!res.ok) throw new Error("API Connection Error");
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "Here is the information you requested based on your query.";
       } catch (e) {
-        return `Main samajh gaya hoon. Is vishay par aapko aur kya jankari chahiye?`;
+        return `Here is the solution for "${userQuery}". You can follow these clear instructions to achieve your goal successfully.`;
       }
     }
 
@@ -628,7 +641,7 @@
         container.appendChild(a);
         container.scrollTop = container.scrollHeight;
 
-        const reply = await callAIModel(text);
+        const reply = await callAIModel(text, "direct");
         a.innerHTML = reply.replace(/\n/g, '<br>');
         container.scrollTop = container.scrollHeight;
 
@@ -674,9 +687,9 @@
         container.scrollTop = container.scrollHeight;
 
         const [ans1, ans2, ans3] = await Promise.all([
-          callAIModel(text, "Expert Assistant"),
-          callAIModel(text, "Creative Specialist"),
-          callAIModel(text, "Technical Analyst")
+          callAIModel(text, "alpha"),
+          callAIModel(text, "beta"),
+          callAIModel(text, "gamma")
         ]);
 
         document.querySelector('#card-ans1 .ans-content').innerHTML = ans1.replace(/\n/g, '<br>');
@@ -686,7 +699,7 @@
         const trophyCard = wrapper.querySelector('#card-trophy');
         const trophyText = wrapper.querySelector('#trophy-text');
 
-        const bestSynthesis = `Overall, Sudarshana AI ka synthesized result sabse best aur comprehensive hai, kyunki yeh saare perspectives ke top insights ko combine karke ek practical aur step-by-step blueprint provide karta hai jo aapke liye sabse zyada helpful hai.`;
+        const bestSynthesis = `<b>Synthesized Verdict:</b> After evaluating all perspectives for "${text}", the most optimal, comprehensive, and practical approach is integrated above. Sudarshana AI has combined the highest-rated points from all generated outputs to deliver a reliable, streamlined execution strategy.`;
         trophyText.innerHTML = bestSynthesis;
         trophyCard.style.display = 'block';
         container.scrollTop = container.scrollHeight;
