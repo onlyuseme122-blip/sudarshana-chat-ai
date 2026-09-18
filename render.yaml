@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: sudarshana-chat-ai
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
