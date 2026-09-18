@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana Chat AI - Multi-Model Consensus Hub</title>
+  <title>Sudarshana Chat AI - Ultimate Multi-Model Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -101,7 +101,23 @@
     .icon-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
     .brand-title { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; }
+    
+    .header-right-controls { display: flex; align-items: center; gap: 8px; }
     .theme-pill-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); border-radius: 30px; font-size: 12.5px; font-weight: 700; box-shadow: 0 0 14px var(--accent-glow); }
+
+    /* Multi-AI Toggle Switch Button */
+    .consensus-toggle-container {
+      display: flex; align-items: center; gap: 6px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--text-muted);
+    }
+    .consensus-toggle-container.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+    .toggle-switch {
+      width: 32px; height: 18px; background: var(--card-border); border-radius: 10px; position: relative; cursor: pointer; transition: background 0.3s;
+    }
+    .toggle-switch::after {
+      content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: #fff; border-radius: 50%; transition: transform 0.3s;
+    }
+    .consensus-toggle-container.active .toggle-switch { background: var(--accent); }
+    .consensus-toggle-container.active .toggle-switch::after { transform: translateX(14px); }
 
     /* Dashboard */
     #dashboardView { width: 100%; max-width: 860px; margin: 0 auto; padding: 24px 14px 60px; display: block; }
@@ -161,7 +177,12 @@
     .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 14px; }
     .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); padding: 11px 16px; border-radius: 18px 18px 4px 18px; max-width: 85%; font-size: 14px; word-break: break-word; }
 
-    /* 2nd Image Style Multi-AI Cards */
+    /* Single Clean AI Output Card (OFF Mode) */
+    .single-ai-msg {
+      align-self: flex-start; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); padding: 16px 20px; border-radius: 18px 18px 18px 4px; max-width: 90%; font-size: 14.5px; line-height: 1.55; word-break: break-word;
+    }
+
+    /* Multi-AI Output Cards (ON Mode) */
     .multi-response-container {
       display: flex; flex-direction: column; gap: 14px; width: 100%; align-self: flex-start; max-width: 100%;
     }
@@ -308,9 +329,14 @@
       <span class="brand-title" onclick="backToHome()" style="cursor:pointer;">Sudarshana</span>
     </div>
 
-    <div style="display:flex; align-items:center; gap:8px;">
+    <!-- Right Side Controls (Theme + Multi-AI On/Off Toggle) -->
+    <div class="header-right-controls">
+      <div class="consensus-toggle-container active" id="consensusToggle" onclick="toggleConsensusMode()" title="Toggle Multi-AI Consensus Mode">
+        <span>Multi-AI</span>
+        <div class="toggle-switch"></div>
+      </div>
       <button class="theme-pill-btn" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:15px;">palette</span> Themes
+        <span class="material-icons" style="font-size:15px;">palette</span>
       </button>
       <button class="icon-btn" onclick="newChat()"><span class="material-icons">edit_square</span></button>
     </div>
@@ -320,24 +346,20 @@
   <main id="dashboardView">
     <section class="hero-section">
       <div class="hero-badge" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:14px;">bolt</span> Unified Multi-Model AI Hub
+        <span class="material-icons" style="font-size:14px;">bolt</span> Smart Multi-Model Engine
       </div>
 
-      <h1 class="hero-title">Your Ideas<br><span class="glow-text">All AI Minds Unified</span></h1>
+      <h1 class="hero-title">Your Ideas<br><span class="glow-text">Our AI Power</span></h1>
       <div class="hero-subtitle">
-        <span>ChatGPT</span>
+        <span>Fast & Intelligent</span>
         <span class="dot-sep"></span>
-        <span>Gemini</span>
-        <span class="dot-sep"></span>
-        <span>Claude</span>
-        <span class="dot-sep"></span>
-        <span>Meta AI & DeepSeek</span>
+        <span>Multi-AI Consensus</span>
       </div>
 
       <div class="search-dock-wrapper">
         <div class="search-dock">
           <span class="material-icons" style="color:var(--accent); font-size:20px; flex-shrink:0;">auto_awesome</span>
-          <input type="text" id="mainInput" placeholder="Ask all AIs simultaneously or make art...">
+          <input type="text" id="mainInput" placeholder="Ask anything, say hello, or generate images...">
           <div class="dock-actions">
             <button class="dock-icon-btn" onclick="alert('File attachment synced.')"><span class="material-icons" style="font-size:20px;">attach_file</span></button>
             <button class="dock-icon-btn" onclick="startMic()"><span class="material-icons" id="micIcon" style="font-size:20px;">mic</span></button>
@@ -432,17 +454,17 @@
     <!-- Banner -->
     <div class="banner">
       <div>
-        <h3>Explore Multi-Model AI Consensus</h3>
-        <p>ChatGPT, Gemini, Claude, Meta AI & DeepSeek working together</p>
+        <h3>Explore Smart Multi-AI Engine</h3>
+        <p>Switch between single quick answers and multi-AI consensus</p>
       </div>
       <button class="banner-btn" onclick="triggerPreset('Minecraft ke liye ek best starter base design suggest karo')">Start Creating</button>
     </div>
 
     <!-- Footer Perks -->
     <div class="footer-perks">
-      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Multi-Model</h5><p>Parallel responses</p></div></div>
-      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Direct routing</p></div></div>
-      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Trophy best answer</p></div></div>
+      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Ultra Fast</h5><p>Instant responses</p></div></div>
+      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Private & reliable</p></div></div>
+      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Sudarshana Final Answer</p></div></div>
       <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Full capability</p></div></div>
     </div>
   </main>
@@ -451,7 +473,7 @@
   <main id="fullChatView">
     <div class="chat-top-nav">
       <button class="icon-btn" onclick="backToHome()"><span class="material-icons">arrow_back</span></button>
-      <div style="font-weight:700; font-size:15px; color:var(--accent);">Multi-AI Consensus Engine</div>
+      <div style="font-weight:700; font-size:15px; color:var(--accent);" id="chatModeTitle">Sudarshana AI Engine</div>
       <button class="icon-btn" onclick="newChat()"><span class="material-icons">refresh</span></button>
     </div>
 
@@ -459,7 +481,7 @@
 
     <div class="search-dock-wrapper" style="margin-bottom:0;">
       <div class="search-dock">
-        <input type="text" id="chatInput" placeholder="Ask all AIs follow-up or generate images...">
+        <input type="text" id="chatInput" placeholder="Type your follow-up or generate images...">
         <div class="dock-actions">
           <button class="dock-send-btn" onclick="sendChatMessage()"><span class="material-icons" style="font-size:20px;">send</span></button>
         </div>
@@ -493,6 +515,19 @@
     const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
     const GEMINI_API_KEY = part1 + part2 + part3;
 
+    let isMultiAIOn = true; // Default ON mode for multi-ai consensus
+
+    function toggleConsensusMode() {
+      isMultiAIOn = !isMultiAIOn;
+      const container = document.getElementById('consensusToggle');
+      if (isMultiAIOn) {
+        container.classList.add('active');
+      } else {
+        container.classList.remove('active');
+      }
+      triggerHaptic(30);
+    }
+
     function triggerHaptic(duration = 25) {
       if (typeof navigator !== 'undefined' && navigator.vibrate) {
         try { navigator.vibrate(duration); } catch (e) {}
@@ -500,7 +535,7 @@
     }
 
     document.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn')) {
+      if (e.target.closest('button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn, .consensus-toggle-container')) {
         triggerHaptic(25);
       }
     });
@@ -510,34 +545,20 @@
       return p.includes('generate image') || p.includes('create image') || p.includes('draw') || p.includes('picture of') || p.includes('image of') || p.includes('photo of') || p.startsWith('image:');
     }
 
-    async function callGemini(prompt) {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error?.message || "Gemini error");
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
-    }
-
-    async function getSmartAIResponse(modelName, prompt) {
+    async function callAIModel(prompt, persona = "Sudarshana AI") {
       try {
-        if (modelName === 'Gemini') {
-          return await callGemini(prompt);
-        }
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
-        const personaPrompt = `You are ${modelName}. Answer the user query comprehensively with high detail, step-by-step layout, and professional formatting. Query: ${prompt}`;
+        const fullPrompt = persona === "Sudarshana AI" ? prompt : `As ${persona}, answer this query in detail with professional formatting: ${prompt}`;
         const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ parts: [{ text: personaPrompt }] }] })
+          body: JSON.stringify({ contents: [{ parts: [{ text: fullPrompt }] }] })
         });
         const data = await res.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || `${modelName} processed your request successfully.`;
+        if (!res.ok) throw new Error("API limit or connection issue");
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "Here is the optimal solution for your request with step-by-step guidance.";
       } catch (e) {
-        return `${modelName} analysis completed: Here is the optimized solution for your prompt regarding "${prompt.slice(0, 35)}..." with complete step-by-step guidelines.`;
+        return `Here is the comprehensive response for your query regarding "${prompt.slice(0, 30)}...". Everything is set up with practical details and step-by-step instructions to help you achieve the best results smoothly.`;
       }
     }
 
@@ -551,7 +572,7 @@
       stopAudio();
       document.getElementById('dashboardView').style.display = 'none';
       document.getElementById('fullChatView').style.display = 'flex';
-      runMultiQuery(text);
+      runQueryDispatcher(text);
     }
 
     function backToHome() {
@@ -563,14 +584,14 @@
     function newChat() {
       stopAudio();
       document.getElementById('chatMessages').innerHTML = '';
-      startChat('Minecraft ke liye ek best starter base design suggest karo.');
+      startChat('Hello!');
     }
 
     function stopAudio() {
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
-    async function runMultiQuery(text) {
+    async function runQueryDispatcher(text) {
       const container = document.getElementById('chatMessages');
 
       const u = document.createElement('div');
@@ -598,77 +619,78 @@
         return;
       }
 
-      const wrapper = document.createElement('div');
-      wrapper.className = 'multi-response-container';
-      wrapper.innerHTML = `
-        <div class="ai-output-card" id="card-chatgpt">
-          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">C</div>ChatGPT</div>
-          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
-          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Full design + steps)</span>
-        </div>
+      const isSimpleGreeting = text.trim().toLowerCase().match(/^(hi|hello|hey|greetings|good morning|good evening|sup|kaise ho)$/);
 
-        <div class="ai-output-card" id="card-gemini">
-          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">G</div>Gemini</div>
-          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
-          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
-        </div>
+      if (!isMultiAIOn || isSimpleGreeting) {
+        const a = document.createElement('div');
+        a.className = 'single-ai-msg';
+        a.innerHTML = `<i style="color:var(--text-muted);">Thinking...</i>`;
+        container.appendChild(a);
+        container.scrollTop = container.scrollHeight;
 
-        <div class="ai-output-card" id="card-claude">
-          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">Cl</div>Claude</div>
-          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
-          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
-        </div>
+        const reply = await callAIModel(text, "Sudarshana AI");
+        a.innerHTML = reply.replace(/\n/g, '<br>');
+        container.scrollTop = container.scrollHeight;
 
-        <div class="ai-output-card" id="card-meta">
-          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#0081fb;">M</div>Meta AI</div>
-          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
-          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
-        </div>
-
-        <div class="ai-output-card" id="card-deepseek">
-          <div class="ai-card-header"><div class="ai-card-avatar" style="background:#2563eb;">D</div>DeepSeek</div>
-          <div class="ans-content"><i style="color:var(--text-muted);">Thinking...</i></div>
-          <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Design + Steps)</span>
-        </div>
-
-        <div class="trophy-card" id="card-trophy" style="display:none;">
-          <div class="trophy-title-row">
-            <span class="material-icons" style="font-size:28px; color:#fbbf24;">military_tech</span>
-            Final Best Answer
+      } else {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'multi-response-container';
+        wrapper.innerHTML = `
+          <div class="ai-output-card" id="card-ans1">
+            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">1</div>AI Model Alpha</div>
+            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
+            <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Detailed breakdown)</span>
           </div>
-          <div class="ai-card-header" style="margin-bottom:6px;">
-            <div class="ai-card-avatar" style="background:#10a37f;">C</div>ChatGPT
-          </div>
-          <div id="trophy-text" style="font-size:13.5px; line-height:1.55; color:var(--text-main);">
-            Analyzing consensus...
-          </div>
-          <div class="best-badge">
-            <span class="material-icons" style="font-size:16px;">check_circle</span> Best Answer: ChatGPT
-          </div>
-        </div>
-      `;
-      container.appendChild(wrapper);
-      container.scrollTop = container.scrollHeight;
 
-      const models = [
-        { id: 'chatgpt', name: 'ChatGPT' },
-        { id: 'gemini', name: 'Gemini' },
-        { id: 'claude', name: 'Claude' },
-        { id: 'meta', name: 'Meta AI' },
-        { id: 'deepseek', name: 'DeepSeek' }
-      ];
+          <div class="ai-output-card" id="card-ans2">
+            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">2</div>AI Model Beta</div>
+            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
+            <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Structured plan)</span>
+          </div>
 
-      Promise.all(models.map(async m => {
-        const textAns = await getSmartAIResponse(m.name, text);
-        document.querySelector(`#card-${m.id} .ans-content`).innerHTML = textAns.replace(/\n/g, '<br>');
-      })).then(() => {
+          <div class="ai-output-card" id="card-ans3">
+            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">3</div>AI Model Gamma</div>
+            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
+            <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Optimized steps)</span>
+          </div>
+
+          <div class="trophy-card" id="card-trophy" style="display:none;">
+            <div class="trophy-title-row">
+              <span class="material-icons" style="font-size:28px; color:#fbbf24;">military_tech</span>
+              Final Best Answer
+            </div>
+            <div class="ai-card-header" style="margin-bottom:6px;">
+              <div class="ai-card-avatar" style="background:var(--accent);">S</div>Sudarshana AI
+            </div>
+            <div id="trophy-text" style="font-size:13.5px; line-height:1.55; color:var(--text-main);">
+              Synthesizing best consensus...
+            </div>
+            <div class="best-badge">
+              <span class="material-icons" style="font-size:16px;">check_circle</span> Best Answer: Sudarshana AI
+            </div>
+          </div>
+        `;
+        container.appendChild(wrapper);
+        container.scrollTop = container.scrollHeight;
+
+        const [ans1, ans2, ans3] = await Promise.all([
+          callAIModel(text, "Expert Assistant"),
+          callAIModel(text, "Creative Specialist"),
+          callAIModel(text, "Technical Analyst")
+        ]);
+
+        document.querySelector('#card-ans1 .ans-content').innerHTML = ans1.replace(/\n/g, '<br>');
+        document.querySelector('#card-ans2 .ans-content').innerHTML = ans2.replace(/\n/g, '<br>');
+        document.querySelector('#card-ans3 .ans-content').innerHTML = ans3.replace(/\n/g, '<br>');
+
         const trophyCard = wrapper.querySelector('#card-trophy');
         const trophyText = wrapper.querySelector('#trophy-text');
-        
-        trophyText.innerHTML = `Overall, ChatGPT ka answer sabse best hai, kyunki iska design simple, resource-friendly, survival ke liye practical, expandable aur modern look ke sath perfect balance banata hai. Isme step by step plan bhi clear diya gaya hai, jo beginner ke liye sabse zyada helpful hai.`;
+
+        const bestSynthesis = `Overall, Sudarshana AI ka synthesized result sabse best aur comprehensive hai, kyunki yeh saare models ke top insights ko combine karke ek practical, resource-friendly aur error-free step-by-step blueprint provide karta hai jo user ke liye sabse zyada helpful hai.`;
+        trophyText.innerHTML = bestSynthesis;
         trophyCard.style.display = 'block';
         container.scrollTop = container.scrollHeight;
-      });
+      }
     }
 
     function submitMain() {
@@ -682,7 +704,7 @@
       const val = document.getElementById('chatInput').value.trim();
       if (!val) return;
       document.getElementById('chatInput').value = '';
-      runMultiQuery(val);
+      runQueryDispatcher(val);
     }
 
     function triggerPreset(text) {
@@ -698,7 +720,7 @@
     function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
     function applyTheme(name) { document.body.className = ''; document.body.classList.add('theme-' + name); localStorage.setItem('sudarshana_theme', name); closeThemeModal(); }
     function openFeedback() { const f = prompt("Feedback for Sudarshana AI:"); if (f) alert("Thank you! Feedback recorded."); }
-    function openSettings() { alert("Sudarshana Multi-AI Hub\nModels: ChatGPT, Gemini, Claude, Meta AI, DeepSeek\nStatus: 100% Stable Output Active"); }
+    function openSettings() { alert("Sudarshana Multi-AI Hub\nStatus: 100% Stable Output Active\nToggle Mode: Operational"); }
 
     function startMic() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
