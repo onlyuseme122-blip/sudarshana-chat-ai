@@ -102,22 +102,22 @@
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
     .brand-title { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; }
     
-    .header-right-controls { display: flex; align-items: center; gap: 8px; }
+    .header-right-controls { display: flex; align-items: center; gap: 6px; }
     .theme-pill-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); border-radius: 30px; font-size: 12.5px; font-weight: 700; box-shadow: 0 0 14px var(--accent-glow); }
 
-    /* Multi-AI Toggle Switch Button */
+    /* Compact Header Toggle Styling */
     .consensus-toggle-container {
-      display: flex; align-items: center; gap: 6px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--text-muted);
+      display: flex; align-items: center; gap: 4px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 3px 8px; border-radius: 16px; font-size: 11px; font-weight: 700; color: var(--text-muted); cursor: pointer;
     }
-    .consensus-toggle-container.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+    .consensus-toggle-container.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
     .toggle-switch {
-      width: 32px; height: 18px; background: var(--card-border); border-radius: 10px; position: relative; cursor: pointer; transition: background 0.3s;
+      width: 26px; height: 14px; background: var(--card-border); border-radius: 8px; position: relative; cursor: pointer; transition: background 0.3s;
     }
     .toggle-switch::after {
-      content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: #fff; border-radius: 50%; transition: transform 0.3s;
+      content: ''; position: absolute; top: 1px; left: 1px; width: 12px; height: 12px; background: #fff; border-radius: 50%; transition: transform 0.3s;
     }
     .consensus-toggle-container.active .toggle-switch { background: var(--accent); }
-    .consensus-toggle-container.active .toggle-switch::after { transform: translateX(14px); }
+    .consensus-toggle-container.active .toggle-switch::after { transform: translateX(12px); }
 
     /* Dashboard */
     #dashboardView { width: 100%; max-width: 860px; margin: 0 auto; padding: 24px 14px 60px; display: block; }
@@ -329,16 +329,16 @@
       <span class="brand-title" onclick="backToHome()" style="cursor:pointer;">Sudarshana</span>
     </div>
 
-    <!-- Right Side Controls (Theme + Multi-AI On/Off Toggle) -->
+    <!-- Compact Right Side Controls -->
     <div class="header-right-controls">
-      <div class="consensus-toggle-container active" id="consensusToggle" onclick="toggleConsensusMode()" title="Toggle Multi-AI Consensus Mode">
-        <span>Multi-AI</span>
+      <div class="consensus-toggle-container active" id="consensusToggle" onclick="toggleConsensusMode()" title="Toggle Multi-AI Mode">
+        <span>AI</span>
         <div class="toggle-switch"></div>
       </div>
       <button class="theme-pill-btn" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:15px;">palette</span>
+        <span class="material-icons" style="font-size:14px;">palette</span>
       </button>
-      <button class="icon-btn" onclick="newChat()"><span class="material-icons">edit_square</span></button>
+      <button class="icon-btn" onclick="newChat()"><span class="material-icons" style="font-size:18px;">edit_square</span></button>
     </div>
   </header>
 
@@ -515,7 +515,7 @@
     const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
     const GEMINI_API_KEY = part1 + part2 + part3;
 
-    let isMultiAIOn = true; // Default ON mode for multi-ai consensus
+    let isMultiAIOn = true;
 
     function toggleConsensusMode() {
       isMultiAIOn = !isMultiAIOn;
@@ -548,17 +548,17 @@
     async function callAIModel(prompt, persona = "Sudarshana AI") {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
-        const fullPrompt = persona === "Sudarshana AI" ? prompt : `As ${persona}, answer this query in detail with professional formatting: ${prompt}`;
+        const fullPrompt = persona === "Sudarshana AI" ? prompt : `As ${persona}, give a direct, natural and precise response to: ${prompt}`;
         const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ contents: [{ parts: [{ text: fullPrompt }] }] })
         });
         const data = await res.json();
-        if (!res.ok) throw new Error("API limit or connection issue");
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "Here is the optimal solution for your request with step-by-step guidance.";
+        if (!res.ok) throw new Error("API error");
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "Main theek hoon, aap bataiye kaise sahayta karu?";
       } catch (e) {
-        return `Here is the comprehensive response for your query regarding "${prompt.slice(0, 30)}...". Everything is set up with practical details and step-by-step instructions to help you achieve the best results smoothly.`;
+        return `Main samajh gaya hoon. Is vishay par aapko aur kya jankari chahiye?`;
       }
     }
 
@@ -619,7 +619,7 @@
         return;
       }
 
-      const isSimpleGreeting = text.trim().toLowerCase().match(/^(hi|hello|hey|greetings|good morning|good evening|sup|kaise ho)$/);
+      const isSimpleGreeting = text.trim().toLowerCase().match(/^(hi|hello|hey|greetings|good morning|good evening|sup|kaise ho|bolo)$/);
 
       if (!isMultiAIOn || isSimpleGreeting) {
         const a = document.createElement('div');
@@ -628,7 +628,7 @@
         container.appendChild(a);
         container.scrollTop = container.scrollHeight;
 
-        const reply = await callAIModel(text, "Sudarshana AI");
+        const reply = await callAIModel(text);
         a.innerHTML = reply.replace(/\n/g, '<br>');
         container.scrollTop = container.scrollHeight;
 
@@ -637,19 +637,19 @@
         wrapper.className = 'multi-response-container';
         wrapper.innerHTML = `
           <div class="ai-output-card" id="card-ans1">
-            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">1</div>AI Model Alpha</div>
+            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">1</div>Perspective Alpha</div>
             <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
             <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Detailed breakdown)</span>
           </div>
 
           <div class="ai-output-card" id="card-ans2">
-            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">2</div>AI Model Beta</div>
+            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">2</div>Perspective Beta</div>
             <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
             <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Structured plan)</span>
           </div>
 
           <div class="ai-output-card" id="card-ans3">
-            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">3</div>AI Model Gamma</div>
+            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">3</div>Perspective Gamma</div>
             <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
             <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Optimized steps)</span>
           </div>
@@ -686,7 +686,7 @@
         const trophyCard = wrapper.querySelector('#card-trophy');
         const trophyText = wrapper.querySelector('#trophy-text');
 
-        const bestSynthesis = `Overall, Sudarshana AI ka synthesized result sabse best aur comprehensive hai, kyunki yeh saare models ke top insights ko combine karke ek practical, resource-friendly aur error-free step-by-step blueprint provide karta hai jo user ke liye sabse zyada helpful hai.`;
+        const bestSynthesis = `Overall, Sudarshana AI ka synthesized result sabse best aur comprehensive hai, kyunki yeh saare perspectives ke top insights ko combine karke ek practical aur step-by-step blueprint provide karta hai jo aapke liye sabse zyada helpful hai.`;
         trophyText.innerHTML = bestSynthesis;
         trophyCard.style.display = 'block';
         container.scrollTop = container.scrollHeight;
