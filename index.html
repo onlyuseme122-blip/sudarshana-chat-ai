@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana Chat AI - Ultimate Multi-Model Hub</title>
+  <title>Sudarshana AI - Super Intelligence Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2303140e' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%2310b981'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,39 +14,34 @@
     *, *::before, *::after {
       box-sizing: border-box; margin: 0; padding: 0;
       -webkit-tap-highlight-color: transparent;
-      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
     :root {
-      --bg-base: #030712;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #0e1c3b 0%, #030712 70%);
-      --sidebar-bg: #070c18;
-      --sidebar-border: #131f37;
-      --card-bg: #091122;
-      --card-border: #172442;
-      --card-hover: #0f1d38;
-      --dock-bg: rgba(9, 17, 34, 0.94);
-      --dock-border: #1e3a8a;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-secondary: #818cf8;
-      --accent-glow: rgba(56, 189, 248, 0.35);
+      --bg-base: #03140e;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #03140e 70%);
+      --sidebar-bg: #041a12;
+      --sidebar-border: #0d3828;
+      --card-bg: #072419;
+      --card-border: #114a34;
+      --card-hover: #0c3324;
+      --dock-bg: rgba(7, 36, 25, 0.95);
+      --dock-border: #065f46;
+      --text-main: #ecfdf5;
+      --text-muted: #6ee7b7;
+      --accent: #10b981;
+      --accent-secondary: #059669;
+      --accent-glow: rgba(16, 185, 129, 0.3);
       --chakra-gold: #f59e0b;
-      --chakra-blue: #0284c7;
     }
 
     body.theme-light {
       --bg-base: #f8fafc; --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-      --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #0284c7; --accent-secondary: #0369a1; --accent-glow: rgba(2, 132, 199, 0.2);
+      --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #059669; --accent-secondary: #047857; --accent-glow: rgba(5, 150, 105, 0.2);
     }
     body.theme-neon {
       --bg-base: #070114; --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
       --sidebar-bg: #0d0221; --sidebar-border: #260f54; --card-bg: #14042e; --card-border: #3b127f; --card-hover: #22084d; --dock-bg: rgba(20, 4, 46, 0.94); --dock-border: #701a75; --text-main: #fdf4ff; --text-muted: #c084fc; --accent: #e879f9; --accent-secondary: #a855f7; --accent-glow: rgba(232, 121, 249, 0.4);
-    }
-    body.theme-nature {
-      --bg-base: #03140e; --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
-      --sidebar-bg: #041a12; --sidebar-border: #0d3828; --card-bg: #072419; --card-border: #114a34; --card-hover: #0c3324; --dock-bg: rgba(7, 36, 25, 0.94); --dock-border: #065f46; --text-main: #ecfdf5; --text-muted: #6ee7b7; --accent: #10b981; --accent-secondary: #059669; --accent-glow: rgba(16, 185, 129, 0.35);
     }
     body.theme-cyberpunk {
       --bg-base: #0a0118; --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
@@ -60,447 +55,220 @@
       --bg-base: #020617; --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
       --sidebar-bg: #040920; --sidebar-border: #0f1c4d; --card-bg: #071033; --card-border: #142466; --card-hover: #0c1c54; --dock-bg: rgba(7, 16, 51, 0.94); --dock-border: #0369a1; --text-main: #f0fdf4; --text-muted: #7dd3fc; --accent: #0ea5e9; --accent-secondary: #38bdf8; --accent-glow: rgba(14, 165, 233, 0.4);
     }
-    body.theme-minimal {
-      --bg-base: #f1f5f9; --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
-      --sidebar-bg: #ffffff; --sidebar-border: #cbd5e1; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f8fafc; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #94a3b8; --text-main: #1e293b; --text-muted: #64748b; --accent: #6366f1; --accent-secondary: #4f46e5; --accent-glow: rgba(99, 102, 241, 0.25);
-    }
 
     html, body {
-      width: 100%; min-height: 100%;
+      width: 100%; height: 100%;
       background-color: var(--bg-base); background-image: var(--bg-gradient); background-attachment: fixed;
       color: var(--text-main); font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      overflow-x: hidden; line-height: 1.5;
+      overflow: hidden; line-height: 1.5;
     }
 
-    button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn {
-      cursor: pointer; user-select: none; -webkit-user-select: none; transform: translateZ(0);
-    }
-    button:active, .chip:active, .quick-box:active, .tool-box:active, .recent-item:active, .theme-card-choice:active, .banner-btn:active {
-      transform: scale(0.96) !important; filter: brightness(1.15); transition: transform 0.08s ease, filter 0.08s ease !important;
-    }
+    button, .chip, .suggestion-chip, .history-item { cursor: pointer; user-select: none; }
+    button:active, .chip:active, .suggestion-chip:active { transform: scale(0.97); }
 
-    /* Intro Splash */
+    /* Premium Entrance Animation Overlay */
     #introLoader {
-      position: fixed; inset: 0; background: var(--bg-base); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
+      position: fixed; inset: 0; background: var(--bg-base); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease;
     }
     #introLoader.hide { opacity: 0; visibility: hidden; }
-    .intro-chakra { width: 90px; height: 90px; animation: introSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite, introPulse 1.5s ease-in-out infinite alternate; }
-    @keyframes introSpin { 0% { transform: rotate(0deg) scale(0.9); } 50% { transform: rotate(180deg) scale(1.1); } 100% { transform: rotate(360deg) scale(0.9); } }
-    @keyframes introPulse { from { filter: drop-shadow(0 0 10px var(--accent)); } to { filter: drop-shadow(0 0 30px var(--chakra-gold)); } }
-    .intro-text { margin-top: 18px; font-size: 16px; font-weight: 800; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+    .intro-chakra-container { width: 100px; height: 100px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .intro-chakra { width: 100px; height: 100px; animation: chakraSpin 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+    @keyframes chakraSpin { 0% { transform: rotate(0deg) scale(0.85); filter: drop-shadow(0 0 5px var(--accent)); } 50% { transform: rotate(180deg) scale(1.1); filter: drop-shadow(0 0 20px var(--chakra-gold)); } 100% { transform: rotate(360deg) scale(0.85); filter: drop-shadow(0 0 5px var(--accent)); } }
+    .intro-title { margin-top: 16px; font-size: 15px; font-weight: 700; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }
 
-    .sudarshana-chakra {
-      width: 34px; height: 34px; animation: spinChakra 11s linear infinite; cursor: pointer; display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+    /* App Layout */
+    .app-container { display: flex; width: 100vw; height: 100vh; height: 100dvh; position: relative; overflow: hidden; }
+
+    /* Sidebar Drawer */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 998; }
+    .sidebar-overlay.active { display: block; }
+    .sidebar {
+      position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: var(--sidebar-bg); border-right: 1px solid var(--sidebar-border); z-index: 999; transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column;
     }
-    @keyframes spinChakra { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .sidebar.active { left: 0; }
+    .sidebar-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--sidebar-border); }
+    .sidebar-new-chat { margin: 12px 16px; padding: 10px 16px; background: var(--accent); color: #03140e; border: none; border-radius: 12px; font-weight: 700; font-size: 13.5px; display: flex; align-items: center; gap: 8px; justify-content: center; box-shadow: 0 4px 12px var(--accent-glow); }
+    .sidebar-history { flex: 1; overflow-y: auto; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .history-group-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; padding: 10px 8px 4px; letter-spacing: 0.5px; }
+    .history-item { padding: 10px 12px; border-radius: 10px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 10px; text-decoration: none; background: transparent; border: none; width: 100%; text-align: left; }
+    .history-item:hover { background: var(--card-hover); color: var(--accent); }
+    .sidebar-footer { padding: 14px 16px; border-top: 1px solid var(--sidebar-border); display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-footer-btn { display: flex; align-items: center; gap: 10px; background: none; border: none; color: var(--text-muted); font-size: 13.5px; padding: 8px 10px; border-radius: 8px; width: 100%; text-align: left; }
+    .sidebar-footer-btn:hover { background: var(--card-hover); color: var(--text-main); }
 
-    .app-header {
-      position: sticky; top: 0; background: var(--bg-base); border-bottom: 1px solid var(--sidebar-border); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 100; backdrop-filter: blur(12px);
+    /* Main Chat Area */
+    .main-chat-area { flex: 1; display: flex; flex-direction: column; height: 100%; position: relative; min-width: 0; background: var(--bg-base); }
+    
+    /* Header */
+    .chat-header {
+      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-base); border-bottom: 1px solid var(--sidebar-border); z-index: 10;
     }
     .header-left { display: flex; align-items: center; gap: 10px; }
     .icon-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .brand-title { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; }
+    .brand-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+
+    /* Chat Body / Home Screen */
+    .chat-body { flex: 1; overflow-y: auto; display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
     
-    .header-right-controls { display: flex; align-items: center; gap: 6px; }
-    .theme-pill-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); border-radius: 30px; font-size: 12.5px; font-weight: 700; box-shadow: 0 0 14px var(--accent-glow); }
-
-    /* Compact Header Toggle Styling */
-    .consensus-toggle-container {
-      display: flex; align-items: center; gap: 4px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 3px 8px; border-radius: 16px; font-size: 11px; font-weight: 700; color: var(--text-muted); cursor: pointer;
+    /* Empty State / Home */
+    .home-hero {
+      margin: auto; padding: 24px 16px; max-width: 680px; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center;
     }
-    .consensus-toggle-container.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
-    .toggle-switch {
-      width: 26px; height: 14px; background: var(--card-border); border-radius: 8px; position: relative; cursor: pointer; transition: background 0.3s;
+    .home-chakra-icon { width: 56px; height: 56px; margin-bottom: 16px; animation: chakraSpin 8s linear infinite; filter: drop-shadow(0 0 10px var(--accent-glow)); }
+    .home-title { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
+    .home-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+    .suggestion-chips-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 600px; }
+    .suggestion-chip {
+      background: var(--card-bg); border: 1px solid var(--card-border); padding: 10px 16px; border-radius: 20px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-weight: 500; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .toggle-switch::after {
-      content: ''; position: absolute; top: 1px; left: 1px; width: 12px; height: 12px; background: #fff; border-radius: 50%; transition: transform 0.3s;
+    .suggestion-chip:hover { border-color: var(--accent); background: var(--card-hover); color: var(--accent); }
+    .suggestion-chip .material-icons { font-size: 16px; color: var(--accent); }
+
+    /* Active Messages List */
+    .messages-list { display: none; flex-direction: column; gap: 20px; padding: 20px 16px; max-width: 800px; width: 100%; margin: 0 auto; }
+    .message-row { display: flex; flex-direction: column; width: 100%; gap: 6px; }
+    .message-row.user { align-items: flex-end; }
+    .message-row.assistant { align-items: flex-start; }
+    
+    .message-bubble {
+      max-width: 88%; padding: 14px 18px; border-radius: 18px; font-size: 14.5px; line-height: 1.6; word-break: break-word; position: relative;
     }
-    .consensus-toggle-container.active .toggle-switch { background: var(--accent); }
-    .consensus-toggle-container.active .toggle-switch::after { transform: translateX(12px); }
-
-    /* Dashboard */
-    #dashboardView { width: 100%; max-width: 860px; margin: 0 auto; padding: 24px 14px 60px; display: block; }
-    .hero-section { text-align: center; margin-bottom: 24px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 30px; font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 14px; }
-    .hero-title { font-size: 36px; font-weight: 800; line-height: 1.18; letter-spacing: -1px; margin-bottom: 8px; }
-    .glow-text { color: var(--accent); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-subtitle { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13.5px; color: var(--text-muted); margin-bottom: 22px; }
-    .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
-
-    .search-dock-wrapper { width: 100%; margin-bottom: 18px; }
-    .search-dock {
-      width: 100%; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 32px; padding: 6px 8px 6px 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+    .message-row.user .message-bubble {
+      background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); border-bottom-right-radius: 4px;
     }
-    .search-dock input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 15px; }
-    .dock-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-    .dock-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; }
-    .dock-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px var(--accent-glow); cursor: pointer; }
-
-    /* Attachment Preview Bar */
-    #attachmentPreview {
-      display: none; align-items: center; gap: 10px; padding: 8px 14px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 12px; margin-bottom: 10px; font-size: 13px;
+    .message-row.assistant .message-bubble {
+      background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); border-bottom-left-radius: 4px; width: 100%; max-width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
-    #attachmentPreview img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
+    
+    /* Message Actions Footer */
+    .message-actions { display: flex; align-items: center; gap: 6px; padding: 2px 4px; font-size: 12px; color: var(--text-muted); }
+    .msg-action-btn { background: none; border: none; color: var(--text-muted); display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; font-size: 12px; }
+    .msg-action-btn:hover { background: var(--card-hover); color: var(--accent); }
+    .msg-action-btn .material-icons { font-size: 14px; }
 
-    .chips-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
-    .chip { background: var(--card-bg); border: 1px solid var(--card-border); padding: 7px 14px; border-radius: 24px; font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; font-weight: 500; }
-    .chip:hover { border-color: var(--accent); color: var(--text-main); }
-    .chip .material-icons { font-size: 16px; color: var(--accent); }
-
-    .sec-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-    .sec-title { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-
-    .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 36px; }
-    .quick-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 18px 12px; text-align: center; }
-    .quick-box:hover { border-color: var(--accent); }
-    .quick-icon-box { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; background: var(--card-hover); color: var(--accent); }
-    .quick-box h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
-    .quick-box p { font-size: 11px; color: var(--text-muted); }
-
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 36px; }
-    .tool-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
-    .tool-box:hover { border-color: var(--accent); background: var(--card-hover); }
-    .tool-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--card-hover); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-    .recent-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
-    .recent-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
-    .recent-item:hover { border-color: var(--accent); background: var(--card-hover); }
-
-    .banner { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 20px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 34px; }
-    .banner-btn { background: var(--accent); color: #fff; border: none; padding: 9px 20px; border-radius: 24px; font-weight: 700; font-size: 13px; }
-    .footer-perks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; padding-top: 24px; border-top: 1px solid var(--card-border); }
-    .perk-box { display: flex; align-items: center; gap: 10px; }
-    .perk-box .material-icons { font-size: 24px; color: var(--accent); }
-
-    /* Full Chat Screen */
-    #fullChatView {
-      display: none; flex-direction: column; height: calc(100vh - 64px); width: 100%; max-width: 860px; margin: 0 auto; padding: 12px 14px;
+    /* Thinking State */
+    .thinking-indicator {
+      display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 14px; font-style: italic; padding: 8px 0;
     }
-    .chat-top-nav {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--card-border); gap: 8px;
+    .thinking-dots span {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; animation: bounce 1.4s infinite ease-in-out both;
     }
-    .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 14px; }
-    .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); padding: 11px 16px; border-radius: 18px 18px 4px 18px; max-width: 85%; font-size: 14px; word-break: break-word; }
+    .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
-    .single-ai-msg {
-      align-self: flex-start; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); padding: 16px 20px; border-radius: 18px 18px 18px 4px; max-width: 90%; font-size: 14.5px; line-height: 1.55; word-break: break-word;
+    /* Composer / Command Center */
+    .composer-wrapper { padding: 12px 16px 16px; background: var(--bg-base); border-top: 1px solid var(--sidebar-border); display: flex; flex-direction: column; gap: 8px; max-width: 820px; width: 100%; margin: 0 auto; position: sticky; bottom: 0; z-index: 100; }
+    
+    .attachment-preview-bar {
+      display: none; align-items: center; gap: 10px; padding: 8px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; font-size: 13px;
     }
+    .attachment-preview-bar img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
 
-    .multi-response-container {
-      display: flex; flex-direction: column; gap: 14px; width: 100%; align-self: flex-start; max-width: 100%;
+    .composer-box {
+      width: 100%; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 28px; padding: 8px 12px; display: flex; align-items: flex-end; gap: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
     }
-    .ai-output-card {
-      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px 18px; font-size: 14px; line-height: 1.55; word-break: break-word;
+    .composer-textarea {
+      flex: 1; min-height: 24px; max-height: 140px; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 15px; font-family: inherit; resize: none; padding: 4px 0;
     }
-    .ai-card-header {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 15px; font-weight: 700; color: var(--text-main);
-    }
-    .ai-card-avatar {
-      width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff;
-    }
-    .ai-card-footer-link {
-      display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: var(--accent); font-size: 12.5px; font-weight: 600; text-decoration: none; cursor: pointer;
-    }
+    .composer-actions { display: flex; align-items: center; gap: 4px; padding-bottom: 2px; }
+    .composer-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .composer-icon-btn:hover { color: var(--accent); background: var(--card-hover); }
+    .send-stop-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #03140e; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px var(--accent-glow); }
+    .send-stop-btn:hover { filter: brightness(1.1); }
 
-    .trophy-card {
-      background: linear-gradient(145deg, #091122 0%, #0c1c3b 100%);
-      border: 2px solid #10b981;
-      border-radius: 20px;
-      padding: 18px 20px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+    /* Plus Menu Popover */
+    .plus-menu {
+      display: none; position: absolute; bottom: 80px; left: 16px; background: var(--sidebar-bg); border: 1px solid var(--sidebar-border); border-radius: 16px; padding: 8px; width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 200; flex-direction: column; gap: 2px;
     }
-    .trophy-title-row {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #34d399; font-weight: 800; font-size: 16px;
+    .plus-menu.active { display: flex; }
+    .plus-menu-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: none; border: none; color: var(--text-main); font-size: 13.5px; border-radius: 10px; width: 100%; text-align: left; }
+    .plus-menu-item:hover { background: var(--card-hover); color: var(--accent); }
+    .plus-menu-item .material-icons { font-size: 18px; color: var(--accent); }
+
+    /* Voice Assistant Overlay */
+    .voice-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(3, 20, 14, 0.95); backdrop-filter: blur(12px); z-index: 3000; flex-direction: column; align-items: center; justify-content: space-between; padding: 40px 20px; text-align: center;
     }
-    .best-badge {
-      display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-top: 12px;
-    }
+    .voice-overlay.active { display: flex; }
+    .voice-status { font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+    .voice-visualizer { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, rgba(16,185,129,0.1) 70%); box-shadow: 0 0 50px var(--accent-glow); animation: voicePulse 2s infinite ease-in-out; display: flex; align-items: center; justify-content: center; }
+    @keyframes voicePulse { 0%, 100% { transform: scale(0.95); box-shadow: 0 0 30px var(--accent-glow); } 50% { transform: scale(1.08); box-shadow: 0 0 60px var(--accent); } }
+    .voice-transcript { font-size: 16px; color: var(--text-main); max-width: 500px; min-height: 50px; }
+    .voice-controls { display: flex; align-items: center; gap: 20px; }
+    .voice-ctrl-btn { width: 60px; height: 60px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); display: flex; align-items: center; justify-content: center; }
+    .voice-ctrl-btn.danger { background: #ef4444; border-color: #dc2626; color: #fff; }
 
-    .ai-image-container { margin-top: 12px; border-radius: 14px; overflow: hidden; border: 1px solid var(--card-border); background: #000; }
-    .ai-image-container img { width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block; }
-    .ai-image-bar { padding: 8px 12px; background: var(--card-bg); display: flex; justify-content: space-between; align-items: center; }
+    /* Settings & Themes Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 4000; padding: 20px; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { width: 100%; max-width: 500px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 16px; }
+    .modal-content { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 
-    /* Sidebar Drawer & Modals */
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 998; }
-    .sidebar-drawer { position: fixed; top: 0; left: -320px; width: 290px; height: 100%; background: var(--card-bg); border-right: 1px solid var(--sidebar-border); z-index: 999; transition: left 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; }
-    .sidebar-drawer.active { left: 0; }
-    .drawer-head { padding: 16px; border-bottom: 1px solid var(--sidebar-border); display: flex; justify-content: space-between; align-items: center; }
-    .drawer-list { flex: 1; overflow-y: auto; padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; }
-    .drawer-sec-title { font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; padding: 14px 10px 4px; }
-    .drawer-btn { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: none; border: none; color: var(--text-main); font-size: 13.5px; border-radius: 10px; width: 100%; text-align: left; }
-    .drawer-btn:hover { background: var(--card-hover); color: var(--accent); }
-    .drawer-btn .material-icons { font-size: 19px; color: var(--text-muted); }
-    .drawer-btn:hover .material-icons { color: var(--accent); }
-
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); z-index: 2000; padding: 14px; align-items: center; justify-content: center; }
-    .themes-modal-box { width: 100%; max-width: 540px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 22px; overflow: hidden; }
-    .themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px; }
-    .theme-card-choice { padding: 14px 12px; border: 2px solid var(--card-border); border-radius: 14px; background: var(--bg-base); text-align: center; }
-    .theme-card-choice:hover { border-color: var(--accent); }
-    .theme-circle-dot { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto 6px; }
-
-    @media (max-width: 600px) {
-      .hero-title { font-size: 28px; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
-      .banner { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .themes-grid { grid-template-columns: 1fr; }
-    }
+    /* Hidden input */
+    #fileInput { display: none; }
   </style>
 </head>
 <body class="theme-dark">
 
-  <!-- Hidden File Input for Real Attachments -->
-  <input type="file" id="fileInput" style="display:none;" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
+  <!-- Hidden File Input -->
+  <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
 
-    <!-- Intro Screen -->
+  <!-- Premium Entrance Animation Overlay -->
   <div id="introLoader">
-    <svg class="intro-chakra" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
-      <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="2"/>
-      <g fill="#f59e0b">
-        <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
-        <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
-      </g>
-      <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
-      <circle cx="50" cy="50" r="10" fill="#0284c7"/>
-    </svg>
-    <div class="intro-text">Sudarshana AI</div>
-  </div>
-
-  <!-- Left Sidebar Drawer -->
-  <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
-  <aside class="sidebar-drawer" id="sideDrawer">
-    <div class="drawer-head">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <svg class="sudarshana-chakra" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra-gold)" stroke-width="2.5" stroke-dasharray="3 2"/>
-          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-          <g fill="var(--chakra-gold)">
-            <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
-            <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
-          </g>
-          <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
-          <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
-        </svg>
-        <span style="font-weight:800; font-size:17px;">Sudarshana</span>
-      </div>
-      <button class="icon-btn" onclick="closeSidebar()"><span class="material-icons">close</span></button>
-    </div>
-
-    <div class="drawer-list">
-      <button class="drawer-btn" onclick="newChat(); closeSidebar()"><span class="material-icons">add_comment</span> New Chat</button>
-      <button class="drawer-btn" onclick="openThemeModal(); closeSidebar()"><span class="material-icons">palette</span> Themes (8 Styles)</button>
-
-      <div class="drawer-sec-title">Core AI Creators</div>
-      <button class="drawer-btn" onclick="triggerPreset('Generate photorealistic image of: '); closeSidebar()"><span class="material-icons">image</span> Generate AI Image</button>
-      <button class="drawer-btn" onclick="triggerPreset('Create script and prompt for AI video: '); closeSidebar()"><span class="material-icons">movie_filter</span> Make AI Videos</button>
-      <button class="drawer-btn" onclick="triggerPreset('Write clean code and architecture for: '); closeSidebar()"><span class="material-icons">terminal</span> Coding & Developing</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate music melody and beats for: '); closeSidebar()"><span class="material-icons">library_music</span> Music Generator</button>
-
-      <div class="drawer-sec-title">Trending & Integrations</div>
-      <button class="drawer-btn" onclick="triggerPreset('Find trending songs and build Spotify playlist for: '); closeSidebar()"><span class="material-icons">queue_music</span> Connect to Spotify</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest viral Instagram reels hook for: '); closeSidebar()"><span class="material-icons">photo_camera</span> Connect to Instagram</button>
-      <button class="drawer-btn" onclick="triggerPreset('Create viral YouTube shorts title for: '); closeSidebar()"><span class="material-icons">smart_display</span> Connect to YouTube</button>
-      <button class="drawer-btn" onclick="triggerPreset('Draft community update post for Weverse: '); closeSidebar()"><span class="material-icons">forum</span> Connect to Weverse</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate background score prompt for Beatoven.ai: '); closeSidebar()"><span class="material-icons">audiotrack</span> Beatoven.ai Music</button>
-      <button class="drawer-btn" onclick="triggerPreset('Break long video into viral shorts using StoryHero: '); closeSidebar()"><span class="material-icons">video_library</span> StoryHero Clips</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate highlight snippets with Vshorts AI: '); closeSidebar()"><span class="material-icons">auto_awesome_motion</span> Vshorts AI Studio</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest graphic cutout adjustments via Cutout.pro: '); closeSidebar()"><span class="material-icons">crop</span> Cutout.pro Design</button>
-      <button class="drawer-btn" onclick="triggerPreset('Transcribe audio with HappyScribe: '); closeSidebar()"><span class="material-icons">subtitles</span> HappyScribe Audio</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest organic audience engagement strategies with Kicksta: '); closeSidebar()"><span class="material-icons">trending_up</span> Kicksta Growth</button>
-
-      <div class="drawer-sec-title">Settings & Feedback</div>
-      <button class="drawer-btn" onclick="openFeedback(); closeSidebar()"><span class="material-icons">feedback</span> Feedback</button>
-      <button class="drawer-btn" onclick="openSettings(); closeSidebar()"><span class="material-icons">settings</span> Settings</button>
-    </div>
-  </aside>
-
-  <!-- Top Navigation Header -->
-  <header class="app-header">
-    <div class="header-left">
-      <button class="icon-btn" onclick="openSidebar()"><span class="material-icons">menu</span></button>
-      <svg class="sudarshana-chakra" onclick="openSidebar()" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra-gold)" stroke-width="2.5" stroke-dasharray="3 2"/>
-        <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-        <g fill="var(--chakra-gold)">
+    <div class="intro-chakra-container">
+      <svg class="intro-chakra" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2"/>
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#10b981" stroke-width="2"/>
+        <g fill="#f59e0b">
           <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
           <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
         </g>
-        <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
-        <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
+        <circle cx="50" cy="50" r="24" fill="#03140e" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="50" cy="50" r="8" fill="#10b981"/>
       </svg>
-      <span class="brand-title" onclick="backToHome()" style="cursor:pointer;">Sudarshana</span>
     </div>
+    <div class="intro-title">Sudarshana AI</div>
+  </div>
 
-    <!-- Compact Right Side Controls -->
-    <div class="header-right-controls">
-      <div class="consensus-toggle-container active" id="consensusToggle" onclick="toggleConsensusMode()" title="Toggle Multi-AI Mode">
-        <span>AI</span>
-        <div class="toggle-switch"></div>
+  <!-- Sidebar Drawer -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-weight:800; font-size:16px; color:var(--accent);">Sudarshana</span>
       </div>
-      <button class="theme-pill-btn" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:14px;">palette</span>
-      </button>
-      <button class="icon-btn" onclick="newChat()"><span class="material-icons" style="font-size:18px;">edit_square</span></button>
+      <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
     </div>
-  </header>
-
-  <!-- View 1: Home Dashboard -->
-  <main id="dashboardView">
-    <section class="hero-section">
-      <div class="hero-badge" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:14px;">bolt</span> Smart Multi-Model Engine
-      </div>
-
-      <h1 class="hero-title">Your Ideas<br><span class="glow-text">Our AI Power</span></h1>
-      <div class="hero-subtitle">
-        <span>Fast & Intelligent</span>
-        <span class="dot-sep"></span>
-        <span>Multi-AI Consensus</span>
-      </div>
-
-      <div class="search-dock-wrapper">
-        <div id="attachmentPreview">
-          <img id="previewThumb" src="" alt="attachment">
-          <span id="previewName" style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">file.jpg</span>
-          <button onclick="clearAttachment()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><span class="material-icons" style="font-size:16px;">close</span></button>
-        </div>
-
-        <div class="search-dock">
-          <span class="material-icons" style="color:var(--accent); font-size:20px; flex-shrink:0;">auto_awesome</span>
-          <input type="text" id="mainInput" placeholder="Ask anything, say hello, or generate images...">
-          <div class="dock-actions">
-            <button class="dock-icon-btn" onclick="triggerFileInput()" title="Attach image or file"><span class="material-icons" style="font-size:20px;">attach_file</span></button>
-            <button class="dock-icon-btn" onclick="startMic()" title="Voice input"><span class="material-icons" id="micIcon" style="font-size:20px;">mic</span></button>
-            <button class="dock-send-btn" onclick="submitMain()"><span class="material-icons" style="font-size:20px;">send</span></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="chips-row">
-        <div class="chip" onclick="triggerPreset('Give me best SEO tools for YouTube')"><span class="material-icons">smart_display</span> YouTube SEO Tools</div>
-        <div class="chip" onclick="triggerPreset('Generate photorealistic image of: ')"><span class="material-icons">image</span> Generate Image</div>
-        <div class="chip" onclick="triggerPreset('Write high-impact content on: ')"><span class="material-icons">edit_note</span> Write content</div>
-        <div class="chip" onclick="triggerPreset('Write clean production-ready code for: ')"><span class="material-icons">code</span> Code help</div>
-      </div>
-    </section>
-
-    <!-- Quick Access -->
-    <section>
-      <div class="sec-head">
-        <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
-      </div>
-      <div class="quick-grid">
-        <div class="quick-box" onclick="triggerPreset('Generate high quality visual artwork of: ')">
-          <div class="quick-icon-box"><span class="material-icons">image</span></div>
-          <h4>Generate Image</h4>
-          <p>Turn ideas into visuals</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Create professional blog post and marketing copy for: ')">
-          <div class="quick-icon-box"><span class="material-icons">article</span></div>
-          <h4>Create Content</h4>
-          <p>Blogs & captions</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Write clean, bug-free, and well-structured code for: ')">
-          <div class="quick-icon-box"><span class="material-icons">code</span></div>
-          <h4>Write Code</h4>
-          <p>Build & debug</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Summarize the following text or concept into concise key insights: ')">
-          <div class="quick-icon-box"><span class="material-icons">list_alt</span></div>
-          <h4>Summarize</h4>
-          <p>Long text to short</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Perform deep research and analysis on: ')">
-          <div class="quick-icon-box"><span class="material-icons">search</span></div>
-          <h4>Research</h4>
-          <p>Find insights instantly</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Popular Tools -->
-    <section>
-      <div class="sec-head">
-        <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
-      </div>
-      <div class="tools-grid">
-        <div class="tool-box" onclick="triggerPreset('Open Image Studio: Edit, enhance, and generate style prompts for: ')">
-          <div class="tool-icon"><span class="material-icons">photo_filter</span></div>
-          <div><h4>Image Studio</h4><p>Create &bull; Enhance</p></div>
-        </div>
-        <div class="tool-box" onclick="triggerPreset('Open Video Studio: Generate script, subtitles and editing breakdown for: ')">
-          <div class="tool-icon"><span class="material-icons">smart_display</span></div>
-          <div><h4>Video Studio</h4><p>Edit &bull; Subtitles</p></div>
-        </div>
-        <div class="tool-box" onclick="triggerPreset('Open Audio Studio: Compose background score and voiceover guidelines for: ')">
-          <div class="tool-icon"><span class="material-icons">graphic_eq</span></div>
-          <div><h4>Audio Studio</h4><p>Voice &bull; Music</p></div>
-        </div>
-        <div class="tool-box" onclick="triggerPreset('Open Document Studio: Format and summarize document on: ')">
-          <div class="tool-icon"><span class="material-icons">description</span></div>
-          <div><h4>Document Studio</h4><p>Summarize</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Recent Chats -->
-    <section>
-      <div class="sec-head">
-        <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
-      </div>
-      <div class="recent-group">
-        <div class="recent-item" onclick="startChat('Give me best SEO tools for YouTube')">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="material-icons" style="color:var(--accent);">smart_display</span>
-            <div><h4>Best SEO tools for YouTube</h4><p style="font-size:11.5px; color:var(--text-muted);">Comprehensive creator guide</p></div>
-          </div>
-          <span class="material-icons">chevron_right</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Banner -->
-    <div class="banner">
-      <div>
-        <h3>Explore Smart Multi-AI Engine</h3>
-        <p>Switch between single quick answers and multi-AI consensus</p>
-      </div>
-      <button class="banner-btn" onclick="triggerPreset('Give me best SEO tools for YouTube')">Start Creating</button>
+    <button class="sidebar-new-chat" onclick="startNewChat()"><span class="material-icons" style="font-size:18px;">add</span> New Chat</button>
+    <div class="sidebar-history" id="sidebarHistory">
+      <div class="history-group-title">Today</div>
+      <!-- History items injected dynamically -->
     </div>
-
-    <!-- Footer Perks -->
-    <div class="footer-perks">
-      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Ultra Fast</h5><p>Instant responses</p></div></div>
-      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Private & reliable</p></div></div>
-      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Sudarshana Final Answer</p></div></div>
-      <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Full capability</p></div></div>
+    <div class="sidebar-footer">
+      <button class="sidebar-footer-btn" onclick="openThemeModal()"><span class="material-icons">palette</span> Themes & Appearance</button>
+      <button class="sidebar-footer-btn" onclick="openSettingsModal()"><span class="material-icons">settings</span> Settings & Memory</button>
     </div>
-  </main>
+  </aside>
 
-  <!-- View 2: Full Screen Native Conversation -->
-  <main id="fullChatView">
-    <div class="chat-top-nav">
-      <button class="icon-btn" onclick="backToHome()"><span class="material-icons">arrow_back</span></button>
-      <div style="font-weight:700; font-size:15px; color:var(--accent);" id="chatModeTitle">Sudarshana AI Engine</div>
-      <button class="icon-btn" onclick="newChat()"><span class="material-icons">refresh</span></button>
+  <!-- Voice Assistant Overlay -->
+  <div class="voice-overlay" id="voiceOverlay">
+    <div style="display:flex; width:100%; justify-content:flex-end;">
+      <button class="icon-btn" onclick="stopVoiceAssistant()"><span class="material-icons">close</span></button>
     </div>
-
-    <div class="chat-messages" id="chatMessages"></div>
-
-    <div class="search-dock-wrapper" style="margin-bottom:0;">
-      <div class="search-dock">
-        <input type="text" id="chatInput" placeholder="Type your follow-up or generate images...">
-        <div class="dock-actions">
-          <button class="dock-send-btn" onclick="sendChatMessage()"><span class="material-icons" style="font-size:20px;">send</span></button>
-        </div>
-      </div>
+    <div class="voice-status" id="voiceStatus">Listening...</div>
+    <div class="voice-visualizer">
+      <span class="material-icons" style="font-size:48px; color:#fff;">mic</span>
     </div>
-  </main>
+    <div class="voice-transcript" id="voiceTranscript">Speak now, I am listening...</div>
+    <div class="voice-controls">
+      <button class="voice-ctrl-btn danger" onclick="stopVoiceAssistant()"><span class="material-icons">stop</span></button>
+    </div>
+  </div>
 
-  <!-- 8 Themes Modal -->
+    <!-- 8 Themes Modal -->
   <div class="modal-overlay" id="themeModal">
     <div class="themes-modal-box">
       <div style="padding:14px 18px; border-bottom:1px solid var(--card-border); display:flex; justify-content:space-between; align-items:center;">
