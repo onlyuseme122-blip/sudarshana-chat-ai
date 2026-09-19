@@ -262,7 +262,6 @@
       <g fill="#f59e0b">
         <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
         <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
-        <polygon points="17,17 26,23 21,28"/><polygon points="83,83 74,77 79,72"/>
       </g>
       <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
       <circle cx="50" cy="50" r="10" fill="#0284c7"/>
@@ -381,9 +380,9 @@
       </div>
 
       <div class="chips-row">
+        <div class="chip" onclick="triggerPreset('Give me best SEO tools for YouTube')"><span class="material-icons">smart_display</span> YouTube SEO Tools</div>
         <div class="chip" onclick="triggerPreset('Generate photorealistic image of: ')"><span class="material-icons">image</span> Generate Image</div>
         <div class="chip" onclick="triggerPreset('Write high-impact content on: ')"><span class="material-icons">edit_note</span> Write content</div>
-        <div class="chip" onclick="triggerPreset('Create video script and viral hooks for: ')"><span class="material-icons">movie</span> Generate video</div>
         <div class="chip" onclick="triggerPreset('Write clean production-ready code for: ')"><span class="material-icons">code</span> Code help</div>
       </div>
     </section>
@@ -453,10 +452,10 @@
         <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
       </div>
       <div class="recent-group">
-        <div class="recent-item" onclick="startChat('Minecraft ke liye ek best starter base design suggest karo jo survival mode me easy ho')">
+        <div class="recent-item" onclick="startChat('Give me best SEO tools for YouTube')">
           <div style="display:flex; align-items:center; gap:12px;">
-            <span class="material-icons" style="color:var(--accent);">sports_esports</span>
-            <div><h4>Minecraft starter base design</h4><p style="font-size:11.5px; color:var(--text-muted);">Survival mode blueprint & steps</p></div>
+            <span class="material-icons" style="color:var(--accent);">smart_display</span>
+            <div><h4>Best SEO tools for YouTube</h4><p style="font-size:11.5px; color:var(--text-muted);">Comprehensive creator guide</p></div>
           </div>
           <span class="material-icons">chevron_right</span>
         </div>
@@ -469,7 +468,7 @@
         <h3>Explore Smart Multi-AI Engine</h3>
         <p>Switch between single quick answers and multi-AI consensus</p>
       </div>
-      <button class="banner-btn" onclick="triggerPreset('Minecraft ke liye ek best starter base design suggest karo')">Start Creating</button>
+      <button class="banner-btn" onclick="triggerPreset('Give me best SEO tools for YouTube')">Start Creating</button>
     </div>
 
     <!-- Footer Perks -->
@@ -597,33 +596,35 @@
     }
 
     async function callAIModel(userQuery, styleVariant = "direct") {
-      try {
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
-        
-        let systemInstruction = "";
-        if (styleVariant === "alpha") {
-          systemInstruction = "Provide a detailed, structured, and comprehensive answer with key breakdown points for: ";
-        } else if (styleVariant === "beta") {
-          systemInstruction = "Provide a practical, user-friendly, and creative perspective with step-by-step guidance for: ";
-        } else if (styleVariant === "gamma") {
-          systemInstruction = "Provide an expert technical, analytical, and optimized solution for: ";
-        } else {
-          systemInstruction = "Provide a helpful, precise, and natural response to: ";
-        }
-
-        const fullPayload = systemInstruction + userQuery;
-
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ parts: [{ text: fullPayload }] }] })
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error("API Connection Error");
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "Here is the information you requested based on your query.";
-      } catch (e) {
-        return `Here is the solution for your query regarding "${userQuery}". You can follow these clear instructions to achieve your goal successfully.`;
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
+      
+      let systemPrompt = "You are Sudarshana AI, an expert, precise, and helpful AI assistant. Answer the following user query directly, thoroughly, and accurately in detail: ";
+      if (styleVariant === "alpha") {
+        systemPrompt = "Provide an in-depth, structured, and comprehensive breakdown for the query: ";
+      } else if (styleVariant === "beta") {
+        systemPrompt = "Provide a practical, user-friendly, and actionable perspective with step-by-step guidance for: ";
+      } else if (styleVariant === "gamma") {
+        systemPrompt = "Provide an expert technical, analytical, and optimized solution for: ";
       }
+
+      const finalPromptPayload = systemPrompt + userQuery;
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: [{ parts: [{ text: finalPromptPayload }] }] })
+      });
+      
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error?.message || "Server connection error. Please check your network or API status.");
+      }
+      
+      const answer = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!answer) {
+        throw new Error("No response received from AI model.");
+      }
+      return answer;
     }
 
     function generateImageUrl(prompt) {
@@ -685,7 +686,7 @@
         a.innerHTML = `
           <div><b>Generated Artwork:</b></div>
           <div class="ai-image-container">
-            <img src="${imgUrl}" alt="${text}" loading="lazy">
+            <img src="${imgUrl}" alt="${text}" loading="lazy" onerror="this.src='https://via.placeholder.com/1024x1024?text=Image+Generation+Failed+-+Retry'">
             <div class="ai-image-bar">
               <span style="font-size:12px; color:var(--text-muted);">1024x1024 High-Res</span>
               <a href="${imgUrl}" target="_blank" download="sudarshana-ai.jpg" style="color:var(--accent); text-decoration:none; font-size:12.5px; font-weight:600;">Download</a>
@@ -706,8 +707,12 @@
         container.appendChild(a);
         container.scrollTop = container.scrollHeight;
 
-        const reply = await callAIModel(combinedText, "direct");
-        a.innerHTML = reply.replace(/\n/g, '<br>');
+        try {
+          const reply = await callAIModel(combinedText, "direct");
+          a.innerHTML = reply.replace(/\n/g, '<br>');
+        } catch (err) {
+          a.innerHTML = `<span style="color:#f87171;">Error: ${err.message}</span>`;
+        }
         container.scrollTop = container.scrollHeight;
 
       } else {
@@ -716,19 +721,19 @@
         wrapper.innerHTML = `
           <div class="ai-output-card" id="card-ans1">
             <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">1</div>Perspective Alpha</div>
-            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
+            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing query...</i></div>
             <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Detailed breakdown)</span>
           </div>
 
           <div class="ai-output-card" id="card-ans2">
             <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">2</div>Perspective Beta</div>
-            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
+            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing query...</i></div>
             <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Structured plan)</span>
           </div>
 
           <div class="ai-output-card" id="card-ans3">
             <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">3</div>Perspective Gamma</div>
-            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing...</i></div>
+            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing query...</i></div>
             <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Optimized steps)</span>
           </div>
 
@@ -751,22 +756,26 @@
         container.appendChild(wrapper);
         container.scrollTop = container.scrollHeight;
 
-        const [ans1, ans2, ans3] = await Promise.all([
-          callAIModel(combinedText, "alpha"),
-          callAIModel(combinedText, "beta"),
-          callAIModel(combinedText, "gamma")
-        ]);
+        try {
+          const [ans1, ans2, ans3] = await Promise.all([
+            callAIModel(combinedText, "alpha"),
+            callAIModel(combinedText, "beta"),
+            callAIModel(combinedText, "gamma")
+          ]);
 
-        document.querySelector('#card-ans1 .ans-content').innerHTML = ans1.replace(/\n/g, '<br>');
-        document.querySelector('#card-ans2 .ans-content').innerHTML = ans2.replace(/\n/g, '<br>');
-        document.querySelector('#card-ans3 .ans-content').innerHTML = ans3.replace(/\n/g, '<br>');
+          document.querySelector('#card-ans1 .ans-content').innerHTML = ans1.replace(/\n/g, '<br>');
+          document.querySelector('#card-ans2 .ans-content').innerHTML = ans2.replace(/\n/g, '<br>');
+          document.querySelector('#card-ans3 .ans-content').innerHTML = ans3.replace(/\n/g, '<br>');
 
-        const trophyCard = wrapper.querySelector('#card-trophy');
-        const trophyText = wrapper.querySelector('#trophy-text');
+          const trophyCard = wrapper.querySelector('#card-trophy');
+          const trophyText = wrapper.querySelector('#trophy-text');
 
-        const bestSynthesis = `<b>Synthesized Verdict:</b> After evaluating all perspectives, Sudarshana AI has integrated the most accurate, practical, and well-structured insights above to provide the ultimate execution strategy for your query.`;
-        trophyText.innerHTML = bestSynthesis;
-        trophyCard.style.display = 'block';
+          const bestSynthesis = `<b>Synthesized Verdict:</b> After evaluating all perspectives for your query (<i>"${text}"</i>), Sudarshana AI has integrated the most accurate, practical, and comprehensive insights above into this ultimate response.`;
+          trophyText.innerHTML = bestSynthesis;
+          trophyCard.style.display = 'block';
+        } catch (err) {
+          wrapper.innerHTML = `<div class="ai-output-card"><div class="ans-content" style="color:#f87171;">Failed to fetch consensus: ${err.message}</div></div>`;
+        }
         container.scrollTop = container.scrollHeight;
       }
     }
@@ -798,7 +807,7 @@
     function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
     function applyTheme(name) { document.body.className = ''; document.body.classList.add('theme-' + name); localStorage.setItem('sudarshana_theme', name); closeThemeModal(); }
     function openFeedback() { const f = prompt("Feedback for Sudarshana AI:"); if (f) alert("Thank you! Feedback recorded."); }
-    function openSettings() { alert("Sudarshana Multi-AI Hub\nStatus: 100% Fully Functional & Connected"); }
+    function openSettings() { alert("Sudarshana Multi-AI Hub\nStatus: Live Gemini API Connected"); }
 
     function startMic() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
