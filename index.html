@@ -90,9 +90,18 @@
       padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-base); border-bottom: 1px solid var(--sidebar-border); z-index: 10;
     }
     .header-left { display: flex; align-items: center; gap: 10px; }
-    .icon-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .icon-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
     .brand-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+
+    /* 3-Dot Menu Popover Dropdown */
+    .dropdown-menu {
+      display: none; position: absolute; top: 50px; right: 16px; background: var(--sidebar-bg); border: 1px solid var(--sidebar-border); border-radius: 14px; padding: 6px; width: 210px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 2500; flex-direction: column; gap: 2px;
+    }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: none; border: none; color: var(--text-main); font-size: 13px; border-radius: 8px; width: 100%; text-align: left; }
+    .dropdown-item:hover { background: var(--card-hover); color: var(--accent); }
+    .dropdown-item .material-icons { font-size: 17px; color: var(--accent); }
 
     /* Super AI Mode Switcher in Header */
     .super-ai-switch {
@@ -138,7 +147,7 @@
     }
     
     .message-actions { display: flex; align-items: center; gap: 6px; padding: 2px 4px; font-size: 12px; color: var(--text-muted); }
-    .msg-action-btn { background: none; border: none; color: var(--text-muted); display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; font-size: 12px; }
+    .msg-action-btn { background: none; border: none; color: var(--text-muted); display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; font-size: 12px; cursor: pointer; }
     .msg-action-btn:hover { background: var(--card-hover); color: var(--accent); }
     .msg-action-btn .material-icons { font-size: 14px; }
 
@@ -207,7 +216,6 @@
 </head>
 <body class="theme-dark">
 
-  <!-- Hidden File Input -->
   <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
 
   <!-- Intro Animation Overlay -->
@@ -227,7 +235,7 @@
     </div>
   </div>
 
-  <!-- Sidebar Drawer -->
+    <!-- Sidebar Drawer -->
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -244,9 +252,10 @@
     </div>
   </aside>
 
-    <!-- Voice Assistant Overlay -->
+  <!-- Voice Assistant Overlay with Voice Selector -->
   <div class="voice-overlay" id="voiceOverlay">
-    <div style="display:flex; width:100%; justify-content:flex-end;">
+    <div style="display:flex; width:100%; justify-content:space-between; align-items:center;">
+      <select id="voiceSelect" style="background:var(--card-bg); color:var(--text-main); border:1px solid var(--card-border); padding:6px 10px; border-radius:8px; font-size:12px; outline:none;"></select>
       <button class="icon-btn" onclick="stopVoiceAssistant()"><span class="material-icons">close</span></button>
     </div>
     <div class="voice-status" id="voiceStatus">Listening...</div>
@@ -300,19 +309,29 @@
   <div class="app-container">
     <main class="main-chat-area">
       
-      <!-- Header -->
+      <!-- Header with 3-Dot Menu (Top-Right Plus removed as per spec) -->
       <header class="chat-header">
         <div class="header-left">
           <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
           <span class="brand-title">Sudarshana AI</span>
         </div>
-        <div style="display:flex; align-items:center; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px; position:relative;">
           <div class="super-ai-switch active" id="superAiSwitch" onclick="toggleSuperAI()" title="Toggle Super AI Mode">
             <span>Super AI</span>
             <div class="mini-toggle"></div>
           </div>
           <button class="icon-btn" onclick="startVoiceAssistant()" title="Voice Assistant"><span class="material-icons">mic</span></button>
-          <button class="icon-btn" onclick="startNewChat()" title="New Chat"><span class="material-icons">add</span></button>
+          <button class="icon-btn" onclick="toggleDropdownMenu()" title="Options"><span class="material-icons">more_vert</span></button>
+          
+          <!-- 3-Dot Dropdown Menu -->
+          <div class="dropdown-menu" id="dropdownMenu">
+            <button class="dropdown-item" onclick="startNewChat(); toggleDropdownMenu();"><span class="material-icons">add</span> New Chat</button>
+            <button class="dropdown-item" onclick="searchChatsPrompt(); toggleDropdownMenu();"><span class="material-icons">search</span> Search Chats</button>
+            <button class="dropdown-item" onclick="startVoiceAssistant(); toggleDropdownMenu();"><span class="material-icons">record_voice_over</span> Voice Assistant</button>
+            <button class="dropdown-item" onclick="triggerPresetImageMode(); toggleDropdownMenu();"><span class="material-icons">image</span> Create Image</button>
+            <button class="dropdown-item" onclick="openThemeModal(); toggleDropdownMenu();"><span class="material-icons">palette</span> Themes</button>
+            <button class="dropdown-item" onclick="openSettingsModal(); toggleDropdownMenu();"><span class="material-icons">settings</span> Settings & Memory</button>
+          </div>
         </div>
       </header>
 
@@ -383,8 +402,8 @@
     let attachedFile = null;
     let isTempChat = false;
     let isSuperAIActive = true;
+    let availableVoices = [];
 
-    // Intro Animation Failsafe
     window.addEventListener('load', () => {
       setTimeout(() => {
         const loader = document.getElementById('introLoader');
@@ -392,19 +411,37 @@
         document.getElementById('composerInput').focus();
       }, 1000);
       renderSidebarHistory();
+      loadVoices();
     });
-    setTimeout(() => {
-      const loader = document.getElementById('introLoader');
-      if (loader) loader.classList.add('hide');
-    }, 2000);
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function loadVoices() {
+      if (!('speechSynthesis' in window)) return;
+      availableVoices = window.speechSynthesis.getVoices();
+      const select = document.getElementById('voiceSelect');
+      if (!select) return;
+      select.innerHTML = '';
+      availableVoices.forEach((voice, index) => {
+        const opt = document.createElement('option');
+        opt.value = index;
+        opt.textContent = `${voice.name} (${voice.lang})`;
+        select.appendChild(opt);
+      });
+    }
 
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
       document.getElementById('sidebarOverlay').classList.toggle('active');
     }
-    function openThemeModal() { document.getElementById('themeModal').classList.add('active'); toggleSidebar(); }
+    function toggleDropdownMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+    function openThemeModal() { document.getElementById('themeModal').classList.add('active'); }
     function closeThemeModal() { document.getElementById('themeModal').classList.remove('active'); }
-    function openSettingsModal() { document.getElementById('settingsModal').classList.add('active'); toggleSidebar(); }
+    function openSettingsModal() { document.getElementById('settingsModal').classList.add('active'); }
     function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('active'); }
     function togglePlusMenu() { document.getElementById('plusMenu').classList.toggle('active'); }
 
@@ -463,12 +500,10 @@
     }
 
     function triggerPresetImageMode() {
-      togglePlusMenu();
       document.getElementById('composerInput').value = "Generate image of: ";
       document.getElementById('composerInput').focus();
     }
     function triggerWebSearchMode() {
-      togglePlusMenu();
       document.getElementById('composerInput').value = "Search the web for: ";
       document.getElementById('composerInput').focus();
     }
@@ -476,8 +511,13 @@
       document.getElementById('composerInput').value = query;
       handleSendAction();
     }
+    function searchChatsPrompt() {
+      const q = prompt("Search chats by keyword:");
+      if (!q) return;
+      const found = chatSessions.filter(s => s.title.toLowerCase().includes(q.toLowerCase()));
+      alert(`Found ${found.length} matching chats.`);
+    }
 
-    // Composer Speech to Text
     function startSpeechToText() {
       if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -493,7 +533,6 @@
       }
     }
 
-    // Dedicated Voice Assistant Mode
     function startVoiceAssistant() {
       document.getElementById('voiceOverlay').classList.add('active');
       document.getElementById('voiceStatus').textContent = "Listening...";
@@ -502,12 +541,25 @@
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognition = new SpeechRec();
         recognition.lang = 'en-US';
-        recognition.onresult = (e) => {
+        recognition.onresult = async (e) => {
           const speechText = e.results[0][0].transcript;
           document.getElementById('voiceTranscript').textContent = speechText;
-          document.getElementById('voiceStatus').textContent = "Sudarshana Speaking...";
-          readAloud(speechText);
-          setTimeout(() => { stopVoiceAssistant(); }, 3000);
+          document.getElementById('voiceStatus').textContent = "Thinking...";
+          
+          try {
+            const res = await fetch('/api/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ messages: [{ role: 'user', content: speechText }], superAI: isSuperAIActive })
+            });
+            const data = await res.json();
+            const aiReply = data.reply || "I am here.";
+            document.getElementById('voiceStatus').textContent = "Speaking...";
+            document.getElementById('voiceTranscript').textContent = aiReply;
+            readAloudWithSelectedVoice(aiReply);
+          } catch(err) {
+            readAloudWithSelectedVoice("Sorry, I could not process that.");
+          }
         };
         recognition.start();
       }
@@ -516,10 +568,15 @@
       document.getElementById('voiceOverlay').classList.remove('active');
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
-    function readAloud(text) {
+    function readAloudWithSelectedVoice(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+        const utterance = new SpeechSynthesisUtterance(text);
+        const sel = document.getElementById('voiceSelect');
+        if (sel && sel.value !== "" && availableVoices[sel.value]) {
+          utterance.voice = availableVoices[sel.value];
+        }
+        window.speechSynthesis.speak(utterance);
       }
     }
 
@@ -635,10 +692,19 @@
       if (role === 'assistant') {
         const actions = document.createElement('div');
         actions.className = 'message-actions';
-        actions.innerHTML = `
-          <button class="msg-action-btn" onclick="navigator.clipboard.writeText(this.parentElement.previousElementSibling.textContent)"><span class="material-icons">content_copy</span> Copy</button>
-          <button class="msg-action-btn" onclick="readAloud(this.parentElement.previousElementSibling.textContent)"><span class="material-icons">volume_up</span> Listen</button>
-        `;
+        
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'msg-action-btn';
+        copyBtn.innerHTML = `<span class="material-icons">content_copy</span> Copy`;
+        copyBtn.onclick = () => navigator.clipboard.writeText(content);
+
+        const listenBtn = document.createElement('button');
+        listenBtn.className = 'msg-action-btn';
+        listenBtn.innerHTML = `<span class="material-icons">volume_up</span> Listen`;
+        listenBtn.onclick = () => readAloudWithSelectedVoice(content);
+
+        actions.appendChild(copyBtn);
+        actions.appendChild(listenBtn);
         row.appendChild(actions);
       }
 
@@ -647,11 +713,15 @@
 
       if (save) {
         currentMessages.push({ role, content });
-        saveCurrentSession(content.slice(0, 32) + '...');
+        const currentSession = chatSessions.find(s => s.id === currentSessionId);
+        if (!currentSession || currentSession.title === 'New Conversation') {
+          saveCurrentSession(content.slice(0, 30) + '...');
+        } else {
+          saveCurrentSession();
+        }
       }
     }
 
-    // Backend Dispatcher with Clean Natural Response
     async function dispatchAIResponse(promptText) {
       setComposerState(true);
       activeAbortController = new AbortController();
@@ -659,7 +729,6 @@
       const mList = document.getElementById('messagesList');
       const row = document.createElement('div');
       row.className = 'message-row assistant';
-      
       const bubble = document.createElement('div');
       bubble.className = 'message-bubble';
       
@@ -670,6 +739,25 @@
       mList.appendChild(row);
       mList.scrollTop = mList.scrollHeight;
 
+      if (promptText.toLowerCase().includes('generate image of') || promptText.toLowerCase().includes('create image of')) {
+        try {
+          const imgRes = await fetch('/api/image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: promptText }),
+            signal: activeAbortController.signal
+          });
+          const imgData = await imgRes.json();
+          document.getElementById(thinkingId)?.remove();
+          
+          if (imgData.imageUrl) {
+            bubble.innerHTML = `<div><b>Generated Artwork:</b></div><img src="${imgData.imageUrl}" style="width:100%; border-radius:12px; margin-top:8px;" alt="AI Generated Image">`;
+            finalizeAssistantMessage(row, "[Generated Image]");
+            return;
+          }
+        } catch (e) {}
+      }
+
       try {
         const response = await fetch('/api/chat', {
           method: 'POST',
@@ -679,8 +767,9 @@
         });
 
         const data = await response.json();
-        const replyText = data.reply || "Here is the information you requested.";
+        if (!response.ok) throw new Error(data.error || "Service unavailable");
 
+        const replyText = data.reply || "Done.";
         document.getElementById(thinkingId)?.remove();
         bubble.textContent = '';
 
@@ -697,12 +786,10 @@
         }, 10);
 
       } catch (err) {
-        if (err.name === 'AbortError') {
-          bubble.textContent = '[Generation stopped]';
-        } else {
-          bubble.textContent = "Sudarshana couldn't complete that response right now. The service may be busy. Try again, or switch to Quick AI.";
-        }
-        finalizeAssistantMessage(row, bubble.textContent);
+        document.getElementById(thinkingId)?.remove();
+        const errText = "Sudarshana couldn't complete that response right now. The service may be busy. Try again, or switch to Quick AI.";
+        bubble.textContent = errText;
+        finalizeAssistantMessage(row, errText);
       }
     }
 
@@ -711,11 +798,21 @@
       activeAbortController = null;
       const actions = document.createElement('div');
       actions.className = 'message-actions';
-      actions.innerHTML = `
-        <button class="msg-action-btn" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}')"><span class="material-icons">content_copy</span> Copy</button>
-        <button class="msg-action-btn" onclick="readAloud('${text.replace(/'/g, "\\'")}')"><span class="material-icons">volume_up</span> Listen</button>
-      `;
+      
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'msg-action-btn';
+      copyBtn.innerHTML = `<span class="material-icons">content_copy</span> Copy`;
+      copyBtn.onclick = () => navigator.clipboard.writeText(text);
+
+      const listenBtn = document.createElement('button');
+      listenBtn.className = 'msg-action-btn';
+      listenBtn.innerHTML = `<span class="material-icons">volume_up</span> Listen`;
+      listenBtn.onclick = () => readAloudWithSelectedVoice(text);
+
+      actions.appendChild(copyBtn);
+      actions.appendChild(listenBtn);
       row.appendChild(actions);
+
       currentMessages.push({ role: 'assistant', content: text });
       saveCurrentSession();
     }
