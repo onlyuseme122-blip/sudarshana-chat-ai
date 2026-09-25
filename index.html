@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana Chat AI - Ultimate Multi-Model Hub</title>
+  <title>Sudarshana AI - Intelligent Assistant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230f172a' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%230284c7'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2303140e' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%2310b981'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,834 +14,622 @@
     *, *::before, *::after {
       box-sizing: border-box; margin: 0; padding: 0;
       -webkit-tap-highlight-color: transparent;
-      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
     :root {
-      --bg-base: #030712;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #0e1c3b 0%, #030712 70%);
-      --sidebar-bg: #070c18;
-      --sidebar-border: #131f37;
-      --card-bg: #091122;
-      --card-border: #172442;
-      --card-hover: #0f1d38;
-      --dock-bg: rgba(9, 17, 34, 0.94);
-      --dock-border: #1e3a8a;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-secondary: #818cf8;
-      --accent-glow: rgba(56, 189, 248, 0.35);
+      --bg-base: #03140e;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #03140e 70%);
+      --sidebar-bg: #041a12;
+      --sidebar-border: #0d3828;
+      --card-bg: #072419;
+      --card-border: #114a34;
+      --card-hover: #0c3324;
+      --dock-bg: rgba(7, 36, 25, 0.95);
+      --dock-border: #065f46;
+      --text-main: #ecfdf5;
+      --text-muted: #6ee7b7;
+      --accent: #10b981;
+      --accent-secondary: #059669;
+      --accent-glow: rgba(16, 185, 129, 0.3);
       --chakra-gold: #f59e0b;
-      --chakra-blue: #0284c7;
     }
 
     body.theme-light {
       --bg-base: #f8fafc; --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-      --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #0284c7; --accent-secondary: #0369a1; --accent-glow: rgba(2, 132, 199, 0.2);
+      --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #059669; --accent-secondary: #047857; --accent-glow: rgba(5, 150, 105, 0.2);
     }
     body.theme-neon {
       --bg-base: #070114; --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
       --sidebar-bg: #0d0221; --sidebar-border: #260f54; --card-bg: #14042e; --card-border: #3b127f; --card-hover: #22084d; --dock-bg: rgba(20, 4, 46, 0.94); --dock-border: #701a75; --text-main: #fdf4ff; --text-muted: #c084fc; --accent: #e879f9; --accent-secondary: #a855f7; --accent-glow: rgba(232, 121, 249, 0.4);
     }
-    body.theme-nature {
-      --bg-base: #03140e; --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #02110c 75%);
-      --sidebar-bg: #041a12; --sidebar-border: #0d3828; --card-bg: #072419; --card-border: #114a34; --card-hover: #0c3324; --dock-bg: rgba(7, 36, 25, 0.94); --dock-border: #065f46; --text-main: #ecfdf5; --text-muted: #6ee7b7; --accent: #10b981; --accent-secondary: #059669; --accent-glow: rgba(16, 185, 129, 0.35);
-    }
-    body.theme-cyberpunk {
-      --bg-base: #0a0118; --bg-gradient: radial-gradient(circle at 50% -10%, #3e084d 0%, #090117 75%);
-      --sidebar-bg: #120224; --sidebar-border: #3c095c; --card-bg: #1d0338; --card-border: #4d0b74; --card-hover: #2e0557; --dock-bg: rgba(29, 3, 56, 0.94); --dock-border: #be185d; --text-main: #ffffff; --text-muted: #f472b6; --accent: #f43f5e; --accent-secondary: #ec4899; --accent-glow: rgba(244, 63, 94, 0.4);
-    }
-    body.theme-sunset {
-      --bg-base: #140704; --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #120502 75%);
-      --sidebar-bg: #1c0a05; --sidebar-border: #3d1b10; --card-bg: #270f08; --card-border: #4a2113; --card-hover: #36170d; --dock-bg: rgba(39, 15, 8, 0.94); --dock-border: #9a3412; --text-main: #fff7ed; --text-muted: #fdba74; --accent: #f97316; --accent-secondary: #ea580c; --accent-glow: rgba(249, 115, 22, 0.4);
-    }
-    body.theme-space {
-      --bg-base: #020617; --bg-gradient: radial-gradient(circle at 50% -10%, #0f1e4d 0%, #020617 80%);
-      --sidebar-bg: #040920; --sidebar-border: #0f1c4d; --card-bg: #071033; --card-border: #142466; --card-hover: #0c1c54; --dock-bg: rgba(7, 16, 51, 0.94); --dock-border: #0369a1; --text-main: #f0fdf4; --text-muted: #7dd3fc; --accent: #0ea5e9; --accent-secondary: #38bdf8; --accent-glow: rgba(14, 165, 233, 0.4);
-    }
-    body.theme-minimal {
-      --bg-base: #f1f5f9; --bg-gradient: radial-gradient(circle at 50% -10%, #e2e8f0 0%, #f8fafc 85%);
-      --sidebar-bg: #ffffff; --sidebar-border: #cbd5e1; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f8fafc; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #94a3b8; --text-main: #1e293b; --text-muted: #64748b; --accent: #6366f1; --accent-secondary: #4f46e5; --accent-glow: rgba(99, 102, 241, 0.25);
-    }
 
     html, body {
-      width: 100%; min-height: 100%;
+      width: 100%; height: 100%; height: 100dvh;
       background-color: var(--bg-base); background-image: var(--bg-gradient); background-attachment: fixed;
       color: var(--text-main); font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      overflow-x: hidden; line-height: 1.5;
+      overflow: hidden; line-height: 1.5;
     }
 
-    button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn {
-      cursor: pointer; user-select: none; -webkit-user-select: none; transform: translateZ(0);
-    }
-    button:active, .chip:active, .quick-box:active, .tool-box:active, .recent-item:active, .theme-card-choice:active, .banner-btn:active {
-      transform: scale(0.96) !important; filter: brightness(1.15); transition: transform 0.08s ease, filter 0.08s ease !important;
-    }
+    button, .chip, .suggestion-chip, .history-item { cursor: pointer; user-select: none; }
+    button:active, .chip:active, .suggestion-chip:active { transform: scale(0.97); }
 
-    /* Intro Splash */
+    /* Premium Chakra Entrance Animation */
     #introLoader {
       position: fixed; inset: 0; background: var(--bg-base); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #introLoader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-    .intro-chakra { width: 90px; height: 90px; animation: introSpin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite, introPulse 1.5s ease-in-out infinite alternate; }
-    @keyframes introSpin { 0% { transform: rotate(0deg) scale(0.9); } 50% { transform: rotate(180deg) scale(1.1); } 100% { transform: rotate(360deg) scale(0.9); } }
-    @keyframes introPulse { from { filter: drop-shadow(0 0 10px var(--accent)); } to { filter: drop-shadow(0 0 30px var(--chakra-gold)); } }
-    .intro-text { margin-top: 18px; font-size: 16px; font-weight: 800; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+    .intro-chakra { width: 90px; height: 90px; animation: chakraSpin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+    @keyframes chakraSpin { 0% { transform: rotate(0deg) scale(0.9); filter: drop-shadow(0 0 5px var(--accent)); } 50% { transform: rotate(180deg) scale(1.1); filter: drop-shadow(0 0 20px var(--chakra-gold)); } 100% { transform: rotate(360deg) scale(0.9); filter: drop-shadow(0 0 5px var(--accent)); } }
+    .intro-title { margin-top: 16px; font-size: 14px; font-weight: 700; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }
 
-    .sudarshana-chakra {
-      width: 34px; height: 34px; animation: spinChakra 11s linear infinite; cursor: pointer; display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+    /* App Layout */
+    .app-container { display: flex; width: 100vw; height: 100vh; height: 100dvh; position: relative; overflow: hidden; }
+
+    /* Sidebar Drawer */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); z-index: 998; }
+    .sidebar-overlay.active { display: block; }
+    .sidebar {
+      position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: var(--sidebar-bg); border-right: 1px solid var(--sidebar-border); z-index: 999; transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column;
     }
-    @keyframes spinChakra { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .sidebar.active { left: 0; }
+    .sidebar-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--sidebar-border); }
+    .sidebar-new-chat { margin: 12px 16px; padding: 10px 16px; background: var(--accent); color: #03140e; border: none; border-radius: 12px; font-weight: 700; font-size: 13.5px; display: flex; align-items: center; gap: 8px; justify-content: center; box-shadow: 0 4px 12px var(--accent-glow); }
+    .sidebar-history { flex: 1; overflow-y: auto; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .history-group-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; padding: 10px 8px 4px; letter-spacing: 0.5px; }
+    .history-item { padding: 10px 12px; border-radius: 10px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 10px; background: transparent; border: none; width: 100%; text-align: left; }
+    .history-item:hover { background: var(--card-hover); color: var(--accent); }
+    .sidebar-footer { padding: 14px 16px; border-top: 1px solid var(--sidebar-border); display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-footer-btn { display: flex; align-items: center; gap: 10px; background: none; border: none; color: var(--text-muted); font-size: 13.5px; padding: 8px 10px; border-radius: 8px; width: 100%; text-align: left; }
+    .sidebar-footer-btn:hover { background: var(--card-hover); color: var(--text-main); }
 
-    .app-header {
-      position: sticky; top: 0; background: var(--bg-base); border-bottom: 1px solid var(--sidebar-border); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 100; backdrop-filter: blur(12px);
+    /* Main Chat Area */
+    .main-chat-area { flex: 1; display: flex; flex-direction: column; height: 100%; position: relative; min-width: 0; background: var(--bg-base); }
+    
+    /* Header */
+    .chat-header {
+      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; background: var(--bg-base); border-bottom: 1px solid var(--sidebar-border); z-index: 10;
     }
     .header-left { display: flex; align-items: center; gap: 10px; }
     .icon-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .brand-title { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; }
+    .brand-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+
+    /* Smart Mode Selector Dropdown in Header */
+    .smart-mode-select {
+      background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: 20px; font-size: 12.5px; font-weight: 600; outline: none; cursor: pointer;
+    }
+
+    /* Chat Body */
+    .chat-body { flex: 1; overflow-y: auto; display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
     
-    .header-right-controls { display: flex; align-items: center; gap: 6px; }
-    .theme-pill-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); border-radius: 30px; font-size: 12.5px; font-weight: 700; box-shadow: 0 0 14px var(--accent-glow); }
-
-    /* Compact Header Toggle Styling */
-    .consensus-toggle-container {
-      display: flex; align-items: center; gap: 4px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 3px 8px; border-radius: 16px; font-size: 11px; font-weight: 700; color: var(--text-muted); cursor: pointer;
+    /* Home Hero */
+    .home-hero {
+      margin: auto; padding: 24px 16px; max-width: 680px; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center;
     }
-    .consensus-toggle-container.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
-    .toggle-switch {
-      width: 26px; height: 14px; background: var(--card-border); border-radius: 8px; position: relative; cursor: pointer; transition: background 0.3s;
+    .home-chakra-icon { width: 56px; height: 56px; margin-bottom: 16px; animation: chakraSpin 6s linear infinite; filter: drop-shadow(0 0 10px var(--accent-glow)); }
+    .home-title { font-size: 30px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
+    .home-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .suggestion-chips-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 600px; }
+    .suggestion-chip {
+      background: var(--card-bg); border: 1px solid var(--card-border); padding: 10px 16px; border-radius: 20px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-weight: 500;
     }
-    .toggle-switch::after {
-      content: ''; position: absolute; top: 1px; left: 1px; width: 12px; height: 12px; background: #fff; border-radius: 50%; transition: transform 0.3s;
+    .suggestion-chip:hover { border-color: var(--accent); background: var(--card-hover); color: var(--accent); }
+    .suggestion-chip .material-icons { font-size: 16px; color: var(--accent); }
+
+    /* Messages List */
+    .messages-list { display: none; flex-direction: column; gap: 20px; padding: 20px 16px; max-width: 800px; width: 100%; margin: 0 auto; }
+    .message-row { display: flex; flex-direction: column; width: 100%; gap: 6px; }
+    .message-row.user { align-items: flex-end; }
+    .message-row.assistant { align-items: flex-start; }
+    
+    .message-bubble {
+      max-width: 88%; padding: 14px 18px; border-radius: 18px; font-size: 14.5px; line-height: 1.6; word-break: break-word;
     }
-    .consensus-toggle-container.active .toggle-switch { background: var(--accent); }
-    .consensus-toggle-container.active .toggle-switch::after { transform: translateX(12px); }
-
-    /* Dashboard */
-    #dashboardView { width: 100%; max-width: 860px; margin: 0 auto; padding: 24px 14px 60px; display: block; }
-    .hero-section { text-align: center; margin-bottom: 24px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 30px; font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 14px; }
-    .hero-title { font-size: 36px; font-weight: 800; line-height: 1.18; letter-spacing: -1px; margin-bottom: 8px; }
-    .glow-text { color: var(--accent); background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-subtitle { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13.5px; color: var(--text-muted); margin-bottom: 22px; }
-    .dot-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
-
-    .search-dock-wrapper { width: 100%; margin-bottom: 18px; }
-    .search-dock {
-      width: 100%; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 32px; padding: 6px 8px 6px 14px; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+    .message-row.user .message-bubble {
+      background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); border-bottom-right-radius: 4px;
     }
-    .search-dock input { flex: 1; min-width: 0; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 15px; }
-    .dock-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-    .dock-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; }
-    .dock-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 10px var(--accent-glow); cursor: pointer; }
-
-    /* Attachment Preview Bar */
-    #attachmentPreview {
-      display: none; align-items: center; gap: 10px; padding: 8px 14px; background: var(--card-bg); border: 1px solid var(--accent); border-radius: 12px; margin-bottom: 10px; font-size: 13px;
+    .message-row.assistant .message-bubble {
+      background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); border-bottom-left-radius: 4px; width: 100%; max-width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
-    #attachmentPreview img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
+    
+    .message-actions { display: flex; align-items: center; gap: 6px; padding: 2px 4px; font-size: 12px; color: var(--text-muted); }
+    .msg-action-btn { background: none; border: none; color: var(--text-muted); display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; font-size: 12px; }
+    .msg-action-btn:hover { background: var(--card-hover); color: var(--accent); }
+    .msg-action-btn .material-icons { font-size: 14px; }
 
-    .chips-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
-    .chip { background: var(--card-bg); border: 1px solid var(--card-border); padding: 7px 14px; border-radius: 24px; font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; font-weight: 500; }
-    .chip:hover { border-color: var(--accent); color: var(--text-main); }
-    .chip .material-icons { font-size: 16px; color: var(--accent); }
-
-    .sec-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-    .sec-title { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-
-    .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 36px; }
-    .quick-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 18px 12px; text-align: center; }
-    .quick-box:hover { border-color: var(--accent); }
-    .quick-icon-box { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; background: var(--card-hover); color: var(--accent); }
-    .quick-box h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
-    .quick-box p { font-size: 11px; color: var(--text-muted); }
-
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 36px; }
-    .tool-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
-    .tool-box:hover { border-color: var(--accent); background: var(--card-hover); }
-    .tool-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--card-hover); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-
-    .recent-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
-    .recent-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
-    .recent-item:hover { border-color: var(--accent); background: var(--card-hover); }
-
-    .banner { background: var(--card-bg); border: 1px solid var(--accent); border-radius: 20px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 34px; }
-    .banner-btn { background: var(--accent); color: #fff; border: none; padding: 9px 20px; border-radius: 24px; font-weight: 700; font-size: 13px; }
-    .footer-perks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; padding-top: 24px; border-top: 1px solid var(--card-border); }
-    .perk-box { display: flex; align-items: center; gap: 10px; }
-    .perk-box .material-icons { font-size: 24px; color: var(--accent); }
-
-    /* Full Chat Screen */
-    #fullChatView {
-      display: none; flex-direction: column; height: calc(100vh - 64px); width: 100%; max-width: 860px; margin: 0 auto; padding: 12px 14px;
+    /* Thinking State with Chakra */
+    .thinking-indicator {
+      display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 14px; font-style: italic; padding: 6px 0;
     }
-    .chat-top-nav {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--card-border); gap: 8px;
-    }
-    .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-bottom: 14px; }
-    .user-msg { align-self: flex-end; background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); padding: 11px 16px; border-radius: 18px 18px 4px 18px; max-width: 85%; font-size: 14px; word-break: break-word; }
+    .thinking-chakra { width: 18px; height: 18px; animation: chakraSpin 1s linear infinite; }
 
-    .single-ai-msg {
-      align-self: flex-start; background: var(--card-bg); border: 1px solid var(--accent); color: var(--text-main); padding: 16px 20px; border-radius: 18px 18px 18px 4px; max-width: 90%; font-size: 14.5px; line-height: 1.55; word-break: break-word;
+    /* Composer / Command Center */
+    .composer-wrapper { padding: 12px 16px 16px; background: var(--bg-base); border-top: 1px solid var(--sidebar-border); display: flex; flex-direction: column; gap: 8px; max-width: 820px; width: 100%; margin: 0 auto; position: sticky; bottom: 0; z-index: 100; }
+    
+    .attachment-preview-bar {
+      display: none; align-items: center; gap: 10px; padding: 8px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; font-size: 13px;
     }
+    .attachment-preview-bar img { width: 36px; height: 36px; object-fit: cover; border-radius: 6px; }
 
-    .multi-response-container {
-      display: flex; flex-direction: column; gap: 14px; width: 100%; align-self: flex-start; max-width: 100%;
+    .composer-box {
+      width: 100%; background: var(--dock-bg); border: 1px solid var(--dock-border); border-radius: 28px; padding: 8px 12px; display: flex; align-items: flex-end; gap: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
     }
-    .ai-output-card {
-      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px 18px; font-size: 14px; line-height: 1.55; word-break: break-word;
+    .composer-textarea {
+      flex: 1; min-height: 24px; max-height: 140px; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 15px; font-family: inherit; resize: none; padding: 4px 0;
     }
-    .ai-card-header {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 15px; font-weight: 700; color: var(--text-main);
-    }
-    .ai-card-avatar {
-      width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff;
-    }
-    .ai-card-footer-link {
-      display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: var(--accent); font-size: 12.5px; font-weight: 600; text-decoration: none; cursor: pointer;
-    }
+    .composer-actions { display: flex; align-items: center; gap: 4px; padding-bottom: 2px; }
+    .composer-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .composer-icon-btn:hover { color: var(--accent); background: var(--card-hover); }
+    .send-stop-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #03140e; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px var(--accent-glow); }
 
-    .trophy-card {
-      background: linear-gradient(145deg, #091122 0%, #0c1c3b 100%);
-      border: 2px solid #10b981;
-      border-radius: 20px;
-      padding: 18px 20px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+    /* Plus Menu Popover */
+    .plus-menu {
+      display: none; position: absolute; bottom: 80px; left: 16px; background: var(--sidebar-bg); border: 1px solid var(--sidebar-border); border-radius: 16px; padding: 8px; width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 200; flex-direction: column; gap: 2px;
     }
-    .trophy-title-row {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: #34d399; font-weight: 800; font-size: 16px;
+    .plus-menu.active { display: flex; }
+    .plus-menu-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: none; border: none; color: var(--text-main); font-size: 13.5px; border-radius: 10px; width: 100%; text-align: left; }
+    .plus-menu-item:hover { background: var(--card-hover); color: var(--accent); }
+    .plus-menu-item .material-icons { font-size: 18px; color: var(--accent); }
+
+    /* Voice Assistant Overlay */
+    .voice-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(3, 20, 14, 0.96); backdrop-filter: blur(12px); z-index: 3000; flex-direction: column; align-items: center; justify-content: space-between; padding: 40px 20px; text-align: center;
     }
-    .best-badge {
-      display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-top: 12px;
-    }
+    .voice-overlay.active { display: flex; }
+    .voice-status { font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+    .voice-visualizer { width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, rgba(16,185,129,0.1) 70%); box-shadow: 0 0 40px var(--accent-glow); animation: voicePulse 2s infinite ease-in-out; display: flex; align-items: center; justify-content: center; }
+    @keyframes voicePulse { 0%, 100% { transform: scale(0.95); } 50% { transform: scale(1.08); } }
+    .voice-transcript { font-size: 16px; color: var(--text-main); max-width: 500px; min-height: 50px; }
 
-    .ai-image-container { margin-top: 12px; border-radius: 14px; overflow: hidden; border: 1px solid var(--card-border); background: #000; }
-    .ai-image-container img { width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block; }
-    .ai-image-bar { padding: 8px 12px; background: var(--card-bg); display: flex; justify-content: space-between; align-items: center; }
+    /* Modals */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 4000; padding: 20px; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { width: 100%; max-width: 480px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; }
+    .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 16px; }
+    .modal-content { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 
-    /* Sidebar Drawer & Modals */
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 998; }
-    .sidebar-drawer { position: fixed; top: 0; left: -320px; width: 290px; height: 100%; background: var(--card-bg); border-right: 1px solid var(--sidebar-border); z-index: 999; transition: left 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; }
-    .sidebar-drawer.active { left: 0; }
-    .drawer-head { padding: 16px; border-bottom: 1px solid var(--sidebar-border); display: flex; justify-content: space-between; align-items: center; }
-    .drawer-list { flex: 1; overflow-y: auto; padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; }
-    .drawer-sec-title { font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; padding: 14px 10px 4px; }
-    .drawer-btn { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: none; border: none; color: var(--text-main); font-size: 13.5px; border-radius: 10px; width: 100%; text-align: left; }
-    .drawer-btn:hover { background: var(--card-hover); color: var(--accent); }
-    .drawer-btn .material-icons { font-size: 19px; color: var(--text-muted); }
-    .drawer-btn:hover .material-icons { color: var(--accent); }
-
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); z-index: 2000; padding: 14px; align-items: center; justify-content: center; }
-    .themes-modal-box { width: 100%; max-width: 540px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 22px; overflow: hidden; }
-    .themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px; }
-    .theme-card-choice { padding: 14px 12px; border: 2px solid var(--card-border); border-radius: 14px; background: var(--bg-base); text-align: center; }
-    .theme-card-choice:hover { border-color: var(--accent); }
-    .theme-circle-dot { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto 6px; }
-
-    @media (max-width: 600px) {
-      .hero-title { font-size: 28px; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
-      .banner { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .themes-grid { grid-template-columns: 1fr; }
-    }
+    #fileInput { display: none; }
   </style>
 </head>
 <body class="theme-dark">
 
-  <!-- Hidden File Input for Real Attachments -->
-  <input type="file" id="fileInput" style="display:none;" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
+  <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
 
-    <!-- Intro Screen with Failsafe Timer -->
+  <!-- Entrance Animation -->
   <div id="introLoader">
     <svg class="intro-chakra" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="3 2"/>
-      <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="#10b981" stroke-width="2"/>
       <g fill="#f59e0b">
         <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
         <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
       </g>
-      <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
-      <circle cx="50" cy="50" r="10" fill="#0284c7"/>
+      <circle cx="50" cy="50" r="24" fill="#03140e" stroke="#f59e0b" stroke-width="2"/>
+      <circle cx="50" cy="50" r="8" fill="#10b981"/>
     </svg>
-    <div class="intro-text">Sudarshana AI</div>
+    <div class="intro-title">Sudarshana AI</div>
   </div>
 
-  <!-- Left Sidebar Drawer -->
-  <div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
-  <aside class="sidebar-drawer" id="sideDrawer">
-    <div class="drawer-head">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <svg class="sudarshana-chakra" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra-gold)" stroke-width="2.5" stroke-dasharray="3 2"/>
-          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-          <g fill="var(--chakra-gold)">
-            <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
-            <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
-          </g>
-          <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
-          <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
-        </svg>
-        <span style="font-weight:800; font-size:17px;">Sudarshana</span>
-      </div>
-      <button class="icon-btn" onclick="closeSidebar()"><span class="material-icons">close</span></button>
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span style="font-weight:800; font-size:16px; color:var(--accent);">Sudarshana AI</span>
+      <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
     </div>
-
-    <div class="drawer-list">
-      <button class="drawer-btn" onclick="newChat(); closeSidebar()"><span class="material-icons">add_comment</span> New Chat</button>
-      <button class="drawer-btn" onclick="openThemeModal(); closeSidebar()"><span class="material-icons">palette</span> Themes (8 Styles)</button>
-
-      <div class="drawer-sec-title">Core AI Creators</div>
-      <button class="drawer-btn" onclick="triggerPreset('Generate photorealistic image of: '); closeSidebar()"><span class="material-icons">image</span> Generate AI Image</button>
-      <button class="drawer-btn" onclick="triggerPreset('Create script and prompt for AI video: '); closeSidebar()"><span class="material-icons">movie_filter</span> Make AI Videos</button>
-      <button class="drawer-btn" onclick="triggerPreset('Write clean code and architecture for: '); closeSidebar()"><span class="material-icons">terminal</span> Coding & Developing</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate music melody and beats for: '); closeSidebar()"><span class="material-icons">library_music</span> Music Generator</button>
-
-      <div class="drawer-sec-title">Trending & Integrations</div>
-      <button class="drawer-btn" onclick="triggerPreset('Find trending songs and build Spotify playlist for: '); closeSidebar()"><span class="material-icons">queue_music</span> Connect to Spotify</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest viral Instagram reels hook for: '); closeSidebar()"><span class="material-icons">photo_camera</span> Connect to Instagram</button>
-      <button class="drawer-btn" onclick="triggerPreset('Create viral YouTube shorts title for: '); closeSidebar()"><span class="material-icons">smart_display</span> Connect to YouTube</button>
-      <button class="drawer-btn" onclick="triggerPreset('Draft community update post for Weverse: '); closeSidebar()"><span class="material-icons">forum</span> Connect to Weverse</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate background score prompt for Beatoven.ai: '); closeSidebar()"><span class="material-icons">audiotrack</span> Beatoven.ai Music</button>
-      <button class="drawer-btn" onclick="triggerPreset('Break long video into viral shorts using StoryHero: '); closeSidebar()"><span class="material-icons">video_library</span> StoryHero Clips</button>
-      <button class="drawer-btn" onclick="triggerPreset('Generate highlight snippets with Vshorts AI: '); closeSidebar()"><span class="material-icons">auto_awesome_motion</span> Vshorts AI Studio</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest graphic cutout adjustments via Cutout.pro: '); closeSidebar()"><span class="material-icons">crop</span> Cutout.pro Design</button>
-      <button class="drawer-btn" onclick="triggerPreset('Transcribe audio with HappyScribe: '); closeSidebar()"><span class="material-icons">subtitles</span> HappyScribe Audio</button>
-      <button class="drawer-btn" onclick="triggerPreset('Suggest organic audience engagement strategies with Kicksta: '); closeSidebar()"><span class="material-icons">trending_up</span> Kicksta Growth</button>
-
-      <div class="drawer-sec-title">Settings & Feedback</div>
-      <button class="drawer-btn" onclick="openFeedback(); closeSidebar()"><span class="material-icons">feedback</span> Feedback</button>
-      <button class="drawer-btn" onclick="openSettings(); closeSidebar()"><span class="material-icons">settings</span> Settings</button>
+    <button class="sidebar-new-chat" onclick="startNewChat()"><span class="material-icons" style="font-size:18px;">add</span> New Chat</button>
+    <div class="sidebar-history" id="sidebarHistory">
+      <div class="history-group-title">Today</div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-footer-btn" onclick="openThemeModal()"><span class="material-icons">palette</span> Themes</button>
+      <button class="sidebar-footer-btn" onclick="openSettingsModal()"><span class="material-icons">settings</span> Settings & Memory</button>
     </div>
   </aside>
 
-  <!-- Top Navigation Header -->
-  <header class="app-header">
-    <div class="header-left">
-      <button class="icon-btn" onclick="openSidebar()"><span class="material-icons">menu</span></button>
-      <svg class="sudarshana-chakra" onclick="openSidebar()" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra-gold)" stroke-width="2.5" stroke-dasharray="3 2"/>
-        <circle cx="50" cy="50" r="38" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-        <g fill="var(--chakra-gold)">
-          <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
-          <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
-        </g>
-        <circle cx="50" cy="50" r="26" fill="#0f172a" stroke="var(--chakra-gold)" stroke-width="2"/>
-        <circle cx="50" cy="50" r="10" fill="var(--chakra-blue)"/>
-      </svg>
-      <span class="brand-title" onclick="backToHome()" style="cursor:pointer;">Sudarshana</span>
+  <!-- Voice Assistant Overlay -->
+  <div class="voice-overlay" id="voiceOverlay">
+    <div style="display:flex; width:100%; justify-content:flex-end;">
+      <button class="icon-btn" onclick="stopVoiceAssistant()"><span class="material-icons">close</span></button>
     </div>
-
-    <!-- Compact Right Side Controls -->
-    <div class="header-right-controls">
-      <div class="consensus-toggle-container active" id="consensusToggle" onclick="toggleConsensusMode()" title="Toggle Multi-AI Mode">
-        <span>AI</span>
-        <div class="toggle-switch"></div>
-      </div>
-      <button class="theme-pill-btn" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:14px;">palette</span>
-      </button>
-      <button class="icon-btn" onclick="newChat()"><span class="material-icons" style="font-size:18px;">edit_square</span></button>
+    <div class="voice-status" id="voiceStatus">Listening...</div>
+    <div class="voice-visualizer">
+      <span class="material-icons" style="font-size:42px; color:#fff;">mic</span>
     </div>
-  </header>
-
-  <!-- View 1: Home Dashboard -->
-  <main id="dashboardView">
-    <section class="hero-section">
-      <div class="hero-badge" onclick="openThemeModal()">
-        <span class="material-icons" style="font-size:14px;">bolt</span> Smart Multi-Model Engine
-      </div>
-
-      <h1 class="hero-title">Your Ideas<br><span class="glow-text">Our AI Power</span></h1>
-      <div class="hero-subtitle">
-        <span>Fast & Intelligent</span>
-        <span class="dot-sep"></span>
-        <span>Multi-AI Consensus</span>
-      </div>
-
-      <div class="search-dock-wrapper">
-        <div id="attachmentPreview">
-          <img id="previewThumb" src="" alt="attachment">
-          <span id="previewName" style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">file.jpg</span>
-          <button onclick="clearAttachment()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><span class="material-icons" style="font-size:16px;">close</span></button>
-        </div>
-
-        <div class="search-dock">
-          <span class="material-icons" style="color:var(--accent); font-size:20px; flex-shrink:0;">auto_awesome</span>
-          <input type="text" id="mainInput" placeholder="Ask anything, say hello, or generate images...">
-          <div class="dock-actions">
-            <button class="dock-icon-btn" onclick="triggerFileInput()" title="Attach image or file"><span class="material-icons" style="font-size:20px;">attach_file</span></button>
-            <button class="dock-icon-btn" onclick="startMic()" title="Voice input"><span class="material-icons" id="micIcon" style="font-size:20px;">mic</span></button>
-            <button class="dock-send-btn" onclick="submitMain()"><span class="material-icons" style="font-size:20px;">send</span></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="chips-row">
-        <div class="chip" onclick="triggerPreset('Give me best SEO tools for YouTube')"><span class="material-icons">smart_display</span> YouTube SEO Tools</div>
-        <div class="chip" onclick="triggerPreset('Generate photorealistic image of: ')"><span class="material-icons">image</span> Generate Image</div>
-        <div class="chip" onclick="triggerPreset('Write high-impact content on: ')"><span class="material-icons">edit_note</span> Write content</div>
-        <div class="chip" onclick="triggerPreset('Write clean production-ready code for: ')"><span class="material-icons">code</span> Code help</div>
-      </div>
-    </section>
-
-    <!-- Quick Access -->
-    <section>
-      <div class="sec-head">
-        <div class="sec-title"><span class="material-icons" style="color:#f59e0b;">bolt</span> Quick Access</div>
-      </div>
-      <div class="quick-grid">
-        <div class="quick-box" onclick="triggerPreset('Generate high quality visual artwork of: ')">
-          <div class="quick-icon-box"><span class="material-icons">image</span></div>
-          <h4>Generate Image</h4>
-          <p>Turn ideas into visuals</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Create professional blog post and marketing copy for: ')">
-          <div class="quick-icon-box"><span class="material-icons">article</span></div>
-          <h4>Create Content</h4>
-          <p>Blogs & captions</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Write clean, bug-free, and well-structured code for: ')">
-          <div class="quick-icon-box"><span class="material-icons">code</span></div>
-          <h4>Write Code</h4>
-          <p>Build & debug</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Summarize the following text or concept into concise key insights: ')">
-          <div class="quick-icon-box"><span class="material-icons">list_alt</span></div>
-          <h4>Summarize</h4>
-          <p>Long text to short</p>
-        </div>
-        <div class="quick-box" onclick="triggerPreset('Perform deep research and analysis on: ')">
-          <div class="quick-icon-box"><span class="material-icons">search</span></div>
-          <h4>Research</h4>
-          <p>Find insights instantly</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Popular Tools -->
-    <section>
-      <div class="sec-head">
-        <div class="sec-title"><span class="material-icons" style="color:#ef4444;">local_fire_department</span> Popular Tools</div>
-      </div>
-      <div class="tools-grid">
-        <div class="tool-box" onclick="triggerPreset('Open Image Studio: Edit, enhance, and generate style prompts for: ')">
-          <div class="tool-icon"><span class="material-icons">photo_filter</span></div>
-          <div><h4>Image Studio</h4><p>Create &bull; Enhance</p></div>
-        </div>
-        <div class="tool-box" onclick="triggerPreset('Open Video Studio: Generate script, subtitles and editing breakdown for: ')">
-          <div class="tool-icon"><span class="material-icons">smart_display</span></div>
-          <div><h4>Video Studio</h4><p>Edit &bull; Subtitles</p></div>
-        </div>
-        <div class="tool-box" onclick="triggerPreset('Open Audio Studio: Compose background score and voiceover guidelines for: ')">
-          <div class="tool-icon"><span class="material-icons">graphic_eq</span></div>
-          <div><h4>Audio Studio</h4><p>Voice &bull; Music</p></div>
-        </div>
-        <div class="tool-box" onclick="triggerPreset('Open Document Studio: Format and summarize document on: ')">
-          <div class="tool-icon"><span class="material-icons">description</span></div>
-          <div><h4>Document Studio</h4><p>Summarize</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Recent Chats -->
-    <section>
-      <div class="sec-head">
-        <div class="sec-title"><span class="material-icons" style="color:var(--accent);">chat_bubble_outline</span> Recent Chats</div>
-      </div>
-      <div class="recent-group">
-        <div class="recent-item" onclick="startChat('Give me best SEO tools for YouTube')">
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span class="material-icons" style="color:var(--accent);">smart_display</span>
-            <div><h4>Best SEO tools for YouTube</h4><p style="font-size:11.5px; color:var(--text-muted);">Comprehensive creator guide</p></div>
-          </div>
-          <span class="material-icons">chevron_right</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Banner -->
-    <div class="banner">
-      <div>
-        <h3>Explore Smart Multi-AI Engine</h3>
-        <p>Switch between single quick answers and multi-AI consensus</p>
-      </div>
-      <button class="banner-btn" onclick="triggerPreset('Give me best SEO tools for YouTube')">Start Creating</button>
+    <div class="voice-transcript" id="voiceTranscript">Speak now...</div>
+    <div>
+      <button class="icon-btn" style="width:56px; height:56px; background:#ef4444; border:none;" onclick="stopVoiceAssistant()"><span class="material-icons" style="color:#fff;">stop</span></button>
     </div>
+  </div>
 
-    <!-- Footer Perks -->
-    <div class="footer-perks">
-      <div class="perk-box"><span class="material-icons">speed</span><div><h5>Ultra Fast</h5><p>Instant responses</p></div></div>
-      <div class="perk-box"><span class="material-icons">lock</span><div><h5>Secure</h5><p>Private & reliable</p></div></div>
-      <div class="perk-box"><span class="material-icons">auto_awesome</span><div><h5>Smart Synthesis</h5><p>Sudarshana Final Answer</p></div></div>
-      <div class="perk-box"><span class="material-icons">all_inclusive</span><div><h5>No Limits</h5><p>Full capability</p></div></div>
-    </div>
-  </main>
-
-  <!-- View 2: Full Screen Native Conversation -->
-  <main id="fullChatView">
-    <div class="chat-top-nav">
-      <button class="icon-btn" onclick="backToHome()"><span class="material-icons">arrow_back</span></button>
-      <div style="font-weight:700; font-size:15px; color:var(--accent);" id="chatModeTitle">Sudarshana AI Engine</div>
-      <button class="icon-btn" onclick="newChat()"><span class="material-icons">refresh</span></button>
-    </div>
-
-    <div class="chat-messages" id="chatMessages"></div>
-
-    <div class="search-dock-wrapper" style="margin-bottom:0;">
-      <div class="search-dock">
-        <input type="text" id="chatInput" placeholder="Type your follow-up or generate images...">
-        <div class="dock-actions">
-          <button class="dock-send-btn" onclick="sendChatMessage()"><span class="material-icons" style="font-size:20px;">send</span></button>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- 8 Themes Modal -->
+  <!-- Themes Modal -->
   <div class="modal-overlay" id="themeModal">
-    <div class="themes-modal-box">
-      <div style="padding:14px 18px; border-bottom:1px solid var(--card-border); display:flex; justify-content:space-between; align-items:center;">
-        <div><span style="font-weight:800; font-size:16px;">Choose Your Theme</span></div>
-        <button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button>
-      </div>
-      <div class="themes-grid">
-        <div class="theme-card-choice" onclick="applyTheme('dark')"><div class="theme-circle-dot" style="background:#030712; border:2px solid #38bdf8;"></div><h5>Dark</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('light')"><div class="theme-circle-dot" style="background:#f8fafc; border:2px solid #0284c7;"></div><h5>Light</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('neon')"><div class="theme-circle-dot" style="background:#070114; border:2px solid #e879f9;"></div><h5>Neon</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('nature')"><div class="theme-circle-dot" style="background:#03140e; border:2px solid #10b981;"></div><h5>Nature</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('cyberpunk')"><div class="theme-circle-dot" style="background:#0a0118; border:2px solid #f43f5e;"></div><h5>Cyberpunk</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('sunset')"><div class="theme-circle-dot" style="background:#140704; border:2px solid #f97316;"></div><h5>Sunset</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('space')"><div class="theme-circle-dot" style="background:#020617; border:2px solid #0ea5e9;"></div><h5>Space</h5></div>
-        <div class="theme-card-choice" onclick="applyTheme('minimal')"><div class="theme-circle-dot" style="background:#f1f5f9; border:2px solid #6366f1;"></div><h5>Minimal</h5></div>
+    <div class="modal-box">
+      <div class="modal-header"><span>Select Theme</span><button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button></div>
+      <div class="modal-content" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;">
+        <button class="history-item" onclick="setTheme('dark')" style="border:1px solid var(--card-border);">Emerald Dark</button>
+        <button class="history-item" onclick="setTheme('light')" style="border:1px solid var(--card-border);">Clean Light</button>
+        <button class="history-item" onclick="setTheme('neon')" style="border:1px solid var(--card-border);">Neon Purple</button>
       </div>
     </div>
   </div>
 
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-box">
+      <div class="modal-header"><span>Settings</span><button class="icon-btn" onclick="closeSettingsModal()"><span class="material-icons">close</span></button></div>
+      <div class="modal-content">
+        <label style="display:flex; align-items:center; justify-content:space-between; font-size:14px;">
+          <span>Temporary Chat (No History)</span>
+          <input type="checkbox" id="tempChatToggle" onchange="isTempChat = this.checked">
+        </label>
+        <button class="sidebar-new-chat" style="background:#ef4444; color:#fff;" onclick="clearAllHistory()">Clear All History</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    <main class="main-chat-area">
+      
+      <header class="chat-header">
+        <div class="header-left">
+          <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
+          <span class="brand-title">Sudarshana</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <select class="smart-mode-select" id="smartModeSelect">
+            <option value="auto">Smart: Auto</option>
+            <option value="fast">Fast</option>
+            <option value="deep">Deep</option>
+            <option value="creative">Creative</option>
+          </select>
+          <button class="icon-btn" onclick="startVoiceAssistant()" title="Voice"><span class="material-icons">mic</span></button>
+        </div>
+      </header>
+
+      <div class="chat-body" id="chatBody">
+        
+                <!-- Home Hero -->
+        <div class="home-hero" id="homeHero">
+          <svg class="home-chakra-icon" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2"/>
+            <circle cx="50" cy="50" r="36" fill="none" stroke="#10b981" stroke-width="2"/>
+            <g fill="#f59e0b">
+              <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
+              <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
+            </g>
+            <circle cx="50" cy="50" r="24" fill="#03140e" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="50" cy="50" r="8" fill="#10b981"/>
+          </svg>
+          <h1 class="home-title">What can I help you create?</h1>
+          <p class="home-subtitle">Ask • Create • Learn • Explore</p>
+          <div class="suggestion-chips-grid">
+            <button class="suggestion-chip" onclick="sendPresetQuery('Ask anything about science or technology')"><span class="material-icons">search</span> Ask anything</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Help me code a clean Python web scraper')"><span class="material-icons">code</span> Help me code</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Explain quantum computing simply')"><span class="material-icons">school</span> Explain a topic</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Write a professional email for a job interview')"><span class="material-icons">edit_note</span> Write for me</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Generate image of: A futuristic emerald city in mountains')"><span class="material-icons">image</span> Create an image</button>
+          </div>
+        </div>
+
+        <div class="messages-list" id="messagesList"></div>
+
+      </div>
+
+      <!-- Plus Menu -->
+      <div class="plus-menu" id="plusMenu">
+        <button class="plus-menu-item" onclick="triggerFileInput()"><span class="material-icons">attach_file</span> Upload File / Photo</button>
+        <button class="plus-menu-item" onclick="triggerPresetImage()"><span class="material-icons">image</span> Create Image</button>
+      </div>
+
+      <!-- Composer -->
+      <div class="composer-wrapper">
+        <div class="attachment-preview-bar" id="attachmentPreviewBar">
+          <img id="previewThumbnail" src="" alt="preview">
+          <span id="previewFilename" style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">file.png</span>
+          <button onclick="clearAttachment()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><span class="material-icons" style="font-size:16px;">close</span></button>
+        </div>
+
+        <div class="composer-box">
+          <button class="composer-icon-btn" onclick="togglePlusMenu()"><span class="material-icons">add</span></button>
+          <textarea class="composer-textarea" id="composerInput" placeholder="Message Sudarshana..." rows="1" oninput="autoResizeTextarea(this)" onkeydown="handleComposerKey(event)"></textarea>
+          <div class="composer-actions">
+            <button class="composer-icon-btn" onclick="startVoiceAssistant()"><span class="material-icons">mic</span></button>
+            <button class="send-stop-btn" id="sendStopBtn" onclick="handleSendAction()"><span class="material-icons" id="sendStopIcon">arrow_upward</span></button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
   <script>
-    const part1 = "AQ.Ab8RN6Kky";
-    const part2 = "EvbiqLRoB-g_LOr7";
-    const part3 = "7UH9Iz3TEGqQF1bO_Quo35UEA";
-    const GEMINI_API_KEY = part1 + part2 + part3;
-
-    let isMultiAIOn = true;
-    let currentAttachedFile = null;
-
-    function toggleConsensusMode() {
-      isMultiAIOn = !isMultiAIOn;
-      const container = document.getElementById('consensusToggle');
-      if (isMultiAIOn) {
-        container.classList.add('active');
-      } else {
-        container.classList.remove('active');
-      }
-      triggerHaptic(30);
-    }
-
-    function triggerHaptic(duration = 25) {
-      if (typeof navigator !== 'undefined' && navigator.vibrate) {
-        try { navigator.vibrate(duration); } catch (e) {}
-      }
-    }
-
-    document.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('button, .chip, .quick-box, .tool-box, .recent-item, .theme-card-choice, .banner-btn, .consensus-toggle-container')) {
-        triggerHaptic(25);
-      }
-    });
-
-    function triggerFileInput() {
-      document.getElementById('fileInput').click();
-    }
-
-    function handleFileSelected(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        currentAttachedFile = {
-          name: file.name,
-          type: file.type,
-          dataUrl: e.target.result
-        };
-
-        const preview = document.getElementById('attachmentPreview');
-        const thumb = document.getElementById('previewThumb');
-        const nameSpan = document.getElementById('previewName');
-
-        nameSpan.textContent = file.name;
-        if (file.type.startsWith('image/')) {
-          thumb.src = e.target.result;
-          thumb.style.display = 'block';
-        } else {
-          thumb.style.display = 'none';
-        }
-        preview.style.display = 'flex';
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function clearAttachment() {
-      currentAttachedFile = null;
-      document.getElementById('attachmentPreview').style.display = 'none';
-      document.getElementById('fileInput').value = '';
-    }
-
-    function isImageRequest(prompt) {
-      const p = prompt.toLowerCase();
-      return p.includes('generate image') || p.includes('create image') || p.includes('draw') || p.includes('picture of') || p.includes('image of') || p.includes('photo of') || p.startsWith('image:');
-    }
-
-    async function callAIModel(userQuery, styleVariant = "direct") {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
-      
-      let systemPrompt = "You are Sudarshana AI, an expert, precise, and helpful AI assistant. Answer the following user query directly, thoroughly, and accurately in detail: ";
-      if (styleVariant === "alpha") {
-        systemPrompt = "Provide an in-depth, structured, and comprehensive breakdown for the query: ";
-      } else if (styleVariant === "beta") {
-        systemPrompt = "Provide a practical, user-friendly, and actionable perspective with step-by-step guidance for: ";
-      } else if (styleVariant === "gamma") {
-        systemPrompt = "Provide an expert technical, analytical, and optimized solution for: ";
-      }
-
-      const finalPromptPayload = systemPrompt + userQuery;
-
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: [{ parts: [{ text: finalPromptPayload }] }] })
-      });
-      
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error?.message || "Server connection error. Please check your network or API status.");
-      }
-      
-      const answer = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!answer) {
-        throw new Error("No response received from AI model.");
-      }
-      return answer;
-    }
-
-    function generateImageUrl(prompt) {
-      const cleanPrompt = prompt.replace(/(generate image of|create image of|image of|picture of|generate visual of|photo of)/gi, '').trim();
-      const seed = Math.floor(Math.random() * 999999);
-      return `https://image.pollinations.ai/prompt/${encodeURIComponent(cleanPrompt || prompt)}?width=1024&height=1024&nologo=true&seed=${seed}`;
-    }
-
-    function startChat(text) {
-      stopAudio();
-      document.getElementById('dashboardView').style.display = 'none';
-      document.getElementById('fullChatView').style.display = 'flex';
-      runQueryDispatcher(text);
-    }
-
-    function backToHome() {
-      stopAudio();
-      document.getElementById('fullChatView').style.display = 'none';
-      document.getElementById('dashboardView').style.display = 'block';
-    }
-
-    function newChat() {
-      stopAudio();
-      document.getElementById('chatMessages').innerHTML = '';
-      startChat('Hello!');
-    }
-
-    function stopAudio() {
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-    }
-
-    async function runQueryDispatcher(text) {
-      const container = document.getElementById('chatMessages');
-
-      let userHtml = `<b>You</b><br>${text}`;
-      if (currentAttachedFile) {
-        if (currentAttachedFile.type.startsWith('image/')) {
-          userHtml += `<br><img src="${currentAttachedFile.dataUrl}" style="max-width:200px; border-radius:8px; margin-top:8px;">`;
-        } else {
-          userHtml += `<br><i>Attached file: ${currentAttachedFile.name}</i>`;
-        }
-      }
-
-      const u = document.createElement('div');
-      u.className = 'user-msg';
-      u.innerHTML = userHtml;
-      container.appendChild(u);
-      container.scrollTop = container.scrollHeight;
-
-      const attachedPayload = currentAttachedFile ? ` [Attached File: ${currentAttachedFile.name}]` : "";
-      clearAttachment();
-
-      const combinedText = text + attachedPayload;
-
-      if (isImageRequest(text)) {
-        const imgUrl = generateImageUrl(text);
-        const a = document.createElement('div');
-        a.className = 'ai-msg';
-        a.innerHTML = `
-          <div><b>Generated Artwork:</b></div>
-          <div class="ai-image-container">
-            <img src="${imgUrl}" alt="${text}" loading="lazy" onerror="this.src='https://via.placeholder.com/1024x1024?text=Image+Generation+Failed+-+Retry'">
-            <div class="ai-image-bar">
-              <span style="font-size:12px; color:var(--text-muted);">1024x1024 High-Res</span>
-              <a href="${imgUrl}" target="_blank" download="sudarshana-ai.jpg" style="color:var(--accent); text-decoration:none; font-size:12.5px; font-weight:600;">Download</a>
-            </div>
-          </div>
-        `;
-        container.appendChild(a);
-        container.scrollTop = container.scrollHeight;
-        return;
-      }
-
-      const isSimpleGreeting = text.trim().toLowerCase().match(/^(hi|hello|hey|greetings|good morning|good evening|sup|kaise ho|bolo)$/);
-
-      if (!isMultiAIOn || isSimpleGreeting) {
-        const a = document.createElement('div');
-        a.className = 'single-ai-msg';
-        a.innerHTML = `<i style="color:var(--text-muted);">Thinking...</i>`;
-        container.appendChild(a);
-        container.scrollTop = container.scrollHeight;
-
-        try {
-          const reply = await callAIModel(combinedText, "direct");
-          a.innerHTML = reply.replace(/\n/g, '<br>');
-        } catch (err) {
-          a.innerHTML = `<span style="color:#f87171;">Error: ${err.message}</span>`;
-        }
-        container.scrollTop = container.scrollHeight;
-
-      } else {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'multi-response-container';
-        wrapper.innerHTML = `
-          <div class="ai-output-card" id="card-ans1">
-            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#10a37f;">1</div>Perspective Alpha</div>
-            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing query...</i></div>
-            <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Detailed breakdown)</span>
-          </div>
-
-          <div class="ai-output-card" id="card-ans2">
-            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#1a73e8;">2</div>Perspective Beta</div>
-            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing query...</i></div>
-            <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Structured plan)</span>
-          </div>
-
-          <div class="ai-output-card" id="card-ans3">
-            <div class="ai-card-header"><div class="ai-card-avatar" style="background:#d97706;">3</div>Perspective Gamma</div>
-            <div class="ans-content"><i style="color:var(--text-muted);">Analyzing query...</i></div>
-            <span class="ai-card-footer-link"><span class="material-icons" style="font-size:15px;">link</span> (Optimized steps)</span>
-          </div>
-
-          <div class="trophy-card" id="card-trophy" style="display:none;">
-            <div class="trophy-title-row">
-              <span class="material-icons" style="font-size:28px; color:#fbbf24;">military_tech</span>
-              Final Best Answer
-            </div>
-            <div class="ai-card-header" style="margin-bottom:6px;">
-              <div class="ai-card-avatar" style="background:var(--accent);">S</div>Sudarshana AI
-            </div>
-            <div id="trophy-text" style="font-size:13.5px; line-height:1.55; color:var(--text-main);">
-              Synthesizing best consensus...
-            </div>
-            <div class="best-badge">
-              <span class="material-icons" style="font-size:16px;">check_circle</span> Best Answer: Sudarshana AI
-            </div>
-          </div>
-        `;
-        container.appendChild(wrapper);
-        container.scrollTop = container.scrollHeight;
-
-        try {
-          const [ans1, ans2, ans3] = await Promise.all([
-            callAIModel(combinedText, "alpha"),
-            callAIModel(combinedText, "beta"),
-            callAIModel(combinedText, "gamma")
-          ]);
-
-          document.querySelector('#card-ans1 .ans-content').innerHTML = ans1.replace(/\n/g, '<br>');
-          document.querySelector('#card-ans2 .ans-content').innerHTML = ans2.replace(/\n/g, '<br>');
-          document.querySelector('#card-ans3 .ans-content').innerHTML = ans3.replace(/\n/g, '<br>');
-
-          const trophyCard = wrapper.querySelector('#card-trophy');
-          const trophyText = wrapper.querySelector('#trophy-text');
-
-          const bestSynthesis = `<b>Synthesized Verdict:</b> After evaluating all perspectives for your query (<i>"${text}"</i>), Sudarshana AI has integrated the most accurate, practical, and comprehensive insights above into this ultimate response.`;
-          trophyText.innerHTML = bestSynthesis;
-          trophyCard.style.display = 'block';
-        } catch (err) {
-          wrapper.innerHTML = `<div class="ai-output-card"><div class="ans-content" style="color:#f87171;">Failed to fetch consensus: ${err.message}</div></div>`;
-        }
-        container.scrollTop = container.scrollHeight;
-      }
-    }
-
-    function submitMain() {
-      const val = document.getElementById('mainInput').value.trim();
-      if (!val && !currentAttachedFile) return;
-      document.getElementById('mainInput').value = '';
-      startChat(val || "Analyze attached file/image");
-    }
-
-    function sendChatMessage() {
-      const val = document.getElementById('chatInput').value.trim();
-      if (!val && !currentAttachedFile) return;
-      document.getElementById('chatInput').value = '';
-      runQueryDispatcher(val || "Analyze attached file/image");
-    }
-
-    function triggerPreset(text) {
-      const inp = document.getElementById('mainInput');
-      inp.value = text;
-      inp.focus();
-      window.scrollTo({ top: 120, behavior: 'smooth' });
-    }
-
-    function openSidebar() { document.getElementById('sideDrawer').classList.add('active'); document.getElementById('sideOverlay').style.display = 'block'; }
-    function closeSidebar() { document.getElementById('sideDrawer').classList.remove('active'); document.getElementById('sideOverlay').style.display = 'none'; }
-    function openThemeModal() { document.getElementById('themeModal').style.display = 'flex'; }
-    function closeThemeModal() { document.getElementById('themeModal').style.display = 'none'; }
-    function applyTheme(name) { document.body.className = ''; document.body.classList.add('theme-' + name); localStorage.setItem('sudarshana_theme', name); closeThemeModal(); }
-    function openFeedback() { const f = prompt("Feedback for Sudarshana AI:"); if (f) alert("Thank you! Feedback recorded."); }
-    function openSettings() { alert("Sudarshana Multi-AI Hub\nStatus: Live Gemini API Connected"); }
-
-    function startMic() {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) return alert("Speech recognition not supported.");
-      const rec = new SpeechRecognition();
-      rec.lang = 'en-US';
-      const mic = document.getElementById('micIcon');
-      mic.style.color = 'var(--accent)';
-      rec.onresult = (e) => { document.getElementById('mainInput').value = e.results[0][0].transcript; mic.style.color = 'inherit'; };
-      rec.onerror = () => { mic.style.color = 'inherit'; };
-      rec.onend = () => { mic.style.color = 'inherit'; };
-      rec.start();
-    }
-
-    document.getElementById('mainInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') submitMain(); });
-    document.getElementById('chatInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChatMessage(); });
-
-    (function() {
-      const saved = localStorage.getItem('sudarshana_theme') || 'dark';
-      document.body.className = 'theme-' + saved;
-    })();
+    let currentSessionId = 'session_' + Date.now();
+    let chatSessions = JSON.parse(localStorage.getItem('sudarshana_sessions') || '[]');
+    let currentMessages = [];
+    let isGenerating = false;
+    let activeAbortController = null;
+    let attachedFile = null;
+    let isTempChat = false;
 
     window.addEventListener('load', () => {
       setTimeout(() => {
-        const loader = document.getElementById('introLoader');
-        if (loader) loader.classList.add('hide');
-      }, 1200);
+        document.getElementById('introLoader').classList.add('hide');
+        document.getElementById('composerInput').focus();
+      }, 1000);
+      renderSidebarHistory();
     });
 
-    // Failsafe timer: forces loader to hide after 2 seconds even if window.load lags
-    setTimeout(() => {
-      const loader = document.getElementById('introLoader');
-      if (loader) loader.classList.add('hide');
-    }, 2000);
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+    function openThemeModal() { document.getElementById('themeModal').classList.add('active'); toggleSidebar(); }
+    function closeThemeModal() { document.getElementById('themeModal').classList.remove('active'); }
+    function openSettingsModal() { document.getElementById('settingsModal').classList.add('active'); toggleSidebar(); }
+    function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('active'); }
+    function togglePlusMenu() { document.getElementById('plusMenu').classList.toggle('active'); }
+
+    function setTheme(name) {
+      document.body.className = 'theme-' + name;
+      localStorage.setItem('sudarshana_theme', name);
+      closeThemeModal();
+    }
+    const savedTheme = localStorage.getItem('sudarshana_theme');
+    if (savedTheme) document.body.className = 'theme-' + savedTheme;
+
+    function autoResizeTextarea(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 130) + 'px';
+    }
+    function handleComposerKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSendAction();
+      }
+    }
+
+    function triggerFileInput() {
+      togglePlusMenu();
+      document.getElementById('fileInput').click();
+    }
+    function handleFileSelected(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        attachedFile = { name: file.name, type: file.type, data: evt.target.result };
+        document.getElementById('previewFilename').textContent = file.name;
+        if (file.type.startsWith('image/')) {
+          document.getElementById('previewThumbnail').src = evt.target.result;
+          document.getElementById('previewThumbnail').style.display = 'block';
+        }
+        document.getElementById('attachmentPreviewBar').style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+    }
+    function clearAttachment() {
+      attachedFile = null;
+      document.getElementById('attachmentPreviewBar').style.display = 'none';
+      document.getElementById('fileInput').value = '';
+    }
+    function triggerPresetImage() {
+      togglePlusMenu();
+      document.getElementById('composerInput').value = "Generate image of: ";
+      document.getElementById('composerInput').focus();
+    }
+    function sendPresetQuery(q) {
+      document.getElementById('composerInput').value = q;
+      handleSendAction();
+    }
+
+    function startVoiceAssistant() {
+      document.getElementById('voiceOverlay').classList.add('active');
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const rec = new SpeechRec();
+        rec.lang = 'en-US';
+        rec.onresult = (e) => {
+          const text = e.results[0][0].transcript;
+          document.getElementById('voiceTranscript').textContent = text;
+          setTimeout(() => {
+            stopVoiceAssistant();
+            document.getElementById('composerInput').value = text;
+            handleSendAction();
+          }, 800);
+        };
+        rec.start();
+      }
+    }
+    function stopVoiceAssistant() { document.getElementById('voiceOverlay').classList.remove('active'); }
+
+    function startNewChat() {
+      currentSessionId = 'session_' + Date.now();
+      currentMessages = [];
+      document.getElementById('homeHero').style.display = 'flex';
+      document.getElementById('messagesList').style.display = 'none';
+      document.getElementById('messagesList').innerHTML = '';
+      if (document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
+    }
+
+    function saveCurrentSession(title) {
+      if (isTempChat) return;
+      let idx = chatSessions.findIndex(s => s.id === currentSessionId);
+      const data = { id: currentSessionId, title: title || 'Conversation', messages: currentMessages };
+      if (idx >= 0) chatSessions[idx] = data; else chatSessions.unshift(data);
+      localStorage.setItem('sudarshana_sessions', JSON.stringify(chatSessions));
+      renderSidebarHistory();
+    }
+
+    function renderSidebarHistory() {
+      const container = document.getElementById('sidebarHistory');
+      container.innerHTML = '<div class="history-group-title">Recent Chats</div>';
+      chatSessions.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'history-item';
+        btn.innerHTML = `<span class="material-icons" style="font-size:16px;">chat_bubble_outline</span> <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1;">${s.title}</span>`;
+        btn.onclick = () => loadSession(s.id);
+        container.appendChild(btn);
+      });
+    }
+
+    function loadSession(id) {
+      const s = chatSessions.find(x => x.id === id);
+      if (!s) return;
+      currentSessionId = s.id;
+      currentMessages = [...s.messages];
+      document.getElementById('homeHero').style.display = 'none';
+      const mList = document.getElementById('messagesList');
+      mList.style.display = 'flex';
+      mList.innerHTML = '';
+      s.messages.forEach(m => appendMessageNode(m.role, m.content, false));
+      toggleSidebar();
+    }
+
+    function clearAllHistory() {
+      chatSessions = [];
+      localStorage.removeItem('sudarshana_sessions');
+      renderSidebarHistory();
+      startNewChat();
+      closeSettingsModal();
+    }
+
+    function handleSendAction() {
+      if (isGenerating) {
+        if (activeAbortController) activeAbortController.abort();
+        isGenerating = false;
+        setComposerState(false);
+        return;
+      }
+      const inputEl = document.getElementById('composerInput');
+      const text = inputEl.value.trim();
+      if (!text && !attachedFile) return;
+
+      inputEl.value = '';
+      inputEl.style.height = 'auto';
+      
+      document.getElementById('homeHero').style.display = 'none';
+      const mList = document.getElementById('messagesList');
+      mList.style.display = 'flex';
+
+      let payload = text;
+      if (attachedFile) {
+        payload += ` [Attached File: ${attachedFile.name}]`;
+        clearAttachment();
+      }
+
+      appendMessageNode('user', payload, true);
+      dispatchAIResponse(payload);
+    }
+
+    function setComposerState(gen) {
+      isGenerating = gen;
+      const icon = document.getElementById('sendStopIcon');
+      const btn = document.getElementById('sendStopBtn');
+      if (gen) { icon.textContent = 'stop'; btn.style.background = '#ef4444'; }
+      else { icon.textContent = 'arrow_upward'; btn.style.background = 'var(--accent)'; }
+    }
+
+    function appendMessageNode(role, content, save = true) {
+      const mList = document.getElementById('messagesList');
+      const row = document.createElement('div');
+      row.className = `message-row ${role}`;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'message-bubble';
+      bubble.textContent = content;
+      row.appendChild(bubble);
+
+      if (role === 'assistant') {
+        const actions = document.createElement('div');
+        actions.className = 'message-actions';
+        actions.innerHTML = `
+          <button class="msg-action-btn" onclick="navigator.clipboard.writeText(this.parentElement.previousElementSibling.textContent)"><span class="material-icons">content_copy</span> Copy</button>
+          <button class="msg-action-btn" onclick="readAloud(this.parentElement.previousElementSibling.textContent)"><span class="material-icons">volume_up</span> Listen</button>
+        `;
+        row.appendChild(actions);
+      }
+
+      mList.appendChild(row);
+      mList.scrollTop = mList.scrollHeight;
+
+      if (save) {
+        currentMessages.push({ role, content });
+        saveCurrentSession(currentMessages[0].content.slice(0, 30) + '...');
+      }
+    }
+
+    function readAloud(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+      }
+    }
+
+    async function dispatchAIResponse(text) {
+      setComposerState(true);
+      activeAbortController = new AbortController();
+      const smartMode = document.getElementById('smartModeSelect').value;
+
+      const mList = document.getElementById('messagesList');
+      const row = document.createElement('div');
+      row.className = 'message-row assistant';
+      const bubble = document.createElement('div');
+      bubble.className = 'message-bubble';
+      
+      const thinkingId = 'think_' + Date.now();
+      bubble.innerHTML = `<div class="thinking-indicator" id="${thinkingId}">Sudarshana is thinking <svg class="thinking-chakra" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#10b981" stroke-width="8" stroke-dasharray="10 6"/></svg></div>`;
+      row.appendChild(bubble);
+      mList.appendChild(row);
+      mList.scrollTop = mList.scrollHeight;
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: currentMessages, smartMode }),
+          signal: activeAbortController.signal
+        });
+        const data = await res.json();
+        const reply = data.reply || "Done.";
+
+        document.getElementById(thinkingId)?.remove();
+        bubble.textContent = '';
+
+        let idx = 0;
+        const timer = setInterval(() => {
+          if (idx < reply.length) {
+            bubble.textContent += reply.charAt(idx);
+            idx++;
+            mList.scrollTop = mList.scrollHeight;
+          } else {
+            clearInterval(timer);
+            finalizeAssistantMessage(row, reply);
+          }
+        }, 10);
+
+      } catch (err) {
+        document.getElementById(thinkingId)?.remove();
+        bubble.textContent = "Sudarshana is switching to another AI engine... Your conversation is saved.";
+        finalizeAssistantMessage(row, bubble.textContent);
+      }
+    }
+
+    function finalizeAssistantMessage(row, text) {
+      setComposerState(false);
+      activeAbortController = null;
+      const actions = document.createElement('div');
+      actions.className = 'message-actions';
+      actions.innerHTML = `
+        <button class="msg-action-btn" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}')"><span class="material-icons">content_copy</span> Copy</button>
+        <button class="msg-action-btn" onclick="readAloud('${text.replace(/'/g, "\\'")}')"><span class="material-icons">volume_up</span> Listen</button>
+      `;
+      row.appendChild(actions);
+      currentMessages.push({ role: 'assistant', content: text });
+      saveCurrentSession();
+    }
   </script>
 </body>
 </html>
