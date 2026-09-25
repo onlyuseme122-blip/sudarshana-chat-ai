@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sudarshana AI - Intelligent Assistant</title>
+  <title>Sudarshana AI — Super Intelligence Workspace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2303140e' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%2310b981'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23030712' stroke='%23f59e0b' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%2338bdf8'/%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,34 +18,33 @@
     }
 
     :root {
-      --bg-base: #03140e;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #03140e 70%);
-      --sidebar-bg: #041a12;
-      --sidebar-border: #0d3828;
-      --card-bg: #072419;
-      --card-border: #114a34;
-      --card-hover: #0c3324;
-      --dock-bg: rgba(7, 36, 25, 0.95);
-      --dock-border: #065f46;
-      --text-main: #ecfdf5;
-      --text-muted: #6ee7b7;
-      --accent: #10b981;
-      --accent-secondary: #059669;
-      --accent-glow: rgba(16, 185, 129, 0.3);
+      --bg-base: #030712;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #0e1c3b 0%, #030712 70%);
+      --sidebar-bg: #070c18;
+      --sidebar-border: #131f37;
+      --card-bg: #091122;
+      --card-border: #172442;
+      --card-hover: #0f1d38;
+      --dock-bg: rgba(9, 17, 34, 0.95);
+      --dock-border: #1e3a8a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-glow: rgba(56, 189, 248, 0.3);
       --chakra-gold: #f59e0b;
     }
 
-    body.theme-light {
-      --bg-base: #f8fafc; --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-      --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255, 255, 255, 0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #059669; --accent-secondary: #047857; --accent-glow: rgba(5, 150, 105, 0.2);
-    }
-    body.theme-neon {
-      --bg-base: #070114; --bg-gradient: radial-gradient(circle at 50% -10%, #2f0752 0%, #070114 75%);
-      --sidebar-bg: #0d0221; --sidebar-border: #260f54; --card-bg: #14042e; --card-border: #3b127f; --card-hover: #22084d; --dock-bg: rgba(20, 4, 46, 0.94); --dock-border: #701a75; --text-main: #fdf4ff; --text-muted: #c084fc; --accent: #e879f9; --accent-secondary: #a855f7; --accent-glow: rgba(232, 121, 249, 0.4);
-    }
+    body.theme-obsidian { --bg-base: #000000; --bg-gradient: #050505; --sidebar-bg: #0a0a0a; --sidebar-border: #222; --card-bg: #111; --card-border: #333; --card-hover: #1a1a1a; --dock-bg: rgba(15,15,15,0.95); --dock-border: #444; --text-main: #fff; --text-muted: #888; --accent: #fff; --accent-glow: rgba(255,255,255,0.2); }
+    body.theme-ocean { --bg-base: #020817; --bg-gradient: radial-gradient(circle at 50% -10%, #0c2340 0%, #020817 75%); --sidebar-bg: #040e24; --sidebar-border: #102a52; --card-bg: #071533; --card-border: #17366b; --card-hover: #0a1f47; --dock-bg: rgba(7,21,51,0.95); --dock-border: #0369a1; --text-main: #f0fdf4; --text-muted: #7dd3fc; --accent: #0ea5e9; --accent-glow: rgba(14,165,233,0.3); }
+    body.theme-cosmic { --bg-base: #090214; --bg-gradient: radial-gradient(circle at 50% -10%, #290d47 0%, #090214 75%); --sidebar-bg: #110424; --sidebar-border: #38105c; --card-bg: #190733; --card-border: #4f1580; --card-hover: #240a4a; --dock-bg: rgba(25,7,51,0.95); --dock-border: #9333ea; --text-main: #faf5ff; --text-muted: #d8b4fe; --accent: #c084fc; --accent-glow: rgba(192,132,252,0.35); }
+    body.theme-emerald { --bg-base: #03140e; --bg-gradient: radial-gradient(circle at 50% -10%, #093827 0%, #03140e 70%); --sidebar-bg: #041a12; --sidebar-border: #0d3828; --card-bg: #072419; --card-border: #114a34; --card-hover: #0c3324; --dock-bg: rgba(7,36,25,0.95); --dock-border: #065f46; --text-main: #ecfdf5; --text-muted: #6ee7b7; --accent: #10b981; --accent-glow: rgba(16,185,129,0.3); }
+    body.theme-sunset { --bg-base: #140704; --bg-gradient: radial-gradient(circle at 50% -10%, #45180c 0%, #140704 75%); --sidebar-bg: #1c0a05; --sidebar-border: #3d1b10; --card-bg: #270f08; --card-border: #4a2113; --card-hover: #36170d; --dock-bg: rgba(39,15,8,0.95); --dock-border: #9a3412; --text-main: #fff7ed; --text-muted: #fdba74; --accent: #f97316; --accent-glow: rgba(249,115,22,0.35); }
+    body.theme-arctic { --bg-base: #061226; --bg-gradient: radial-gradient(circle at 50% -10%, #153463 0%, #061226 75%); --sidebar-bg: #0a1b38; --sidebar-border: #20437a; --card-bg: #10264a; --card-border: #2d5a9e; --card-hover: #173361; --dock-bg: rgba(16,38,74,0.95); --dock-border: #3b82f6; --text-main: #f8fafc; --text-muted: #93c5fd; --accent: #60a5fa; --accent-glow: rgba(96,165,250,0.3); }
+    body.theme-light { --bg-base: #f8fafc; --bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%); --sidebar-bg: #ffffff; --sidebar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #cbd5e1; --card-hover: #f1f5f9; --dock-bg: rgba(255,255,255,0.96); --dock-border: #cbd5e1; --text-main: #0f172a; --text-muted: #64748b; --accent: #0284c7; --accent-glow: rgba(2,132,199,0.2); }
 
     html, body {
-      width: 100%; height: 100%; height: 100dvh;
+      width: 100%; height: 100%;
       background-color: var(--bg-base); background-image: var(--bg-gradient); background-attachment: fixed;
       color: var(--text-main); font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       overflow: hidden; line-height: 1.5;
@@ -54,16 +53,16 @@
     button, .chip, .suggestion-chip, .history-item { cursor: pointer; user-select: none; }
     button:active, .chip:active, .suggestion-chip:active { transform: scale(0.97); }
 
-    /* Premium Chakra Entrance Animation */
+    /* Intro Animation Overlay */
     #introLoader {
       position: fixed; inset: 0; background: var(--bg-base); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     #introLoader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     .intro-chakra { width: 90px; height: 90px; animation: chakraSpin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-    @keyframes chakraSpin { 0% { transform: rotate(0deg) scale(0.9); filter: drop-shadow(0 0 5px var(--accent)); } 50% { transform: rotate(180deg) scale(1.1); filter: drop-shadow(0 0 20px var(--chakra-gold)); } 100% { transform: rotate(360deg) scale(0.9); filter: drop-shadow(0 0 5px var(--accent)); } }
+    @keyframes chakraSpin { 0% { transform: rotate(0deg) scale(0.9); filter: drop-shadow(0 0 8px var(--accent)); } 50% { transform: rotate(180deg) scale(1.12); filter: drop-shadow(0 0 25px var(--chakra-gold)); } 100% { transform: rotate(360deg) scale(0.9); filter: drop-shadow(0 0 8px var(--accent)); } }
     .intro-title { margin-top: 16px; font-size: 14px; font-weight: 700; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }
 
-    /* App Layout */
+    /* App Shell */
     .app-container { display: flex; width: 100vw; height: 100vh; height: 100dvh; position: relative; overflow: hidden; }
 
     /* Sidebar Drawer */
@@ -74,10 +73,10 @@
     }
     .sidebar.active { left: 0; }
     .sidebar-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--sidebar-border); }
-    .sidebar-new-chat { margin: 12px 16px; padding: 10px 16px; background: var(--accent); color: #03140e; border: none; border-radius: 12px; font-weight: 700; font-size: 13.5px; display: flex; align-items: center; gap: 8px; justify-content: center; box-shadow: 0 4px 12px var(--accent-glow); }
+    .sidebar-new-chat { margin: 12px 16px; padding: 10px 16px; background: var(--accent); color: #030712; border: none; border-radius: 12px; font-weight: 700; font-size: 13.5px; display: flex; align-items: center; gap: 8px; justify-content: center; box-shadow: 0 4px 12px var(--accent-glow); }
     .sidebar-history { flex: 1; overflow-y: auto; padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
     .history-group-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; padding: 10px 8px 4px; letter-spacing: 0.5px; }
-    .history-item { padding: 10px 12px; border-radius: 10px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 10px; background: transparent; border: none; width: 100%; text-align: left; }
+    .history-item { padding: 10px 12px; border-radius: 10px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 10px; text-decoration: none; background: transparent; border: none; width: 100%; text-align: left; }
     .history-item:hover { background: var(--card-hover); color: var(--accent); }
     .sidebar-footer { padding: 14px 16px; border-top: 1px solid var(--sidebar-border); display: flex; flex-direction: column; gap: 8px; }
     .sidebar-footer-btn { display: flex; align-items: center; gap: 10px; background: none; border: none; color: var(--text-muted); font-size: 13.5px; padding: 8px 10px; border-radius: 8px; width: 100%; text-align: left; }
@@ -95,36 +94,41 @@
     .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
     .brand-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
 
-    /* Smart Mode Selector Dropdown in Header */
-    .smart-mode-select {
-      background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); padding: 6px 12px; border-radius: 20px; font-size: 12.5px; font-weight: 600; outline: none; cursor: pointer;
+    /* Super AI Mode Switcher in Header */
+    .super-ai-switch {
+      display: flex; align-items: center; gap: 6px; background: var(--card-bg); border: 1px solid var(--card-border); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer;
     }
+    .super-ai-switch.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 10px var(--accent-glow); }
+    .mini-toggle { width: 24px; height: 12px; background: var(--card-border); border-radius: 6px; position: relative; transition: background 0.3s; }
+    .mini-toggle::after { content: ''; position: absolute; top: 1px; left: 1px; width: 10px; height: 10px; background: #fff; border-radius: 50%; transition: transform 0.3s; }
+    .super-ai-switch.active .mini-toggle { background: var(--accent); }
+    .super-ai-switch.active .mini-toggle::after { transform: translateX(12px); }
 
-    /* Chat Body */
+    /* Chat Body / Home Screen */
     .chat-body { flex: 1; overflow-y: auto; display: flex; flex-direction: column; position: relative; padding-bottom: 20px; }
     
     /* Home Hero */
     .home-hero {
       margin: auto; padding: 24px 16px; max-width: 680px; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center;
     }
-    .home-chakra-icon { width: 56px; height: 56px; margin-bottom: 16px; animation: chakraSpin 6s linear infinite; filter: drop-shadow(0 0 10px var(--accent-glow)); }
-    .home-title { font-size: 30px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
-    .home-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .home-chakra-icon { width: 56px; height: 56px; margin-bottom: 16px; animation: chakraSpin 10s linear infinite; filter: drop-shadow(0 0 10px var(--accent-glow)); }
+    .home-title { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
+    .home-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
     .suggestion-chips-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; max-width: 600px; }
     .suggestion-chip {
-      background: var(--card-bg); border: 1px solid var(--card-border); padding: 10px 16px; border-radius: 20px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-weight: 500;
+      background: var(--card-bg); border: 1px solid var(--card-border); padding: 10px 16px; border-radius: 20px; font-size: 13px; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-weight: 500; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .suggestion-chip:hover { border-color: var(--accent); background: var(--card-hover); color: var(--accent); }
     .suggestion-chip .material-icons { font-size: 16px; color: var(--accent); }
 
-    /* Messages List */
+    /* Active Messages Stream */
     .messages-list { display: none; flex-direction: column; gap: 20px; padding: 20px 16px; max-width: 800px; width: 100%; margin: 0 auto; }
     .message-row { display: flex; flex-direction: column; width: 100%; gap: 6px; }
     .message-row.user { align-items: flex-end; }
     .message-row.assistant { align-items: flex-start; }
     
     .message-bubble {
-      max-width: 88%; padding: 14px 18px; border-radius: 18px; font-size: 14.5px; line-height: 1.6; word-break: break-word;
+      max-width: 88%; padding: 14px 18px; border-radius: 18px; font-size: 14.5px; line-height: 1.6; word-break: break-word; position: relative;
     }
     .message-row.user .message-bubble {
       background: var(--card-hover); border: 1px solid var(--card-border); color: var(--text-main); border-bottom-right-radius: 4px;
@@ -138,11 +142,16 @@
     .msg-action-btn:hover { background: var(--card-hover); color: var(--accent); }
     .msg-action-btn .material-icons { font-size: 14px; }
 
-    /* Thinking State with Chakra */
+    /* Thinking State */
     .thinking-indicator {
-      display: inline-flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 14px; font-style: italic; padding: 6px 0;
+      display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 14px; font-style: italic; padding: 8px 0;
     }
-    .thinking-chakra { width: 18px; height: 18px; animation: chakraSpin 1s linear infinite; }
+    .thinking-dots span {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; animation: bounce 1.4s infinite ease-in-out both;
+    }
+    .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
 
     /* Composer / Command Center */
     .composer-wrapper { padding: 12px 16px 16px; background: var(--bg-base); border-top: 1px solid var(--sidebar-border); display: flex; flex-direction: column; gap: 8px; max-width: 820px; width: 100%; margin: 0 auto; position: sticky; bottom: 0; z-index: 100; }
@@ -161,7 +170,8 @@
     .composer-actions { display: flex; align-items: center; gap: 4px; padding-bottom: 2px; }
     .composer-icon-btn { background: none; border: none; color: var(--text-muted); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .composer-icon-btn:hover { color: var(--accent); background: var(--card-hover); }
-    .send-stop-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #03140e; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px var(--accent-glow); }
+    .send-stop-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #030712; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px var(--accent-glow); }
+    .send-stop-btn:hover { filter: brightness(1.1); }
 
     /* Plus Menu Popover */
     .plus-menu {
@@ -174,18 +184,21 @@
 
     /* Voice Assistant Overlay */
     .voice-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(3, 20, 14, 0.96); backdrop-filter: blur(12px); z-index: 3000; flex-direction: column; align-items: center; justify-content: space-between; padding: 40px 20px; text-align: center;
+      display: none; position: fixed; inset: 0; background: rgba(3, 7, 18, 0.96); backdrop-filter: blur(12px); z-index: 3000; flex-direction: column; align-items: center; justify-content: space-between; padding: 40px 20px; text-align: center;
     }
     .voice-overlay.active { display: flex; }
     .voice-status { font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
-    .voice-visualizer { width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, rgba(16,185,129,0.1) 70%); box-shadow: 0 0 40px var(--accent-glow); animation: voicePulse 2s infinite ease-in-out; display: flex; align-items: center; justify-content: center; }
-    @keyframes voicePulse { 0%, 100% { transform: scale(0.95); } 50% { transform: scale(1.08); } }
+    .voice-visualizer { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, rgba(56,189,248,0.1) 70%); box-shadow: 0 0 50px var(--accent-glow); animation: voicePulse 2s infinite ease-in-out; display: flex; align-items: center; justify-content: center; }
+    @keyframes voicePulse { 0%, 100% { transform: scale(0.95); box-shadow: 0 0 30px var(--accent-glow); } 50% { transform: scale(1.08); box-shadow: 0 0 60px var(--accent); } }
     .voice-transcript { font-size: 16px; color: var(--text-main); max-width: 500px; min-height: 50px; }
+    .voice-controls { display: flex; align-items: center; gap: 20px; }
+    .voice-ctrl-btn { width: 60px; height: 60px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main); display: flex; align-items: center; justify-content: center; }
+    .voice-ctrl-btn.danger { background: #ef4444; border-color: #dc2626; color: #fff; }
 
     /* Modals */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 4000; padding: 20px; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
-    .modal-box { width: 100%; max-width: 480px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; }
+    .modal-box { width: 100%; max-width: 500px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
     .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 16px; }
     .modal-content { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 
@@ -194,33 +207,36 @@
 </head>
 <body class="theme-dark">
 
+  <!-- Hidden File Input -->
   <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.doc,.docx" onchange="handleFileSelected(event)">
 
-  <!-- Entrance Animation -->
+  <!-- Intro Animation Overlay -->
   <div id="introLoader">
-    <svg class="intro-chakra" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2"/>
-      <circle cx="50" cy="50" r="36" fill="none" stroke="#10b981" stroke-width="2"/>
-      <g fill="#f59e0b">
-        <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
-        <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
-      </g>
-      <circle cx="50" cy="50" r="24" fill="#03140e" stroke="#f59e0b" stroke-width="2"/>
-      <circle cx="50" cy="50" r="8" fill="#10b981"/>
-    </svg>
-    <div class="intro-title">Sudarshana AI</div>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <svg class="intro-chakra" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2"/>
+        <circle cx="50" cy="50" r="36" fill="none" stroke="#38bdf8" stroke-width="2"/>
+        <g fill="#f59e0b">
+          <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
+          <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
+        </g>
+        <circle cx="50" cy="50" r="24" fill="#030712" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="50" cy="50" r="8" fill="#38bdf8"/>
+      </svg>
+      <div class="intro-title">Sudarshana AI</div>
+    </div>
   </div>
 
-  <!-- Sidebar -->
+  <!-- Sidebar Drawer -->
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span style="font-weight:800; font-size:16px; color:var(--accent);">Sudarshana AI</span>
+      <span style="font-weight:800; font-size:16px; color:var(--accent);">Sudarshana Workspace</span>
       <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">close</span></button>
     </div>
     <button class="sidebar-new-chat" onclick="startNewChat()"><span class="material-icons" style="font-size:18px;">add</span> New Chat</button>
     <div class="sidebar-history" id="sidebarHistory">
-      <div class="history-group-title">Today</div>
+      <div class="history-group-title">Recent Conversations</div>
     </div>
     <div class="sidebar-footer">
       <button class="sidebar-footer-btn" onclick="openThemeModal()"><span class="material-icons">palette</span> Themes</button>
@@ -228,29 +244,37 @@
     </div>
   </aside>
 
-  <!-- Voice Assistant Overlay -->
+    <!-- Voice Assistant Overlay -->
   <div class="voice-overlay" id="voiceOverlay">
     <div style="display:flex; width:100%; justify-content:flex-end;">
       <button class="icon-btn" onclick="stopVoiceAssistant()"><span class="material-icons">close</span></button>
     </div>
     <div class="voice-status" id="voiceStatus">Listening...</div>
     <div class="voice-visualizer">
-      <span class="material-icons" style="font-size:42px; color:#fff;">mic</span>
+      <span class="material-icons" style="font-size:48px; color:#fff;">mic</span>
     </div>
-    <div class="voice-transcript" id="voiceTranscript">Speak now...</div>
-    <div>
-      <button class="icon-btn" style="width:56px; height:56px; background:#ef4444; border:none;" onclick="stopVoiceAssistant()"><span class="material-icons" style="color:#fff;">stop</span></button>
+    <div class="voice-transcript" id="voiceTranscript">Speak now, I am listening...</div>
+    <div class="voice-controls">
+      <button class="voice-ctrl-btn danger" onclick="stopVoiceAssistant()"><span class="material-icons">stop</span></button>
     </div>
   </div>
 
   <!-- Themes Modal -->
   <div class="modal-overlay" id="themeModal">
     <div class="modal-box">
-      <div class="modal-header"><span>Select Theme</span><button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button></div>
+      <div class="modal-header">
+        <span>Select Theme</span>
+        <button class="icon-btn" onclick="closeThemeModal()"><span class="material-icons">close</span></button>
+      </div>
       <div class="modal-content" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;">
-        <button class="history-item" onclick="setTheme('dark')" style="border:1px solid var(--card-border);">Emerald Dark</button>
+        <button class="history-item" onclick="setTheme('dark')" style="border:1px solid var(--card-border);">Default Navy</button>
+        <button class="history-item" onclick="setTheme('obsidian')" style="border:1px solid var(--card-border);">Obsidian Black</button>
+        <button class="history-item" onclick="setTheme('ocean')" style="border:1px solid var(--card-border);">Ocean Blue</button>
+        <button class="history-item" onclick="setTheme('cosmic')" style="border:1px solid var(--card-border);">Cosmic Purple</button>
+        <button class="history-item" onclick="setTheme('emerald')" style="border:1px solid var(--card-border);">Emerald Teal</button>
+        <button class="history-item" onclick="setTheme('sunset')" style="border:1px solid var(--card-border);">Sunset Orange</button>
+        <button class="history-item" onclick="setTheme('arctic')" style="border:1px solid var(--card-border);">Arctic Blue</button>
         <button class="history-item" onclick="setTheme('light')" style="border:1px solid var(--card-border);">Clean Light</button>
-        <button class="history-item" onclick="setTheme('neon')" style="border:1px solid var(--card-border);">Neon Purple</button>
       </div>
     </div>
   </div>
@@ -258,73 +282,78 @@
   <!-- Settings Modal -->
   <div class="modal-overlay" id="settingsModal">
     <div class="modal-box">
-      <div class="modal-header"><span>Settings</span><button class="icon-btn" onclick="closeSettingsModal()"><span class="material-icons">close</span></button></div>
+      <div class="modal-header">
+        <span>Settings & Memory</span>
+        <button class="icon-btn" onclick="closeSettingsModal()"><span class="material-icons">close</span></button>
+      </div>
       <div class="modal-content">
         <label style="display:flex; align-items:center; justify-content:space-between; font-size:14px;">
-          <span>Temporary Chat (No History)</span>
-          <input type="checkbox" id="tempChatToggle" onchange="isTempChat = this.checked">
+          <span>Temporary Chat (No History Saved)</span>
+          <input type="checkbox" id="tempChatToggle" onchange="toggleTempChat()">
         </label>
-        <button class="sidebar-new-chat" style="background:#ef4444; color:#fff;" onclick="clearAllHistory()">Clear All History</button>
+        <button class="sidebar-new-chat" style="background:#ef4444; color:#fff;" onclick="clearAllHistory()">Clear All Chat History</button>
       </div>
     </div>
   </div>
 
-  <!-- Main Container -->
+  <!-- Main App Shell -->
   <div class="app-container">
     <main class="main-chat-area">
       
+      <!-- Header -->
       <header class="chat-header">
         <div class="header-left">
           <button class="icon-btn" onclick="toggleSidebar()"><span class="material-icons">menu</span></button>
-          <span class="brand-title">Sudarshana</span>
+          <span class="brand-title">Sudarshana AI</span>
         </div>
         <div style="display:flex; align-items:center; gap:8px;">
-          <select class="smart-mode-select" id="smartModeSelect">
-            <option value="auto">Smart: Auto</option>
-            <option value="fast">Fast</option>
-            <option value="deep">Deep</option>
-            <option value="creative">Creative</option>
-          </select>
-          <button class="icon-btn" onclick="startVoiceAssistant()" title="Voice"><span class="material-icons">mic</span></button>
+          <div class="super-ai-switch active" id="superAiSwitch" onclick="toggleSuperAI()" title="Toggle Super AI Mode">
+            <span>Super AI</span>
+            <div class="mini-toggle"></div>
+          </div>
+          <button class="icon-btn" onclick="startVoiceAssistant()" title="Voice Assistant"><span class="material-icons">mic</span></button>
+          <button class="icon-btn" onclick="startNewChat()" title="New Chat"><span class="material-icons">add</span></button>
         </div>
       </header>
 
+      <!-- Chat Body -->
       <div class="chat-body" id="chatBody">
         
-                <!-- Home Hero -->
+        <!-- Home / Empty State -->
         <div class="home-hero" id="homeHero">
           <svg class="home-chakra-icon" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4 2"/>
-            <circle cx="50" cy="50" r="36" fill="none" stroke="#10b981" stroke-width="2"/>
+            <circle cx="50" cy="50" r="36" fill="none" stroke="#38bdf8" stroke-width="2"/>
             <g fill="#f59e0b">
               <polygon points="50,4 53,16 47,16"/><polygon points="50,96 53,84 47,84"/>
               <polygon points="4,50 16,53 16,47"/><polygon points="96,50 84,53 84,47"/>
             </g>
-            <circle cx="50" cy="50" r="24" fill="#03140e" stroke="#f59e0b" stroke-width="2"/>
-            <circle cx="50" cy="50" r="8" fill="#10b981"/>
+            <circle cx="50" cy="50" r="24" fill="#030712" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="50" cy="50" r="8" fill="#38bdf8"/>
           </svg>
-          <h1 class="home-title">What can I help you create?</h1>
-          <p class="home-subtitle">Ask • Create • Learn • Explore</p>
+          <h1 class="home-title">Your ideas. Sudarshana AI.</h1>
+          <p class="home-subtitle">Think, create, research and build.</p>
           <div class="suggestion-chips-grid">
-            <button class="suggestion-chip" onclick="sendPresetQuery('Ask anything about science or technology')"><span class="material-icons">search</span> Ask anything</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Give me best SEO tools for YouTube')"><span class="material-icons">search</span> YouTube SEO Tools</button>
             <button class="suggestion-chip" onclick="sendPresetQuery('Help me code a clean Python web scraper')"><span class="material-icons">code</span> Help me code</button>
-            <button class="suggestion-chip" onclick="sendPresetQuery('Explain quantum computing simply')"><span class="material-icons">school</span> Explain a topic</button>
-            <button class="suggestion-chip" onclick="sendPresetQuery('Write a professional email for a job interview')"><span class="material-icons">edit_note</span> Write for me</button>
-            <button class="suggestion-chip" onclick="sendPresetQuery('Generate image of: A futuristic emerald city in mountains')"><span class="material-icons">image</span> Create an image</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Explain quantum computing in simple terms')"><span class="material-icons">school</span> Explain a topic</button>
+            <button class="suggestion-chip" onclick="sendPresetQuery('Generate image of: A futuristic emerald city in the mountains')"><span class="material-icons">image</span> Create an image</button>
           </div>
         </div>
 
+        <!-- Active Conversation Stream -->
         <div class="messages-list" id="messagesList"></div>
 
       </div>
 
-      <!-- Plus Menu -->
+      <!-- Plus Menu Popover -->
       <div class="plus-menu" id="plusMenu">
         <button class="plus-menu-item" onclick="triggerFileInput()"><span class="material-icons">attach_file</span> Upload File / Photo</button>
-        <button class="plus-menu-item" onclick="triggerPresetImage()"><span class="material-icons">image</span> Create Image</button>
+        <button class="plus-menu-item" onclick="triggerPresetImageMode()"><span class="material-icons">image</span> Create Image</button>
+        <button class="plus-menu-item" onclick="triggerWebSearchMode()"><span class="material-icons">public</span> Web Search</button>
       </div>
 
-      <!-- Composer -->
+      <!-- Composer / Command Center -->
       <div class="composer-wrapper">
         <div class="attachment-preview-bar" id="attachmentPreviewBar">
           <img id="previewThumbnail" src="" alt="preview">
@@ -336,7 +365,7 @@
           <button class="composer-icon-btn" onclick="togglePlusMenu()"><span class="material-icons">add</span></button>
           <textarea class="composer-textarea" id="composerInput" placeholder="Message Sudarshana..." rows="1" oninput="autoResizeTextarea(this)" onkeydown="handleComposerKey(event)"></textarea>
           <div class="composer-actions">
-            <button class="composer-icon-btn" onclick="startVoiceAssistant()"><span class="material-icons">mic</span></button>
+            <button class="composer-icon-btn" onclick="startSpeechToText()" title="Speech to Text"><span class="material-icons">mic</span></button>
             <button class="send-stop-btn" id="sendStopBtn" onclick="handleSendAction()"><span class="material-icons" id="sendStopIcon">arrow_upward</span></button>
           </div>
         </div>
@@ -353,14 +382,21 @@
     let activeAbortController = null;
     let attachedFile = null;
     let isTempChat = false;
+    let isSuperAIActive = true;
 
+    // Intro Animation Failsafe
     window.addEventListener('load', () => {
       setTimeout(() => {
-        document.getElementById('introLoader').classList.add('hide');
+        const loader = document.getElementById('introLoader');
+        if (loader) loader.classList.add('hide');
         document.getElementById('composerInput').focus();
       }, 1000);
       renderSidebarHistory();
     });
+    setTimeout(() => {
+      const loader = document.getElementById('introLoader');
+      if (loader) loader.classList.add('hide');
+    }, 2000);
 
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
@@ -372,17 +408,24 @@
     function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('active'); }
     function togglePlusMenu() { document.getElementById('plusMenu').classList.toggle('active'); }
 
-    function setTheme(name) {
-      document.body.className = 'theme-' + name;
-      localStorage.setItem('sudarshana_theme', name);
+    function setTheme(themeName) {
+      document.body.className = themeName === 'dark' ? 'theme-dark' : 'theme-' + themeName;
+      localStorage.setItem('sudarshana_theme', themeName);
       closeThemeModal();
     }
     const savedTheme = localStorage.getItem('sudarshana_theme');
-    if (savedTheme) document.body.className = 'theme-' + savedTheme;
+    if (savedTheme) document.body.className = savedTheme === 'dark' ? 'theme-dark' : 'theme-' + savedTheme;
+
+    function toggleSuperAI() {
+      isSuperAIActive = !isSuperAIActive;
+      const el = document.getElementById('superAiSwitch');
+      if (isSuperAIActive) el.classList.add('active');
+      else el.classList.remove('active');
+    }
 
     function autoResizeTextarea(el) {
       el.style.height = 'auto';
-      el.style.height = Math.min(el.scrollHeight, 130) + 'px';
+      el.style.height = Math.min(el.scrollHeight, 140) + 'px';
     }
     function handleComposerKey(e) {
       if (e.key === 'Enter' && !e.shiftKey) {
@@ -402,9 +445,12 @@
       reader.onload = function(evt) {
         attachedFile = { name: file.name, type: file.type, data: evt.target.result };
         document.getElementById('previewFilename').textContent = file.name;
+        const thumb = document.getElementById('previewThumbnail');
         if (file.type.startsWith('image/')) {
-          document.getElementById('previewThumbnail').src = evt.target.result;
-          document.getElementById('previewThumbnail').style.display = 'block';
+          thumb.src = evt.target.result;
+          thumb.style.display = 'block';
+        } else {
+          thumb.style.display = 'none';
         }
         document.getElementById('attachmentPreviewBar').style.display = 'flex';
       };
@@ -415,35 +461,67 @@
       document.getElementById('attachmentPreviewBar').style.display = 'none';
       document.getElementById('fileInput').value = '';
     }
-    function triggerPresetImage() {
+
+    function triggerPresetImageMode() {
       togglePlusMenu();
       document.getElementById('composerInput').value = "Generate image of: ";
       document.getElementById('composerInput').focus();
     }
-    function sendPresetQuery(q) {
-      document.getElementById('composerInput').value = q;
+    function triggerWebSearchMode() {
+      togglePlusMenu();
+      document.getElementById('composerInput').value = "Search the web for: ";
+      document.getElementById('composerInput').focus();
+    }
+    function sendPresetQuery(query) {
+      document.getElementById('composerInput').value = query;
       handleSendAction();
     }
 
-    function startVoiceAssistant() {
-      document.getElementById('voiceOverlay').classList.add('active');
+    // Composer Speech to Text
+    function startSpeechToText() {
       if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const rec = new SpeechRec();
-        rec.lang = 'en-US';
-        rec.onresult = (e) => {
-          const text = e.results[0][0].transcript;
-          document.getElementById('voiceTranscript').textContent = text;
-          setTimeout(() => {
-            stopVoiceAssistant();
-            document.getElementById('composerInput').value = text;
-            handleSendAction();
-          }, 800);
+        const recognition = new SpeechRec();
+        recognition.lang = 'en-US';
+        recognition.onresult = (e) => {
+          document.getElementById('composerInput').value = e.results[0][0].transcript;
+          autoResizeTextarea(document.getElementById('composerInput'));
         };
-        rec.start();
+        recognition.start();
+      } else {
+        alert("Speech-to-text not supported in this browser.");
       }
     }
-    function stopVoiceAssistant() { document.getElementById('voiceOverlay').classList.remove('active'); }
+
+    // Dedicated Voice Assistant Mode
+    function startVoiceAssistant() {
+      document.getElementById('voiceOverlay').classList.add('active');
+      document.getElementById('voiceStatus').textContent = "Listening...";
+      document.getElementById('voiceTranscript').textContent = "Speak your request naturally...";
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRec();
+        recognition.lang = 'en-US';
+        recognition.onresult = (e) => {
+          const speechText = e.results[0][0].transcript;
+          document.getElementById('voiceTranscript').textContent = speechText;
+          document.getElementById('voiceStatus').textContent = "Sudarshana Speaking...";
+          readAloud(speechText);
+          setTimeout(() => { stopVoiceAssistant(); }, 3000);
+        };
+        recognition.start();
+      }
+    }
+    function stopVoiceAssistant() {
+      document.getElementById('voiceOverlay').classList.remove('active');
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+    function readAloud(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+      }
+    }
 
     function startNewChat() {
       currentSessionId = 'session_' + Date.now();
@@ -456,16 +534,21 @@
 
     function saveCurrentSession(title) {
       if (isTempChat) return;
-      let idx = chatSessions.findIndex(s => s.id === currentSessionId);
-      const data = { id: currentSessionId, title: title || 'Conversation', messages: currentMessages };
-      if (idx >= 0) chatSessions[idx] = data; else chatSessions.unshift(data);
+      let existingIndex = chatSessions.findIndex(s => s.id === currentSessionId);
+      const sessionData = { id: currentSessionId, title: title || 'New Conversation', messages: currentMessages, updated: Date.now() };
+      if (existingIndex >= 0) chatSessions[existingIndex] = sessionData;
+      else chatSessions.unshift(sessionData);
       localStorage.setItem('sudarshana_sessions', JSON.stringify(chatSessions));
       renderSidebarHistory();
     }
 
     function renderSidebarHistory() {
       const container = document.getElementById('sidebarHistory');
-      container.innerHTML = '<div class="history-group-title">Recent Chats</div>';
+      container.innerHTML = '<div class="history-group-title">Recent Conversations</div>';
+      if (chatSessions.length === 0) {
+        container.innerHTML += '<div style="padding:10px; font-size:12.5px; color:var(--text-muted);">No recent chats</div>';
+        return;
+      }
       chatSessions.forEach(s => {
         const btn = document.createElement('button');
         btn.className = 'history-item';
@@ -476,15 +559,15 @@
     }
 
     function loadSession(id) {
-      const s = chatSessions.find(x => x.id === id);
-      if (!s) return;
-      currentSessionId = s.id;
-      currentMessages = [...s.messages];
+      const session = chatSessions.find(s => s.id === id);
+      if (!session) return;
+      currentSessionId = session.id;
+      currentMessages = [...session.messages];
       document.getElementById('homeHero').style.display = 'none';
       const mList = document.getElementById('messagesList');
       mList.style.display = 'flex';
       mList.innerHTML = '';
-      s.messages.forEach(m => appendMessageNode(m.role, m.content, false));
+      currentMessages.forEach(m => appendMessageNode(m.role, m.content, false));
       toggleSidebar();
     }
 
@@ -495,6 +578,8 @@
       startNewChat();
       closeSettingsModal();
     }
+
+    function toggleTempChat() { isTempChat = document.getElementById('tempChatToggle').checked; }
 
     function handleSendAction() {
       if (isGenerating) {
@@ -514,22 +599,27 @@
       const mList = document.getElementById('messagesList');
       mList.style.display = 'flex';
 
-      let payload = text;
+      let userPayload = text;
       if (attachedFile) {
-        payload += ` [Attached File: ${attachedFile.name}]`;
+        userPayload += ` [Attached File: ${attachedFile.name}]`;
         clearAttachment();
       }
 
-      appendMessageNode('user', payload, true);
-      dispatchAIResponse(payload);
+      appendMessageNode('user', userPayload, true);
+      dispatchAIResponse(userPayload);
     }
 
-    function setComposerState(gen) {
-      isGenerating = gen;
-      const icon = document.getElementById('sendStopIcon');
+    function setComposerState(generating) {
+      isGenerating = generating;
+      const iconEl = document.getElementById('sendStopIcon');
       const btn = document.getElementById('sendStopBtn');
-      if (gen) { icon.textContent = 'stop'; btn.style.background = '#ef4444'; }
-      else { icon.textContent = 'arrow_upward'; btn.style.background = 'var(--accent)'; }
+      if (generating) {
+        iconEl.textContent = 'stop';
+        btn.style.background = '#ef4444';
+      } else {
+        iconEl.textContent = 'arrow_upward';
+        btn.style.background = 'var(--accent)';
+      }
     }
 
     function appendMessageNode(role, content, save = true) {
@@ -557,62 +647,61 @@
 
       if (save) {
         currentMessages.push({ role, content });
-        saveCurrentSession(currentMessages[0].content.slice(0, 30) + '...');
+        saveCurrentSession(content.slice(0, 32) + '...');
       }
     }
 
-    function readAloud(text) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-      }
-    }
-
-    async function dispatchAIResponse(text) {
+    // Backend Dispatcher with Clean Natural Response
+    async function dispatchAIResponse(promptText) {
       setComposerState(true);
       activeAbortController = new AbortController();
-      const smartMode = document.getElementById('smartModeSelect').value;
 
       const mList = document.getElementById('messagesList');
       const row = document.createElement('div');
       row.className = 'message-row assistant';
+      
       const bubble = document.createElement('div');
       bubble.className = 'message-bubble';
       
-      const thinkingId = 'think_' + Date.now();
-      bubble.innerHTML = `<div class="thinking-indicator" id="${thinkingId}">Sudarshana is thinking <svg class="thinking-chakra" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#10b981" stroke-width="8" stroke-dasharray="10 6"/></svg></div>`;
+      const thinkingId = 'thinking_' + Date.now();
+      const statusText = isSuperAIActive ? 'Super AI · Synthesizing...' : 'Sudarshana is thinking...';
+      bubble.innerHTML = `<div class="thinking-indicator" id="${thinkingId}">${statusText}<div class="thinking-dots"><span></span><span></span><span></span></div></div>`;
       row.appendChild(bubble);
       mList.appendChild(row);
       mList.scrollTop = mList.scrollHeight;
 
       try {
-        const res = await fetch('/api/chat', {
+        const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: currentMessages, smartMode }),
+          body: JSON.stringify({ messages: currentMessages, superAI: isSuperAIActive }),
           signal: activeAbortController.signal
         });
-        const data = await res.json();
-        const reply = data.reply || "Done.";
+
+        const data = await response.json();
+        const replyText = data.reply || "Here is the information you requested.";
 
         document.getElementById(thinkingId)?.remove();
         bubble.textContent = '';
 
-        let idx = 0;
-        const timer = setInterval(() => {
-          if (idx < reply.length) {
-            bubble.textContent += reply.charAt(idx);
-            idx++;
+        let index = 0;
+        const interval = setInterval(() => {
+          if (index < replyText.length) {
+            bubble.textContent += replyText.charAt(index);
+            index++;
             mList.scrollTop = mList.scrollHeight;
           } else {
-            clearInterval(timer);
-            finalizeAssistantMessage(row, reply);
+            clearInterval(interval);
+            finalizeAssistantMessage(row, replyText);
           }
         }, 10);
 
       } catch (err) {
-        document.getElementById(thinkingId)?.remove();
-        bubble.textContent = "Sudarshana is switching to another AI engine... Your conversation is saved.";
+        if (err.name === 'AbortError') {
+          bubble.textContent = '[Generation stopped]';
+        } else {
+          bubble.textContent = "Sudarshana couldn't complete that response right now. The service may be busy. Try again, or switch to Quick AI.";
+        }
         finalizeAssistantMessage(row, bubble.textContent);
       }
     }
