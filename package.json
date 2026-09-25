@@ -1,7 +1,7 @@
 {
   "name": "sudarshana-chat-ai",
   "version": "1.0.0",
-  "description": "Sudarshana AI Web Application",
+  "description": "Sudarshana AI Workspace",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
