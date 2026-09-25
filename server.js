@@ -1,154 +1,78 @@
-import http from "http";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const app = express();
+app.use(express.json({ limit: '10mb' }));
+app.use(cors());
 
-const PORT = process.env.PORT || 3000;
-const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+// Serve static files from root directory
+app.use(express.static(path.join(__dirname)));
 
-const server = http.createServer(async (req, res) => {
-  // CORS
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-  if (req.method === "OPTIONS") {
-    res.writeHead(204);
-    res.end();
-    return;
-  }
-
-  // Chat API
-  if (req.method === "POST" && req.url === "/api/chat") {
-    if (!API_KEY) {
-      res.writeHead(500, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "GEMINI_API_KEY is not configured" }));
-      return;
+// Secure Backend API Endpoint for Chat
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { messages, smartMode } = req.body;
+    if (!messages || !messages.length) {
+      return res.status(400).json({ error: 'No messages provided' });
     }
 
-    try {
-      let body = "";
+    const latestMessage = messages[messages.length - 1].content;
+    
+    // System instruction based on Smart Mode (Auto / Fast / Deep / Creative)
+    let systemInstruction = "You are Sudarshana AI, a premium, intelligent, and helpful personal AI assistant. Provide clean, concise, and structured answers directly.";
+    if (smartMode === 'deep') {
+      systemInstruction = "Provide an in-depth, rigorous, and highly analytical breakdown for the request.";
+    } else if (smartMode === 'creative') {
+      systemInstruction = "Provide an imaginative, creative, and engaging response for the request.";
+    } else if (smartMode === 'fast') {
+      systemInstruction = "Provide a direct, concise, and straight-to-the-point response.";
+    }
 
-      req.on("data", chunk => {
-        body += chunk;
-      });
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
-      req.on("end", async () => {
-        try {
-          const data = JSON.parse(body);
-          const message = data.message || "";
-
-          if (!message.trim()) {
-            res.writeHead(400, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "Message is required" }));
-            return;
-          }
-
-          const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                contents: [
-                  {
-                    parts: [
-                      {
-                        text: message
-                      }
-                    ]
-                  }
-                ]
-              })
-            }
-          );
-
-          const result = await response.json();
-
-          if (!response.ok) {
-            res.writeHead(response.status, {
-              "Content-Type": "application/json"
-            });
-            res.end(JSON.stringify({
-              error: result?.error?.message || "Gemini API error"
-            }));
-            return;
-          }
-
-          const reply =
-            result?.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "Sorry, I couldn't generate a response.";
-
-          res.writeHead(200, {
-            "Content-Type": "application/json"
-          });
-
-          res.end(JSON.stringify({ reply }));
-        } catch (error) {
-          res.writeHead(500, {
-            "Content-Type": "application/json"
-          });
-
-          res.end(JSON.stringify({
-            error: error.message
-          }));
+    const apiPayload = {
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: `${systemInstruction}\n\nUser Request: ${latestMessage}` }]
         }
-      });
-
-      return;
-    } catch (error) {
-      res.writeHead(500, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: error.message }));
-      return;
-    }
-  }
-
-  // Serve frontend
-  let filePath = req.url === "/"
-    ? path.join(__dirname, "index.html")
-    : path.join(__dirname, req.url);
-
-  // Security: prevent path traversal
-  if (!filePath.startsWith(__dirname)) {
-    res.writeHead(403);
-    res.end("Forbidden");
-    return;
-  }
-
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("Not Found");
-      return;
-    }
-
-    const ext = path.extname(filePath);
-
-    const contentTypes = {
-      ".html": "text/html",
-      ".js": "application/javascript",
-      ".css": "text/css",
-      ".json": "application/json",
-      ".png": "image/png",
-      ".jpg": "image/jpeg",
-      ".jpeg": "image/jpeg",
-      ".svg": "image/svg+xml"
+      ]
     };
 
-    res.writeHead(200, {
-      "Content-Type": contentTypes[ext] || "application/octet-stream"
+    let response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(apiPayload)
     });
 
-    res.end(content);
-  });
+    let data = await response.json();
+
+    // Automatic Fallback Retry if primary call fails
+    if (!response.ok || !data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      console.warn("Primary model call lagged, attempting fallback retry...");
+      const fallbackEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+      response = await fetch(fallbackEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(apiPayload)
+      });
+      data = await response.json();
+    }
+
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sudarshana AI processed your request successfully.";
+    
+    res.json({ reply });
+
+  } catch (err) {
+    console.error("Backend Server Error:", err);
+    res.status(502).json({ error: "Sudarshana is switching to another AI engine. Please try again." });
+  }
 });
 
-server.listen(PORT, () => {
-  console.log(`Sudarshana Chat AI running on port ${PORT}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Sudarshana AI Server running on port ${PORT}`);
 });
