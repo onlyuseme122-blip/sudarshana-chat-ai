@@ -196,7 +196,7 @@
     .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; font-weight: 700; font-size: 16px; }
     .modal-content { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
 
-    #fileInput { display: none; }
+        #fileInput { display: none; }
   </style>
 </head>
 <body class="theme-dark">
@@ -299,7 +299,7 @@
             <div class="mini-toggle"></div>
           </div>
           <button class="icon-btn" onclick="startVoiceAssistant()" title="Voice Assistant"><span class="material-icons">mic</span></button>
-          <button class="icon-btn" onclick="toggleDropdownMenu()" title="Options"><span class="material-icons">more_vert</span></button>
+          <button class="icon-btn" onclick="toggleDropdownMenu(event)" title="Options"><span class="material-icons">more_vert</span></button>
           
           <div class="dropdown-menu" id="dropdownMenu">
             <button class="dropdown-item" onclick="startNewChat(); toggleDropdownMenu();"><span class="material-icons">add</span> New Chat</button>
@@ -353,7 +353,7 @@
         </div>
 
         <div class="composer-box">
-          <button class="composer-icon-btn" onclick="togglePlusMenu()"><span class="material-icons">add</span></button>
+          <button class="composer-icon-btn" onclick="togglePlusMenu(event)"><span class="material-icons">add</span></button>
           <textarea class="composer-textarea" id="composerInput" placeholder="Message Sudarshana..." rows="1" oninput="autoResizeTextarea(this)" onkeydown="handleComposerKey(event)"></textarea>
           <div class="composer-actions">
             <button class="composer-icon-btn" onclick="startSpeechToText()" title="Speech to Text"><span class="material-icons">mic</span></button>
@@ -380,11 +380,25 @@
       setTimeout(() => {
         const loader = document.getElementById('introLoader');
         if (loader) loader.classList.add('hide');
-        document.getElementById('composerInput').focus();
       }, 1000);
       renderSidebarHistory();
       loadVoices();
     });
+
+    // BUG FIX: on Android/iOS, when the keyboard opens, the layout height
+    // doesn't shrink the way `100dvh` assumes on every browser, so the
+    // composer/send button could end up hidden behind the keyboard
+    // ("touch response nahi milta" jaisa lagta hai). visualViewport se
+    // actual visible height track karke app-container ko resize karte hain.
+    if (window.visualViewport) {
+      const appEl = document.querySelector('.app-container');
+      const resizeToViewport = () => {
+        appEl.style.height = window.visualViewport.height + 'px';
+        window.scrollTo(0, 0);
+      };
+      window.visualViewport.addEventListener('resize', resizeToViewport);
+      window.visualViewport.addEventListener('scroll', resizeToViewport);
+    }
 
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = loadVoices;
@@ -408,14 +422,28 @@
       document.getElementById('sidebar').classList.toggle('active');
       document.getElementById('sidebarOverlay').classList.toggle('active');
     }
-    function toggleDropdownMenu() {
+    function toggleDropdownMenu(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('plusMenu').classList.remove('active');
       document.getElementById('dropdownMenu').classList.toggle('active');
     }
     function openThemeModal() { document.getElementById('themeModal').classList.add('active'); }
     function closeThemeModal() { document.getElementById('themeModal').classList.remove('active'); }
     function openSettingsModal() { document.getElementById('settingsModal').classList.add('active'); }
     function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('active'); }
-    function togglePlusMenu() { document.getElementById('plusMenu').classList.toggle('active'); }
+    function togglePlusMenu(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('dropdownMenu').classList.remove('active');
+      document.getElementById('plusMenu').classList.toggle('active');
+    }
+    // BUG FIX: pehle in menus ko band karne ka koi tareeka nahi tha except
+    // unke apne items par click karna — isliye peeche wale buttons pehli
+    // tap par kaam nahi karte the (pehli tap sirf menu close karti thi).
+    // Ab kahin bhi bahar tap karne se dono menu apne aap band ho jaayenge.
+    document.addEventListener('click', () => {
+      document.getElementById('dropdownMenu')?.classList.remove('active');
+      document.getElementById('plusMenu')?.classList.remove('active');
+    });
 
     function setTheme(themeName) {
       document.body.className = themeName === 'dark' ? 'theme-dark' : 'theme-' + themeName;
@@ -499,45 +527,89 @@
           document.getElementById('composerInput').value = e.results[0][0].transcript;
           autoResizeTextarea(document.getElementById('composerInput'));
         };
-        recognition.start();
+        recognition.onerror = (e) => {
+          if (e.error === 'not-allowed' || e.error === 'permission-denied') {
+            alert("Microphone permission allow nahi hai. Browser settings me site ko mic access do.");
+          }
+        };
+        try { recognition.start(); } catch (err) {}
       } else {
         alert("Speech-to-text not supported in this browser.");
       }
     }
 
+    let activeRecognition = null;
+
     function startVoiceAssistant() {
       document.getElementById('voiceOverlay').classList.add('active');
       document.getElementById('voiceStatus').textContent = "Listening...";
       document.getElementById('voiceTranscript').textContent = "Speak your request naturally...";
-      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const recognition = new SpeechRec();
-        recognition.lang = 'en-US';
-        recognition.onresult = async (e) => {
-          const speechText = e.results[0][0].transcript;
-          document.getElementById('voiceTranscript').textContent = speechText;
-          document.getElementById('voiceStatus').textContent = "Thinking...";
-          
-          try {
-            const res = await fetch('/api/chat', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ messages: [{ role: 'user', content: speechText }], superAI: isSuperAIActive })
-            });
-            const data = await res.json();
-            const aiReply = data.reply || "I am here.";
-            document.getElementById('voiceStatus').textContent = "Speaking...";
-            document.getElementById('voiceTranscript').textContent = aiReply;
-            readAloudWithSelectedVoice(aiReply);
-          } catch(err) {
-            readAloudWithSelectedVoice("Sorry, I could not process that.");
-          }
-        };
+
+      if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+        document.getElementById('voiceStatus').textContent = "Not Supported";
+        document.getElementById('voiceTranscript').textContent = "Is browser me voice input support nahi hai. Chrome try karo.";
+        return;
+      }
+
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRec();
+      activeRecognition = recognition;
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      // BUG FIX: pehle koi onerror/onend handler nahi tha. Agar mic
+      // permission deny ho jaata, ya kuch der tak koi awaaz na aaye,
+      // to status hamesha "Listening..." par atka reh jaata tha — dekhne
+      // me lagta "voice assistant kaam nahi kar raha".
+      recognition.onerror = (e) => {
+        let msg = "Kuch gadbad ho gayi, dobara try karo.";
+        if (e.error === 'not-allowed' || e.error === 'permission-denied') {
+          msg = "Microphone permission allow nahi hai. Browser settings me site ko mic access do.";
+        } else if (e.error === 'no-speech') {
+          msg = "Koi awaaz nahi mili. Mic button dobara dabao aur bolo.";
+        }
+        document.getElementById('voiceStatus').textContent = "Error";
+        document.getElementById('voiceTranscript').textContent = msg;
+      };
+
+      recognition.onresult = async (e) => {
+        const speechText = e.results[0][0].transcript;
+        document.getElementById('voiceTranscript').textContent = speechText;
+        document.getElementById('voiceStatus').textContent = "Thinking...";
+
+        try {
+          const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: [{ role: 'user', content: speechText }], superAI: isSuperAIActive })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'AI error');
+          const aiReply = data.reply || "I am here.";
+          document.getElementById('voiceStatus').textContent = "Speaking...";
+          document.getElementById('voiceTranscript').textContent = aiReply;
+          readAloudWithSelectedVoice(aiReply);
+        } catch (err) {
+          document.getElementById('voiceStatus').textContent = "Error";
+          document.getElementById('voiceTranscript').textContent = "Sorry, I could not process that.";
+          readAloudWithSelectedVoice("Sorry, I could not process that.");
+        }
+      };
+
+      try {
         recognition.start();
+      } catch (err) {
+        document.getElementById('voiceStatus').textContent = "Error";
+        document.getElementById('voiceTranscript').textContent = "Mic start nahi ho paya. Dobara try karo.";
       }
     }
     function stopVoiceAssistant() {
       document.getElementById('voiceOverlay').classList.remove('active');
+      if (activeRecognition) {
+        try { activeRecognition.stop(); } catch (e) {}
+        activeRecognition = null;
+      }
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
     function readAloudWithSelectedVoice(text) {
