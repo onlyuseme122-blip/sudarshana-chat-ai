@@ -10,7 +10,7 @@ app.use(express.static(__dirname));
 const PRIMARY_API_KEY = process.env.GEMINI_API_KEY;
 const MODEL_NAME = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
-// 1. Real Chat Endpoint with Full Multi-Turn Context & No Fake Fallbacks
+// Phase 1 & 3: Real Chat Endpoint with Full Multi-Turn Context Memory
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages, superAI } = req.body;
@@ -22,7 +22,6 @@ app.post('/api/chat', async (req, res) => {
       ? "You are Sudarshana Super AI, an elite multi-model synthesized expert assistant. Provide accurate, highly structured, and direct professional answers."
       : "You are Sudarshana AI, a friendly, precise, and direct conversational assistant.";
 
-    // Format history for Gemini API expects role: user/model
     const formattedContents = [];
     formattedContents.push({
       role: "user",
@@ -61,7 +60,7 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// 2. Real Image Generation Route via Pollinations AI
+// Phase 6: Real Image Generation Route
 app.post('/api/image', async (req, res) => {
   try {
     const { prompt } = req.body;
